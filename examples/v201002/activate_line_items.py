@@ -50,7 +50,7 @@ line_item_service = client.GetLineItemService()
 order_id = 'INSERT_ORDER_ID_HERE'
 
 # Create filter.
-filter = 'WHERE orderId = \'%s\' AND status = \'APPROVED\'' % order_id
+filter = 'WHERE orderId = \'%s\' AND status = \'NEEDS_CREATIVES\'' % order_id
 
 # Get line items by filter.
 line_items = Utils.GetAllEntitiesByFilter(client, 'LineItem', filter)
