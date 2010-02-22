@@ -55,8 +55,7 @@ executed to make sure that everything is working as intended and no new bugs
 were introduced.
 
 
-How do I start?
----------------
+==How do I start?==
 
 If you haven't yet done so, you'll need to request sandbox access to the API as
 directed on this page: `http://code.google.com/apis/dfp/docs/signup.html`. Once
