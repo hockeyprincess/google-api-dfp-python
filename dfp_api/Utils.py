@@ -87,15 +87,6 @@ def GetCurrencies():
   return GetDataFromCsvFile('currencies.csv')
 
 
-def GetErrorCodes():
-  """Get a list of available error codes.
-
-  Returns:
-    list available error codes.
-  """
-  return GetDataFromCsvFile('error_codes.csv')
-
-
 def GetTimezones():
   """Get a list of available timezones.
 

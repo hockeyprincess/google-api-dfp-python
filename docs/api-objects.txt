@@ -61,7 +61,6 @@ dfp_api.Utils.BoolTypeConvert	dfp_api.Utils-module.html#BoolTypeConvert
 dfp_api.Utils.HtmlUnescape	dfp_api.Utils-module.html#HtmlUnescape
 dfp_api.Utils.PurgeLogs	dfp_api.Utils-module.html#PurgeLogs
 dfp_api.Utils.GetAllEntitiesByFilter	dfp_api.Utils-module.html#GetAllEntitiesByFilter
-dfp_api.Utils.GetErrorCodes	dfp_api.Utils-module.html#GetErrorCodes
 dfp_api.Utils.CsvEscape	dfp_api.Utils-module.html#CsvEscape
 dfp_api.Utils.LastStackTrace	dfp_api.Utils-module.html#LastStackTrace
 dfp_api.Utils.MakeTextXMLReady	dfp_api.Utils-module.html#MakeTextXMLReady

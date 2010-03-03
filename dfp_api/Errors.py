@@ -62,7 +62,7 @@ class ApiError(Error):
 
   """Implements ApiException.
 
-  Responsible for handling Publisher Display Ads API exceptions.
+  Responsible for handling API exceptions.
   """
 
   def __init__(self, fault):
@@ -110,7 +110,7 @@ class ApiAsStrError(Error):
 
   """Implements ApiAsStrError.
 
-  Responsible for handling Publisher Display Ads API exceptions that come in a form of a
+  Responsible for handling API exceptions that come in a form of a
   string.
   """
 
@@ -205,7 +205,7 @@ class RequestError(ApiError):
 
   """Implements RequestError.
 
-  Responsible for handling Publisher Display Ads API errors
+  Responsible for handling API errors
   """
 
   pass
@@ -215,7 +215,7 @@ class GoogleInternalError(ApiError):
 
   """Implements GoogleInternalError.
 
-  Responsible for handling Publisher Display Ads API errors
+  Responsible for handling API errors
   """
 
   pass
@@ -225,7 +225,7 @@ class AuthenticationError(ApiError):
 
   """Implements AuthenticationError.
 
-  Responsible for handling Publisher Display Ads API errors
+  Responsible for handling API errors
   """
 
   pass
