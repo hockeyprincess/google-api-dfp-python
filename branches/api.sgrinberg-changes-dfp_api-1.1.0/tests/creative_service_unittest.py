@@ -132,7 +132,7 @@ class CreativeServiceTestV201002(unittest.TestCase):
       self.testCreateCreatieves()
     destination_url = 'http://news.google.com'
     image_name = 'inline.jpg'
-    size = {'width': '300', 'height': '250'}
+    size = {'width': '300', 'isAspectRatio': 'false', 'height': '250'}
     self.__class__.creative1['destinationUrl'] = destination_url
     self.__class__.creative1['imageName'] = image_name
     self.__class__.creative1['size'] = size

@@ -109,7 +109,7 @@ class InventoryServiceTestV201002(unittest.TestCase):
     """Test whether we can update an ad unit."""
     if self.__class__.ad_unit1 is None:
       self.testCreateAdUnits()
-    size = {'width': '728', 'height': '90'}
+    size = {'width': '728', 'isAspectRatio': 'false', 'height': '90'}
     self.__class__.ad_unit1['sizes'] = [size]
     ad_unit = self.__class__.service.UpdateAdUnit(self.__class__.ad_unit1)
     self.assert_(isinstance(ad_unit, tuple))
@@ -119,7 +119,7 @@ class InventoryServiceTestV201002(unittest.TestCase):
     """Test whether we can update a list of ad units."""
     if self.__class__.ad_unit1 is None or self.__class__.ad_unit2 is None:
       self.testCreateAdUnits()
-    size = {'width': '728', 'height': '90'}
+    size = {'width': '728', 'isAspectRatio': 'false', 'height': '90'}
     self.__class__.ad_unit1['sizes'] = [size]
     self.__class__.ad_unit2['sizes'] = [size]
     ad_units = self.__class__.service.UpdateAdUnits(
