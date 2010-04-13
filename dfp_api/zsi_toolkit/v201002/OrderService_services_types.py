@@ -252,6 +252,23 @@ class ns0:
 
             ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
+    class OrderError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "OrderError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.OrderError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201002","OrderError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.OrderError_Def.__bases__:
+                bases = list(ns0.OrderError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.OrderError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
     class ParseError_Def(TypeDefinition):
         #complexType/complexContent extension
         schema = "https://www.google.com/apis/ads/publisher/v201002"
@@ -285,6 +302,23 @@ class ns0:
                 ns0.PauseOrders_Def.__bases__ = tuple(bases)
 
             ns0.OrderAction_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class PermissionError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "PermissionError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.PermissionError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201002","PermissionError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.PermissionError_Def.__bases__:
+                bases = list(ns0.PermissionError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.PermissionError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
     class QuotaError_Def(TypeDefinition):
         #complexType/complexContent extension
@@ -704,6 +738,15 @@ class ns0:
                 typecode = self
             self.pyclass = Holder
 
+    class OrderError_Reason_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "OrderError.Reason")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
     class OrderStatus_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201002"
         type = (schema, "OrderStatus")
@@ -716,6 +759,15 @@ class ns0:
     class ParseError_Reason_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201002"
         type = (schema, "ParseError.Reason")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
+    class PermissionError_Reason_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "PermissionError.Reason")
         def __init__(self, pname, **kw):
             ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
             class Holder(str):

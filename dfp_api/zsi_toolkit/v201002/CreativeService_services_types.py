@@ -312,7 +312,7 @@ class ns0:
         type = (schema, "Size")
         def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
             ns = ns0.Size_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"width"), aname="_width", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"height"), aname="_height", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            TClist = [ZSI.TC.String(pname=(ns,"width"), aname="_width", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"height"), aname="_height", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"isAspectRatio"), aname="_isAspectRatio", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
             self.attribute_typecode_dict = attributes or {}
             if extend: TClist += ofwhat
             if restrict: TClist = ofwhat
@@ -323,6 +323,7 @@ class ns0:
                     # pyclass
                     self._width = None
                     self._height = None
+                    self._isAspectRatio = None
                     return
             Holder.__name__ = "Size_Holder"
             self.pyclass = Holder

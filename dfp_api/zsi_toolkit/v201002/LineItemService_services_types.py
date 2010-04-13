@@ -169,6 +169,45 @@ class ns0:
             Holder.__name__ = "DateTime_Holder"
             self.pyclass = Holder
 
+    class DeliveryData_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "DeliveryData")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.DeliveryData_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"units"), aname="_units", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._units = []
+                    return
+            Holder.__name__ = "DeliveryData_Holder"
+            self.pyclass = Holder
+
+    class DeliveryIndicator_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "DeliveryIndicator")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.DeliveryIndicator_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"expectedDeliveryPercentage"), aname="_expectedDeliveryPercentage", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"actualDeliveryPercentage"), aname="_actualDeliveryPercentage", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._expectedDeliveryPercentage = None
+                    self._actualDeliveryPercentage = None
+                    return
+            Holder.__name__ = "DeliveryIndicator_Holder"
+            self.pyclass = Holder
+
     class Filter_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201002"
         type = (schema, "Filter")
@@ -359,7 +398,7 @@ class ns0:
         type = (schema, "LineItemSummary")
         def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
             ns = ns0.LineItemSummary_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"orderId"), aname="_orderId", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"id"), aname="_id", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"name"), aname="_name", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","DateTime",lazy=False)(pname=(ns,"startDateTime"), aname="_startDateTime", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemSummary.StartType",lazy=False)(pname=(ns,"startType"), aname="_startType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","DateTime",lazy=False)(pname=(ns,"endDateTime"), aname="_endDateTime", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"unlimitedEndDateTime"), aname="_unlimitedEndDateTime", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","CreativeRotationType",lazy=False)(pname=(ns,"creativeRotationType"), aname="_creativeRotationType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","DeliveryRateType",lazy=False)(pname=(ns,"deliveryRateType"), aname="_deliveryRateType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","RoadblockingType",lazy=False)(pname=(ns,"roadblockingType"), aname="_roadblockingType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","FrequencyCap",lazy=False)(pname=(ns,"frequencyCaps"), aname="_frequencyCaps", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemType",lazy=False)(pname=(ns,"lineItemType"), aname="_lineItemType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","UnitType",lazy=False)(pname=(ns,"unitType"), aname="_unitType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemSummary.Duration",lazy=False)(pname=(ns,"duration"), aname="_duration", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"unitsBought"), aname="_unitsBought", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","Money",lazy=False)(pname=(ns,"costPerUnit"), aname="_costPerUnit", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","Money",lazy=False)(pname=(ns,"valueCostPerUnit"), aname="_valueCostPerUnit", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","CostType",lazy=False)(pname=(ns,"costType"), aname="_costType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemDiscountType",lazy=False)(pname=(ns,"discountType"), aname="_discountType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"discount"), aname="_discount", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","Size",lazy=False)(pname=(ns,"creativeSizes"), aname="_creativeSizes", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"allowOverbook"), aname="_allowOverbook", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","Money",lazy=False)(pname=(ns,"budget"), aname="_budget", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","ComputedStatus",lazy=False)(pname=(ns,"status"), aname="_status", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemInventoryStatus",lazy=False)(pname=(ns,"inventoryStatus"), aname="_inventoryStatus", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"LineItemSummary.Type"), aname="_LineItemSummary_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            TClist = [ZSI.TC.String(pname=(ns,"orderId"), aname="_orderId", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"id"), aname="_id", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"name"), aname="_name", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"orderName"), aname="_orderName", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","DateTime",lazy=False)(pname=(ns,"startDateTime"), aname="_startDateTime", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemSummary.StartType",lazy=False)(pname=(ns,"startType"), aname="_startType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","DateTime",lazy=False)(pname=(ns,"endDateTime"), aname="_endDateTime", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"unlimitedEndDateTime"), aname="_unlimitedEndDateTime", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","CreativeRotationType",lazy=False)(pname=(ns,"creativeRotationType"), aname="_creativeRotationType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","DeliveryRateType",lazy=False)(pname=(ns,"deliveryRateType"), aname="_deliveryRateType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","RoadblockingType",lazy=False)(pname=(ns,"roadblockingType"), aname="_roadblockingType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","FrequencyCap",lazy=False)(pname=(ns,"frequencyCaps"), aname="_frequencyCaps", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemType",lazy=False)(pname=(ns,"lineItemType"), aname="_lineItemType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","UnitType",lazy=False)(pname=(ns,"unitType"), aname="_unitType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemSummary.Duration",lazy=False)(pname=(ns,"duration"), aname="_duration", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"unitsBought"), aname="_unitsBought", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","Money",lazy=False)(pname=(ns,"costPerUnit"), aname="_costPerUnit", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","Money",lazy=False)(pname=(ns,"valueCostPerUnit"), aname="_valueCostPerUnit", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","CostType",lazy=False)(pname=(ns,"costType"), aname="_costType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemDiscountType",lazy=False)(pname=(ns,"discountType"), aname="_discountType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"discount"), aname="_discount", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","Size",lazy=False)(pname=(ns,"creativeSizes"), aname="_creativeSizes", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"allowOverbook"), aname="_allowOverbook", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","Stats",lazy=False)(pname=(ns,"stats"), aname="_stats", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","DeliveryIndicator",lazy=False)(pname=(ns,"deliveryIndicator"), aname="_deliveryIndicator", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","DeliveryData",lazy=False)(pname=(ns,"deliveryData"), aname="_deliveryData", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","Money",lazy=False)(pname=(ns,"budget"), aname="_budget", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","ComputedStatus",lazy=False)(pname=(ns,"status"), aname="_status", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201002","LineItemSummary.ReservationStatus",lazy=False)(pname=(ns,"reservationStatus"), aname="_reservationStatus", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"LineItemSummary.Type"), aname="_LineItemSummary_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
             self.attribute_typecode_dict = attributes or {}
             if extend: TClist += ofwhat
             if restrict: TClist = ofwhat
@@ -371,6 +410,7 @@ class ns0:
                     self._orderId = None
                     self._id = None
                     self._name = None
+                    self._orderName = None
                     self._startDateTime = None
                     self._startType = None
                     self._endDateTime = None
@@ -390,9 +430,12 @@ class ns0:
                     self._discount = None
                     self._creativeSizes = []
                     self._allowOverbook = None
+                    self._stats = None
+                    self._deliveryIndicator = None
+                    self._deliveryData = None
                     self._budget = None
                     self._status = None
-                    self._inventoryStatus = None
+                    self._reservationStatus = None
                     self._LineItemSummary_Type = None
                     return
             Holder.__name__ = "LineItemSummary_Holder"
@@ -485,6 +528,23 @@ class ns0:
                 ns0.PauseLineItems_Def.__bases__ = tuple(bases)
 
             ns0.LineItemAction_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class PermissionError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "PermissionError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.PermissionError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201002","PermissionError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.PermissionError_Def.__bases__:
+                bases = list(ns0.PermissionError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.PermissionError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
     class QuotaError_Def(TypeDefinition):
         #complexType/complexContent extension
@@ -661,7 +721,7 @@ class ns0:
         type = (schema, "Size")
         def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
             ns = ns0.Size_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"width"), aname="_width", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"height"), aname="_height", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            TClist = [ZSI.TC.String(pname=(ns,"width"), aname="_width", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"height"), aname="_height", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"isAspectRatio"), aname="_isAspectRatio", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
             self.attribute_typecode_dict = attributes or {}
             if extend: TClist += ofwhat
             if restrict: TClist = ofwhat
@@ -672,6 +732,7 @@ class ns0:
                     # pyclass
                     self._width = None
                     self._height = None
+                    self._isAspectRatio = None
                     return
             Holder.__name__ = "Size_Holder"
             self.pyclass = Holder
@@ -716,6 +777,26 @@ class ns0:
                     self._responseTime = None
                     return
             Holder.__name__ = "SoapResponseHeader_Holder"
+            self.pyclass = Holder
+
+    class Stats_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "Stats")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.Stats_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"impressionsDelivered"), aname="_impressionsDelivered", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"clicksDelivered"), aname="_clicksDelivered", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._impressionsDelivered = None
+                    self._clicksDelivered = None
+                    return
+            Holder.__name__ = "Stats_Holder"
             self.pyclass = Holder
 
     class Targeting_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
@@ -880,15 +961,6 @@ class ns0:
                 typecode = self
             self.pyclass = Holder
 
-    class LineItemInventoryStatus_Def(ZSI.TC.String, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201002"
-        type = (schema, "LineItemInventoryStatus")
-        def __init__(self, pname, **kw):
-            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
-            class Holder(str):
-                typecode = self
-            self.pyclass = Holder
-
     class LineItemOperationError_Reason_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201002"
         type = (schema, "LineItemOperationError.Reason")
@@ -901,6 +973,15 @@ class ns0:
     class LineItemSummary_Duration_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201002"
         type = (schema, "LineItemSummary.Duration")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
+    class LineItemSummary_ReservationStatus_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "LineItemSummary.ReservationStatus")
         def __init__(self, pname, **kw):
             ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
             class Holder(str):
@@ -946,6 +1027,15 @@ class ns0:
     class ParseError_Reason_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201002"
         type = (schema, "ParseError.Reason")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
+    class PermissionError_Reason_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201002"
+        type = (schema, "PermissionError.Reason")
         def __init__(self, pname, **kw):
             ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
             class Holder(str):
