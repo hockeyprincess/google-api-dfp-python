@@ -69,20 +69,36 @@ else:
       list(version) < (list(map(eval, MIN_PYXML_VERSION.split('.'))))):
     PYXML_LIB = False
 
-# Check if ElementTree is installed ...
+# Check if cElementTree or ElementTree is installed ...
 try:
   # ... as a third party.
-  import elementtree.ElementTree as etree
-  etree.VERSION
+  import cElementTree as etree
   ETREE_LIB = True
+  ETREE_NAME = etree.__name__
+  ETREE_VERSION = etree.VERSION
 except (ImportError, AttributeError):
-  # ... natively.
   try:
-    import xml.etree.ElementTree as etree
-    etree.VERSION
+    # ... natively.
+    import xml.etree.cElementTree as etree
     ETREE_LIB = True
+    ETREE_NAME = etree.__name__
+    ETREE_VERSION = etree.VERSION
   except (ImportError, AttributeError):
-    ETREE_LIB = False
+    try:
+      # ... as a third party.
+      import elementtree.ElementTree as etree
+      ETREE_LIB = True
+      ETREE_NAME = etree.__name__
+      ETREE_VERSION = etree.VERSION
+    except (ImportError, AttributeError):
+      try:
+        # ... natively.
+        import xml.etree.ElementTree as etree
+        ETREE_LIB = True
+        ETREE_NAME = etree.__name__
+        ETREE_VERSION = etree.VERSION
+      except (ImportError, AttributeError):
+        ETREE_LIB = False
 
 if not PYXML and not ETREE:
   msg = ('PyXML v%s or ElementTree v%s or newer is required.'
@@ -127,7 +143,7 @@ class SoapBuffer(Buffer):
     if self.__xml_parser == PYXML:
       self.__xml_parser_sig = '%s v%s' % (PYXML_NAME, MIN_PYXML_VERSION)
     elif self.__xml_parser == ETREE:
-      self.__xml_parser_sig = '%s v%s' % (ETREE_NAME, MIN_ETREE_VERSION)
+      self.__xml_parser_sig = '%s v%s' % (ETREE_NAME, ETREE_VERSION)
     self.__pretty_xml = pretty_xml
 
   def write(self, str_in):
@@ -338,8 +354,8 @@ class SoapBuffer(Buffer):
         xml_obj = minidom.parseString(xml_dump)
       elif self.__xml_parser == ETREE:
         xml_obj = etree.fromstring(xml_dump)
-    except ExpatError, e:
-      msg = 'Unable to parse SOAP buffer for outgoing messages.' % e
+    except (ExpatError, SyntaxError), e:
+      msg = 'Unable to parse SOAP buffer for outgoing messages. %s' % e
       raise MalformedBufferError(msg)
     return xml_obj
 
@@ -359,8 +375,8 @@ class SoapBuffer(Buffer):
         xml_obj = minidom.parseString(xml_dump)
       elif self.__xml_parser == ETREE:
         xml_obj = etree.fromstring(xml_dump)
-    except ExpatError, e:
-      msg = 'Unable to parse SOAP buffer for incoming messages.' % e
+    except (ExpatError, SyntaxError), e:
+      msg = 'Unable to parse SOAP buffer for incoming messages. %s' % e
       raise MalformedBufferError(msg)
     return xml_obj
 
@@ -529,9 +545,15 @@ class SoapBuffer(Buffer):
           body = None
           for element in envelope.childNodes:
             if element.nodeName.lower().find('header') > -1:
-              header = element.childNodes[1]
+              if len(element.childNodes) > 1:
+                header = element.childNodes[1]
+              else:
+                header = element.childNodes[0]
             elif element.nodeName.lower().find('body') > -1:
-              body = element.childNodes[1]
+              if len(element.childNodes) > 1:
+                body = element.childNodes[1]
+              else:
+                body = element.childNodes[0]
           fault_obj = body
       elif self.__xml_parser == ETREE:
         fault_obj = xml_obj.getchildren()[len(

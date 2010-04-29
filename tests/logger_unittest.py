@@ -30,12 +30,12 @@ from tests import SERVER
 from tests import client
 
 
-class LoggerTestV201002(unittest.TestCase):
+class LoggerTestV201004(unittest.TestCase):
 
-  """Unittest suite for Logger using v201002."""
+  """Unittest suite for Logger using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   TMP_LOG = os.path.join('..', 'logs', 'logger_unittest.log')
   DEBUG_MSG1 = 'Message before call to an API method.'
   DEBUG_MSG2 = 'Message after call to an API method.'
@@ -60,7 +60,7 @@ class LoggerTestV201002(unittest.TestCase):
 
     logger.debug(self.__class__.DEBUG_MSG1)
     user_service = client.GetUserService(
-        self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+        self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
         HTTP_PROXY)
     user_service.GetAllRoles()
     logger.debug(self.__class__.DEBUG_MSG2)
@@ -75,18 +75,18 @@ class LoggerTestV201002(unittest.TestCase):
     os.remove(self.__class__.TMP_LOG)
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(LoggerTestV201002))
+  suite.addTests(unittest.makeSuite(LoggerTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

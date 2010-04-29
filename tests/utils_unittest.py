@@ -30,12 +30,12 @@ from tests import SERVER
 from tests import client
 
 
-class UtilsTestV201002(unittest.TestCase):
+class UtilsTestV201004(unittest.TestCase):
 
-  """Unittest suite for Utils using v201002."""
+  """Unittest suite for Utils using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   client.debug = False
   TRIGGER_MSG = ('502 Server Error. The server encountered a temporary error'
                  ' and could not complete yourrequest. Please try again in 30 '
@@ -51,8 +51,7 @@ class UtilsTestV201002(unittest.TestCase):
     buf = SoapBuffer()
     sys.stdout = buf
 
-    html_code = Utils.ReadFile(
-        os.path.join(os.getcwd(), 'data', 'http_error_502.html'))
+    html_code = Utils.ReadFile(os.path.join('data', 'http_error_502.html'))
     print html_code
 
     # Restore STDOUT.
@@ -77,28 +76,28 @@ class UtilsTestV201002(unittest.TestCase):
     for item in Utils.GetTimezones():
       self.assertEqual(len(item), cols)
 
-  def testGetAllEntitiesByFilter(self):
-    """Test whether GetAllEntitiesByFilter() does what it suppose to."""
-    users = Utils.GetAllEntitiesByFilter(
-        client, 'User', 'ORDER BY name LIMIT 3',
-        server=self.__class__.SERVER_V201002,
-        version=self.__class__.VERSION_V201002,
+  def testGetAllEntitiesByStatement(self):
+    """Test whether GetAllEntitiesByStatement() does what it suppose to."""
+    users = Utils.GetAllEntitiesByStatement(
+        client, 'User', 'ORDER BY name',
+        server=self.__class__.SERVER_V201004,
+        version=self.__class__.VERSION_V201004,
         http_proxy=HTTP_PROXY)
     self.assert_(isinstance(users, list))
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(UtilsTestV201002))
+  suite.addTests(unittest.makeSuite(UtilsTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

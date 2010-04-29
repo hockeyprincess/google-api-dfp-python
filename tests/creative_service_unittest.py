@@ -30,12 +30,12 @@ from tests import SERVER
 from tests import client
 
 
-class CreativeServiceTestV201002(unittest.TestCase):
+class CreativeServiceTestV201004(unittest.TestCase):
 
-  """Unittest suite for CreativeService using v201002."""
+  """Unittest suite for CreativeService using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   client.debug = False
   service = None
   advertiser_id = '0'
@@ -54,7 +54,7 @@ class CreativeServiceTestV201002(unittest.TestCase):
     print self.id()
     if not self.__class__.service:
       self.__class__.service = client.GetCreativeService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
 
     if self.__class__.advertiser_id == '0':
@@ -63,7 +63,7 @@ class CreativeServiceTestV201002(unittest.TestCase):
         'type': 'ADVERTISER'
       }
       company_service = client.GetCompanyService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
       self.__class__.advertiser_id = company_service.CreateCompany(
           company)[0]['id']
@@ -119,12 +119,16 @@ class CreativeServiceTestV201002(unittest.TestCase):
         self.__class__.creative1['id'])[0]['Creative_Type'],
         'ImageCreative')
 
-  def testGetCreativesByFilter(self):
+  def testGetCreativesByStatement(self):
     """Test whether we can fetch a list of existing creatives that match given
-    filter."""
-    filter = {'text': 'WHERE creativeType = \'ImageCreative\' LIMIT 500'}
+    statement."""
+    if not self.__class__.creative1:
+      self.testCreateCreatieves()
+    filter_statement = {'query': 'WHERE id = %s ORDER BY name LIMIT 1'
+                        % self.__class__.creative1['id']}
     self.assert_(isinstance(
-        self.__class__.service.GetCreativesByFilter(filter), tuple))
+        self.__class__.service.GetCreativesByStatement(filter_statement),
+        tuple))
 
   def testUpdateCreative(self):
     """Test whether we can update a creative."""
@@ -160,18 +164,18 @@ class CreativeServiceTestV201002(unittest.TestCase):
       self.assertEqual(creative['destinationUrl'], destination_url)
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(CreativeServiceTestV201002))
+  suite.addTests(unittest.makeSuite(CreativeServiceTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

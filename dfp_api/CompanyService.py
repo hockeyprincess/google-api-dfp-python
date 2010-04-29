@@ -58,7 +58,7 @@ class CompanyService(object):
     else:
       msg = 'Invalid API version, not one of %s.' % str(list(API_VERSIONS))
       raise ValidationError(msg)
-    self.__web_services = web_services
+    self._web_services = web_services
     self.__loc = eval('web_services.%sLocator()' % self.__class__.__name__)
     self.__sanity_check = SanityCheck
 
@@ -74,8 +74,7 @@ class CompanyService(object):
     self.__sanity_check.ValidateCompany(company)
 
     method_name = 'createCompany'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'company': company},)),
                                      'Company', self.__loc, request)
 
@@ -93,8 +92,7 @@ class CompanyService(object):
       self.__sanity_check.ValidateCompany(item)
 
     method_name = 'createCompanies'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name,
                                      (({'companies': companies},)),
                                      'Company', self.__loc, request)
@@ -111,28 +109,28 @@ class CompanyService(object):
     glob_sanity_check.ValidateTypes(((company_id, (str, unicode)),))
 
     method_name = 'getCompany'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name,
                                      (({'companyId': company_id},)),
                                      'Company', self.__loc, request)
 
-  def GetCompaniesByFilter(self, filter):
-    """Return the companies that match the given filter.
+  def GetCompaniesByStatement(self, filter_statement):
+    """Return the companies that match the given statement.
 
     Args:
-      filter: str Publisher Query Language filter which specifies the filtering
-              criteria over companies.
+      filter_statement: dict Publisher Query Language statement used to filter a
+                        set of companies.
 
     Returns:
       tuple response from the API method.
     """
-    glob_sanity_check.ValidateTypes(((filter, dict),))
+    filter_statement = self.__sanity_check.ValidateStatement(filter_statement,
+                                                             self._web_services)
 
-    method_name = 'getCompaniesByFilter'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
-    return self.__service.CallMethod(method_name, (({'filter': filter},)),
+    method_name = 'getCompaniesByStatement'
+    request = eval('self._web_services.%sRequest()' % method_name)
+    return self.__service.CallMethod(method_name,
+                                     (({'filterStatement': filter_statement},)),
                                      'Company', self.__loc, request)
 
   def UpdateCompany(self, company):
@@ -147,8 +145,7 @@ class CompanyService(object):
     self.__sanity_check.ValidateCompany(company)
 
     method_name = 'updateCompany'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'company': company},)),
                                      'Company', self.__loc, request)
 
@@ -166,8 +163,7 @@ class CompanyService(object):
       self.__sanity_check.ValidateCompany(item)
 
     method_name = 'updateCompanies'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name,
                                      (({'companies': companies},)),
                                      'Company', self.__loc, request)

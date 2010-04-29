@@ -29,12 +29,12 @@ from tests import SERVER
 from tests import client
 
 
-class LineItemServiceTestV201002(unittest.TestCase):
+class LineItemServiceTestV201004(unittest.TestCase):
 
-  """Unittest suite for LineItemService using v201002."""
+  """Unittest suite for LineItemService using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   client.debug = False
   service = None
   order_id = '0'
@@ -47,7 +47,7 @@ class LineItemServiceTestV201002(unittest.TestCase):
     print self.id()
     if not self.__class__.service:
       self.__class__.service = client.GetLineItemService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
 
     if self.__class__.order_id is '0':
@@ -56,12 +56,12 @@ class LineItemServiceTestV201002(unittest.TestCase):
         'type': 'ADVERTISER'
       }
       advertiser_id = client.GetCompanyService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY).CreateCompany(company)[0]['id']
-      filter = {'text': 'ORDER BY name LIMIT 500'}
-      users = client.GetUserService(self.__class__.SERVER_V201002,
-          self.__class__.VERSION_V201002,
-          HTTP_PROXY).GetUsersByFilter(filter)
+      filter_statement = {'query': 'ORDER BY name LIMIT 500'}
+      users = client.GetUserService(self.__class__.SERVER_V201004,
+          self.__class__.VERSION_V201004,
+          HTTP_PROXY).GetUsersByStatement(filter_statement)
       trafficker_id = '0'
       for user in users[0]['results']:
         if user['roleName'] in ('Trafficker',):
@@ -74,16 +74,16 @@ class LineItemServiceTestV201002(unittest.TestCase):
           'traffickerId': trafficker_id
       }
       self.__class__.order_id = client.GetOrderService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY).CreateOrder(order)[0]['id']
 
     if self.__class__.ad_unit_id is '0':
       inventory_service = client.GetInventoryService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
-      filter = {'text': 'WHERE parentId IS NULL LIMIT 500'}
-      root_ad_unit_id = inventory_service.GetAdUnitsByFilter(
-          filter)[0]['results'][0]['id']
+      filter_statement = {'query': 'WHERE parentId IS NULL LIMIT 500'}
+      root_ad_unit_id = inventory_service.GetAdUnitsByStatement(
+          filter_statement)[0]['results'][0]['id']
       ad_unit = {
           'name': 'Ad_Unit_%s' % str(time.time()).split('.')[0],
           'parentId': root_ad_unit_id,
@@ -242,23 +242,27 @@ class LineItemServiceTestV201002(unittest.TestCase):
     self.assert_(isinstance(self.__class__.service.GetLineItem(
         self.__class__.line_item1['id']), tuple))
 
-  def testGetLineItemsByFilter(self):
+  def testGetLineItemsByStatement(self):
     """Test whether we can fetch a list of existing line items that match given
-    filter."""
-    filter = {'text': 'WHERE orderId = \'%s\' LIMIT 500'
-                      % self.__class__.order_id}
+    statement."""
+    if not self.__class__.line_item1:
+      self.testCreateLineItems()
+    filter_statement = {'query': 'WHERE orderId = \'%s\' LIMIT 500'
+                        % self.__class__.order_id}
     self.assert_(isinstance(
-        self.__class__.service.GetLineItemsByFilter(filter), tuple))
+        self.__class__.service.GetLineItemsByStatement(filter_statement),
+        tuple))
 
   def testPerformLineItemAction(self):
     """Test whether we can activate a line item."""
     if not self.__class__.line_item1:
       self.testCreateLineItems()
     action = {'type': 'ActivateLineItems'}
-    filter = {'text': ('WHERE orderId = \'%s\' AND status = \'READY\''
-                       % self.__class__.order_id)}
+    filter_statement = {'query': 'WHERE orderId = \'%s\' AND status = \'READY\''
+                        % self.__class__.order_id}
     self.assert_(isinstance(
-        self.__class__.service.PerformLineItemAction(action, filter), tuple))
+        self.__class__.service.PerformLineItemAction(action, filter_statement),
+        tuple))
 
   def testUpdateLineItem(self):
     """Test whether we can update a line item."""
@@ -285,18 +289,18 @@ class LineItemServiceTestV201002(unittest.TestCase):
       self.assertEqual(line_item['costPerUnit']['microAmount'], amount)
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(LineItemServiceTestV201002))
+  suite.addTests(unittest.makeSuite(LineItemServiceTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

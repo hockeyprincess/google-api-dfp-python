@@ -28,12 +28,12 @@ from tests import SERVER
 from tests import client
 
 
-class UserServiceTestV201002(unittest.TestCase):
+class UserServiceTestV201004(unittest.TestCase):
 
-  """Unittest suite for UserService using v201002."""
+  """Unittest suite for UserService using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   client.debug = False
   service = None
   user1 = None
@@ -44,21 +44,21 @@ class UserServiceTestV201002(unittest.TestCase):
     print self.id()
     if not self.__class__.service:
       self.__class__.service = client.GetUserService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
 
   def testGetUser(self):
     """Test whether we can fetch an existing user."""
     if not self.__class__.user1:
-      self.testGetUsersByFilter()
+      self.testGetUsersByStatement()
     self.assert_(isinstance(self.__class__.service.GetUser(
         self.__class__.user1['id']), tuple))
 
-  def testGetUsersByFilter(self):
+  def testGetUsersByStatement(self):
     """Test whether we can fetch a list of existing users that match given
-    filter."""
-    filter = {'text': 'ORDER BY name LIMIT 500'}
-    users = self.__class__.service.GetUsersByFilter(filter)
+    statement."""
+    filter_statement = {'query': 'ORDER BY name LIMIT 500'}
+    users = self.__class__.service.GetUsersByStatement(filter_statement)
     sales = []
     traffickers = []
     admins = []
@@ -78,9 +78,11 @@ class UserServiceTestV201002(unittest.TestCase):
     if not self.__class__.user1:
       self.testGetUsersByFilter()
     action = {'type': 'DeactivateUsers'}
-    filter = {'text': 'WHERE id = \'%s\'' % self.__class__.user1['id']}
+    filter_statement = {'query': 'WHERE id = \'%s\''
+                        % self.__class__.user1['id']}
     self.assert_(isinstance(
-        self.__class__.service.PerformUserAction(action, filter), tuple))
+        self.__class__.service.PerformUserAction(action, filter_statement),
+        tuple))
 
   def testUpdateUser(self):
     """Test whether we can update a user."""
@@ -106,18 +108,18 @@ class UserServiceTestV201002(unittest.TestCase):
       self.assertEqual(user['preferredLocale'], locale)
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(UserServiceTestV201002))
+  suite.addTests(unittest.makeSuite(UserServiceTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

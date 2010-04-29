@@ -381,10 +381,10 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dfp_api.Utils-module.html#CurrentFuncName" class="summary-sig-name">CurrentFuncName</a>()</span><br />
+          <td><span class="summary-sig"><a href="dfp_api.Utils-module.html#GetCurrentFuncName" class="summary-sig-name">GetCurrentFuncName</a>()</span><br />
       Return current function/method name.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="dfp_api.Utils-pysrc.html#CurrentFuncName">source&nbsp;code</a></span>
+            <span class="codelink"><a href="dfp_api.Utils-pysrc.html#GetCurrentFuncName">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -501,16 +501,16 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dfp_api.Utils-module.html#GetAllEntitiesByFilter" class="summary-sig-name">GetAllEntitiesByFilter</a>(<span class="summary-sig-arg">client</span>,
+          <td><span class="summary-sig"><a href="dfp_api.Utils-module.html#GetAllEntitiesByStatement" class="summary-sig-name">GetAllEntitiesByStatement</a>(<span class="summary-sig-arg">client</span>,
         <span class="summary-sig-arg">service_name</span>,
-        <span class="summary-sig-arg">text</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">query</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">page_size</span>=<span class="summary-sig-default">500</span>,
-        <span class="summary-sig-arg">server</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">https://www.google.com</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">version</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">v201002</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">server</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">version</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">v201004</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">http_proxy</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Get all existing entities by filter.</td>
+      Get all existing entities by statement.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="dfp_api.Utils-pysrc.html#GetAllEntitiesByFilter">source&nbsp;code</a></span>
+            <span class="codelink"><a href="dfp_api.Utils-pysrc.html#GetAllEntitiesByStatement">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -1009,17 +1009,17 @@ Returns:
   </dl>
 </td></tr></table>
 </div>
-<a name="CurrentFuncName"></a>
+<a name="GetCurrentFuncName"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">CurrentFuncName</span>()</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetCurrentFuncName</span>()</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="dfp_api.Utils-pysrc.html#CurrentFuncName">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="dfp_api.Utils-pysrc.html#GetCurrentFuncName">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -1163,7 +1163,7 @@ Returns:
   <pre class="literalblock">
 Removes HTML or XML character references and entities from a text string.
 
-See, http://effbot.org/zone/re-sub.htm#unescape-html.
+See http://effbot.org/zone/re-sub.htm#unescape-html.
 
 Args:
   text: str the HTML (or XML) source text.
@@ -1215,30 +1215,30 @@ Returns:
   </dl>
 </td></tr></table>
 </div>
-<a name="GetAllEntitiesByFilter"></a>
+<a name="GetAllEntitiesByStatement"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetAllEntitiesByFilter</span>(<span class="sig-arg">client</span>,
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetAllEntitiesByStatement</span>(<span class="sig-arg">client</span>,
         <span class="sig-arg">service_name</span>,
-        <span class="sig-arg">text</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">query</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">page_size</span>=<span class="sig-default">500</span>,
-        <span class="sig-arg">server</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">https://www.google.com</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">version</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">v201002</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">server</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">version</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">v201004</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">http_proxy</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="dfp_api.Utils-pysrc.html#GetAllEntitiesByFilter">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="dfp_api.Utils-pysrc.html#GetAllEntitiesByStatement">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Get all existing entities by filter.
+Get all existing entities by statement.
 
-All existing entities are retrived for a given filter and page size. The
+All existing entities are retrived for a given statement and page size. The
 retrieval of entities works across all services. Thus, the same method can
 be used to fetch companies, creatives, ad units, line items, etc. The results,
 even if they span multiple pages, are grouped into a single list of entities.
@@ -1247,12 +1247,13 @@ Args:
   client: Client an instance of Client.
   service_name: str name of the service to use.
   [optional]
-  text: str a filter to apply, if any.
-  page_size: int size of the page to use.
+  query: str a statement filter to apply, if any. The default is empty string.
+  page_size: int size of the page to use. If page size is less than 0 or
+             greater than 500, defaults to 500.
   server: str API server to access for this API call. Possible values
             are: 'https://www.google.com' for live site and
             'https://sandbox.google.com' for sandbox. The default behavior is
-            to access live site.
+            to access sandbox site.
   version: str API version to use.
   http_proxy: str HTTP proxy to use.
 

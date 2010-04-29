@@ -189,11 +189,11 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dfp_api.UserService.UserService-class.html#GetUsersByFilter" class="summary-sig-name">GetUsersByFilter</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">filter</span>)</span><br />
-      Return the users that match the given filter.</td>
+          <td><span class="summary-sig"><a href="dfp_api.UserService.UserService-class.html#GetUsersByStatement" class="summary-sig-name">GetUsersByStatement</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filter_statement</span>)</span><br />
+      Return the users that match the given statement.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="dfp_api.UserService-pysrc.html#UserService.GetUsersByFilter">source&nbsp;code</a></span>
+            <span class="codelink"><a href="dfp_api.UserService-pysrc.html#UserService.GetUsersByStatement">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -209,8 +209,8 @@ object --+
         <tr>
           <td><span class="summary-sig"><a href="dfp_api.UserService.UserService-class.html#PerformUserAction" class="summary-sig-name">PerformUserAction</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">action</span>,
-        <span class="summary-sig-arg">filter</span>)</span><br />
-      Perform action on users that match the given filter.</td>
+        <span class="summary-sig-arg">filter_statement</span>)</span><br />
+      Perform action on users that match the given statement.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="dfp_api.UserService-pysrc.html#UserService.PerformUserAction">source&nbsp;code</a></span>
             
@@ -467,26 +467,26 @@ Returns:
   </dl>
 </td></tr></table>
 </div>
-<a name="GetUsersByFilter"></a>
+<a name="GetUsersByStatement"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetUsersByFilter</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">filter</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetUsersByStatement</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">filter_statement</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="dfp_api.UserService-pysrc.html#UserService.GetUsersByFilter">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="dfp_api.UserService-pysrc.html#UserService.GetUsersByStatement">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Return the users that match the given filter.
+Return the users that match the given statement.
 
 Args:
-  filter: str Publisher Query Language filter.
+  filter_statement: dict Publisher Query Language statement.
 
 Returns:
   tuple response from the API method.
@@ -505,7 +505,7 @@ Returns:
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">PerformUserAction</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">action</span>,
-        <span class="sig-arg">filter</span>)</span>
+        <span class="sig-arg">filter_statement</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="dfp_api.UserService-pysrc.html#UserService.PerformUserAction">source&nbsp;code</a></span>&nbsp;
@@ -513,11 +513,11 @@ Returns:
   </tr></table>
   
   <pre class="literalblock">
-Perform action on users that match the given filter.
+Perform action on users that match the given statement.
 
 Args:
-  action: str the action to perform.
-  filter: str Publisher Query Language filter.
+  action: dict the action to perform.
+  filter_statement: dict Publisher Query Language statement.
 
 Returns:
   tuple response from the API method.

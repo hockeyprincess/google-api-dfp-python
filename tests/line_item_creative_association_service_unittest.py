@@ -30,12 +30,12 @@ from tests import SERVER
 from tests import client
 
 
-class LicaServiceTestV201002(unittest.TestCase):
+class LicaServiceTestV201004(unittest.TestCase):
 
-  """Unittest suite for LineItemCreativeAssociationService using v201002."""
+  """Unittest suite for LineItemCreativeAssociationService using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   client.debug = False
   service = None
   creative1 = None
@@ -52,7 +52,7 @@ class LicaServiceTestV201002(unittest.TestCase):
     print self.id()
     if not self.__class__.service:
       self.__class__.service = client.GetLineItemCreativeAssociationService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
 
     if (not self.__class__.creative1 or not self.__class__.creative2 or
@@ -62,7 +62,7 @@ class LicaServiceTestV201002(unittest.TestCase):
         'type': 'ADVERTISER'
       }
       advertiser_id = client.GetCompanyService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY).CreateCompany(company)[0]['id']
       creatives = []
       for i in xrange(3):
@@ -76,18 +76,18 @@ class LicaServiceTestV201002(unittest.TestCase):
             'size': {'width': '300', 'height': '250'}
         })
       creatives = client.GetCreativeService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY).CreateCreatives(creatives)
       self.__class__.creative1 = creatives[0]
       self.__class__.creative2 = creatives[1]
       self.__class__.creative3 = creatives[2]
 
     if not self.__class__.line_item_id:
-      filter = {'text': 'ORDER BY name LIMIT 500'}
+      filter_statement = {'query': 'ORDER BY name LIMIT 500'}
       user_service = client.GetUserService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
-      users = user_service.GetUsersByFilter(filter)
+      users = user_service.GetUsersByStatement(filter_statement)
       trafficker_id = '0'
       for user in users[0]['results']:
         if user['roleName'] in ('Trafficker',):
@@ -100,14 +100,14 @@ class LicaServiceTestV201002(unittest.TestCase):
           'traffickerId': trafficker_id
       }
       order_id = client.GetOrderService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY).CreateOrder(order)[0]['id']
-      filter = {'text': 'WHERE parentId IS NULL LIMIT 500'}
+      filter_statement = {'query': 'WHERE parentId IS NULL LIMIT 500'}
       inventory_service = client.GetInventoryService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
-      root_ad_unit_id = inventory_service.GetAdUnitsByFilter(
-          filter)[0]['results'][0]['id']
+      root_ad_unit_id = inventory_service.GetAdUnitsByStatement(
+          filter_statement)[0]['results'][0]['id']
       ad_unit = {
           'name': 'Ad_Unit_%s' % str(time.time()).split('.')[0],
           'parentId': root_ad_unit_id,
@@ -158,7 +158,7 @@ class LicaServiceTestV201002(unittest.TestCase):
           'unitType': 'IMPRESSIONS'
       }
       self.__class__.line_item_id = client.GetLineItemService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY).CreateLineItem(line_item)[0]['id']
 
   def testCreateLineItemCreativeAssociation(self):
@@ -198,13 +198,16 @@ class LicaServiceTestV201002(unittest.TestCase):
             self.__class__.line_item_id, self.__class__.creative2['id']),
             tuple))
 
-  def testGetLineItemCreativeAssociationsByFilter(self):
+  def testGetLineItemCreativeAssociationsByStatement(self):
     """Test whether we can fetch a list of existing line item creative
-    associations that match given filter."""
-    filter = {'text': 'WHERE lineItemId = \'%s\' LIMIT 500'
-                      % self.__class__.line_item_id}
+    associations that match given statement."""
+    if not self.__class__.lica1:
+      self.testCreateLineItemCreativeAssociations()
+    filter_statement = {'query': 'WHERE lineItemId = \'%s\' LIMIT 500'
+                        % self.__class__.line_item_id}
     self.assert_(isinstance(
-        self.__class__.service.GetLineItemCreativeAssociationsByFilter(filter),
+        self.__class__.service.GetLineItemCreativeAssociationsByStatement(
+            filter_statement),
         tuple))
 
   def testPerformLineItemCreativeAssociationAction(self):
@@ -212,11 +215,11 @@ class LicaServiceTestV201002(unittest.TestCase):
     if not self.__class__.lica1:
       self.testCreateLineItemCreativeAssociations()
     action = {'type': 'DeactivateLineItemCreativeAssociations'}
-    filter = {'text': ('WHERE lineItemId = \'%s\' AND status = \'ACTIVE\''
-                       % self.__class__.line_item_id)}
+    filter_statement = {'query': 'WHERE lineItemId = \'%s\' AND '
+                        'status = \'ACTIVE\''  % self.__class__.line_item_id}
     self.assert_(isinstance(
         self.__class__.service.PerformLineItemCreativeAssociationAction(
-            action, filter), tuple))
+            action, filter_statement), tuple))
 
   def testUpdateLineItemCreativeAssociation(self):
     """Test whether we can update a line item creative association."""
@@ -243,18 +246,18 @@ class LicaServiceTestV201002(unittest.TestCase):
       self.assertEqual(lica['destinationUrl'], destination_url)
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(LicaServiceTestV201002))
+  suite.addTests(unittest.makeSuite(LicaServiceTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

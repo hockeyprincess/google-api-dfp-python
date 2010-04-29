@@ -132,7 +132,7 @@ def PurgeLog(log):
     raise Error(e)
 
 
-# TODO(api.sgrinberg@gmail.com): Rewrite this method using HTML parser library.
+# TODO(api.sgrinberg): Rewrite this method using HTML parser library.
 def GetErrorFromHtml(data):
   """Return error message from HTML page.
 
@@ -249,9 +249,12 @@ def MakeTextXMLReady(text):
     except UnicodeEncodeError:
       # We have a non-ASCII character of type unicode. Convert it into an
       # XML-ready format.
-      char = '%s;' % hex(ord(char)).replace('0x', '&#x')
+      try:
+        str(char)
+        char.encode('utf-8')
+      except UnicodeEncodeError:
+        char = '%s;' % hex(ord(char)).replace('0x', '&#x')
     items.append(char)
-
   return ''.join(items)
 
 
@@ -331,7 +334,7 @@ def GetAuthToken(email, password):
   return AuthToken(email, password).GetAuthToken()
 
 
-def CurrentFuncName():
+def GetCurrentFuncName():
   """Return current function/method name.
 
   Returns:
@@ -429,7 +432,7 @@ def LastStackTrace():
 def HtmlUnescape(text):
   """Removes HTML or XML character references and entities from a text string.
 
-  See, http://effbot.org/zone/re-sub.htm#unescape-html.
+  See http://effbot.org/zone/re-sub.htm#unescape-html.
 
   Args:
     text: str the HTML (or XML) source text.
@@ -489,12 +492,12 @@ def CsvEscape(text):
   return text
 
 
-def GetAllEntitiesByFilter(client, service_name, text=None, page_size=500,
-                           server='https://www.google.com',
-                           version=MIN_API_VERSION, http_proxy=None):
-  """Get all existing entities by filter.
+def GetAllEntitiesByStatement(client, service_name, query='', page_size=500,
+                              server='https://sandbox.google.com',
+                              version=MIN_API_VERSION, http_proxy=None):
+  """Get all existing entities by statement.
 
-  All existing entities are retrived for a given filter and page size. The
+  All existing entities are retrived for a given statement and page size. The
   retrieval of entities works across all services. Thus, the same method can
   be used to fetch companies, creatives, ad units, line items, etc. The results,
   even if they span multiple pages, are grouped into a single list of entities.
@@ -503,12 +506,13 @@ def GetAllEntitiesByFilter(client, service_name, text=None, page_size=500,
     client: Client an instance of Client.
     service_name: str name of the service to use.
     [optional]
-    text: str a filter to apply, if any.
-    page_size: int size of the page to use.
+    query: str a statement filter to apply, if any. The default is empty string.
+    page_size: int size of the page to use. If page size is less than 0 or
+               greater than 500, defaults to 500.
     server: str API server to access for this API call. Possible values
               are: 'https://www.google.com' for live site and
               'https://sandbox.google.com' for sandbox. The default behavior is
-              to access live site.
+              to access sandbox site.
     version: str API version to use.
     http_proxy: str HTTP proxy to use.
 
@@ -523,24 +527,26 @@ def GetAllEntitiesByFilter(client, service_name, text=None, page_size=500,
     method_name = service_name[:-1] + 'ies'
   else:
     method_name = service_name + 's'
-  method_name = 'Get%sByFilter' % method_name
+  method_name = 'Get%sByStatement' % method_name
 
-  if page_size <= 0:
+  if page_size <= 0 or page_size > 500:
     page_size = 500
 
-  if not text:
-    offset = 0
-    all_entities = []
-    while True:
-      filter = {'text': 'LIMIT 500 OFFSET %s' % offset}
-      entities = eval('service.%s(filter)[0][\'results\']' % method_name)
-      if not entities:
-        break
+  if (query and
+      (query.lower().find('LIMIT') > -1 or query.lower().find('OFFSET') > -1)):
+    raise Error('The filter text contains an option that is incompatible with '
+                'this method')
 
-      offset += page_size
-      all_entities.extend(entities)
-  else:
-    filter = {'text': text}
-    all_entities = eval('service.%s(filter)[0][\'results\']' % method_name)
+  offset = 0
+  all_entities = []
+  while True:
+    filter_statement = {'query': '%s LIMIT %s OFFSET %s' % (query, page_size,
+                                                            offset)}
+    entities = eval('service.%s(filter_statement)[0][\'results\']'
+                    % method_name)
 
+    if not entities: break
+    all_entities.extend(entities)
+    if len(entities) < page_size: break
+    offset += page_size
   return all_entities

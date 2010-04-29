@@ -58,7 +58,7 @@ class PlacementService(object):
     else:
       msg = 'Invalid API version, not one of %s.' % str(list(API_VERSIONS))
       raise ValidationError(msg)
-    self.__web_services = web_services
+    self._web_services = web_services
     self.__loc = eval('web_services.%sLocator()' % self.__class__.__name__)
     self.__sanity_check = SanityCheck
 
@@ -74,8 +74,7 @@ class PlacementService(object):
     self.__sanity_check.ValidatePlacement(placement)
 
     method_name = 'createPlacement'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'placement': placement},)),
                                      'Placement', self.__loc, request)
 
@@ -93,8 +92,7 @@ class PlacementService(object):
       self.__sanity_check.ValidatePlacement(item)
 
     method_name = 'createPlacements'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name,
                                      (({'placements': placements},)),
                                      'Placement', self.__loc, request)
@@ -111,47 +109,49 @@ class PlacementService(object):
     glob_sanity_check.ValidateTypes(((placement_id, (str, unicode)),))
 
     method_name = 'getPlacement'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name,
                                      (({'placementId': placement_id},)),
                                      'Placement', self.__loc, request)
 
-  def GetPlacementsByFilter(self, filter):
-    """Return the placements that match the given filter.
+  def GetPlacementsByStatement(self, filter_statement):
+    """Return the placements that match the given statement.
 
     Args:
-      filter: str Publisher Query Language filter.
+      filter_statement: dict Publisher Query Language statement used to filter a
+                        set of placements.
 
     Returns:
       tuple response from the API method.
     """
-    glob_sanity_check.ValidateTypes(((filter, dict),))
+    filter_statement = self.__sanity_check.ValidateStatement(filter_statement,
+                                                             self._web_services)
 
-    method_name = 'getPlacementsByFilter'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
-    return self.__service.CallMethod(method_name, (({'filter': filter},)),
+    method_name = 'getPlacementsByStatement'
+    request = eval('self._web_services.%sRequest()' % method_name)
+    return self.__service.CallMethod(method_name,
+                                     (({'filterStatement': filter_statement},)),
                                      'Placement', self.__loc, request)
 
-  def PerformPlacementAction(self, action, filter):
-    """Perform action on placements that match the given filter.
+  def PerformPlacementAction(self, action, filter_statement):
+    """Perform action on placements that match the given statement.
 
     Args:
-      action: str the action to perform.
-      filter: str Publisher Query Language filter.
+      action: dict the action to perform.
+      filter_statement: dict Publisher Query Language statement.
 
     Returns:
       tuple response from the API method.
     """
-    web_services = self.__web_services
-    action = self.__sanity_check.ValidateAction(action, web_services)
-    self.__sanity_check.ValidateFilter(filter)
+    action = self.__sanity_check.ValidateAction(action, self._web_services)
+    filter_statement = self.__sanity_check.ValidateStatement(filter_statement,
+                                                             self._web_services)
 
     method_name = 'performPlacementAction'
-    request = eval('web_services.%sRequest()' % method_name)
-    return self.__service.CallMethod(method_name, (({'placementAction': action},
-                                                    {'filter': filter})),
+    request = eval('self._web_services.%sRequest()' % method_name)
+    return self.__service.CallMethod(method_name,
+                                     (({'placementAction': action},
+                                       {'filterStatement': filter_statement})),
                                      'Placement', self.__loc, request)
 
   def UpdatePlacement(self, placement):
@@ -166,8 +166,7 @@ class PlacementService(object):
     self.__sanity_check.ValidatePlacement(placement)
 
     method_name = 'updatePlacement'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'placement': placement},)),
                                      'Placement', self.__loc, request)
 
@@ -185,8 +184,7 @@ class PlacementService(object):
       self.__sanity_check.ValidatePlacement(item)
 
     method_name = 'updatePlacements'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name,
                                      (({'placements': placements},)),
                                      'Placement', self.__loc, request)
