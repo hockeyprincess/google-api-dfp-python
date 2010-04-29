@@ -172,11 +172,11 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dfp_api.InventoryService.InventoryService-class.html#GetAdUnitsByFilter" class="summary-sig-name">GetAdUnitsByFilter</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">filter</span>)</span><br />
-      Return the ad units that match the given filter.</td>
+          <td><span class="summary-sig"><a href="dfp_api.InventoryService.InventoryService-class.html#GetAdUnitsByStatement" class="summary-sig-name">GetAdUnitsByStatement</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filter_statement</span>)</span><br />
+      Return the ad units that match the given statement.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="dfp_api.InventoryService-pysrc.html#InventoryService.GetAdUnitsByFilter">source&nbsp;code</a></span>
+            <span class="codelink"><a href="dfp_api.InventoryService-pysrc.html#InventoryService.GetAdUnitsByStatement">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -192,7 +192,7 @@ object --+
         <tr>
           <td><span class="summary-sig"><a href="dfp_api.InventoryService.InventoryService-class.html#PerformAdUnitAction" class="summary-sig-name">PerformAdUnitAction</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">action</span>,
-        <span class="summary-sig-arg">filter</span>)</span><br />
+        <span class="summary-sig-arg">filter_statement</span>)</span><br />
       Perform action on ad units that match the given filter.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="dfp_api.InventoryService-pysrc.html#InventoryService.PerformAdUnitAction">source&nbsp;code</a></span>
@@ -425,26 +425,27 @@ Returns:
   </dl>
 </td></tr></table>
 </div>
-<a name="GetAdUnitsByFilter"></a>
+<a name="GetAdUnitsByStatement"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetAdUnitsByFilter</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">filter</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetAdUnitsByStatement</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">filter_statement</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="dfp_api.InventoryService-pysrc.html#InventoryService.GetAdUnitsByFilter">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="dfp_api.InventoryService-pysrc.html#InventoryService.GetAdUnitsByStatement">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Return the ad units that match the given filter.
+Return the ad units that match the given statement.
 
 Args:
-  filter: str Publisher Query Language filter.
+  filter_statement: dict Publisher Query Language statement used to filter a
+                    set of ad units.
 
 Returns:
   tuple response from the API method.
@@ -463,7 +464,7 @@ Returns:
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">PerformAdUnitAction</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">action</span>,
-        <span class="sig-arg">filter</span>)</span>
+        <span class="sig-arg">filter_statement</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="dfp_api.InventoryService-pysrc.html#InventoryService.PerformAdUnitAction">source&nbsp;code</a></span>&nbsp;
@@ -474,8 +475,8 @@ Returns:
 Perform action on ad units that match the given filter.
 
 Args:
-  action: str the action to perform.
-  filter: str Publisher Query Language filter.
+  action: dict the action to perform.
+  filter_statement: dict Publisher Query Language statement.
 
 Returns:
   tuple response from the API method.

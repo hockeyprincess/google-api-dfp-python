@@ -29,12 +29,12 @@ from tests import SERVER
 from tests import client
 
 
-class CompanyServiceTestV201002(unittest.TestCase):
+class CompanyServiceTestV201004(unittest.TestCase):
 
-  """Unittest suite for CompanyService using v201002."""
+  """Unittest suite for CompanyService using v201004."""
 
-  SERVER_v201002 = SERVER
-  VERSION_v201002 = 'v201002'
+  SERVER_v201004 = SERVER
+  VERSION_v201004 = 'v201004'
   client.debug = False
   service = None
   company1 = None
@@ -45,7 +45,7 @@ class CompanyServiceTestV201002(unittest.TestCase):
     print self.id()
     if not self.__class__.service:
       self.__class__.service = client.GetCompanyService(
-          self.__class__.SERVER_v201002, self.__class__.VERSION_v201002,
+          self.__class__.SERVER_v201004, self.__class__.VERSION_v201004,
           HTTP_PROXY)
 
   def testCreateCompany(self):
@@ -82,12 +82,16 @@ class CompanyServiceTestV201002(unittest.TestCase):
         self.__class__.service.GetCompany(self.__class__.company1['id']),
         tuple))
 
-  def testGetCompaniesByFilter(self):
+  def testGetCompaniesByStatement(self):
     """Test whether we can fetch a list of existing companies that match given
-    filter."""
-    filter = {'text': 'WHERE type = \'ADVERTISER\' ORDER BY name LIMIT 500'}
+    statement."""
+    if self.__class__.company1 is None:
+      self.testCreateCompanies()
+    filter_statement = {'query': 'WHERE id = %s ORDER BY name LIMIT 1'
+                        % self.__class__.company1['id']}
     self.assert_(isinstance(
-        self.__class__.service.GetCompaniesByFilter(filter), tuple))
+        self.__class__.service.GetCompaniesByStatement(filter_statement),
+        tuple))
 
   def testUpdateCompany(self):
     """Test whether we can update a company."""
@@ -114,18 +118,18 @@ class CompanyServiceTestV201002(unittest.TestCase):
       self.assertTrue(company['name'].find(postfix) > -1)
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(CompanyServiceTestV201002))
+  suite.addTests(unittest.makeSuite(CompanyServiceTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

@@ -62,15 +62,63 @@ def ValidateCompany(company):
     glob_sanity_check.ValidateTypes(((company[key], (str, unicode)),))
 
 
-def ValidateFilter(filter):
-  """Validate Filter object.
+def ValidateString_ParamMapEntry(param, web_services):
+  """Validate String_ParamMapEntry object.
 
   Args:
-    filter: dict filter object.
+    param: dict param object.
+    web_services: module for web services.
+
+  Returns:
+   String_ParamMapEntry instance.
   """
-  glob_sanity_check.ValidateTypes(((filter, dict),))
-  for key in filter:
-    glob_sanity_check.ValidateTypes(((filter[key], (str, unicode)),))
+  if IsPyClass(param):
+    return param
+
+  glob_sanity_check.ValidateTypes(((param, dict),))
+  new_param = GetPyClass('String_ParamMapEntry', web_services)
+  for key in param:
+    glob_sanity_check.ValidateTypes(((param[key], (str, unicode)),))
+    if key in ('value',):
+      if 'type' in param:
+        value = GetPyClass(param['type'], web_services)
+      else:
+        msg = ('The \'type\' of the param is missing.')
+        raise ValidationError(msg)
+      value.__dict__.__setitem__('_value', param[key])
+      new_param.__dict__.__setitem__('_%s' % key, value)
+    else:
+      new_param.__dict__.__setitem__('_%s' % key, param[key])
+  return new_param
+
+
+def ValidateStatement(statement, web_services):
+  """Validate Statement object.
+
+  Args:
+    statement: dict statement object.
+    web_services: module for web services.
+
+  Returns:
+    Statement instance.
+  """
+  if IsPyClass(statement):
+    return statement
+
+  glob_sanity_check.ValidateTypes(((statement, dict),))
+  new_statement = GetPyClass('Statement', web_services)
+  for key in statement:
+    if key in ('params',):
+      glob_sanity_check.ValidateTypes(((statement[key], list),))
+      params = []
+      for param in statement[key]:
+        params.append(ValidateString_ParamMapEntry(param, web_services))
+      data = params
+    else:
+      glob_sanity_check.ValidateTypes(((statement[key], (str, unicode)),))
+      data = statement[key]
+    new_statement.__dict__.__setitem__('_%s' % key, data)
+  return new_statement
 
 
 def ValidateSize(size):

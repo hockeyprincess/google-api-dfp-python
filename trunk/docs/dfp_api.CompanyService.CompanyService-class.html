@@ -172,11 +172,11 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dfp_api.CompanyService.CompanyService-class.html#GetCompaniesByFilter" class="summary-sig-name">GetCompaniesByFilter</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">filter</span>)</span><br />
-      Return the companies that match the given filter.</td>
+          <td><span class="summary-sig"><a href="dfp_api.CompanyService.CompanyService-class.html#GetCompaniesByStatement" class="summary-sig-name">GetCompaniesByStatement</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filter_statement</span>)</span><br />
+      Return the companies that match the given statement.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="dfp_api.CompanyService-pysrc.html#CompanyService.GetCompaniesByFilter">source&nbsp;code</a></span>
+            <span class="codelink"><a href="dfp_api.CompanyService-pysrc.html#CompanyService.GetCompaniesByStatement">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -406,27 +406,27 @@ Returns:
   </dl>
 </td></tr></table>
 </div>
-<a name="GetCompaniesByFilter"></a>
+<a name="GetCompaniesByStatement"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetCompaniesByFilter</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">filter</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetCompaniesByStatement</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">filter_statement</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="dfp_api.CompanyService-pysrc.html#CompanyService.GetCompaniesByFilter">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="dfp_api.CompanyService-pysrc.html#CompanyService.GetCompaniesByStatement">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Return the companies that match the given filter.
+Return the companies that match the given statement.
 
 Args:
-  filter: str Publisher Query Language filter which specifies the filtering
-          criteria over companies.
+  filter_statement: dict Publisher Query Language statement used to filter a
+                    set of companies.
 
 Returns:
   tuple response from the API method.

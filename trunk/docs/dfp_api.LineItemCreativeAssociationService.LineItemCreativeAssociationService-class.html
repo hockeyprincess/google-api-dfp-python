@@ -175,11 +175,12 @@ given line item id and creative id.</td>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dfp_api.LineItemCreativeAssociationService.LineItemCreativeAssociationService-class.html#GetLineItemCreativeAssociationsByFilter" class="summary-sig-name">GetLineItemCreativeAssociationsByFilter</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">filter</span>)</span><br />
-      Return the line item creative associations that match the given filter.</td>
+          <td><span class="summary-sig"><a href="dfp_api.LineItemCreativeAssociationService.LineItemCreativeAssociationService-class.html#GetLineItemCreativeAssociationsByStatement" class="summary-sig-name">GetLineItemCreativeAssociationsByStatement</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filter_statement</span>)</span><br />
+      Return the line item creative associations that match the given
+statement.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="dfp_api.LineItemCreativeAssociationService-pysrc.html#LineItemCreativeAssociationService.GetLineItemCreativeAssociationsByFilter">source&nbsp;code</a></span>
+            <span class="codelink"><a href="dfp_api.LineItemCreativeAssociationService-pysrc.html#LineItemCreativeAssociationService.GetLineItemCreativeAssociationsByStatement">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -195,9 +196,9 @@ given line item id and creative id.</td>
         <tr>
           <td><span class="summary-sig"><a href="dfp_api.LineItemCreativeAssociationService.LineItemCreativeAssociationService-class.html#PerformLineItemCreativeAssociationAction" class="summary-sig-name">PerformLineItemCreativeAssociationAction</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">action</span>,
-        <span class="summary-sig-arg">filter</span>)</span><br />
+        <span class="summary-sig-arg">filter_statement</span>)</span><br />
       Perform action on line item creative associations that match the given
-filter.</td>
+statement.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="dfp_api.LineItemCreativeAssociationService-pysrc.html#LineItemCreativeAssociationService.PerformLineItemCreativeAssociationAction">source&nbsp;code</a></span>
             
@@ -432,26 +433,28 @@ Returns:
   </dl>
 </td></tr></table>
 </div>
-<a name="GetLineItemCreativeAssociationsByFilter"></a>
+<a name="GetLineItemCreativeAssociationsByStatement"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetLineItemCreativeAssociationsByFilter</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">filter</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetLineItemCreativeAssociationsByStatement</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">filter_statement</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="dfp_api.LineItemCreativeAssociationService-pysrc.html#LineItemCreativeAssociationService.GetLineItemCreativeAssociationsByFilter">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="dfp_api.LineItemCreativeAssociationService-pysrc.html#LineItemCreativeAssociationService.GetLineItemCreativeAssociationsByStatement">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Return the line item creative associations that match the given filter.
+Return the line item creative associations that match the given
+statement.
 
 Args:
-  filter: str Publisher Query Language filter.
+  filter_statement: dict Publisher Query Language statement used to filter a
+                    set of line item creative associations
 
 Returns:
   tuple response from the API method.
@@ -470,7 +473,7 @@ Returns:
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">PerformLineItemCreativeAssociationAction</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">action</span>,
-        <span class="sig-arg">filter</span>)</span>
+        <span class="sig-arg">filter_statement</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="dfp_api.LineItemCreativeAssociationService-pysrc.html#LineItemCreativeAssociationService.PerformLineItemCreativeAssociationAction">source&nbsp;code</a></span>&nbsp;
@@ -479,11 +482,11 @@ Returns:
   
   <pre class="literalblock">
 Perform action on line item creative associations that match the given
-filter.
+statement.
 
 Args:
-  action: str the action to perform.
-  filter: str Publisher Query Language filter.
+  action: dict the action to perform.
+  filter_statement: dict Publisher Query Language statement.
 
 Returns:
   tuple response from the API method.

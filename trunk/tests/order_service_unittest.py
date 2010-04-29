@@ -29,12 +29,12 @@ from tests import SERVER
 from tests import client
 
 
-class OrderServiceTestV201002(unittest.TestCase):
+class OrderServiceTestV201004(unittest.TestCase):
 
-  """Unittest suite for OrderService using v201002."""
+  """Unittest suite for OrderService using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   client.debug = False
   service = None
   advertiser_id = '0'
@@ -48,7 +48,7 @@ class OrderServiceTestV201002(unittest.TestCase):
     print self.id()
     if not self.__class__.service:
       self.__class__.service = client.GetOrderService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
 
     if self.__class__.advertiser_id is '0':
@@ -57,15 +57,15 @@ class OrderServiceTestV201002(unittest.TestCase):
         'type': 'ADVERTISER'
       }
       self.__class__.advertiser_id = client.GetCompanyService(
-          self.__class__.SERVER_V201002,
-          self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004,
+          self.__class__.VERSION_V201004,
           HTTP_PROXY).CreateCompany(company)[0]['id']
 
     if self.__class__.trafficker_id is '0':
-      filter = {'text': 'ORDER BY name LIMIT 500'}
+      filter_statement = {'query': 'ORDER BY name LIMIT 500'}
       users = client.GetUserService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
-          HTTP_PROXY).GetUsersByFilter(filter)
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
+          HTTP_PROXY).GetUsersByStatement(filter_statement)
       for user in users[0]['results']:
         if user['roleName'] in ('Salesperson',):
           self.__class__.salesperson_id = user['id']
@@ -113,20 +113,24 @@ class OrderServiceTestV201002(unittest.TestCase):
     self.assert_(isinstance(self.__class__.service.GetOrder(
         self.__class__.order1['id']), tuple))
 
-  def testGetOrdersByFilter(self):
+  def testGetOrdersByStatement(self):
     """Test whether we can fetch a list of existing orders that match given
-    filter."""
-    filter = {'text': 'WHERE advertiserId = \'%s\' LIMIT 500'
-                      % self.__class__.advertiser_id}
-    self.assert_(isinstance(self.__class__.service.GetOrdersByFilter(filter),
-                            tuple))
+    statement."""
+    if not self.__class__.order1:
+      self.testCreateOrders()
+    filter_statement = {'query': 'WHERE advertiserId = \'%s\' LIMIT 500'
+                        % self.__class__.advertiser_id}
+    self.assert_(isinstance(
+        self.__class__.service.GetOrdersByStatement(filter_statement),
+        tuple))
 
   def testPerformOrderAction(self):
     """Test whether we can approve order."""
     action = {'type': 'ApproveOrders'}
-    filter = {'text': 'WHERE status = \'DRAFT\''}
+    filter_statement = {'query': 'WHERE status = \'DRAFT\''}
     self.assert_(isinstance(
-        self.__class__.service.PerformOrderAction(action, filter), tuple))
+        self.__class__.service.PerformOrderAction(action, filter_statement),
+        tuple))
 
   def testUpdateOrder(self):
     """Test whether we can update an order."""
@@ -152,18 +156,18 @@ class OrderServiceTestV201002(unittest.TestCase):
       self.assertEqual(order['notes'], notes)
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(OrderServiceTestV201002))
+  suite.addTests(unittest.makeSuite(OrderServiceTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

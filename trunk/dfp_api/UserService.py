@@ -58,7 +58,7 @@ class UserService(object):
     else:
       msg = 'Invalid API version, not one of %s.' % str(list(API_VERSIONS))
       raise ValidationError(msg)
-    self.__web_services = web_services
+    self._web_services = web_services
     self.__loc = eval('web_services.%sLocator()' % self.__class__.__name__)
     self.__sanity_check = SanityCheck
 
@@ -74,8 +74,7 @@ class UserService(object):
     self.__sanity_check.ValidateUser(user)
 
     method_name = 'createUser'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'user': user},)), 'User',
                                      self.__loc, request)
 
@@ -93,8 +92,7 @@ class UserService(object):
       self.__sanity_check.ValidateUser(item)
 
     method_name = 'createUsers'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'users': users},)),
                                      'User', self.__loc, request)
 
@@ -105,8 +103,7 @@ class UserService(object):
       tuple response from the API method.
     """
     method_name = 'getAllRoles'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (), 'User', self.__loc,
                                      request)
 
@@ -122,46 +119,47 @@ class UserService(object):
     glob_sanity_check.ValidateTypes(((user_id, (str, unicode)),))
 
     method_name = 'getUser'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'userId': user_id},)),
                                      'User', self.__loc, request)
 
-  def GetUsersByFilter(self, filter):
-    """Return the users that match the given filter.
+  def GetUsersByStatement(self, filter_statement):
+    """Return the users that match the given statement.
 
     Args:
-      filter: str Publisher Query Language filter.
+      filter_statement: dict Publisher Query Language statement.
 
     Returns:
       tuple response from the API method.
     """
-    glob_sanity_check.ValidateTypes(((filter, dict),))
+    filter_statement = self.__sanity_check.ValidateStatement(filter_statement,
+                                                             self._web_services)
 
-    method_name = 'getUsersByFilter'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
-    return self.__service.CallMethod(method_name, (({'filter': filter},)),
+    method_name = 'getUsersByStatement'
+    request = eval('self._web_services.%sRequest()' % method_name)
+    return self.__service.CallMethod(method_name,
+                                     (({'filterStatement': filter_statement},)),
                                      'User', self.__loc, request)
 
-  def PerformUserAction(self, action, filter):
-    """Perform action on users that match the given filter.
+  def PerformUserAction(self, action, filter_statement):
+    """Perform action on users that match the given statement.
 
     Args:
-      action: str the action to perform.
-      filter: str Publisher Query Language filter.
+      action: dict the action to perform.
+      filter_statement: dict Publisher Query Language statement.
 
     Returns:
       tuple response from the API method.
     """
-    web_services = self.__web_services
-    action = self.__sanity_check.ValidateAction(action, web_services)
-    self.__sanity_check.ValidateFilter(filter)
+    action = self.__sanity_check.ValidateAction(action, self._web_services)
+    filter_statement = self.__sanity_check.ValidateStatement(filter_statement,
+                                                             self._web_services)
 
     method_name = 'performUserAction'
-    request = eval('web_services.%sRequest()' % method_name)
-    return self.__service.CallMethod(method_name, (({'userAction': action},
-                                                    {'filter': filter})),
+    request = eval('self._web_services.%sRequest()' % method_name)
+    return self.__service.CallMethod(method_name,
+                                     (({'userAction': action},
+                                       {'filterStatement': filter_statement})),
                                      'User', self.__loc, request)
 
   def UpdateUser(self, user):
@@ -176,8 +174,7 @@ class UserService(object):
     self.__sanity_check.ValidateUser(user)
 
     method_name = 'updateUser'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'user': user},)), 'User',
                                      self.__loc, request)
 
@@ -195,7 +192,6 @@ class UserService(object):
       self.__sanity_check.ValidateUser(item)
 
     method_name = 'updateUsers'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'users': users},)),
                                      'User', self.__loc, request)
