@@ -24,6 +24,7 @@ sys.path.append('..')
 import unittest
 
 from dfp_api import Utils
+from dfp_api.Errors import ValidationError
 from dfp_api.SoapBuffer import SoapBuffer
 from tests import HTTP_PROXY
 from tests import SERVER
@@ -84,6 +85,15 @@ class UtilsTestV201004(unittest.TestCase):
         version=self.__class__.VERSION_V201004,
         http_proxy=HTTP_PROXY)
     self.assert_(isinstance(users, list))
+
+  def testGetAllEntitiesByStatementWithLimit(self):
+    """Test whether GetAllEntitiesByStatement() does what it suppose to do when
+    LIMIT is provided as part of the query."""
+    self.failUnlessRaises(ValidationError, Utils.GetAllEntitiesByStatement,
+        client, 'User', 'ORDER BY name LIMIT 1',
+        server=self.__class__.SERVER_V201004,
+        version=self.__class__.VERSION_V201004,
+        http_proxy=HTTP_PROXY)
 
 
 def makeTestSuiteV201004():

@@ -34,6 +34,7 @@ from dfp_api import SanityCheck
 from dfp_api.AuthToken import AuthToken
 from dfp_api.Buffer import Buffer
 from dfp_api.Errors import Error
+from dfp_api.Errors import ValidationError
 
 
 def ReadFile(f_path):
@@ -533,9 +534,9 @@ def GetAllEntitiesByStatement(client, service_name, query='', page_size=500,
     page_size = 500
 
   if (query and
-      (query.lower().find('LIMIT') > -1 or query.lower().find('OFFSET') > -1)):
-    raise Error('The filter text contains an option that is incompatible with '
-                'this method')
+      (query.upper().find('LIMIT') > -1 or query.upper().find('OFFSET') > -1)):
+    raise ValidationError('The filter query contains an option that is '
+                          'incompatible with this method.')
 
   offset = 0
   all_entities = []
