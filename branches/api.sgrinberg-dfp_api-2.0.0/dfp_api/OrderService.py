@@ -58,7 +58,7 @@ class OrderService(object):
     else:
       msg = 'Invalid API version, not one of %s.' % str(list(API_VERSIONS))
       raise ValidationError(msg)
-    self.__web_services = web_services
+    self._web_services = web_services
     self.__loc = eval('web_services.%sLocator()' % self.__class__.__name__)
     self.__sanity_check = SanityCheck
 
@@ -74,8 +74,7 @@ class OrderService(object):
     self.__sanity_check.ValidateOrder(order)
 
     method_name = 'createOrder'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'order': order},)),
                                      'Order', self.__loc, request)
 
@@ -93,8 +92,7 @@ class OrderService(object):
       self.__sanity_check.ValidateOrder(item)
 
     method_name = 'createOrders'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'orders': orders},)),
                                      'Order', self.__loc, request)
 
@@ -110,46 +108,48 @@ class OrderService(object):
     glob_sanity_check.ValidateTypes(((order_id, (str, unicode)),))
 
     method_name = 'getOrder'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'orderId': order_id},)),
                                      'Order', self.__loc, request)
 
-  def GetOrdersByFilter(self, filter):
-    """Return the orders that match the given filter.
+  def GetOrdersByStatement(self, filter_statement):
+    """Return the orders that match the given statement.
 
     Args:
-      filter: str Publisher Query Language filter.
+      filter_statement: dict Publisher Query Language statement used to filter a
+                        set of orders.
 
     Returns:
       tuple response from the API method.
     """
-    glob_sanity_check.ValidateTypes(((filter, dict),))
+    filter_statement = self.__sanity_check.ValidateStatement(filter_statement,
+                                                             self._web_services)
 
-    method_name = 'getOrdersByFilter'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
-    return self.__service.CallMethod(method_name, (({'filter': filter},)),
+    method_name = 'getOrdersByStatement'
+    request = eval('self._web_services.%sRequest()' % method_name)
+    return self.__service.CallMethod(method_name,
+                                     (({'filterStatement': filter_statement},)),
                                      'Order', self.__loc, request)
 
-  def PerformOrderAction(self, action, filter):
-    """Perform action on orders that match the given filter.
+  def PerformOrderAction(self, action, filter_statement):
+    """Perform action on orders that match the given statement.
 
     Args:
-      action: str the action to perform.
-      filter: str Publisher Query Language filter.
+      action: dict the action to perform.
+      filter_statement: dict Publisher Query Language statement.
 
     Returns:
       tuple response from the API method.
     """
-    web_services = self.__web_services
-    action = self.__sanity_check.ValidateAction(action, web_services)
-    self.__sanity_check.ValidateFilter(filter)
+    action = self.__sanity_check.ValidateAction(action, self._web_services)
+    filter_statement = self.__sanity_check.ValidateStatement(filter_statement,
+                                                             self._web_services)
 
     method_name = 'performOrderAction'
-    request = eval('web_services.%sRequest()' % method_name)
-    return self.__service.CallMethod(method_name, (({'orderAction': action},
-                                                    {'filter': filter})),
+    request = eval('self._web_services.%sRequest()' % method_name)
+    return self.__service.CallMethod(method_name,
+                                     (({'orderAction': action},
+                                       {'filterStatement': filter_statement})),
                                      'Order', self.__loc, request)
 
   def UpdateOrder(self, order):
@@ -164,8 +164,7 @@ class OrderService(object):
     self.__sanity_check.ValidateOrder(order)
 
     method_name = 'updateOrder'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'order': order},)),
                                      'Order', self.__loc, request)
 
@@ -183,7 +182,6 @@ class OrderService(object):
       self.__sanity_check.ValidateOrder(item)
 
     method_name = 'updateOrders'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'orders': orders},)),
                                      'Order', self.__loc, request)

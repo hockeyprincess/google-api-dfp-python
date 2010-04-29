@@ -27,7 +27,7 @@ from dfp_api import LIB_URL
 from dfp_api import LIB_VERSION
 
 
-PACKAGES = ['dfp_api', 'dfp_api.zsi_toolkit', 'dfp_api.zsi_toolkit.v201002']
+PACKAGES = ['dfp_api', 'dfp_api.zsi_toolkit', 'dfp_api.zsi_toolkit.v201004']
 PACKAGE_DATA = {'dfp_api': ['data/*.csv']}
 
 

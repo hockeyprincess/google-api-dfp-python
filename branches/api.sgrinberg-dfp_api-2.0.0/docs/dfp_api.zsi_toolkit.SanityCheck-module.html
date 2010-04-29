@@ -143,10 +143,29 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="dfp_api.zsi_toolkit.SanityCheck-module.html#ValidateFilter" class="summary-sig-name">ValidateFilter</a>(<span class="summary-sig-arg">filter</span>)</span><br />
-      Validate Filter object.</td>
+          <td><span class="summary-sig"><a href="dfp_api.zsi_toolkit.SanityCheck-module.html#ValidateString_ParamMapEntry" class="summary-sig-name">ValidateString_ParamMapEntry</a>(<span class="summary-sig-arg">param</span>,
+        <span class="summary-sig-arg">web_services</span>)</span><br />
+      Validate String_ParamMapEntry object.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="dfp_api.zsi_toolkit.SanityCheck-pysrc.html#ValidateFilter">source&nbsp;code</a></span>
+            <span class="codelink"><a href="dfp_api.zsi_toolkit.SanityCheck-pysrc.html#ValidateString_ParamMapEntry">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dfp_api.zsi_toolkit.SanityCheck-module.html#ValidateStatement" class="summary-sig-name">ValidateStatement</a>(<span class="summary-sig-arg">statement</span>,
+        <span class="summary-sig-arg">web_services</span>)</span><br />
+      Validate Statement object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dfp_api.zsi_toolkit.SanityCheck-pysrc.html#ValidateStatement">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -564,25 +583,60 @@ Args:
   </dl>
 </td></tr></table>
 </div>
-<a name="ValidateFilter"></a>
+<a name="ValidateString_ParamMapEntry"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">ValidateFilter</span>(<span class="sig-arg">filter</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ValidateString_ParamMapEntry</span>(<span class="sig-arg">param</span>,
+        <span class="sig-arg">web_services</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="dfp_api.zsi_toolkit.SanityCheck-pysrc.html#ValidateFilter">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="dfp_api.zsi_toolkit.SanityCheck-pysrc.html#ValidateString_ParamMapEntry">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Validate Filter object.
+Validate String_ParamMapEntry object.
 
 Args:
-  filter: dict filter object.
+  param: dict param object.
+  web_services: module for web services.
+
+Returns:
+ String_ParamMapEntry instance.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="ValidateStatement"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ValidateStatement</span>(<span class="sig-arg">statement</span>,
+        <span class="sig-arg">web_services</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dfp_api.zsi_toolkit.SanityCheck-pysrc.html#ValidateStatement">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Validate Statement object.
+
+Args:
+  statement: dict statement object.
+  web_services: module for web services.
+
+Returns:
+  Statement instance.
 
 </pre>
   <dl class="fields">

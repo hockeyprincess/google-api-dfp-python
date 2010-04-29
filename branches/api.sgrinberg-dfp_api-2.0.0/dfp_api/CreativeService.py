@@ -58,7 +58,7 @@ class CreativeService(object):
     else:
       msg = 'Invalid API version, not one of %s.' % str(list(API_VERSIONS))
       raise ValidationError(msg)
-    self.__web_services = web_services
+    self._web_services = web_services
     self.__loc = eval('web_services.%sLocator()' % self.__class__.__name__)
     self.__sanity_check = SanityCheck
 
@@ -71,11 +71,11 @@ class CreativeService(object):
     Returns:
       tuple response from the API method.
     """
-    web_services = self.__web_services
-    creative = self.__sanity_check.ValidateCreative(creative, web_services)
+    creative = self.__sanity_check.ValidateCreative(creative,
+                                                    self._web_services)
 
     method_name = 'createCreative'
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'creative': creative},)),
                                      'Creative', self.__loc, request)
 
@@ -88,15 +88,14 @@ class CreativeService(object):
     Returns:
       tuple The response from the API method.
     """
-    web_services = self.__web_services
     glob_sanity_check.ValidateTypes(((creatives, list),))
     new_creatives = []
     for item in creatives:
       new_creatives.append(self.__sanity_check.ValidateCreative(
-          item, web_services))
+          item, self._web_services))
 
     method_name = 'createCreatives'
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name,
                                      (({'creatives': new_creatives},)),
                                      'Creative', self.__loc, request)
@@ -113,28 +112,28 @@ class CreativeService(object):
     glob_sanity_check.ValidateTypes(((creative_id, (str, unicode)),))
 
     method_name = 'getCreative'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name,
                                      (({'creativeId': creative_id},)),
                                      'Creative', self.__loc, request)
 
-  def GetCreativesByFilter(self, filter):
-    """Return a page of creatives that satisfy the given filter.
+  def GetCreativesByStatement(self, filter_statement):
+    """Return a page of creatives that satisfy the given statement.
 
     Args:
-      filter: str Publisher Query Language filter which specifies the filtering
-              criteria over creatives.
+      filter_statement: dict Publisher Query Language statement used to filter a
+                        set of creatives.
 
     Returns:
       tuple response from the API method.
     """
-    self.__sanity_check.ValidateFilter(filter)
+    filter_statement = self.__sanity_check.ValidateStatement(filter_statement,
+                                                             self._web_services)
 
-    method_name = 'getCreativesByFilter'
-    web_services = self.__web_services
-    request = eval('web_services.%sRequest()' % method_name)
-    return self.__service.CallMethod(method_name, (({'filter': filter},)),
+    method_name = 'getCreativesByStatement'
+    request = eval('self._web_services.%sRequest()' % method_name)
+    return self.__service.CallMethod(method_name,
+                                     (({'filterStatement': filter_statement},)),
                                      'Creative', self.__loc, request)
 
   def UpdateCreative(self, creative):
@@ -146,11 +145,11 @@ class CreativeService(object):
     Returns:
       tuple response from the API method.
     """
-    web_services = self.__web_services
-    creative = self.__sanity_check.ValidateCreative(creative, web_services)
+    creative = self.__sanity_check.ValidateCreative(creative,
+                                                    self._web_services)
 
     method_name = 'updateCreative'
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name, (({'creative': creative},)),
                                      'Creative', self.__loc, request)
 
@@ -163,15 +162,14 @@ class CreativeService(object):
     Returns:
       tuple response from the API method.
     """
-    web_services = self.__web_services
     glob_sanity_check.ValidateTypes(((creatives, list),))
     new_creatives = []
     for item in creatives:
       new_creatives.append(self.__sanity_check.ValidateCreative(
-          item, web_services))
+          item, self._web_services))
 
     method_name = 'updateCreatives'
-    request = eval('web_services.%sRequest()' % method_name)
+    request = eval('self._web_services.%sRequest()' % method_name)
     return self.__service.CallMethod(method_name,
                                      (({'creatives': new_creatives},)),
                                      'Creative', self.__loc, request)

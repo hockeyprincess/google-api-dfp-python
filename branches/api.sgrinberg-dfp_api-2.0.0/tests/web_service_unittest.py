@@ -33,12 +33,12 @@ from tests import SERVER
 from tests import client
 
 
-class WebServiceTestV201002(unittest.TestCase):
+class WebServiceTestV201004(unittest.TestCase):
 
-  """Unittest suite for WebService using v201002."""
+  """Unittest suite for WebService using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   client.debug = False
   res = []
   MAX_THREADS = 3
@@ -49,40 +49,41 @@ class WebServiceTestV201002(unittest.TestCase):
 
   def testCallMethod(self):
     """Test whether we can call an API method indirectly."""
-    filter = {'text': 'ORDER BY name LIMIT 500'}
-    self.assert_(isinstance(client.GetUserService(self.__class__.SERVER_V201002,
-        self.__class__.VERSION_V201002, HTTP_PROXY).GetUsersByFilter(filter),
-        tuple))
+    filter_statement = {'query': 'ORDER BY name LIMIT 500'}
+    self.assert_(isinstance(client.GetUserService(self.__class__.SERVER_V201004,
+        self.__class__.VERSION_V201004, HTTP_PROXY).GetUsersByStatement(
+            filter_statement), tuple))
 
-  def testCallMethodDirectV201002(self):
+  def testCallMethodDirect(self):
     """Test whether we can call an API method directly."""
     headers = client.GetAuthCredentials()
     config = client.GetConfigValues()
-    url = os.path.join(WebServiceTestV201002.SERVER_V201002,
-                       'apis/ads/publisher/v201002', 'UserService')
+    url = os.path.join(WebServiceTestV201004.SERVER_V201004,
+                       'apis/ads/publisher/v201004', 'UserService')
     op_config = {
-        'server': self.__class__.SERVER_V201002,
-        'version': self.__class__.VERSION_V201002,
+        'server': self.__class__.SERVER_V201004,
+        'version': self.__class__.VERSION_V201004,
         'http_proxy': HTTP_PROXY
     }
 
     lock = thread.allocate_lock()
     service = WebService(headers, config, op_config, url, lock)
-    method_name = 'getUsersByFilter'
+    method_name = 'getUsersByStatement'
     web_services = __import__(
-        'dfp_api.zsi_toolkit.v201002.UserService_services',
+        'dfp_api.zsi_toolkit.v201004.UserService_services',
         globals(), locals(), [''])
     loc = web_services.UserServiceLocator()
     request = eval('web_services.%sRequest()' % method_name)
     self.assert_(isinstance(service.CallMethod(
-        method_name, (({'filter': {'text': 'ORDER BY name LIMIT 500'}},)),
+        method_name,
+        (({'filterStatement': {'query': 'ORDER BY name LIMIT 500'}},)),
         'User', loc, request), tuple))
 
   def testCallRawMethod(self):
     """Test whether we can call an API method by posting SOAP XML message."""
     soap_message = Utils.ReadFile(
-        os.path.join(os.getcwd(), 'data', 'request_getusersbyfilter.xml'))
-    url = '/apis/ads/publisher/v201002/UserService'
+        os.path.join('data', 'request_getusersbystatement.xml'))
+    url = '/apis/ads/publisher/v201004/UserService'
     http_proxy = None
 
     self.failUnlessRaises(ApiError, client.CallRawMethod, soap_message, url,
@@ -92,7 +93,7 @@ class WebServiceTestV201002(unittest.TestCase):
     """Test whether we can safely execute multiple threads."""
     all_threads = []
     for i in xrange(self.__class__.MAX_THREADS):
-      t = TestThreadV201002()
+      t = TestThreadV201004()
       all_threads.append(t)
       t.start()
 
@@ -102,34 +103,34 @@ class WebServiceTestV201002(unittest.TestCase):
     self.assertEqual(len(self.res), self.__class__.MAX_THREADS)
 
 
-class TestThreadV201002(threading.Thread):
+class TestThreadV201004(threading.Thread):
 
-  """Creates TestThread using v201002.
+  """Creates TestThread using v201004.
 
   Responsible for defining an action for a single thread.
   """
 
   def run(self):
     """Represent thread's activity."""
-    filter = {'text': 'ORDER BY name LIMIT 500'}
-    WebServiceTestV201002.res.append(client.GetUserService(
-        WebServiceTestV201002.SERVER_V201002,
-        WebServiceTestV201002.VERSION_V201002,
-        HTTP_PROXY).GetUsersByFilter(filter))
+    statement = {'query': 'ORDER BY name LIMIT 500'}
+    WebServiceTestV201004.res.append(client.GetUserService(
+        WebServiceTestV201004.SERVER_V201004,
+        WebServiceTestV201004.VERSION_V201004,
+        HTTP_PROXY).GetUsersByStatement(statement))
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(WebServiceTestV201002))
+  suite.addTests(unittest.makeSuite(WebServiceTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

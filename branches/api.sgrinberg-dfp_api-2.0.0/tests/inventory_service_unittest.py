@@ -29,12 +29,12 @@ from tests import SERVER
 from tests import client
 
 
-class InventoryServiceTestV201002(unittest.TestCase):
+class InventoryServiceTestV201004(unittest.TestCase):
 
-  """Unittest suite for InventoryService using v201002."""
+  """Unittest suite for InventoryService using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   client.debug = False
   service = None
   root_ad_unit_id = '0'
@@ -46,14 +46,14 @@ class InventoryServiceTestV201002(unittest.TestCase):
     print self.id()
     if not self.__class__.service:
       self.__class__.service = client.GetInventoryService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
 
     if self.__class__.root_ad_unit_id is '0':
-      filter = {'text': 'WHERE parentId IS NULL LIMIT 500'}
+      filter_statement = {'query': 'WHERE parentId IS NULL LIMIT 500'}
       self.__class__.root_ad_unit_id = \
-          self.__class__.service.GetAdUnitsByFilter(
-              filter)[0]['results'][0]['id']
+          self.__class__.service.GetAdUnitsByStatement(
+              filter_statement)[0]['results'][0]['id']
 
   def testCreateAdUnit(self):
     """Test whether we can create an ad unit."""
@@ -91,19 +91,20 @@ class InventoryServiceTestV201002(unittest.TestCase):
     self.assert_(isinstance(self.__class__.service.GetAdUnit(
         self.__class__.ad_unit1['id']), tuple))
 
-  def testGetAdUnitsByFilter(self):
+  def testGetAdUnitsByStatement(self):
     """Test whether we can fetch a list of existing ad units that match given
-    filter."""
-    filter = {'text': 'WHERE parentId IS NULL LIMIT 500'}
+    statement."""
+    filter_statement = {'query': 'WHERE parentId IS NULL LIMIT 500'}
     self.assert_(isinstance(
-        self.__class__.service.GetAdUnitsByFilter(filter), tuple))
+        self.__class__.service.GetAdUnitsByStatement(filter_statement), tuple))
 
   def testPerformAdUnitAction(self):
     """Test whether we can deactivate an ad unit."""
     action = {'type': 'DeactivateAdUnits'}
-    filter = {'text': 'WHERE status = \'ACTIVE\''}
+    filter_statement = {'query': 'WHERE status = \'ACTIVE\''}
     self.assert_(isinstance(
-        self.__class__.service.PerformAdUnitAction(action, filter), tuple))
+        self.__class__.service.PerformAdUnitAction(action, filter_statement),
+        tuple))
 
   def testUpdateAdUnit(self):
     """Test whether we can update an ad unit."""
@@ -129,18 +130,18 @@ class InventoryServiceTestV201002(unittest.TestCase):
       self.assertEqual(ad_unit['sizes'][0], size)
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(InventoryServiceTestV201002))
+  suite.addTests(unittest.makeSuite(InventoryServiceTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

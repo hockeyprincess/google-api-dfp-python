@@ -29,12 +29,12 @@ from tests import SERVER
 from tests import client
 
 
-class PlacementServiceTestV201002(unittest.TestCase):
+class PlacementServiceTestV201004(unittest.TestCase):
 
-  """Unittest suite for PlacementService using v201002."""
+  """Unittest suite for PlacementService using v201004."""
 
-  SERVER_V201002 = SERVER
-  VERSION_V201002 = 'v201002'
+  SERVER_V201004 = SERVER
+  VERSION_V201004 = 'v201004'
   client.debug = False
   service = None
   ad_unit_id1 = '0'
@@ -49,16 +49,16 @@ class PlacementServiceTestV201002(unittest.TestCase):
     print self.id()
     if not self.__class__.service:
       self.__class__.service = client.GetPlacementService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
 
     if self.__class__.ad_unit_id1 is '0' or self.__class__.ad_unit_id2 is '0':
       inventory_service = client.GetInventoryService(
-          self.__class__.SERVER_V201002, self.__class__.VERSION_V201002,
+          self.__class__.SERVER_V201004, self.__class__.VERSION_V201004,
           HTTP_PROXY)
-      filter = {'text': 'WHERE parentId IS NULL LIMIT 1'}
-      root_ad_unit_id = inventory_service.GetAdUnitsByFilter(
-          filter)[0]['results'][0]['id']
+      filter_statement = {'query': 'WHERE parentId IS NULL LIMIT 1'}
+      root_ad_unit_id = inventory_service.GetAdUnitsByStatement(
+          filter_statement)[0]['results'][0]['id']
       ad_units = [
           {
               'name': 'Ad_Unit_%s' % str(time.time()).split('.')[0],
@@ -127,22 +127,26 @@ class PlacementServiceTestV201002(unittest.TestCase):
     self.assert_(isinstance(self.__class__.service.GetPlacement(
         self.__class__.placement1['id']), tuple))
 
-  def testGetPlacementsByFilter(self):
+  def testGetPlacementsByStatement(self):
     """Test whether we can fetch a list of existing placements that match given
-    filter."""
-    filter = {'text': 'WHERE id = \'%s\' ORDER BY name LIMIT 1'
-                      % self.__class__.placement1['id']}
+    statement."""
+    if not self.__class__.placement1:
+      self.testCreatePlacements()
+    filter_statement = {'query': 'WHERE id = \'%s\' ORDER BY name LIMIT 1'
+                        % self.__class__.placement1['id']}
     self.assert_(isinstance(
-        self.__class__.service.GetPlacementsByFilter(filter), tuple))
+        self.__class__.service.GetPlacementsByStatement(filter_statement),
+        tuple))
 
   def testPerformPlacementAction(self):
     """Test whether we can deactivate a placement."""
     if not self.__class__.placement1:
       self.testCreatePlacements()
     action = {'type': 'DeactivatePlacements'}
-    filter = {'text': 'WHERE status = \'ACTIVE\''}
+    filter_statement = {'query': 'WHERE status = \'ACTIVE\''}
     self.assert_(isinstance(
-        self.__class__.service.PerformPlacementAction(action, filter), tuple))
+        self.__class__.service.PerformPlacementAction(action, filter_statement),
+        tuple))
 
   def testUpdatePlacement(self):
     """Test whether we can update a placement."""
@@ -182,18 +186,18 @@ class PlacementServiceTestV201002(unittest.TestCase):
     self.assert_(isinstance(placements, tuple))
 
 
-def makeTestSuiteV201002():
-  """Set up test suite using v201002.
+def makeTestSuiteV201004():
+  """Set up test suite using v201004.
 
   Returns:
-    TestSuite test suite using v201002.
+    TestSuite test suite using v201004.
   """
   suite = unittest.TestSuite()
-  suite.addTests(unittest.makeSuite(PlacementServiceTestV201002))
+  suite.addTests(unittest.makeSuite(PlacementServiceTestV201004))
   return suite
 
 
 if __name__ == '__main__':
-  suite_v201002 = makeTestSuiteV201002()
-  alltests = unittest.TestSuite([suite_v201002])
+  suite_v201004 = makeTestSuiteV201004()
+  alltests = unittest.TestSuite([suite_v201004])
   unittest.main(defaultTest='alltests')

@@ -45,17 +45,18 @@ class DetailError(object):
   """
 
   def __init__(self, index=0, code=0, trigger='', fieldPath='', reason='',
-               type=''):
+               type='', errorString=''):
     self.index = int(index)
     self.code = int(code)
     self.trigger = trigger
     self.field_path = fieldPath
     self.reason = reason
     self.type = type
+    self.error_string = errorString
 
   def __call__(self):
     return (self.index, self.code, self.trigger, self.fieldPath, self.reason,
-            type)
+            self.type, self.error_string)
 
 
 class ApiError(Error):
@@ -244,8 +245,8 @@ ERROR_TYPES = ['AdUnitAfcSizeError', 'AdUnitCodeError', 'ApiError',
                'ParseError', 'PermissionError', 'QuotaError', 'RangeError',
                'RegExError', 'RequiredCollectionError', 'RequiredError',
                'RequiredNumberError', 'RequiredSizeError',
-               'ReservationDetailsError', 'ServerError', 'StringLengthError',
-               'TypeError', 'UniqueError']
+               'ReservationDetailsError', 'ServerError', 'StatementError',
+               'StringLengthError', 'TypeError', 'UniqueError']
 for index in ERROR_TYPES:
   if index in ('AdUnitAfcSizeError', 'AdUnitCodeError', 'ApiError',
                'CommonError', 'CreativeError', 'FileError',
@@ -257,8 +258,8 @@ for index in ERROR_TYPES:
                'ParseError', 'PermissionError', 'RangeError',
                'RegExError', 'RequiredCollectionError', 'RequiredError',
                'RequiredNumberError', 'RequiredSizeError',
-               'ReservationDetailsError', 'StringLengthError', 'TypeError',
-               'UniqueError'):
+               'ReservationDetailsError', 'StatementError', 'StringLengthError',
+               'TypeError', 'UniqueError'):
     ERRORS[index] = RequestError
   elif index in ('InternalApiError', 'QuotaError', 'ServerError'):
     ERRORS[index] = GoogleInternalError

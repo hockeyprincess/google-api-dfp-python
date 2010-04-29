@@ -27,9 +27,9 @@ LIB_SHORT_NAME = 'DFPAPI PyLib'
 LIB_URL = 'http://code.google.com/p/google-api-dfp-python'
 LIB_AUTHOR = 'Stan Grinberg'
 LIB_AUTHOR_EMAIL = 'api.sgrinberg@gmail.com'
-LIB_VERSION = '1.1.0'
+LIB_VERSION = '2.0.0'
 
-API_VERSIONS = ('v201002',)
+API_VERSIONS = ('v201004',)
 MIN_API_VERSION = API_VERSIONS[0]
 
 MIN_PY_VERSION = '2.4.4'

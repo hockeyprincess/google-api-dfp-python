@@ -42,8 +42,8 @@ LICENSE = """
 
 API_TARGETS = [
     {
-        'version': 'v201002',
-        'location': '../dfp_api/zsi_toolkit/v201002',
+        'version': 'v201004',
+        'location': '../dfp_api/zsi_toolkit/v201004',
         'server': 'https://sandbox.google.com',
         'services': ('CompanyService', 'CreativeService', 'InventoryService',
                      'LineItemCreativeAssociationService', 'LineItemService',
