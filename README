@@ -20,8 +20,17 @@ strings, when passing them as parameters. In fact, all variables are passed as
 either dict, list, or str. The conversion to the right type is handled
 internally by the client library.
 
-The client library provides support for ZSI, which is a well known web services
-toolkit from http://pywebsvcs.sourceforge.net/.
+The client library provides support for SOAPpy and ZSI, which are two well
+known web services toolkits from http://pywebsvcs.sourceforge.net/. A single
+implementation of the client code can be used with either toolkit. Once you
+decide which SOAP toolkit to use, client library will take care of proper type
+conversions, instantiation of classes, etc.
+
+The two toolkits are very different and both have their pluses and minuses. The
+SOAPpy toolkit hasn't been updated for some time. The latest version 0.12.0_rc1
+is dated 2005-02-22. However, from the tests, it seem to be faster than ZSI. On
+the other hand, ZSI is the primary and most active web services toolkit from
+the "Python Web Services" project.
 
 Two modules are supported for parsing SOAP XML messages. By default, the client
 library uses the PyXML module in order to parse SOAP XML messages. In addition,
@@ -29,12 +38,16 @@ the library also supports ElementTree module, which may be activated simply by
 setting the appropriate config value (i.e. config['xml_parser']). Note that if
 you already have an lxml module installed and wish to use ElementTree, you do
 not need to install ElementTree. The lxml module is mostly compatible with
-ElementTree.
+ElementTree. The cElementTree module is now also supported.
 
 Although there are projects out there that still support PyXML, it is no longer
 maintained. The last update for the ElementTree library is dated 2007-09-12.
 Out of these three libraries, the lxml is the one that was updated most
-recently.
+recently. Also, if you have Python v2.5+, the ElementTree comes with it.
+
+Although, there are projects out there that still support PyXML, it is no longer
+maintained. The last update for ElementTree library is dated 2007-09-12. Out of
+these three libraries, the lxml is the one that was updated most recently.
 
 The code examples, located in "examples/", demonstrate how to use client
 library. For additional examples, take a look at the unit tests in "tests/".
@@ -42,10 +55,7 @@ library. For additional examples, take a look at the unit tests in "tests/".
 Useful scripts are located in the "scripts/" directory.
 
 The documentation was generated using Epydoc, a nice tool for generating API
-documentation for Python modules.
-
-The data files consist of a set of files in CSV format located in
-"dfp_api/data/".
+documentation for Python modules, and is located in "docs/".
 
 The client library includes a set of unit tests located in "tests/". All unit
 tests are (and should be) executed against the Sandbox environment. Whenever
@@ -69,8 +79,8 @@ Step-by-step guide for accessing the sandbox:
 1) Make sure you have Python v2.4 or above installed. The latest stable version
    can be fetched from http://www.python.org/.
 
-2) A ZSI web services toolkit from http://pywebsvcs.sourceforge.net/ is
-   required.
+2) One of the two web services toolkits is needed, either SOAPpy or ZSI. Both
+   of them can be fetched from http://pywebsvcs.sourceforge.net/.
 
 3) Fetch the latest version of the PyXML module from
    http://sourceforge.net/projects/pyxml/. This is required by the client
@@ -80,11 +90,12 @@ Step-by-step guide for accessing the sandbox:
    is joe.shmoe@gmail.com.
 
 5) Navigate to the directory that contains your downloaded unzipped client
-   library and run the "setup.py" script to install the "dfp_api" module.
+   library and run the "setup.py" script to install the "adspygoogle.dfp"
+   module.
 
    $ python setup.py build install
 
-6) From the same directory, run the "dfp_api_config.py" script to set
+6) From the same directory, run the "config.py" script to set
    authentication headers. More information about the format of each header is
    at http://code.google.com/apis/dfp/docs/developers_guide.html#headers.
    Example,
@@ -94,56 +105,14 @@ Step-by-step guide for accessing the sandbox:
    Network code [optional]:
    Application name: GoogleTest
 
+   Select SOAP library [1=SOAPpy, 2=ZSI]: 2
+   Select XML parser [1=PyXML, 2=ElementTree]: 1
    Enable debugging mode [y/n]: n
    Enable SOAP XML logging mode [y/n]: y
    Enable API request logging mode [y/n]: y
 
 7) Read over the documentation in "docs/index.html" to familiarize yourself with
    the API of the client library.
-
-
-How to make a release
-----------------------
-
-1) Create a new directory named "dfpapi_python_lib_v.v.v", where v.v.v is a
-   version number (i.e. 1.0.0), and copy the new release into it.
-
-2) Run the unit tests in "tests/" and the demo programs in "/demo" to make sure
-   that no new bugs were introduced. The "tests/all_tests.py" script will run
-   all available unit tests.
-
-3) Update LIB_VERSION in "dfp_api/__init__.py".
-
-4) Update the "ChangeLog" file with the new changes.
-
-5) If you are adding/removing support for an API version, update API_VERSIONS and
-   MIN_API_VERSION in "dfp_api/__init__.py".
-
-   a) If you will also be using ZSI toolkit, run the
-      "scripts/gen_wsdl_services.py" script to generate the client interface
-      code.
-
-   b) If you are upgrading to a newer version of SOAPpy or ZSI, make sure to
-      update MIN_SOAPPY_VERSION in "dfp_api/soappy_toolkit/__init__.py" and/or
-      MIN_ZSI_VERSION in "dfp_api/zsi_toolkit/__init__.py".
-
-6) Delete the old documentation from "docs/", regenerate new documentation, and
-   modify the footer to remove the timestamp by executing the following commands
-   from the release's home directory:
-
-   $ find docs \( -not -name 'docs' -and -not -name 'README' \) | xargs rm
-   $ epydoc --name "DFP API Python Client Library" --url "http://code.google.com/p/google-api-dfp-python/" --html dfp_api --exclude=_services -o docs
-   $ perl -pi -e 's/Generated by Epydoc (\d+\.\d+\.\d+) .*/Generated by Epydoc $1/' docs/*
-
-7) Delete the user specific data files: "*.pkl" and "logs/*.log". Delete all
-   instances of "*.pyc" files from the client library.
-
-   $ find . \( -name '*.pkl' -or -name '*.log' -or -name '*.pyc' \) | xargs rm
-
-8) Pack the new release into a tarball and then gzip it,
-
-   $ tar -cvf dfpapi_python_lib_v.v.v.tar dfpapi_python_lib_v.v.v/
-   $ gzip dfpapi_python_lib_v.v.v.tar
 
 
 Where do I submit bug reports and/or feature requests?
@@ -155,16 +124,21 @@ Use the issue tracker at http://code.google.com/p/google-api-dfp-python/issues/l
 External Dependencies:
 ----------------------
 
-    - Python v2.4+        -- http://www.python.org/
-    - PyXML v0.8.3+       -- http://sourceforge.net/projects/pyxml/
-                          or
-      ElementTree v1.2.6+ -- http://effbot.org/zone/element-index.htm
-                          or
-      lxml v2.2+          -- http://codespeak.net/lxml/index.html
-    - ZSI v2.0            -- http://pywebsvcs.sourceforge.net/
-    - Epydoc              -- http://epydoc.sourceforge.net/
-                          (only if you will be generating docs)
-    - Google Account      -- https://www.google.com/accounts/NewAccount
+    - Python v2.4+         -- http://www.python.org/
+    - PyXML v0.8.3+        -- http://sourceforge.net/projects/pyxml/
+                           or
+      ElementTree v1.2.6+  -- http://effbot.org/zone/element-index.htm
+                           or
+      cElementTree v1.0.6+ -- http://www.python.org/
+                           (part of the Python v2.5+)
+                           or
+      lxml v2.2+           -- http://codespeak.net/lxml/index.html
+    - SOAPpy v0.12.0       -- http://pywebsvcs.sourceforge.net/
+                           or
+      ZSI v2.0             -- http://pywebsvcs.sourceforge.net/
+    - Epydoc               -- http://epydoc.sourceforge.net/
+                           (only if you will be generating docs)
+    - Google Account       -- https://www.google.com/accounts/NewAccount
 
 
 Author:
