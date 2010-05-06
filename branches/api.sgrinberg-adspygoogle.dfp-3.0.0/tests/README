@@ -1,0 +1,7 @@
+Unit tests to use with the client library. The appropriate unit test should be
+executed whenever you make changes to any of the core library's sources.
+
+By default, all unit tests are (and should be) executed against the Sandbox
+environment.
+
+To run all unit tests, execute "alltests.py" script.
