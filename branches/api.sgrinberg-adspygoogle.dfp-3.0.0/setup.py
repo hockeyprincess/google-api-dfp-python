@@ -18,20 +18,24 @@
 
 __author__ = 'api.sgrinberg@gmail.com (Stan Grinberg)'
 
+import os
 from distutils.core import setup
 
-from dfp_api import LIB_AUTHOR
-from dfp_api import LIB_AUTHOR_EMAIL
-from dfp_api import LIB_NAME
-from dfp_api import LIB_URL
-from dfp_api import LIB_VERSION
+from adspygoogle.dfp import LIB_AUTHOR
+from adspygoogle.dfp import LIB_AUTHOR_EMAIL
+from adspygoogle.dfp import LIB_NAME
+from adspygoogle.dfp import LIB_URL
+from adspygoogle.dfp import LIB_VERSION
 
 
-PACKAGES = ['dfp_api', 'dfp_api.zsi_toolkit', 'dfp_api.zsi_toolkit.v201004']
-PACKAGE_DATA = {'dfp_api': ['data/*.csv']}
+PACKAGES = ['adspygoogle', 'adspygoogle.common', 'adspygoogle.common.soappy',
+            'adspygoogle.common.zsi', 'adspygoogle.dfp',
+            'adspygoogle.dfp.soappy', 'adspygoogle.dfp.zsi',
+            'adspygoogle.dfp.zsi.v201004']
+PACKAGE_DATA = {'adspygoogle.dfp': [os.path.join('data', '*')]}
 
 
-setup(name='dfp_api',
+setup(name='adspygoogle.dfp',
       version=LIB_VERSION,
       description=LIB_NAME,
       author=LIB_AUTHOR,
@@ -42,4 +46,5 @@ setup(name='dfp_api',
       license='Apache License 2.0',
       long_description='For additional information, please see %s' % LIB_URL,
       packages=PACKAGES,
-      package_data=PACKAGE_DATA)
+      package_data=PACKAGE_DATA,
+      platforms='any')
