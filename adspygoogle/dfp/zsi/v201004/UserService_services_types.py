@@ -406,27 +406,6 @@ class ns0:
 
             ns0.UserRecord_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
-    class UserPage_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201004"
-        type = (schema, "UserPage")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.UserPage_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"totalResultSetSize"), aname="_totalResultSetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"startIndex"), aname="_startIndex", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","User",lazy=False)(pname=(ns,"results"), aname="_results", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
-                typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._totalResultSetSize = None
-                    self._startIndex = None
-                    self._results = []
-                    return
-            Holder.__name__ = "UserPage_Holder"
-            self.pyclass = Holder
-
     class UserRecord_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "UserRecord")
@@ -489,6 +468,27 @@ class ns0:
                     self._value = None
                     return
             Holder.__name__ = "String_ParamMapEntry_Holder"
+            self.pyclass = Holder
+
+    class UserPage_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "UserPage")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.UserPage_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"totalResultSetSize"), aname="_totalResultSetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"startIndex"), aname="_startIndex", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","User",lazy=False)(pname=(ns,"results"), aname="_results", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._totalResultSetSize = None
+                    self._startIndex = None
+                    self._results = []
+                    return
+            Holder.__name__ = "UserPage_Holder"
             self.pyclass = Holder
 
     class ApiError_Def(ZSI.TCcompound.ComplexType, TypeDefinition):

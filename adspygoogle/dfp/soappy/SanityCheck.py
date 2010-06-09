@@ -342,3 +342,37 @@ def ValidateAction(action):
     raise ValidationError(msg)
   for key in action:
     SanityCheck.ValidateTypes(((action[key], (str, unicode)),))
+
+
+def ValidateReportQuery(report_query):
+  """Validate ReportQuery object.
+
+  Args:
+    report_query: dict ReportQuery object.
+  """
+  SanityCheck.ValidateTypes(((report_query, dict),))
+  for key in report_query:
+    if report_query[key] == 'None': continue
+    if key in ('dimensions', 'columns', 'dimensionFilters'):
+      SanityCheck.ValidateTypes(((report_query[key], list),))
+      for item in report_query[key]:
+        SanityCheck.ValidateTypes(((item, (str, unicode)),))
+    elif key in ('startDateTime', 'endDateTime'):
+      ValidateDateTime(report_query[key])
+    else:
+      SanityCheck.ValidateTypes(((report_query[key], (str, unicode)),))
+
+
+def ValidateReportJob(report_job):
+  """Validate ReportJob object.
+
+  Args:
+    report_job: dict ReportJob object.
+  """
+  SanityCheck.ValidateTypes(((report_job, dict),))
+  for key in report_job:
+    if report_job[key] == 'None': continue
+    if key in ('reportQuery',):
+      ValidateReportQuery(report_job[key])
+    else:
+      SanityCheck.ValidateTypes(((report_job[key], (str, unicode)),))

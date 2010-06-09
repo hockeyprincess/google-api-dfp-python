@@ -162,14 +162,14 @@ ERRORS = {}
 for index in ERROR_TYPES:
   if index in ('AdUnitAfcSizeError', 'AdUnitCodeError', 'ApiError',
                'CommonError', 'CreativeError', 'FileError',
-               'FlashCreativeError', 'InvalidUrlError',
+               'FlashCreativeError', 'ForecastError', 'InvalidUrlError',
                'InventoryTargetingError', 'LineItemCreativeAssociationError',
                'LineItemCreativeAssociationOperationError',
                'LineItemFlightDateError', 'LineItemOperationError',
                'NotNullError', 'NullError', 'OrderActionError', 'OrderError',
                'ParseError', 'PermissionError', 'RangeError', 'RegExError',
                'RequiredCollectionError', 'RequiredError',
-               'RequiredNumberError', 'RequiredSizeError',
+               'RequiredNumberError', 'RequiredSizeError', 'ReportError',
                'ReservationDetailsError', 'StatementError', 'StringLengthError',
                'TypeError', 'UniqueError'):
     ERRORS[index] = DfpRequestError

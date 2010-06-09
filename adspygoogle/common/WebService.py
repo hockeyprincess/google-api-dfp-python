@@ -149,15 +149,6 @@ class WebService(object):
       # Release thread lock.
       if self._lock.locked(): self._lock.release()
       if not fault and msg: return msg
-
-      # Raise a specific error, subclass of ApiError.
-      if 'detail' in fault:
-        if 'code' in fault['detail']:
-          code = int(fault['detail']['code'])
-          if code in errors: raise errors[code](fault)
-        elif 'errors' in fault['detail']:
-          type = fault['detail']['errors'][0]['type']
-          if type in errors: raise errors[str(type)](fault)
       return fault
     return None
 

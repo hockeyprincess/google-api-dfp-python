@@ -42,6 +42,16 @@ class MessageHandlerTest(unittest.TestCase):
     obj = MessageHandler.CustomPackList([])
     self.assert_(isinstance(obj, dict))
 
+  def testCustomPackList(self):
+    """Test whether function can handle a list."""
+    from adspygoogle.common.zsi import MessageHandler
+    lst = [{'languages': 'en'}, {'languages': 'iw'}]
+    obj = MessageHandler.CustomPackList(lst)
+    self.assert_(isinstance(obj, dict))
+    self.assertEqual(len(obj.keys()), 1)
+    self.assert_('languages' in obj)
+    self.assertEqual(len(obj['languages']), 2)
+
 
 def makeTestSuite():
   """Set up test suite.

@@ -96,6 +96,15 @@ class DfpWebService(WebService):
       fault = super(DfpWebService, self)._ManageSoap(
           buf, handlers, LIB_URL, ERRORS, start_time, stop_time, error)
       if fault:
+        # Raise a specific error, subclass of DfpApiError.
+        if 'detail' in fault:
+          if 'code' in fault['detail']:
+            code = int(fault['detail']['code'])
+            if code in ERRORS: raise ERRORS[code](fault)
+          elif 'errors' in fault['detail']:
+            type = fault['detail']['errors'][0]['type']
+            if type in ERRORS: raise ERRORS[str(type)](fault)
+
         if isinstance(fault, str):
           raise DfpError(fault)
         elif isinstance(fault, dict):

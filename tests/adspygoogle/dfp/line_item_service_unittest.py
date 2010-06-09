@@ -51,7 +51,7 @@ class LineItemServiceTestV201004(unittest.TestCase):
       self.__class__.service = client.GetLineItemService(
           self.__class__.SERVER, self.__class__.VERSION, HTTP_PROXY)
 
-    if self.__class__.order_id is '0':
+    if self.__class__.order_id == '0':
       company = {
           'name': 'Company #%s' % Utils.GetUniqueName(),
           'type': 'ADVERTISER'
@@ -78,7 +78,7 @@ class LineItemServiceTestV201004(unittest.TestCase):
           self.__class__.SERVER, self.__class__.VERSION,
           HTTP_PROXY).CreateOrder(order)[0]['id']
 
-    if self.__class__.ad_unit_id is '0':
+    if self.__class__.ad_unit_id == '0':
       inventory_service = client.GetInventoryService(
           self.__class__.SERVER, self.__class__.VERSION,
           HTTP_PROXY)
@@ -116,8 +116,7 @@ class LineItemServiceTestV201004(unittest.TestCase):
             },
             'hour': '0',
             'minute': '0',
-            'second': '0',
-            'timeZoneID': 'America/New_York'
+            'second': '0'
         },
         'endDateTime': {
             'date': {
@@ -127,8 +126,7 @@ class LineItemServiceTestV201004(unittest.TestCase):
             },
             'hour': '0',
             'minute': '0',
-            'second': '0',
-            'timeZoneID': 'America/New_York'
+            'second': '0'
         },
         'costType': 'CPM',
         'costPerUnit': {
@@ -167,8 +165,7 @@ class LineItemServiceTestV201004(unittest.TestCase):
                 },
                 'hour': '0',
                 'minute': '0',
-                'second': '0',
-                'timeZoneID': 'America/New_York'
+                'second': '0'
             },
             'endDateTime': {
                 'date': {
@@ -178,8 +175,7 @@ class LineItemServiceTestV201004(unittest.TestCase):
                 },
                 'hour': '0',
                 'minute': '0',
-                'second': '0',
-                'timeZoneID': 'America/New_York'
+                'second': '0'
             },
             'costType': 'CPM',
             'costPerUnit': {
@@ -212,8 +208,7 @@ class LineItemServiceTestV201004(unittest.TestCase):
                 },
                 'hour': '0',
                 'minute': '0',
-                'second': '0',
-                'timeZoneID': 'America/New_York'
+                'second': '0'
             },
             'endDateTime': {
                 'date': {
@@ -223,8 +218,7 @@ class LineItemServiceTestV201004(unittest.TestCase):
                 },
                 'hour': '0',
                 'minute': '0',
-                'second': '0',
-                'timeZoneID': 'America/New_York'
+                'second': '0'
             },
             'costType': 'CPM',
             'costPerUnit': {

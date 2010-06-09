@@ -102,41 +102,17 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.WebService.WebService-class.html#CallMethod" class="summary-sig-name">CallMethod</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="adspygoogle.common.WebService.WebService-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">lib_sig</span>,
         <span class="summary-sig-arg">headers</span>,
         <span class="summary-sig-arg">config</span>,
-        <span class="summary-sig-arg">method_name</span>,
-        <span class="summary-sig-arg">params</span>,
-        <span class="summary-sig-arg">buf</span>,
-        <span class="summary-sig-arg">is_jaxb_api</span>,
-        <span class="summary-sig-arg">lib_sig</span>,
-        <span class="summary-sig-arg">lib_url</span>,
-        <span class="summary-sig-arg">service_name</span>=<span class="summary-sig-default">None</span>,
-        <span class="summary-sig-arg">loc</span>=<span class="summary-sig-default">None</span>,
-        <span class="summary-sig-arg">request</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Make an API call to specified method.</td>
+        <span class="summary-sig-arg">op_config</span>,
+        <span class="summary-sig-arg">url</span>,
+        <span class="summary-sig-arg">lock</span>,
+        <span class="summary-sig-arg">logger</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Inits WebService.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService.CallMethod">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.WebService.WebService-class.html#CallRawMethod" class="summary-sig-name">CallRawMethod</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">buf</span>,
-        <span class="summary-sig-arg">host</span>,
-        <span class="summary-sig-arg">soap_message</span>)</span><br />
-      Make an API call by posting raw SOAP XML message.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService.CallRawMethod">source&nbsp;code</a></span>
+            <span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService.__init__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -174,17 +150,41 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.WebService.WebService-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">lib_sig</span>,
+          <td><span class="summary-sig"><a href="adspygoogle.common.WebService.WebService-class.html#CallMethod" class="summary-sig-name">CallMethod</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">headers</span>,
         <span class="summary-sig-arg">config</span>,
-        <span class="summary-sig-arg">op_config</span>,
-        <span class="summary-sig-arg">url</span>,
-        <span class="summary-sig-arg">lock</span>,
-        <span class="summary-sig-arg">logger</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Inits WebService.</td>
+        <span class="summary-sig-arg">method_name</span>,
+        <span class="summary-sig-arg">params</span>,
+        <span class="summary-sig-arg">buf</span>,
+        <span class="summary-sig-arg">is_jaxb_api</span>,
+        <span class="summary-sig-arg">lib_sig</span>,
+        <span class="summary-sig-arg">lib_url</span>,
+        <span class="summary-sig-arg">service_name</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">loc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">request</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Make an API call to specified method.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService.__init__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService.CallMethod">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.common.WebService.WebService-class.html#CallRawMethod" class="summary-sig-name">CallRawMethod</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">buf</span>,
+        <span class="summary-sig-arg">host</span>,
+        <span class="summary-sig-arg">soap_message</span>)</span><br />
+      Make an API call by posting raw SOAP XML message.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService.CallRawMethod">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -251,6 +251,89 @@ object --+
   </td>
 </tr>
 </table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">lib_sig</span>,
+        <span class="sig-arg">headers</span>,
+        <span class="sig-arg">config</span>,
+        <span class="sig-arg">op_config</span>,
+        <span class="sig-arg">url</span>,
+        <span class="sig-arg">lock</span>,
+        <span class="sig-arg">logger</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Inits WebService.
+
+Args:
+  lib_sig: str Client library signature.
+  headers: dict Dictionary object with populated authentication
+           credentials.
+  config: dict Dictionary object with populated configuration values.
+  op_config: dict Dictionary object with additional configuration values
+             for this operation.
+  url: str URL of the web service to call.
+  lock: thread.lock Thread lock.
+  logger: Logger Instance of Logger.
+
+</pre>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_ManageSoap"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_ManageSoap</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">buf</span>,
+        <span class="sig-arg">log_handlers</span>,
+        <span class="sig-arg">lib_url</span>,
+        <span class="sig-arg">errors</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">stop_time</span>,
+        <span class="sig-arg">error</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService._ManageSoap">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Manage SOAP XML message.
+
+Args:
+  buf: SoapBuffer SOAP buffer.
+  log_handlers: list Log handlers.
+  lib_url: str URL of the project's home.
+  errors: dict Map of errors available for the API.
+  start_time: str Time before service call was invoked.
+  stop_time: str Time after service call was invoked.
+  [optional]
+  error: dict Error, if any.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="CallMethod"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -333,89 +416,6 @@ Returns:
 
 </pre>
   <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="_ManageSoap"></a>
-<div class="private">
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">_ManageSoap</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">buf</span>,
-        <span class="sig-arg">log_handlers</span>,
-        <span class="sig-arg">lib_url</span>,
-        <span class="sig-arg">errors</span>,
-        <span class="sig-arg">start_time</span>,
-        <span class="sig-arg">stop_time</span>,
-        <span class="sig-arg">error</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService._ManageSoap">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Manage SOAP XML message.
-
-Args:
-  buf: SoapBuffer SOAP buffer.
-  log_handlers: list Log handlers.
-  lib_url: str URL of the project's home.
-  errors: dict Map of errors available for the API.
-  start_time: str Time before service call was invoked.
-  stop_time: str Time after service call was invoked.
-  [optional]
-  error: dict Error, if any.
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="__init__"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">lib_sig</span>,
-        <span class="sig-arg">headers</span>,
-        <span class="sig-arg">config</span>,
-        <span class="sig-arg">op_config</span>,
-        <span class="sig-arg">url</span>,
-        <span class="sig-arg">lock</span>,
-        <span class="sig-arg">logger</span>=<span class="sig-default">None</span>)</span>
-    <br /><em class="fname">(Constructor)</em>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.WebService-pysrc.html#WebService.__init__">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Inits WebService.
-
-Args:
-  lib_sig: str Client library signature.
-  headers: dict Dictionary object with populated authentication
-           credentials.
-  config: dict Dictionary object with populated configuration values.
-  op_config: dict Dictionary object with additional configuration values
-             for this operation.
-  url: str URL of the web service to call.
-  lock: thread.lock Thread lock.
-  logger: Logger Instance of Logger.
-
-</pre>
-  <dl class="fields">
-    <dt>Overrides:
-        object.__init__
-    </dt>
   </dl>
 </td></tr></table>
 </div>

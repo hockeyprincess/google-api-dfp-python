@@ -66,8 +66,8 @@ class LineItemService(ApiService):
 
     method_name = 'createLineItem'
     if self._config['soap_lib'] == SOAPPY:
-      line_item = self._message_handler.PackDictAsXml(line_item, 'lineItem',
-          OBJ_KEY_ORDER_MAP)
+      line_item = self._message_handler.PackDictAsXml(
+          line_item, 'lineItem', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (line_item))
     elif self._config['soap_lib'] == ZSI:
       request = eval('self._web_services.%sRequest()' % method_name)

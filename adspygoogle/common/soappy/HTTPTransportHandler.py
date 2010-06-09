@@ -77,7 +77,7 @@ class HTTPTransportHandler(Client.HTTPTransport):
       r.putheader('Authorization', 'Basic ' + val.replace('\012',''))
 
     # This fixes sending either "" or "None".
-    if soapaction == None or len(soapaction) == 0:
+    if soapaction is None or len(soapaction) == 0:
       r.putheader('SOAPAction', '')
     else:
       r.putheader('SOAPAction', '"%s"' % soapaction)

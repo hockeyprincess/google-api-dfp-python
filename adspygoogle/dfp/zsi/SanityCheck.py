@@ -413,3 +413,35 @@ def ValidateAction(action, web_services):
     SanityCheck.ValidateTypes(((action[key], (str, unicode)),))
     new_action.__dict__.__setitem__('_%s' % key, action[key])
   return new_action
+
+
+def ValidateReportQuery(report_query):
+  """Validate ReportQuery object.
+
+  Args:
+    report_query: dict ReportQuery object.
+  """
+  SanityCheck.ValidateTypes(((report_query, dict),))
+  for key in report_query:
+    if key in ('dimensions', 'columns', 'dimensionFilters'):
+      SanityCheck.ValidateTypes(((report_query[key], list),))
+      for item in report_query[key]:
+        SanityCheck.ValidateTypes(((item, (str, unicode)),))
+    elif key in ('startDateTime', 'endDateTime'):
+      ValidateDateTime(report_query[key])
+    else:
+      SanityCheck.ValidateTypes(((report_query[key], (str, unicode)),))
+
+
+def ValidateReportJob(report_job):
+  """Validate ReportJob object.
+
+  Args:
+    report_job: dict ReportJob object.
+  """
+  SanityCheck.ValidateTypes(((report_job, dict),))
+  for key in report_job:
+    if key in ('reportQuery',):
+      ValidateReportQuery(report_job[key])
+    else:
+      SanityCheck.ValidateTypes(((report_job[key], (str, unicode)),))

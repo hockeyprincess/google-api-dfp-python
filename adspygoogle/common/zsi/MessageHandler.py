@@ -230,8 +230,8 @@ def CustomPackList(lst):
   for item in lst:
     if isinstance(item, dict):
       # If all dicts have same keys, repack. E.g.,
-      #   input: [{'languages': 'en'}, {'langauges': 'iw'}]
-      #   output: {'langauges': ['en', 'iw']}
+      #   input: [{'languages': 'en'}, {'languages': 'iw'}]
+      #   output: {'languages': ['en', 'iw']}
       if len(set(item.keys())) > 1:
         return lst
       else:

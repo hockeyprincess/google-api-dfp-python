@@ -1,3 +1,12 @@
+1.0.2:
+- Patch for Utils.HtmlEscape().
+
+1.0.1:
+- Patch to support WSSE headers.
+- Mask for 'Password' header.
+- Added support to handle SOAPpy's ArrayType.
+- Updated PackDictAsXml() in adspygoogle.common.soappy to be less restrictive.
+
 1.0.0:
 - Initial release.
 - Added support for raw debug.
