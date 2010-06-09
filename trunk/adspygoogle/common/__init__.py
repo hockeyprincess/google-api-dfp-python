@@ -19,7 +19,7 @@
 __author__ = 'api.sgrinberg@gmail.com (Stan Grinberg)'
 
 
-VERSION = '1.0.0'
+VERSION = '1.0.2'
 
 SOAPPY = '1'
 ZSI = '2'

@@ -30,6 +30,7 @@ from adspygoogle.common.Errors import AuthTokenError
 from adspygoogle.common.Errors import ValidationError
 from adspygoogle.common.Logger import Logger
 from adspygoogle.dfp import AUTH_TOKEN_SERVICE
+from adspygoogle.dfp import LIB_SHORT_NAME
 from adspygoogle.dfp import LIB_SIG
 from adspygoogle.dfp import MIN_API_VERSION
 from adspygoogle.dfp import REQUIRED_SOAP_HEADERS
@@ -37,11 +38,13 @@ from adspygoogle.dfp import DfpSanityCheck
 from adspygoogle.dfp.CompanyService import CompanyService
 from adspygoogle.dfp.CreativeService import CreativeService
 from adspygoogle.dfp.DfpWebService import DfpWebService
+from adspygoogle.dfp.ForecastService import ForecastService
 from adspygoogle.dfp.InventoryService import InventoryService
 from adspygoogle.dfp.LineItemCreativeAssociationService import LineItemCreativeAssociationService
 from adspygoogle.dfp.LineItemService import LineItemService
 from adspygoogle.dfp.OrderService import OrderService
 from adspygoogle.dfp.PlacementService import PlacementService
+from adspygoogle.dfp.ReportService import ReportService
 from adspygoogle.dfp.UserService import UserService
 
 
@@ -69,6 +72,7 @@ class DfpClient(Client):
         headers = {
           'email': 'johndoe@example.com',
           'password': 'secret',
+          'authToken': '...',
           'applicationName': 'GoogleTest',
           'networkCode': 'ca-01234567',
         }
@@ -156,9 +160,9 @@ class DfpClient(Client):
       self._config['auth_token_epoch'] = 0
 
     # Insert library's signature into application name.
-    if self._headers['applicationName'].rfind('%s' % LIB_SIG) == -1:
+    if self._headers['applicationName'].rfind(LIB_SIG) == -1:
       # Make sure library name shows up only once.
-      if self._headers['applicationName'].rfind(LIB_SIG) > -1:
+      if self._headers['applicationName'].rfind(LIB_SHORT_NAME) > -1:
         pattern = re.compile('.*\|')
         self._headers['applicationName'] = pattern.sub(
             '', self._headers['applicationName'], 1)
@@ -208,7 +212,7 @@ class DfpClient(Client):
     config = super(DfpClient, self)._SetMissingDefaultConfigValues(config)
     default_config = {
         'home': DfpClient.home,
-        'log_home': os.path.join(DfpClient.home, 'logs'),
+        'log_home': os.path.join(DfpClient.home, 'logs')
     }
     for key in default_config:
       if key not in config:
@@ -303,6 +307,38 @@ class DfpClient(Client):
       'http_proxy': http_proxy
     }
     return CreativeService(headers, self._config, op_config, self.__lock,
+                           self.__logger)
+
+  def GetForecastService(self, server='https://sandbox.google.com',
+                         version=None, http_proxy=None):
+    """Call API method in ForecastService.
+
+    Args:
+      [optional]
+      server: str API server to access for this API call. Possible values
+              are: 'https://www.google.com' for live site and
+              'https://sandbox.google.com' for sandbox. The default behavior is
+              to access sandbox site.
+      version: str API version to use.
+      http_proxy: str HTTP proxy to use.
+
+    Returns:
+      ForecastService New instance of ForecastService object.
+    """
+    headers = self._headers
+
+    if version is None:
+      version = MIN_API_VERSION
+    if Utils.BoolTypeConvert(self._config['strict']):
+      DfpSanityCheck.ValidateServer(server, version)
+
+    # Load additional configuration data.
+    op_config = {
+      'server': server,
+      'version': version,
+      'http_proxy': http_proxy
+    }
+    return ForecastService(headers, self._config, op_config, self.__lock,
                            self.__logger)
 
   def GetInventoryService(self, server='https://sandbox.google.com',
@@ -466,6 +502,38 @@ class DfpClient(Client):
     }
     return PlacementService(headers, self._config, op_config, self.__lock,
                             self.__logger)
+
+  def GetReportService(self, server='https://sandbox.google.com',
+                       version=None, http_proxy=None):
+    """Call API method in ReportService.
+
+    Args:
+      [optional]
+      server: str API server to access for this API call. Possible values
+              are: 'https://www.google.com' for live site and
+              'https://sandbox.google.com' for sandbox. The default behavior is
+              to access sandbox site.
+      version: str API version to use.
+      http_proxy: str HTTP proxy to use.
+
+    Returns:
+      ReportService New instance of ReportService object.
+    """
+    headers = self._headers
+
+    if version is None:
+      version = MIN_API_VERSION
+    if Utils.BoolTypeConvert(self._config['strict']):
+      DfpSanityCheck.ValidateServer(server, version)
+
+    # Load additional configuration data.
+    op_config = {
+      'server': server,
+      'version': version,
+      'http_proxy': http_proxy
+    }
+    return ReportService(headers, self._config, op_config, self.__lock,
+                         self.__logger)
 
   def GetUserService(self, server='https://sandbox.google.com', version=None,
                      http_proxy=None):

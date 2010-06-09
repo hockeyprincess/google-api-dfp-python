@@ -127,7 +127,8 @@ class Client(object):
         'pretty_xml': 'y',
         'compress': 'y',
         'data_injects': (),
-        'access': ''
+        'access': '',
+        'wsse': 'n'
     }
     for key in default_config:
       if key not in config:

@@ -102,86 +102,13 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#CallMethod" class="summary-sig-name">CallMethod</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">url</span>,
-        <span class="summary-sig-arg">method</span>,
-        <span class="summary-sig-arg">params</span>,
-        <span class="summary-sig-arg">http_proxy</span>)</span><br />
-      Call API method directly, using its service's URL.</td>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">headers</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">config</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">path</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Inits Client.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.CallMethod">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#CallRawMethod" class="summary-sig-name">CallRawMethod</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">soap_message</span>,
-        <span class="summary-sig-arg">url</span>,
-        <span class="summary-sig-arg">http_proxy</span>)</span><br />
-      Call API method directly, using raw SOAP message.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.CallRawMethod">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#GetAuthCredentials" class="summary-sig-name">GetAuthCredentials</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Return authentication credentials.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.GetAuthCredentials">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#GetConfigValues" class="summary-sig-name">GetConfigValues</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Return configuration values.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.GetConfigValues">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#SetDebug" class="summary-sig-name">SetDebug</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">new_state</span>)</span><br />
-      Temporarily change debug mode for a given AdWordsClient instance.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.SetDebug">source&nbsp;code</a></span>
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__init__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -199,6 +126,25 @@ object --+
       Load existing authentication credentials from auth.pkl.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client._LoadAuthCredentials">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#_WriteUpdatedAuthValue" class="summary-sig-name" onclick="show_private();">_WriteUpdatedAuthValue</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>,
+        <span class="summary-sig-arg">new_value</span>)</span><br />
+      Write updated authentication value for a key in auth.pkl.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client._WriteUpdatedAuthValue">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -241,18 +187,16 @@ object --+
       
     </td>
   </tr>
-<tr class="private">
+<tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#_WriteUpdatedAuthValue" class="summary-sig-name" onclick="show_private();">_WriteUpdatedAuthValue</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">key</span>,
-        <span class="summary-sig-arg">new_value</span>)</span><br />
-      Write updated authentication value for a key in auth.pkl.</td>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#GetAuthCredentials" class="summary-sig-name">GetAuthCredentials</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return authentication credentials.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client._WriteUpdatedAuthValue">source&nbsp;code</a></span>
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.GetAuthCredentials">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -260,33 +204,16 @@ object --+
       
     </td>
   </tr>
-<tr class="private">
+<tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetDebug" class="summary-sig-name" onclick="show_private();">__GetDebug</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Return current state of the debug mode.</td>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#GetConfigValues" class="summary-sig-name">GetConfigValues</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return configuration values.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetDebug">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr class="private">
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetRawDebug" class="summary-sig-name" onclick="show_private();">__GetRawDebug</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Return current state of the raw debug mode.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetRawDebug">source&nbsp;code</a></span>
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.GetConfigValues">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -317,10 +244,29 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetUseStrict" class="summary-sig-name" onclick="show_private();">__GetUseStrict</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Return current state of the strictness mode.</td>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__SetSoapLib" class="summary-sig-name" onclick="show_private();">__SetSoapLib</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">soap_lib</span>)</span><br />
+      Change the SOAP library to use.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetUseStrict">source&nbsp;code</a></span>
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__SetSoapLib">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#SetDebug" class="summary-sig-name">SetDebug</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">new_state</span>)</span><br />
+      Temporarily change debug mode for a given AdWordsClient instance.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.SetDebug">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -334,10 +280,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetXmlParser" class="summary-sig-name" onclick="show_private();">__GetXmlParser</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Return current state of the xml parser in use.</td>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetDebug" class="summary-sig-name" onclick="show_private();">__GetDebug</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return current state of the debug mode.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetXmlParser">source&nbsp;code</a></span>
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetDebug">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -369,6 +315,23 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetRawDebug" class="summary-sig-name" onclick="show_private();">__GetRawDebug</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return current state of the raw debug mode.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetRawDebug">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__SetRawDebug" class="summary-sig-name" onclick="show_private();">__SetRawDebug</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">new_state</span>)</span><br />
       Temporarily change raw debug mode for a given AdWordsClient instance.</td>
@@ -387,11 +350,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__SetSoapLib" class="summary-sig-name" onclick="show_private();">__SetSoapLib</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">soap_lib</span>)</span><br />
-      Change the SOAP library to use.</td>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetUseStrict" class="summary-sig-name" onclick="show_private();">__GetUseStrict</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return current state of the strictness mode.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__SetSoapLib">source&nbsp;code</a></span>
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetUseStrict">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -423,6 +385,23 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetXmlParser" class="summary-sig-name" onclick="show_private();">__GetXmlParser</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return current state of the xml parser in use.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetXmlParser">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__SetXmlParser" class="summary-sig-name" onclick="show_private();">__SetXmlParser</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">new_state</span>)</span><br />
       Temporarily change xml parser in use for a given Client instance.</td>
@@ -441,13 +420,34 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">headers</span>=<span class="summary-sig-default">None</span>,
-        <span class="summary-sig-arg">config</span>=<span class="summary-sig-default">None</span>,
-        <span class="summary-sig-arg">path</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Inits Client.</td>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#CallRawMethod" class="summary-sig-name">CallRawMethod</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">soap_message</span>,
+        <span class="summary-sig-arg">url</span>,
+        <span class="summary-sig-arg">http_proxy</span>)</span><br />
+      Call API method directly, using raw SOAP message.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__init__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.CallRawMethod">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#CallMethod" class="summary-sig-name">CallMethod</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">url</span>,
+        <span class="summary-sig-arg">method</span>,
+        <span class="summary-sig-arg">params</span>,
+        <span class="summary-sig-arg">http_proxy</span>)</span><br />
+      Call API method directly, using its service's URL.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.CallMethod">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -492,6 +492,13 @@ object --+
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
+        <a name="home"></a><span class="summary-name">home</span> = <code title="'/usr/local/lib/py/dfp_api_python_3.1.0'"><code class="variable-quote">'</code><code class="variable-string">/usr/local/lib/py/dfp_api_python_3.1.0</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
         <a name="auth_pkl"></a><span class="summary-name">auth_pkl</span> = <code title="''"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></code>
     </td>
   </tr>
@@ -500,13 +507,6 @@ object --+
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a name="config_pkl"></a><span class="summary-name">config_pkl</span> = <code title="''"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="home"></a><span class="summary-name">home</span> = <code title="'/usr/local/lib/py/dfp_api_python_3.0.0'"><code class="variable-quote">'</code><code class="variable-string">/usr/local/lib/py/dfp_api_python_3.0.0</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 </table>
@@ -531,6 +531,14 @@ object --+
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
+        <a href="adspygoogle.common.Client.Client-class.html#soap_lib" class="summary-name">soap_lib</a><br />
+      Return current value of the SOAP library in use.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
         <a href="adspygoogle.common.Client.Client-class.html#debug" class="summary-name">debug</a><br />
       Return current state of the debug mode.
     </td>
@@ -541,14 +549,6 @@ object --+
     </td><td class="summary">
         <a href="adspygoogle.common.Client.Client-class.html#raw_debug" class="summary-name">raw_debug</a><br />
       Return current state of the raw debug mode.
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="adspygoogle.common.Client.Client-class.html#soap_lib" class="summary-name">soap_lib</a><br />
-      Return current value of the SOAP library in use.
     </td>
   </tr>
 <tr>
@@ -593,153 +593,39 @@ object --+
   </td>
 </tr>
 </table>
-<a name="CallMethod"></a>
+<a name="__init__"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">CallMethod</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">url</span>,
-        <span class="sig-arg">method</span>,
-        <span class="sig-arg">params</span>,
-        <span class="sig-arg">http_proxy</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">headers</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">config</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">path</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.CallMethod">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__init__">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Call API method directly, using its service's URL.
-
-For API calls performed with this method, outgoing data is not run through
-library's validation logic.
+Inits Client.
 
 Args:
-  url: str URL of the API service for the method to call.
-  method: str Name of the API method to call.
-  params: list List of parameters to send to the API method.
-  http_proxy: str HTTP proxy to use for this API call.
-
-Returns:
-  tuple Response from the API method.
+  [optional]
+  headers: dict Object with populated authentication credentials.
+  config: dict Object with client configuration values.
+  path: str Relative or absolute path to home directory (i.e. location of
+        pickles and logs/).
 
 </pre>
   <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="CallRawMethod"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">CallRawMethod</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">soap_message</span>,
-        <span class="sig-arg">url</span>,
-        <span class="sig-arg">http_proxy</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.CallRawMethod">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Call API method directly, using raw SOAP message.
-
-For API calls performed with this method, outgoing data is not run through
-library's validation logic.
-
-Args:
-  soap_message: str SOAP XML message.
-  url: str URL of the API service for the method to call.
-  http_proxy: str HTTP proxy to use for this API call.
-
-Returns:
-  tuple Response from the API method (SOAP XML response message).
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="GetAuthCredentials"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetAuthCredentials</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.GetAuthCredentials">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Return authentication credentials.
-
-Returns:
-  dict Authentiaction credentials.
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="GetConfigValues"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetConfigValues</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.GetConfigValues">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Return configuration values.
-
-Returns:
-  dict Configuration values.
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="SetDebug"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">SetDebug</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">new_state</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.SetDebug">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Temporarily change debug mode for a given AdWordsClient instance.
-
-Args:
-  new_state: bool New state of the debug mode.
-
-</pre>
-  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+    </dt>
   </dl>
 </td></tr></table>
 </div>
@@ -762,6 +648,34 @@ Load existing authentication credentials from auth.pkl.
 
 Returns:
   dict Dictionary object with populated authentication credentials.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_WriteUpdatedAuthValue"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_WriteUpdatedAuthValue</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">key</span>,
+        <span class="sig-arg">new_value</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client._WriteUpdatedAuthValue">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Write updated authentication value for a key in auth.pkl.
+
+Args:
+  key: str Key to update.
+  new_value: str New value to update the key with.
 
 </pre>
   <dl class="fields">
@@ -819,78 +733,50 @@ Args:
   </dl>
 </td></tr></table>
 </div>
-<a name="_WriteUpdatedAuthValue"></a>
-<div class="private">
+<a name="GetAuthCredentials"></a>
+<div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">_WriteUpdatedAuthValue</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">key</span>,
-        <span class="sig-arg">new_value</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetAuthCredentials</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client._WriteUpdatedAuthValue">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.GetAuthCredentials">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Write updated authentication value for a key in auth.pkl.
+Return authentication credentials.
 
-Args:
-  key: str Key to update.
-  new_value: str New value to update the key with.
+Returns:
+  dict Authentiaction credentials.
 
 </pre>
   <dl class="fields">
   </dl>
 </td></tr></table>
 </div>
-<a name="__GetDebug"></a>
-<div class="private">
+<a name="GetConfigValues"></a>
+<div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__GetDebug</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetConfigValues</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetDebug">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.GetConfigValues">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Return current state of the debug mode.
+Return configuration values.
 
 Returns:
-  bool State of the debug mode.
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="__GetRawDebug"></a>
-<div class="private">
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__GetRawDebug</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetRawDebug">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Return current state of the raw debug mode.
-
-Returns:
-  bool State of the debug mode.
+  dict Configuration values.
 
 </pre>
   <dl class="fields">
@@ -916,108 +802,6 @@ Return current value of the SOAP library in use.
 
 Returns:
   str Value of the SOAP library in use.
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="__GetUseStrict"></a>
-<div class="private">
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__GetUseStrict</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetUseStrict">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Return current state of the strictness mode.
-
-Returns:
-  str State of the strictness mode.
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="__GetXmlParser"></a>
-<div class="private">
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__GetXmlParser</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetXmlParser">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Return current state of the xml parser in use.
-
-Returns:
-  bool State of the xml parser in use.
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="__SetDebug"></a>
-<div class="private">
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__SetDebug</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">new_state</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__SetDebug">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Temporarily change debug mode for a given AdWordsClient instance.
-
-Args:
-  new_state: bool New state of the debug mode.
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="__SetRawDebug"></a>
-<div class="private">
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__SetRawDebug</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">new_state</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__SetRawDebug">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Temporarily change raw debug mode for a given AdWordsClient instance.
-
-Args:
-  new_state: bool New state of the raw debug mode.
 
 </pre>
   <dl class="fields">
@@ -1050,6 +834,159 @@ Args:
   </dl>
 </td></tr></table>
 </div>
+<a name="SetDebug"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">SetDebug</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">new_state</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.SetDebug">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Temporarily change debug mode for a given AdWordsClient instance.
+
+Args:
+  new_state: bool New state of the debug mode.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__GetDebug"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__GetDebug</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetDebug">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Return current state of the debug mode.
+
+Returns:
+  bool State of the debug mode.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__SetDebug"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__SetDebug</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">new_state</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__SetDebug">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Temporarily change debug mode for a given AdWordsClient instance.
+
+Args:
+  new_state: bool New state of the debug mode.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__GetRawDebug"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__GetRawDebug</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetRawDebug">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Return current state of the raw debug mode.
+
+Returns:
+  bool State of the debug mode.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__SetRawDebug"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__SetRawDebug</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">new_state</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__SetRawDebug">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Temporarily change raw debug mode for a given AdWordsClient instance.
+
+Args:
+  new_state: bool New state of the raw debug mode.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__GetUseStrict"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__GetUseStrict</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetUseStrict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Return current state of the strictness mode.
+
+Returns:
+  str State of the strictness mode.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="__SetUseStrict"></a>
 <div class="private">
 <table class="details" border="1" cellpadding="3"
@@ -1070,6 +1007,31 @@ Temporarily change strictness mode for a given AdWordsClient instance.
 
 Args:
   new_state: bool New state of the strictness mode.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__GetXmlParser"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__GetXmlParser</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__GetXmlParser">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Return current state of the xml parser in use.
+
+Returns:
+  bool State of the xml parser in use.
 
 </pre>
   <dl class="fields">
@@ -1102,39 +1064,77 @@ Args:
   </dl>
 </td></tr></table>
 </div>
-<a name="__init__"></a>
+<a name="CallRawMethod"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">headers</span>=<span class="sig-default">None</span>,
-        <span class="sig-arg">config</span>=<span class="sig-default">None</span>,
-        <span class="sig-arg">path</span>=<span class="sig-default">None</span>)</span>
-    <br /><em class="fname">(Constructor)</em>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">CallRawMethod</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">soap_message</span>,
+        <span class="sig-arg">url</span>,
+        <span class="sig-arg">http_proxy</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.__init__">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.CallRawMethod">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   <pre class="literalblock">
-Inits Client.
+Call API method directly, using raw SOAP message.
+
+For API calls performed with this method, outgoing data is not run through
+library's validation logic.
 
 Args:
-  [optional]
-  headers: dict Object with populated authentication credentials.
-  config: dict Object with client configuration values.
-  path: str Relative or absolute path to home directory (i.e. location of
-        pickles and logs/).
+  soap_message: str SOAP XML message.
+  url: str URL of the API service for the method to call.
+  http_proxy: str HTTP proxy to use for this API call.
+
+Returns:
+  tuple Response from the API method (SOAP XML response message).
 
 </pre>
   <dl class="fields">
-    <dt>Overrides:
-        object.__init__
-    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="CallMethod"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">CallMethod</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">url</span>,
+        <span class="sig-arg">method</span>,
+        <span class="sig-arg">params</span>,
+        <span class="sig-arg">http_proxy</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Client-pysrc.html#Client.CallMethod">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Call API method directly, using its service's URL.
+
+For API calls performed with this method, outgoing data is not run through
+library's validation logic.
+
+Args:
+  url: str URL of the API service for the method to call.
+  method: str Name of the API method to call.
+  params: list List of parameters to send to the API method.
+  http_proxy: str HTTP proxy to use for this API call.
+
+Returns:
+  tuple Response from the API method.
+
+</pre>
+  <dl class="fields">
   </dl>
 </td></tr></table>
 </div>
@@ -1157,6 +1157,32 @@ Args:
   </td>
 </tr>
 </table>
+<a name="soap_lib"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">soap_lib</h3>
+  <pre class="literalblock">
+Return current value of the SOAP library in use.
+
+Returns:
+  str Value of the SOAP library in use.
+
+</pre>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetSoapLlib" class="summary-sig-name" onclick="show_private();">__GetSoapLlib</a>(<span class="summary-sig-arg">self</span>)</span>
+        - Return current value of the SOAP library in use.
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__SetSoapLib" class="summary-sig-name" onclick="show_private();">__SetSoapLib</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">soap_lib</span>)</span>
+        - Change the SOAP library to use.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
 <a name="debug"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1205,32 +1231,6 @@ Returns:
     <dd class="value"><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__SetRawDebug" class="summary-sig-name" onclick="show_private();">__SetRawDebug</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">new_state</span>)</span>
         - Temporarily change raw debug mode for a given AdWordsClient instance.
-    </dd>
-  </dl>
-</td></tr></table>
-</div>
-<a name="soap_lib"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">soap_lib</h3>
-  <pre class="literalblock">
-Return current value of the SOAP library in use.
-
-Returns:
-  str Value of the SOAP library in use.
-
-</pre>
-  <dl class="fields">
-    <dt>Get Method:</dt>
-    <dd class="value"><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__GetSoapLlib" class="summary-sig-name" onclick="show_private();">__GetSoapLlib</a>(<span class="summary-sig-arg">self</span>)</span>
-        - Return current value of the SOAP library in use.
-    </dd>
-    <dt>Set Method:</dt>
-    <dd class="value"><span class="summary-sig"><a href="adspygoogle.common.Client.Client-class.html#__SetSoapLib" class="summary-sig-name" onclick="show_private();">__SetSoapLib</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">soap_lib</span>)</span>
-        - Change the SOAP library to use.
     </dd>
   </dl>
 </td></tr></table>

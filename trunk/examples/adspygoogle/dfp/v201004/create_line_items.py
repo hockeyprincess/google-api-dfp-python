@@ -66,8 +66,8 @@ for i in xrange(5):
           },
           'hour': '0',
           'minute': '0',
-          'second': '0',
-          'timeZoneID': 'America/New_York'},
+          'second': '0'
+      },
       'endDateTime': {
           'date': {
               'year': '2010',
@@ -76,8 +76,8 @@ for i in xrange(5):
           },
           'hour': '0',
           'minute': '0',
-          'second': '0',
-          'timeZoneID': 'America/New_York'},
+          'second': '0'
+      },
       'costType': 'CPM',
       'costPerUnit': {
           'currencyCode': 'USD',

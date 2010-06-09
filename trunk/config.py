@@ -104,10 +104,10 @@ for prompt_msg, header, source in prompts:
       if auth[header] == 'none':
         auth[header] = ''
 
-    # Prefex client library name and version to the useragent.
+    # Prefix client library name and version to the useragent.
     if header == 'applicationName':
       if auth[header].rfind(LIB_SIG) == -1:
-        auth[header] = '%s-%s' % (LIB_SIG, auth[header])
+        auth[header] = '%s|%s' % (LIB_SIG, auth[header])
   elif source == 'config':
     # Prompt user to update configuration values.
     if header == 'soap_lib' or header == 'xml_parser':

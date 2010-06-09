@@ -50,9 +50,10 @@ API_TARGETS = [
         'location': os.path.join('..', '..', '..', 'adspygoogle', 'dfp', 'zsi',
                                  'v201004'),
         'server': 'https://sandbox.google.com',
-        'services': ('CompanyService', 'CreativeService', 'InventoryService',
-                     'LineItemCreativeAssociationService', 'LineItemService',
-                     'OrderService', 'PlacementService', 'UserService')
+        'services': ('CompanyService', 'CreativeService', 'ForecastService',
+                     'InventoryService', 'LineItemCreativeAssociationService',
+                     'LineItemService', 'OrderService', 'PlacementService',
+                     'ReportService', 'UserService')
     }
 ]
 

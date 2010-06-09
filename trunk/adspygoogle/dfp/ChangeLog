@@ -1,3 +1,8 @@
+3.1.0:
+- Updated adspygoogle.common module to v1.0.2.
+- Added support for ForecastService and ReportService.
+- Fixed the way library's signature is identified and loaded.
+
 3.0.0:
 - Restructured client library to have a common framework.
 - Added support for SOAPpy toolkit.

@@ -53,7 +53,7 @@ class PlacementServiceTestV201004(unittest.TestCase):
       self.__class__.service = client.GetPlacementService(
           self.__class__.SERVER, self.__class__.VERSION, HTTP_PROXY)
 
-    if self.__class__.ad_unit_id1 is '0' or self.__class__.ad_unit_id2 is '0':
+    if self.__class__.ad_unit_id1 == '0' or self.__class__.ad_unit_id2 == '0':
       inventory_service = client.GetInventoryService(
           self.__class__.SERVER, self.__class__.VERSION, HTTP_PROXY)
       filter_statement = {'query': 'WHERE parentId IS NULL LIMIT 1'}

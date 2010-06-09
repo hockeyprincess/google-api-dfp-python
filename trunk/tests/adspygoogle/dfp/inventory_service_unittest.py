@@ -50,7 +50,7 @@ class InventoryServiceTestV201004(unittest.TestCase):
       self.__class__.service = client.GetInventoryService(
           self.__class__.SERVER, self.__class__.VERSION, HTTP_PROXY)
 
-    if self.__class__.root_ad_unit_id is '0':
+    if self.__class__.root_ad_unit_id == '0':
       filter_statement = {'query': 'WHERE parentId IS NULL LIMIT 500'}
       self.__class__.root_ad_unit_id = \
           self.__class__.service.GetAdUnitsByStatement(

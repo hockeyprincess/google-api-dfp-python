@@ -514,7 +514,7 @@ class ns0:
         type = (schema, "AdSenseSettings")
         def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
             ns = ns0.AdSenseSettings_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"adSenseEnabled"), aname="_adSenseEnabled", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"borderColor"), aname="_borderColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"titleColor"), aname="_titleColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"backgroundColor"), aname="_backgroundColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"textColor"), aname="_textColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"urlColor"), aname="_urlColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","AdSenseSettings.AdType",lazy=False)(pname=(ns,"adType"), aname="_adType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","AdSenseSettings.BorderStyle",lazy=False)(pname=(ns,"borderStyle"), aname="_borderStyle", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","Size_StringMapEntry",lazy=False)(pname=(ns,"afcFormats"), aname="_afcFormats", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
+            TClist = [ZSI.TC.String(pname=(ns,"adSenseEnabled"), aname="_adSenseEnabled", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"borderColor"), aname="_borderColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"titleColor"), aname="_titleColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"backgroundColor"), aname="_backgroundColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"textColor"), aname="_textColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"urlColor"), aname="_urlColor", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","AdSenseSettings.AdType",lazy=False)(pname=(ns,"adType"), aname="_adType", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","AdSenseSettings.BorderStyle",lazy=False)(pname=(ns,"borderStyle"), aname="_borderStyle", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","AdSenseSettings.FontFamily",lazy=False)(pname=(ns,"fontFamily"), aname="_fontFamily", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","AdSenseSettings.FontSize",lazy=False)(pname=(ns,"fontSize"), aname="_fontSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","Size_StringMapEntry",lazy=False)(pname=(ns,"afcFormats"), aname="_afcFormats", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
             self.attribute_typecode_dict = attributes or {}
             if extend: TClist += ofwhat
             if restrict: TClist = ofwhat
@@ -531,6 +531,8 @@ class ns0:
                     self._urlColor = None
                     self._adType = None
                     self._borderStyle = None
+                    self._fontFamily = None
+                    self._fontSize = None
                     self._afcFormats = []
                     return
             Holder.__name__ = "AdSenseSettings_Holder"
@@ -752,6 +754,24 @@ class ns0:
     class AdSenseSettings_BorderStyle_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "AdSenseSettings.BorderStyle")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
+    class AdSenseSettings_FontFamily_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "AdSenseSettings.FontFamily")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
+    class AdSenseSettings_FontSize_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "AdSenseSettings.FontSize")
         def __init__(self, pname, **kw):
             ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
             class Holder(str):
