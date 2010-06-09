@@ -137,8 +137,7 @@ class LicaServiceTestV201004(unittest.TestCase):
               },
               'hour': '0',
               'minute': '0',
-              'second': '0',
-              'timeZoneID': 'America/New_York'
+              'second': '0'
           },
           'endDateTime': {
               'date': {
@@ -148,8 +147,7 @@ class LicaServiceTestV201004(unittest.TestCase):
               },
               'hour': '0',
               'minute': '0',
-              'second': '0',
-              'timeZoneID': 'America/New_York'
+              'second': '0'
           },
           'costType': 'CPM',
           'costPerUnit': {

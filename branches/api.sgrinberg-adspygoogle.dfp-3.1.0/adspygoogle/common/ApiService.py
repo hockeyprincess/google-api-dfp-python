@@ -58,9 +58,11 @@ class ApiService(object):
       if op_config['version'] in API_VERSIONS:
         module = '%s_services' % self.__class__.__name__
         try:
+          version = op_config['version']
+          if version.find('.') > -1: version = version.replace('.', '_')
           web_services = __import__('%s.zsi.%s.%s'
-                                    % (import_chain, op_config['version'],
-                                       module), globals(), locals(), [''])
+                                    % (import_chain, version, module),
+                                    globals(), locals(), [''])
         except ImportError, e:
           # If one of library's required modules is missing, re raise exception.
           if str(e).find(module) < 0:

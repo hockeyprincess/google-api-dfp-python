@@ -7,6 +7,7 @@ CommonError
 CreativeError
 FileError
 FlashCreativeError
+ForecastError
 InternalApiError
 InvalidEmailError
 InvalidUrlError
@@ -24,6 +25,7 @@ PermissionError
 QuotaError
 RangeError
 RegExError
+ReportError
 RequiredCollectionError
 RequiredError
 RequiredNumberError

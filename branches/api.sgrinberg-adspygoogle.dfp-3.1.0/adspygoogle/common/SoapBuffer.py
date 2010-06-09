@@ -295,7 +295,7 @@ class SoapBuffer(Buffer):
 
     # Mask out sensitive data, if present.
     dump_value = dump_value.replace('><', '>\n<')
-    for mask in ['password', 'authToken', 'ns1:authToken']:
+    for mask in ['password', 'Password', 'authToken', 'ns1:authToken']:
       pattern = re.compile('>.*?</%s>' % mask)
       dump_value = pattern.sub('>xxxxxx</%s>' % mask, dump_value)
     return dump_value

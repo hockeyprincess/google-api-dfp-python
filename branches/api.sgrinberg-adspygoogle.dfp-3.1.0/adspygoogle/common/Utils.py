@@ -425,7 +425,7 @@ def HtmlEscape(text):
     '"': '&quot;',
     '\'': '&apos;',
     '>': '&gt;',
-    '>': '&lt;'
+    '<': '&lt;'
   }
   return ''.join(html_escape_table.get(char, char) for char in text)
 

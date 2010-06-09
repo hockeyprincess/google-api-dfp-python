@@ -137,3 +137,14 @@ def ValidateOneLevelObject(obj):
   ValidateTypes(((obj, dict),))
   for key in obj:
     if obj[key] != 'None': ValidateTypes(((obj[key], (str, unicode)),))
+
+
+def ValidateOneLevelList(lst):
+  """Validate list with one level of complexity.
+
+  Args:
+    lst: list List to validate.
+  """
+  ValidateTypes(((lst, list),))
+  for item in lst:
+    if item != 'None': ValidateTypes(((item, (str, unicode)),))

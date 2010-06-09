@@ -56,7 +56,7 @@ def GetServiceConnection(headers, config, url, http_proxy, is_jaxb_api):
   for key in headers:
     if headers[key]: full_headers[key] = headers[key]
 
-  if is_jaxb_api:
+  if is_jaxb_api or Utils.BoolTypeConvert(config['wsse']):
     headers = SOAPpy.Types.headerType({config['ns_target'][1]: full_headers})
     headers._setAttr('xmlns', config['ns_target'][0])
     HTTPTransportHandler.data_injects = config['data_injects']
@@ -81,19 +81,23 @@ def GetServiceConnection(headers, config, url, http_proxy, is_jaxb_api):
   return service
 
 
-def PackDictAsXml(obj, key, key_map, order=[]):
+# TODO(api.sgrinberg): Document logic in this method.
+def PackDictAsXml(obj, key='', key_map=[], order=[], wrap_list=False):
   """Pack a Python dictionary object into an XML string.
 
   For example, an input in a form of "dct = {'ids': [12345, 67890]}", where
-  "dct" is key and "{'ids': [12345, 67890]}" is obj, the output will be
+  "dct" is key and "{'ids': ['12345', '67890']}" is obj, the output will be
   "<dct><ids>12345</ids><ids>67890</ids></dct>".
 
   Args:
     obj: dict Python dictionary to pack.
+    [optional]
     key: str Key that maps to this Python dictionary.
     key_map: dict Object key order map.
-    [optional]
-    order: list Optional order of sub keys for this Python dictionary.
+    order: list Order of sub keys for this Python dictionary.
+    wrap_list: bool If True, wraps list into an extra layer (e.g.,
+               "'ids': ['12345']"  becomes "<ids><ids>12345</ids></ids>"). If
+               False, "'ids': ['12345']" becomes "<ids>12345</ids>".
 
   Returns:
     str XML snippet.
@@ -146,7 +150,8 @@ def PackDictAsXml(obj, key, key_map, order=[]):
             local_order = key_map[key][0]['order']
       else:
         local_order = ()
-      buf += PackDictAsXml(obj[sub_key], sub_key, key_map, local_order)
+      buf += PackDictAsXml(obj[sub_key], sub_key, key_map, local_order,
+                           wrap_list)
       if local_order and buf:
         pre_tags = re.split('(<.*?>)', buf)[1:-1]
         if not pre_tags: return '<%s/>' % key
@@ -193,15 +198,23 @@ def PackDictAsXml(obj, key, key_map, order=[]):
     elif xsi_type:
       data = '<%s xsi3:type="%s">%s</%s>' % (key, xsi_type, buf, key)
     else:
-      if tmp_xsi_type:
-        tmp_xsi_type = ' xsi3:type="%s"' % (tmp_xsi_type)
-      data = '<%s%s>%s</%s>' % (key, tmp_xsi_type, buf, key)
+      if tmp_xsi_type: tmp_xsi_type = ' xsi3:type="%s"' % (tmp_xsi_type)
+      if key:
+        data = '<%s%s>%s</%s>' % (key, tmp_xsi_type, buf, key)
+      else:
+        data = buf
   elif isinstance(obj, list):
     for item in obj:
-      buf += PackDictAsXml(item, key, key_map, order)
-    data = buf
+      buf += PackDictAsXml(item, key, key_map, order, wrap_list)
+    if wrap_list:
+      data = '<%s>%s</%s>' % (key, buf, key)
+    else:
+      data = buf
   else:
-    data = '<%s>%s</%s>' % (key, obj, key)
+    if key:
+      data = '<%s>%s</%s>' % (key, obj, key)
+    else:
+      data = obj
   return data
 
 
@@ -250,12 +263,16 @@ def UnpackResponseAsDict(response):
         data = [data]
       dct[str(key)] = data
     return dct
-  elif isinstance(response, list):
+  elif (isinstance(response, list) or
+        (isinstance(response, types.InstanceType) and
+         isinstance(response.__dict__['_type'], tuple))):
     lst = []
     for item in response:
       lst.append(UnpackResponseAsDict(item))
     return lst
   else:
+    if isinstance(response, int) or isinstance(response, long):
+      return str(response)
     return response
 
 

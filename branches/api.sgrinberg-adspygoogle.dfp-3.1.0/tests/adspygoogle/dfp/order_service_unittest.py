@@ -52,7 +52,7 @@ class OrderServiceTestV201004(unittest.TestCase):
       self.__class__.service = client.GetOrderService(
           self.__class__.SERVER, self.__class__.VERSION, HTTP_PROXY)
 
-    if self.__class__.advertiser_id is '0':
+    if self.__class__.advertiser_id == '0':
       company = {
           'name': 'Company #%s' % Utils.GetUniqueName(),
           'type': 'ADVERTISER'
@@ -61,7 +61,7 @@ class OrderServiceTestV201004(unittest.TestCase):
           self.__class__.SERVER, self.__class__.VERSION,
           HTTP_PROXY).CreateCompany(company)[0]['id']
 
-    if self.__class__.trafficker_id is '0':
+    if self.__class__.trafficker_id == '0':
       filter_statement = {'query': 'ORDER BY name LIMIT 500'}
       users = client.GetUserService(
           self.__class__.SERVER, self.__class__.VERSION,
