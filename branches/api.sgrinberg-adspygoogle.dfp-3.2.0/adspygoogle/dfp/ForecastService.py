@@ -23,7 +23,6 @@ from adspygoogle.common import ZSI
 from adspygoogle.common import SanityCheck
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class ForecastService(ApiService):
@@ -66,6 +65,7 @@ class ForecastService(ApiService):
 
     method_name = 'getForecast'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       line_item = self._message_handler.PackDictAsXml(
           line_item, 'lineItem', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (line_item))
@@ -88,6 +88,7 @@ class ForecastService(ApiService):
 
     method_name = 'getForecastById'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       line_item_id = self._message_handler.PackDictAsXml(
           line_item_id, 'lineItemId', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (line_item_id))

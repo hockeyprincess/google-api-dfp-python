@@ -1,3 +1,11 @@
+1.1.0:
+- Added support for HTTP proxy in AuthToken (Fixes issue 122).
+
+1.0.3:
+- Patch for parsing/injecting SOAP XML messages in "SoapBuffer.py", catches
+  NoneType.
+- Added Utils.GetDictFromMap() method.
+
 1.0.2:
 - Patch for Utils.HtmlEscape().
 

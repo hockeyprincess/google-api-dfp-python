@@ -34,10 +34,11 @@ adspygoogle.common.SoapBuffer.ETREE_VERSION	adspygoogle.common.SoapBuffer-module
 adspygoogle.common.SoapBuffer.ETREE_NAME	adspygoogle.common.SoapBuffer-module.html#ETREE_NAME
 adspygoogle.common.SoapBuffer.ETREE_LIB	adspygoogle.common.SoapBuffer-module.html#ETREE_LIB
 adspygoogle.common.Utils	adspygoogle.common.Utils-module.html
-adspygoogle.common.Utils.GetSchemeFromUrl	adspygoogle.common.Utils-module.html#GetSchemeFromUrl
 adspygoogle.common.Utils.GetNetLocFromUrl	adspygoogle.common.Utils-module.html#GetNetLocFromUrl
+adspygoogle.common.Utils.GetSchemeFromUrl	adspygoogle.common.Utils-module.html#GetSchemeFromUrl
 adspygoogle.common.Utils.GetServerFromUrl	adspygoogle.common.Utils-module.html#GetServerFromUrl
 adspygoogle.common.Utils.PurgeLog	adspygoogle.common.Utils-module.html#PurgeLog
+adspygoogle.common.Utils.GetDictFromMap	adspygoogle.common.Utils-module.html#GetDictFromMap
 adspygoogle.common.Utils.GetErrorFromHtml	adspygoogle.common.Utils-module.html#GetErrorFromHtml
 adspygoogle.common.Utils.GetDataFromCsvFile	adspygoogle.common.Utils-module.html#GetDataFromCsvFile
 adspygoogle.common.Utils.GetCurrentFuncName	adspygoogle.common.Utils-module.html#GetCurrentFuncName

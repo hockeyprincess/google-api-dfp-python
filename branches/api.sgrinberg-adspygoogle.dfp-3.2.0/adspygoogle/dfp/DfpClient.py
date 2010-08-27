@@ -79,6 +79,7 @@ class DfpClient(Client):
         config = {
           'home': '/path/to/home',
           'log_home': '/path/to/logs/home',
+          'proxy': 'http://example.com:8080',
           'soap_lib': ZSI,
           'xml_parser': PYXML,
           'debug': 'n',
@@ -148,7 +149,7 @@ class DfpClient(Client):
       elif 'email' in self._headers and 'password' in self._headers:
         self._headers['authToken'] = Utils.GetAuthToken(
             self._headers['email'], self._headers['password'],
-            AUTH_TOKEN_SERVICE, LIB_SIG)
+            AUTH_TOKEN_SERVICE, LIB_SIG, self._config['proxy'])
       else:
         msg = 'Authentication data, email or/and password, is missing.'
         raise ValidationError(msg)

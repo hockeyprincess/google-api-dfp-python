@@ -43,7 +43,6 @@ def GetPyClass(name, web_services):
         msg = ('Given API version, %s, is not compatible with \'%s\' class.' %
                (version, name))
         raise ValidationError(msg)
-
   return pyclass
 
 

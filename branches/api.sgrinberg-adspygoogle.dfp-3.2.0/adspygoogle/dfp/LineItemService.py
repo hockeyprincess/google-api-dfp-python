@@ -23,7 +23,6 @@ from adspygoogle.common import ZSI
 from adspygoogle.common import SanityCheck
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class LineItemService(ApiService):
@@ -66,6 +65,7 @@ class LineItemService(ApiService):
 
     method_name = 'createLineItem'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       line_item = self._message_handler.PackDictAsXml(
           line_item, 'lineItem', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (line_item))
@@ -90,6 +90,7 @@ class LineItemService(ApiService):
 
     method_name = 'createLineItems'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_line_items = []
       for line_item in line_items:
         new_line_items.append(self._message_handler.PackDictAsXml(
@@ -114,6 +115,7 @@ class LineItemService(ApiService):
 
     method_name = 'getLineItem'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       line_item_id = self._message_handler.PackDictAsXml(
           line_item_id, 'lineItemId', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (line_item_id))
@@ -135,6 +137,7 @@ class LineItemService(ApiService):
     """
     method_name = 'getLineItemsByStatement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       filter_statement = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateStatement(filter_statement),
           'filterStatement', OBJ_KEY_ORDER_MAP)
@@ -159,6 +162,7 @@ class LineItemService(ApiService):
     """
     method_name = 'performLineItemAction'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       self._sanity_check.ValidateAction(action)
       action = self._message_handler.PackDictAsXml(action, 'lineItemAction',
           OBJ_KEY_ORDER_MAP)
@@ -189,6 +193,7 @@ class LineItemService(ApiService):
 
     method_name = 'updateLineItem'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       line_item = self._message_handler.PackDictAsXml(line_item, 'lineItem',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (line_item))
@@ -213,6 +218,7 @@ class LineItemService(ApiService):
 
     method_name = 'updateLineItems'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_line_items = []
       for line_item in line_items:
         new_line_items.append(self._message_handler.PackDictAsXml(

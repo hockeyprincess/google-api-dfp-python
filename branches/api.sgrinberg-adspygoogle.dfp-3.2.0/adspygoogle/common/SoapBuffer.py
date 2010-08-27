@@ -546,17 +546,21 @@ class SoapBuffer(Buffer):
                                          % nodes[self.__xml_parser][1]))
         # Rename type elements that have a dot in them: ApiError.Type => type.
         if tag.find('.') > -1: tag = tag.split('.')[1].lower()
-        value = eval('item.%s' % nodes[self.__xml_parser][2]).rstrip()
-        if not value:
-          tmp_dct = self.GetFaultAsDict(item)
-          if tag in dct:
-            if isinstance(dct[tag], list):
-              tmp_dct = [elem for elem in dct[tag] + [tmp_dct]]
-            else:
-              tmp_dct = [dct[tag], tmp_dct]
-          if tag == 'ApiExceptionFault' or tag == 'fault': return tmp_dct
-          if tag == 'errors' and isinstance(tmp_dct, dict): tmp_dct = [tmp_dct]
-          dct[tag] = tmp_dct
+        value = eval('item.%s' % nodes[self.__xml_parser][2])
+        if value is not None:
+          if not value.rstrip():
+            tmp_dct = self.GetFaultAsDict(item)
+            if tag in dct:
+              if isinstance(dct[tag], list):
+                tmp_dct = [elem for elem in dct[tag] + [tmp_dct]]
+              else:
+                tmp_dct = [dct[tag], tmp_dct]
+            if tag == 'ApiExceptionFault' or tag == 'fault': return tmp_dct
+            if tag == 'errors' and isinstance(tmp_dct, dict):
+              tmp_dct = [tmp_dct]
+            dct[tag] = tmp_dct
+          else:
+            dct[tag] = value.rstrip()
         else:
           dct[tag] = value
     return dct
@@ -597,9 +601,11 @@ class SoapBuffer(Buffer):
     xml_in = xml_in.replace('\n', '%newline%')
 
     try:
-      pattern = re.compile('(<SOAP-ENV:Envelope.*</SOAP-ENV:Envelope>)')
+      pattern = re.compile('(<SOAP-ENV:Envelope:Envelope.*</SOAP-ENV:Envelope>|'
+                           '<ns0:Envelope.*RequestHeader.*?</.*?:Envelope>)')
       req = pattern.findall(xml_in)
-      pattern = re.compile('(<soap.*?:Envelope.*</soap.*?:Envelope>)')
+      pattern = re.compile('(<soap.*?:Envelope.*</soap.*?:Envelope>|'
+                           '<ns0:Envelope.*ResponseHeader.*?</.*?:Envelope>)')
       res = pattern.findall(xml_in)
 
       # Do we have a SOAP XML request?

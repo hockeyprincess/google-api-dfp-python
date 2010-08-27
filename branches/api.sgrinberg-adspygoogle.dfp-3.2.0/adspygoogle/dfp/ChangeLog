@@ -1,3 +1,7 @@
+3.2.0:
+- Updated adspygoogle.common module to v1.1.0.
+- Patch for making SOAPpy optional library.
+
 3.1.0:
 - Updated adspygoogle.common module to v1.0.2.
 - Added support for ForecastService and ReportService.
