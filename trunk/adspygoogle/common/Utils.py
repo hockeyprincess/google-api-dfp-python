@@ -269,7 +269,7 @@ def GetServerFromUrl(url):
                      ''))
 
 
-def GetAuthToken(email, password, service, lib_sig):
+def GetAuthToken(email, password, service, lib_sig, proxy):
   """Return an authentication token for Google Account.
 
   If an error occurs, AuthTokenError is raised.
@@ -279,11 +279,12 @@ def GetAuthToken(email, password, service, lib_sig):
     password: str Google Account's password.
     service: str Name of the Google service for which to authorize access.
     lib_sig: str Signature of the client library.
+    proxy: str HTTP proxy to use.
 
   Returns:
     str Authentication token for Google Account.
   """
-  return AuthToken(email, password, service, lib_sig).GetAuthToken()
+  return AuthToken(email, password, service, lib_sig, proxy).GetAuthToken()
 
 
 def GetCurrentFuncName():
@@ -468,3 +469,19 @@ def GetUniqueName():
   dt = datetime.datetime.now()
   return '%s%s%s%s%s%s%s' % (dt.year, dt.month, dt.day, dt.hour, dt.minute,
                              dt.second, dt.microsecond)
+
+
+def GetDictFromMap(entries):
+  """Gets a dictionary from an array of map entries. A map entry is any object
+  that has a key and value fields.
+
+  Args:
+    entries: list List of map entries.
+
+  Returns:
+    dict Dictionary constructed from map entries.
+  """
+  dct = {}
+  for entry in entries:
+    dct[entry['key']] = entry['value']
+  return dct

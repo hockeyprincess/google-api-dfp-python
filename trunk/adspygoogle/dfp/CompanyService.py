@@ -23,7 +23,6 @@ from adspygoogle.common import ZSI
 from adspygoogle.common import SanityCheck
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class CompanyService(ApiService):
@@ -66,6 +65,7 @@ class CompanyService(ApiService):
 
     method_name = 'createCompany'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       company = self._message_handler.PackDictAsXml(
           company, 'company', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (company))
@@ -89,6 +89,7 @@ class CompanyService(ApiService):
 
     method_name = 'createCompanies'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_companies = []
       for company in companies:
         new_companies.append(self._message_handler.PackDictAsXml(
@@ -113,6 +114,7 @@ class CompanyService(ApiService):
 
     method_name = 'getCompany'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       company_id = self._message_handler.PackDictAsXml(
           company_id, 'companyId', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (company_id))
@@ -134,6 +136,7 @@ class CompanyService(ApiService):
     """
     method_name = 'getCompaniesByStatement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       filter_statement = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateStatement(filter_statement),
           'filterStatement', OBJ_KEY_ORDER_MAP)
@@ -159,6 +162,7 @@ class CompanyService(ApiService):
 
     method_name = 'updateCompany'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       company = self._message_handler.PackDictAsXml(
           company, 'company', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (company))
@@ -182,6 +186,7 @@ class CompanyService(ApiService):
 
     method_name = 'updateCompanies'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_companies = []
       for company in companies:
         new_companies.append(self._message_handler.PackDictAsXml(

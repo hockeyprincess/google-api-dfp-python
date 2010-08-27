@@ -23,7 +23,6 @@ from adspygoogle.common import ZSI
 from adspygoogle.common import SanityCheck
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class UserService(ApiService):
@@ -66,6 +65,7 @@ class UserService(ApiService):
 
     method_name = 'createUser'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       user = self._message_handler.PackDictAsXml(user, 'user',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (user))
@@ -89,6 +89,7 @@ class UserService(ApiService):
 
     method_name = 'createUsers'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_users = []
       for user in users:
         new_users.append(self._message_handler.PackDictAsXml(user, 'users',
@@ -126,6 +127,7 @@ class UserService(ApiService):
 
     method_name = 'getUser'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       user_id = self._message_handler.PackDictAsXml(user_id, 'userId',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (user_id))
@@ -145,6 +147,7 @@ class UserService(ApiService):
     """
     method_name = 'getUsersByStatement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       filter_statement = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateStatement(filter_statement),
           'filterStatement', OBJ_KEY_ORDER_MAP)
@@ -169,6 +172,7 @@ class UserService(ApiService):
     """
     method_name = 'performUserAction'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       self._sanity_check.ValidateAction(action)
       action = self._message_handler.PackDictAsXml(action, 'userAction',
           OBJ_KEY_ORDER_MAP)
@@ -199,6 +203,7 @@ class UserService(ApiService):
 
     method_name = 'updateUser'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       user = self._message_handler.PackDictAsXml(user, 'user',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (user))
@@ -222,6 +227,7 @@ class UserService(ApiService):
 
     method_name = 'updateUsers'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_users = []
       for user in users:
         new_users.append(self._message_handler.PackDictAsXml(user, 'users',

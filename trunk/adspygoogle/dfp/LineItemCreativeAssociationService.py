@@ -23,7 +23,6 @@ from adspygoogle.common import ZSI
 from adspygoogle.common import SanityCheck
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class LineItemCreativeAssociationService(ApiService):
@@ -66,6 +65,7 @@ class LineItemCreativeAssociationService(ApiService):
 
     method_name = 'createLineItemCreativeAssociation'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       lica = self._message_handler.PackDictAsXml(
           lica, 'lineItemCreativeAssociation', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (lica))
@@ -90,6 +90,7 @@ class LineItemCreativeAssociationService(ApiService):
 
     method_name = 'createLineItemCreativeAssociations'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_licas = []
       for lica in licas:
         new_licas.append(self._message_handler.PackDictAsXml(
@@ -117,6 +118,7 @@ class LineItemCreativeAssociationService(ApiService):
 
     method_name = 'getLineItemCreativeAssociation'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       line_item_id = self._message_handler.PackDictAsXml(
           line_item_id, 'lineItemId', OBJ_KEY_ORDER_MAP)
       creative_id = self._message_handler.PackDictAsXml(
@@ -143,6 +145,7 @@ class LineItemCreativeAssociationService(ApiService):
     """
     method_name = 'getLineItemCreativeAssociationsByStatement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       filter_statement = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateStatement(filter_statement),
           'filterStatement', OBJ_KEY_ORDER_MAP)
@@ -168,6 +171,7 @@ class LineItemCreativeAssociationService(ApiService):
     """
     method_name = 'performLineItemCreativeAssociationAction'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       self._sanity_check.ValidateAction(action)
       action = self._message_handler.PackDictAsXml(
           action, 'lineItemCreativeAssociationAction', OBJ_KEY_ORDER_MAP)
@@ -199,6 +203,7 @@ class LineItemCreativeAssociationService(ApiService):
 
     method_name = 'updateLineItemCreativeAssociation'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       lica = self._message_handler.PackDictAsXml(
           lica, 'lineItemCreativeAssociation', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (lica))
@@ -223,6 +228,7 @@ class LineItemCreativeAssociationService(ApiService):
 
     method_name = 'updateLineItemCreativeAssociations'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_licas = []
       for lica in licas:
         new_licas.append(self._message_handler.PackDictAsXml(

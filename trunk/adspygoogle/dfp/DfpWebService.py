@@ -24,9 +24,9 @@ from adspygoogle.common import SOAPPY
 from adspygoogle.common import Utils
 from adspygoogle.common.Errors import Error
 from adspygoogle.common.WebService import WebService
-from adspygoogle.common.soappy import MessageHandler
 from adspygoogle.dfp import DfpSanityCheck
 from adspygoogle.dfp import AUTH_TOKEN_EXPIRE
+from adspygoogle.dfp import AUTH_TOKEN_SERVICE
 from adspygoogle.dfp import LIB_SIG
 from adspygoogle.dfp import LIB_URL
 from adspygoogle.dfp.DfpErrors import ERRORS
@@ -151,8 +151,9 @@ class DfpWebService(WebService):
       if ((('authToken' not in headers and
             'auth_token_epoch' not in config) or
            int(now - config['auth_token_epoch']) >= AUTH_TOKEN_EXPIRE)):
-        headers['authToken'] = Utils.GetAuthToken(headers['email'],
-                                                  headers['password'])
+        headers['authToken'] = Utils.GetAuthToken(
+            headers['email'], headers['password'], AUTH_TOKEN_SERVICE,
+            LIB_SIG, config['proyx'])
         config['auth_token_epoch'] = time.time()
         self._headers = headers
         self._config = config
@@ -176,6 +177,7 @@ class DfpWebService(WebService):
 
       # Restore list type which was overwritten by SOAPpy.
       if config['soap_lib'] == SOAPPY and isinstance(response, tuple):
+        from adspygoogle.common.soappy import MessageHandler
         holder = []
         for element in response:
           holder.append(MessageHandler.RestoreListType(
