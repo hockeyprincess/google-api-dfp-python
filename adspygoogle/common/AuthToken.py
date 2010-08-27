@@ -18,6 +18,7 @@
 
 __author__ = 'api.sgrinberg@gmail.com (Stan Grinberg)'
 
+import os
 import urllib
 
 from adspygoogle.common.Errors import AuthTokenError
@@ -32,7 +33,7 @@ class AuthToken(object):
   ClientLogin API, http://code.google.com/apis/accounts/.
   """
 
-  def __init__(self, email, password, service, lib_sig):
+  def __init__(self, email, password, service, lib_sig, proxy):
     """Inits AuthToken.
 
     Args:
@@ -40,12 +41,14 @@ class AuthToken(object):
       password: str Login password of the Google Account.
       service: str Name of the Google service for which to authorize access.
       lib_sig: str Client library signature.
+      proxy: str HTTP proxy to use.
     """
     self.__email = email
     self.__password = password
     self.__account_type = 'GOOGLE'
     self.__service = service
     self.__source = 'Google-%s' % lib_sig
+    self.__proxy = proxy
     self.__sid = ''
     self.__lsid = ''
     self.__auth = ''
@@ -54,6 +57,7 @@ class AuthToken(object):
 
   def __Login(self):
     """Fetch Auth token and SID, LSID cookies from Google Account auth."""
+    if self.__proxy: os.environ['http_proxy'] = self.__proxy
     url = 'https://www.google.com/accounts/ClientLogin'
     data = [('Email', self.__email),
             ('Passwd', self.__password),

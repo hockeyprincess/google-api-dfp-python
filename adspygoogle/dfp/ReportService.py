@@ -29,7 +29,6 @@ from adspygoogle.common import SanityCheck
 from adspygoogle.common import Utils
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class ReportService(ApiService):
@@ -75,6 +74,7 @@ class ReportService(ApiService):
 
     method_name = 'getReportDownloadURL'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       report_job_id = self._message_handler.PackDictAsXml(
           report_job_id, 'reportJobId', OBJ_KEY_ORDER_MAP)
       export_format = self._message_handler.PackDictAsXml(
@@ -101,6 +101,7 @@ class ReportService(ApiService):
 
     method_name = 'getReportJob'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       report_job_id = self._message_handler.PackDictAsXml(
           report_job_id, 'reportJobId', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (report_job_id))
@@ -123,6 +124,7 @@ class ReportService(ApiService):
 
     method_name = 'runReportJob'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       report_job = self._message_handler.PackDictAsXml(
           report_job, 'reportJob', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (report_job))

@@ -23,7 +23,6 @@ from adspygoogle.common import ZSI
 from adspygoogle.common import SanityCheck
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class InventoryService(ApiService):
@@ -66,6 +65,7 @@ class InventoryService(ApiService):
 
     method_name = 'createAdUnit'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       ad_unit = self._message_handler.PackDictAsXml(ad_unit, 'adUnit',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (ad_unit))
@@ -89,6 +89,7 @@ class InventoryService(ApiService):
 
     method_name = 'createAdUnits'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_ad_units = []
       for ad_unit in ad_units:
         new_ad_units.append(self._message_handler.PackDictAsXml(
@@ -113,6 +114,7 @@ class InventoryService(ApiService):
 
     method_name = 'getAdUnit'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       ad_unit_id = self._message_handler.PackDictAsXml(
           ad_unit_id, 'adUnitId', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (ad_unit_id))
@@ -134,6 +136,7 @@ class InventoryService(ApiService):
     """
     method_name = 'getAdUnitsByStatement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       filter_statement = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateStatement(filter_statement),
           'filterStatement', OBJ_KEY_ORDER_MAP)
@@ -158,6 +161,7 @@ class InventoryService(ApiService):
     """
     method_name = 'performAdUnitAction'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       self._sanity_check.ValidateAction(action)
       action = self._message_handler.PackDictAsXml(action, 'adUnitAction',
           OBJ_KEY_ORDER_MAP)
@@ -188,6 +192,7 @@ class InventoryService(ApiService):
 
     method_name = 'updateAdUnit'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       ad_unit = self._message_handler.PackDictAsXml(ad_unit, 'adUnit',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (ad_unit))
@@ -211,6 +216,7 @@ class InventoryService(ApiService):
 
     method_name = 'updateAdUnits'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_ad_units = []
       for ad_unit in ad_units:
         new_ad_units.append(self._message_handler.PackDictAsXml(

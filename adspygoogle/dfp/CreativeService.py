@@ -23,7 +23,6 @@ from adspygoogle.common import ZSI
 from adspygoogle.common import SanityCheck
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class CreativeService(ApiService):
@@ -64,6 +63,7 @@ class CreativeService(ApiService):
     """
     method_name = 'createCreative'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       creative = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateCreative(creative), 'creative',
           OBJ_KEY_ORDER_MAP)
@@ -86,6 +86,7 @@ class CreativeService(ApiService):
     """
     method_name = 'createCreatives'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_creatives = []
       for creative in creatives:
         new_creatives.append(self._message_handler.PackDictAsXml(
@@ -116,6 +117,7 @@ class CreativeService(ApiService):
 
     method_name = 'getCreative'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       creative_id = self._message_handler.PackDictAsXml(
           creative_id, 'creativeId', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (creative_id))
@@ -137,6 +139,7 @@ class CreativeService(ApiService):
     """
     method_name = 'getCreativesByStatement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       filter_statement = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateStatement(filter_statement),
           'filterStatement', OBJ_KEY_ORDER_MAP)
@@ -160,6 +163,7 @@ class CreativeService(ApiService):
     """
     method_name = 'updateCreative'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       creative = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateCreative(creative), 'creative',
           OBJ_KEY_ORDER_MAP)
@@ -183,6 +187,7 @@ class CreativeService(ApiService):
     """
     method_name = 'updateCreatives'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_creatives = []
       for creative in creatives:
         new_creatives.append(self._message_handler.PackDictAsXml(

@@ -115,6 +115,7 @@ class Client(object):
       config: dict Object with client configuration values.
     """
     default_config = {
+        'proxy': None,
         'soap_lib': ZSI,
         'xml_parser': PYXML,
         'debug': 'n',

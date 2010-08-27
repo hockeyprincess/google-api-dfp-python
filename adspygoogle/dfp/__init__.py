@@ -31,8 +31,8 @@ LIB_SHORT_NAME = 'DfpApi-Python'
 LIB_URL = 'http://code.google.com/p/google-api-dfp-python'
 LIB_AUTHOR = 'Stan Grinberg'
 LIB_AUTHOR_EMAIL = 'api.sgrinberg@gmail.com'
-LIB_VERSION = '3.1.0'
-LIB_MIN_COMMON_VERSION = '1.0.2'
+LIB_VERSION = '3.2.0'
+LIB_MIN_COMMON_VERSION = '1.1.0'
 LIB_SIG = '%s-%s' % (LIB_SHORT_NAME, LIB_VERSION)
 
 if VERSION > LIB_MIN_COMMON_VERSION:

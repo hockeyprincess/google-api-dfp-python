@@ -23,7 +23,6 @@ from adspygoogle.common import ZSI
 from adspygoogle.common import SanityCheck
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class OrderService(ApiService):
@@ -66,6 +65,7 @@ class OrderService(ApiService):
 
     method_name = 'createOrder'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       order = self._message_handler.PackDictAsXml(order, 'order',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (order))
@@ -89,6 +89,7 @@ class OrderService(ApiService):
 
     method_name = 'createOrders'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_orders = []
       for order in orders:
         new_orders.append(self._message_handler.PackDictAsXml(
@@ -112,6 +113,7 @@ class OrderService(ApiService):
 
     method_name = 'getOrder'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       order_id = self._message_handler.PackDictAsXml(order_id, 'orderId',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (order_id))
@@ -132,6 +134,7 @@ class OrderService(ApiService):
     """
     method_name = 'getOrdersByStatement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       filter_statement = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateStatement(filter_statement),
           'filterStatement', OBJ_KEY_ORDER_MAP)
@@ -156,6 +159,7 @@ class OrderService(ApiService):
     """
     method_name = 'performOrderAction'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       self._sanity_check.ValidateAction(action)
       action = self._message_handler.PackDictAsXml(action, 'orderAction',
           OBJ_KEY_ORDER_MAP)
@@ -186,6 +190,7 @@ class OrderService(ApiService):
 
     method_name = 'updateOrder'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       order = self._message_handler.PackDictAsXml(order, 'order',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (order))
@@ -209,6 +214,7 @@ class OrderService(ApiService):
 
     method_name = 'updateOrders'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_orders = []
       for order in orders:
         new_orders.append(self._message_handler.PackDictAsXml(

@@ -23,7 +23,6 @@ from adspygoogle.common import ZSI
 from adspygoogle.common import SanityCheck
 from adspygoogle.common.ApiService import ApiService
 from adspygoogle.dfp.DfpWebService import DfpWebService
-from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
 
 
 class PlacementService(ApiService):
@@ -66,6 +65,7 @@ class PlacementService(ApiService):
 
     method_name = 'createPlacement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       placement = self._message_handler.PackDictAsXml(
           placement, 'placement', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (placement))
@@ -90,6 +90,7 @@ class PlacementService(ApiService):
 
     method_name = 'createPlacements'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_placements = []
       for placement in placements:
         new_placements.append(self._message_handler.PackDictAsXml(
@@ -114,6 +115,7 @@ class PlacementService(ApiService):
 
     method_name = 'getPlacement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       placement_id = self._message_handler.PackDictAsXml(
           placement_id, 'placementId', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (placement_id))
@@ -135,6 +137,7 @@ class PlacementService(ApiService):
     """
     method_name = 'getPlacementsByStatement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       filter_statement = self._message_handler.PackDictAsXml(
           self._sanity_check.ValidateStatement(filter_statement),
           'filterStatement', OBJ_KEY_ORDER_MAP)
@@ -159,6 +162,7 @@ class PlacementService(ApiService):
     """
     method_name = 'performPlacementAction'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       self._sanity_check.ValidateAction(action)
       action = self._message_handler.PackDictAsXml(action, 'placementAction',
           OBJ_KEY_ORDER_MAP)
@@ -190,6 +194,7 @@ class PlacementService(ApiService):
 
     method_name = 'updatePlacement'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       placement = self._message_handler.PackDictAsXml(
           placement, 'placement', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (placement))
@@ -214,6 +219,7 @@ class PlacementService(ApiService):
 
     method_name = 'updatePlacements'
     if self._config['soap_lib'] == SOAPPY:
+      from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_placements = []
       for placement in placements:
         new_placements.append(self._message_handler.PackDictAsXml(
