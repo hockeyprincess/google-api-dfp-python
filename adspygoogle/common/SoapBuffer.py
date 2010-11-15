@@ -102,7 +102,7 @@ except (ImportError, AttributeError):
       except (ImportError, AttributeError):
         ETREE_LIB = False
 
-if not PYXML and not ETREE:
+if not PYXML_LIB and not ETREE_LIB:
   msg = ('PyXML v%s or ElementTree v%s or newer is required.'
          % (MIN_PYXML_VERSION, MIN_ETREE_VERSION))
   raise MissingPackageError(msg)
@@ -195,6 +195,10 @@ class SoapBuffer(Buffer):
     xml_dumps = self.GetBufferAsStr().split('_' * 33)
     if len(xml_dumps) > 1:
       # The HTTP and SOAP messages were delivered via ZSI.
+      if not PYXML_LIB:
+        msg = 'PyXML v%s or newer is required.' % MIN_PYXML_VERSION
+        raise MissingPackageError(msg)
+
       for xml_part in xml_dumps:
         xml_part = xml_part.lstrip('\n').rstrip('\n')
         if not xml_part: continue
@@ -670,7 +674,7 @@ class SoapBuffer(Buffer):
         tree = etree.fromstring(doc)
         self.__Indent(tree)
         pretty_doc = etree.tostring(tree, 'UTF-8')
-    except ExpatError:
+    except (ExpatError, SyntaxError):
       # If there was a problem with loading XML message into a DOM, return
       # original XML message.
       return doc

@@ -35,7 +35,8 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # the sandbox environment.
-lica_service = client.GetLineItemCreativeAssociationService()
+lica_service = client.GetLineItemCreativeAssociationService(
+    'https://sandbox.google.com', 'v201004')
 
 # Create statement object to get all LICAs.
 filter_statement = {'query': 'LIMIT 500'}

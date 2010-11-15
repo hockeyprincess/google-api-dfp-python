@@ -1,3 +1,8 @@
+4.0.0:
+- Updated adspygoogle.common module to v1.1.3.
+- Added support for v201010 and set it as default version.
+- Typo fix in adspygoogle.dfp.DfpWebService (Fixes issue 2).
+
 3.2.0:
 - Updated adspygoogle.common module to v1.1.0.
 - Patch for making SOAPpy optional library.

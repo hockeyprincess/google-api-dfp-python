@@ -128,6 +128,7 @@ adspygoogle.dfp.ForecastService	adspygoogle.dfp.ForecastService-module.html
 adspygoogle.dfp.InventoryService	adspygoogle.dfp.InventoryService-module.html
 adspygoogle.dfp.LineItemCreativeAssociationService	adspygoogle.dfp.LineItemCreativeAssociationService-module.html
 adspygoogle.dfp.LineItemService	adspygoogle.dfp.LineItemService-module.html
+adspygoogle.dfp.NetworkService	adspygoogle.dfp.NetworkService-module.html
 adspygoogle.dfp.OrderService	adspygoogle.dfp.OrderService-module.html
 adspygoogle.dfp.PlacementService	adspygoogle.dfp.PlacementService-module.html
 adspygoogle.dfp.ReportService	adspygoogle.dfp.ReportService-module.html
@@ -140,6 +141,7 @@ adspygoogle.dfp.soappy.SanityCheck.ValidateFrequencyCap	adspygoogle.dfp.soappy.S
 adspygoogle.dfp.soappy.SanityCheck.ValidateReportJob	adspygoogle.dfp.soappy.SanityCheck-module.html#ValidateReportJob
 adspygoogle.dfp.soappy.SanityCheck.ValidateDateTime	adspygoogle.dfp.soappy.SanityCheck-module.html#ValidateDateTime
 adspygoogle.dfp.soappy.SanityCheck.ValidateAdUnit	adspygoogle.dfp.soappy.SanityCheck-module.html#ValidateAdUnit
+adspygoogle.dfp.soappy.SanityCheck.ValidateNetwork	adspygoogle.dfp.soappy.SanityCheck-module.html#ValidateNetwork
 adspygoogle.dfp.soappy.SanityCheck.ValidateUser	adspygoogle.dfp.soappy.SanityCheck-module.html#ValidateUser
 adspygoogle.dfp.soappy.SanityCheck.ValidatePlacement	adspygoogle.dfp.soappy.SanityCheck-module.html#ValidatePlacement
 adspygoogle.dfp.soappy.SanityCheck.ValidateCreative	adspygoogle.dfp.soappy.SanityCheck-module.html#ValidateCreative
@@ -165,6 +167,7 @@ adspygoogle.dfp.zsi.SanityCheck.ValidateFrequencyCap	adspygoogle.dfp.zsi.SanityC
 adspygoogle.dfp.zsi.SanityCheck.ValidateReportJob	adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateReportJob
 adspygoogle.dfp.zsi.SanityCheck.ValidateDateTime	adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateDateTime
 adspygoogle.dfp.zsi.SanityCheck.ValidateAdUnit	adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateAdUnit
+adspygoogle.dfp.zsi.SanityCheck.ValidateNetwork	adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateNetwork
 adspygoogle.dfp.zsi.SanityCheck.ValidateUser	adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateUser
 adspygoogle.dfp.zsi.SanityCheck.ValidatePlacement	adspygoogle.dfp.zsi.SanityCheck-module.html#ValidatePlacement
 adspygoogle.dfp.zsi.SanityCheck.ValidateCreative	adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateCreative
@@ -184,6 +187,7 @@ adspygoogle.dfp.zsi.SanityCheck.ValidateDate	adspygoogle.dfp.zsi.SanityCheck-mod
 adspygoogle.dfp.zsi.SanityCheck.ValidateString_ParamMapEntry	adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateString_ParamMapEntry
 adspygoogle.dfp.zsi.SanityCheck.ValidateMoney	adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateMoney
 adspygoogle.dfp.zsi.v201004	adspygoogle.dfp.zsi.v201004-module.html
+adspygoogle.dfp.zsi.v201010	adspygoogle.dfp.zsi.v201010-module.html
 adspygoogle.common.ApiService.ApiService	adspygoogle.common.ApiService.ApiService-class.html
 adspygoogle.common.ApiService.ApiService.__init__	adspygoogle.common.ApiService.ApiService-class.html#__init__
 adspygoogle.common.AuthToken.AuthToken	adspygoogle.common.AuthToken.AuthToken-class.html
@@ -370,6 +374,7 @@ adspygoogle.dfp.DfpClient.DfpClient.GetLineItemCreativeAssociationService	adspyg
 adspygoogle.common.Client.Client.home	adspygoogle.common.Client.Client-class.html#home
 adspygoogle.dfp.DfpClient.DfpClient.GetPlacementService	adspygoogle.dfp.DfpClient.DfpClient-class.html#GetPlacementService
 adspygoogle.dfp.DfpClient.DfpClient.__init__	adspygoogle.dfp.DfpClient.DfpClient-class.html#__init__
+adspygoogle.dfp.DfpClient.DfpClient.GetNetworkService	adspygoogle.dfp.DfpClient.DfpClient-class.html#GetNetworkService
 adspygoogle.dfp.DfpClient.DfpClient.auth_pkl_name	adspygoogle.dfp.DfpClient.DfpClient-class.html#auth_pkl_name
 adspygoogle.dfp.DfpClient.DfpClient.GetLineItemService	adspygoogle.dfp.DfpClient.DfpClient-class.html#GetLineItemService
 adspygoogle.dfp.DfpClient.DfpClient.GetReportService	adspygoogle.dfp.DfpClient.DfpClient-class.html#GetReportService
@@ -489,6 +494,11 @@ adspygoogle.dfp.LineItemService.LineItemService.GetLineItem	adspygoogle.dfp.Line
 adspygoogle.dfp.LineItemService.LineItemService.CreateLineItems	adspygoogle.dfp.LineItemService.LineItemService-class.html#CreateLineItems
 adspygoogle.dfp.LineItemService.LineItemService.CreateLineItem	adspygoogle.dfp.LineItemService.LineItemService-class.html#CreateLineItem
 adspygoogle.dfp.LineItemService.LineItemService.__init__	adspygoogle.dfp.LineItemService.LineItemService-class.html#__init__
+adspygoogle.dfp.NetworkService.NetworkService	adspygoogle.dfp.NetworkService.NetworkService-class.html
+adspygoogle.dfp.NetworkService.NetworkService.GetCurrentNetwork	adspygoogle.dfp.NetworkService.NetworkService-class.html#GetCurrentNetwork
+adspygoogle.dfp.NetworkService.NetworkService.GetAllNetworks	adspygoogle.dfp.NetworkService.NetworkService-class.html#GetAllNetworks
+adspygoogle.dfp.NetworkService.NetworkService.UpdateNetwork	adspygoogle.dfp.NetworkService.NetworkService-class.html#UpdateNetwork
+adspygoogle.dfp.NetworkService.NetworkService.__init__	adspygoogle.dfp.NetworkService.NetworkService-class.html#__init__
 adspygoogle.dfp.OrderService.OrderService	adspygoogle.dfp.OrderService.OrderService-class.html
 adspygoogle.dfp.OrderService.OrderService.PerformOrderAction	adspygoogle.dfp.OrderService.OrderService-class.html#PerformOrderAction
 adspygoogle.dfp.OrderService.OrderService.UpdateOrders	adspygoogle.dfp.OrderService.OrderService-class.html#UpdateOrders

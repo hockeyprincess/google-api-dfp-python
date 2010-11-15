@@ -34,7 +34,8 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # the sandbox environment.
-forecast_service = client.GetForecastService()
+forecast_service = client.GetForecastService(
+    'https://sandbox.google.com', 'v201004')
 
 # Set the line item to get a forecast for.
 line_item_id = 'INSERT_LINE_ITEM_ID'
@@ -42,11 +43,13 @@ line_item_id = 'INSERT_LINE_ITEM_ID'
 # Get forecast for line item.
 forecast = forecast_service.GetForecastById(line_item_id)[0]
 matched = long(forecast['forecastUnits'])
-possible_percent = (long(forecast['possibleUnits'])/(matched * 1.0)) * 100
 available_percent = (long(forecast['availableUnits'])/(matched * 1.0)) * 100
 
 # Display results.
-print ('%s %s matched.\n%s%% %s possible.\n%s%% %s available.'
+print ('%s %s matched.\n%s%% %s available.'
        % (matched, forecast['unitType'].lower(),
-          possible_percent, forecast['unitType'].lower(),
           available_percent, forecast['unitType'].lower()))
+
+if 'possibleUnits' in forecast:
+  possible_percent = (long(forecast['possibleUnits'])/(matched * 1.0)) * 100
+  print '%s%% %s possible' % (possible_percent, forecast['unitType'])

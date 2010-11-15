@@ -49,7 +49,7 @@ class DfpWebService(WebService):
       headers: dict Dictionary object with populated authentication
                credentials.
       config: dict Dictionary object with populated configuration values.
-      op_config: dict dictionary object with additional configuration values for
+      op_config: dict Dictionary object with additional configuration values for
                  this operation.
       url: str URL of the web service to call.
       lock: thread.lock Thread lock.
@@ -113,7 +113,7 @@ class DfpWebService(WebService):
       raise e
     except DfpError, e:
       raise e
-    except Exception, e:
+    except Error, e:
       if error: e = error
       raise Error(e)
 
@@ -123,10 +123,10 @@ class DfpWebService(WebService):
 
     Args:
       method_name: str API method name.
-      params: tuple Parameters to send to the API method.
+      params: list List of parameters to send to the API method.
       [optional]
       service_name: str API service name.
-      loc: Service locator.
+      loc: service Locator.
       request: instance Holder of the SOAP request.
 
     Returns:
@@ -153,7 +153,7 @@ class DfpWebService(WebService):
            int(now - config['auth_token_epoch']) >= AUTH_TOKEN_EXPIRE)):
         headers['authToken'] = Utils.GetAuthToken(
             headers['email'], headers['password'], AUTH_TOKEN_SERVICE,
-            LIB_SIG, config['proyx'])
+            LIB_SIG, config['proxy'])
         config['auth_token_epoch'] = time.time()
         self._headers = headers
         self._config = config

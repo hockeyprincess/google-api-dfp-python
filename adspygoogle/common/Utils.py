@@ -22,10 +22,10 @@ import codecs
 import csv
 import datetime
 import htmlentitydefs
-import os
 import re
 import sys
 import traceback
+import urllib
 from urlparse import urlparse
 from urlparse import urlunparse
 
@@ -55,19 +55,25 @@ def ReadFile(f_path):
   return data
 
 
-def GetDataFromCsvFile(lib_home, file_name):
-  """Get data from CSV file, given name of the file from "data/".
+def GetDataFromCsvFile(loc):
+  """Get data from CSV file, given its location.
 
   Args:
-    lib_home: str Path to the directory where client library's home is.
-    file_name: str File name.
+    loc: str Location of the CSV data file.
 
   Returns:
     list Data from CSV file.
   """
-  f_path = os.path.join(lib_home, 'data', file_name)
   rows = []
-  for row in csv.reader(ReadFile(f_path).split('\n')):
+  try:
+    data = urllib.urlopen(loc).read()
+  except IOError, e:
+    if str(e).find('[Errno url error] unknown url type: \'c\'') > -1:
+      loc = 'file:///%s' % loc.replace('\\', '/').replace(':', '|')
+      data = urllib.urlopen(loc).read()
+    else:
+      raise e
+  for row in csv.reader(data.split('\n')):
     if row:
       rows.append(row)
   return rows[1:]

@@ -1,6 +1,7 @@
 Type
 AdUnitAfcSizeError
 AdUnitCodeError
+AdUnitHierarchyError
 ApiError
 AuthenticationError
 CommonError
@@ -8,10 +9,12 @@ CreativeError
 FileError
 FlashCreativeError
 ForecastError
+GeoTargetingError
 InternalApiError
 InvalidEmailError
 InvalidUrlError
 InventoryTargetingError
+InventoryUnitError
 LineItemCreativeAssociationError
 LineItemCreativeAssociationOperationError
 LineItemFlightDateError

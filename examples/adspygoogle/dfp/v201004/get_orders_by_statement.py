@@ -16,7 +16,8 @@
 
 """This code example gets all orders for a given advertiser. The statement
 retrieves up to the maximum page size limit of 500. To create orders, run
-create_orders.py."""
+create_orders.py. To determine which companies are advertisers, run
+get_companies_by_statement.py."""
 
 __author__ = 'api.sgrinberg@gmail.com (Stan Grinberg)'
 
@@ -35,10 +36,11 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # the sandbox environment.
-order_service = client.GetOrderService()
+order_service = client.GetOrderService(
+    'https://sandbox.google.com', 'v201004')
 
-# Set id of the advertiser to get orders for.
-advertiser_id = 'INSERT_ADVERTISER_ID_HERE'
+# Set id of the advertiser (company) to get orders for.
+advertiser_id = 'INSERT_ADVERTISER_COMPANY_ID_HERE'
 
 # Create statement object to get all orders for a given advertiser.
 params = [{

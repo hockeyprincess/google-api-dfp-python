@@ -31,7 +31,7 @@ from adspygoogle.dfp import LIB_VERSION
 PACKAGES = ['adspygoogle', 'adspygoogle.common', 'adspygoogle.common.soappy',
             'adspygoogle.common.zsi', 'adspygoogle.dfp',
             'adspygoogle.dfp.soappy', 'adspygoogle.dfp.zsi',
-            'adspygoogle.dfp.zsi.v201004']
+            'adspygoogle.dfp.zsi.v201004', 'adspygoogle.dfp.zsi.v201010']
 PACKAGE_DATA = {'adspygoogle.dfp': [os.path.join('data', '*')]}
 
 

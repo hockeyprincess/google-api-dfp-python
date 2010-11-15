@@ -34,7 +34,8 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # sandbox environment.
-user_service = client.GetUserService()
+user_service = client.GetUserService(
+    'https://sandbox.google.com', 'v201004')
 
 # Get users by statement.
 users = DfpUtils.GetAllEntitiesByStatement(client, 'User')

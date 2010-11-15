@@ -36,17 +36,23 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # the sandbox environment.
-inventory_service = client.GetInventoryService()
+inventory_service = client.GetInventoryService(
+    'https://sandbox.google.com', 'v201004')
+network_service = client.GetNetworkService(
+    'https://sandbox.google.com', 'v201004')
 
 # Set the parent ad unit's id for all ad units to be created under.
-parent_ad_unit_id = 'INSERT_AD_UNIT_ID_HERE'
+effective_root_ad_unit_id = \
+    network_service.GetCurrentNetwork()[0]['effectiveRootAdUnitId']
 
 # Create ad unit objects.
 ad_units = []
 for i in xrange(5):
   ad_unit = {
       'name': 'Ad_Unit_%s' % Utils.GetUniqueName(),
-      'parentId': parent_ad_unit_id,
+      'parentId': effective_root_ad_unit_id,
+      'description': 'Ad unit description.',
+      'targetWindow': 'BLANK',
       'sizes': [{'width': '300', 'height': '250'}]
   }
   ad_units.append(ad_unit)
@@ -60,4 +66,4 @@ ad_units = inventory_service.CreateAdUnits(ad_units)
 # Display results.
 for ad_unit in ad_units:
   print ('Ad unit with id \'%s\' was created under parent with id \'%s\'.'
-         % (ad_unit['id'], parent_ad_unit_id))
+         % (ad_unit['id'], effective_root_ad_unit_id))
