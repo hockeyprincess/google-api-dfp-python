@@ -35,7 +35,8 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # the sandbox environment.
-creative_service = client.GetCreativeService()
+creative_service = client.GetCreativeService(
+    'https://sandbox.google.com', 'v201004')
 
 # Create statement object to get all image creatives.
 filter_statement = {'query': 'WHERE creativeType = \'ImageCreative\' LIMIT 500'}

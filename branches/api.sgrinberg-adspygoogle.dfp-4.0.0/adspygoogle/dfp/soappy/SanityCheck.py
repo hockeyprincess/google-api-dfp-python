@@ -261,7 +261,12 @@ def ValidateTargeting(targeting):
       for sub_key in target:
         SanityCheck.ValidateTypes(((target[sub_key], list),))
         for item in target[sub_key]:
-          SanityCheck.ValidateTypes(((item, (str, unicode)),))
+          if key in ('inventoryTargeting',):
+            SanityCheck.ValidateTypes(((item, (str, unicode)),))
+          elif key in ('geoTargeting',):
+            SanityCheck.ValidateTypes(((item, dict),))
+            for sub_sub_key in item:
+              SanityCheck.ValidateTypes(((item[sub_sub_key], (str, unicode)),))
         # If value is an empty list, remove key from the dictionary.
         if not target[sub_key]:
           target = Utils.UnLoadDictKeys(target, [sub_key])
@@ -376,3 +381,15 @@ def ValidateReportJob(report_job):
       ValidateReportQuery(report_job[key])
     else:
       SanityCheck.ValidateTypes(((report_job[key], (str, unicode)),))
+
+
+def ValidateNetwork(network):
+  """Validate Network object.
+
+  Args:
+    network: dict Network object.
+  """
+  SanityCheck.ValidateTypes(((network, dict),))
+  for key in network:
+    if network[key] == 'None': continue
+    SanityCheck.ValidateTypes(((network[key], (str, unicode)),))

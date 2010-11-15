@@ -266,7 +266,7 @@ Args:
   headers: dict Dictionary object with populated authentication
            credentials.
   config: dict Dictionary object with populated configuration values.
-  op_config: dict dictionary object with additional configuration values for
+  op_config: dict Dictionary object with additional configuration values for
              this operation.
   url: str URL of the web service to call.
   lock: thread.lock Thread lock.
@@ -337,10 +337,10 @@ Make an API call to specified method.
 
 Args:
   method_name: str API method name.
-  params: tuple Parameters to send to the API method.
+  params: list List of parameters to send to the API method.
   [optional]
   service_name: str API service name.
-  loc: Service locator.
+  loc: service Locator.
   request: instance Holder of the SOAP request.
 
 Returns:

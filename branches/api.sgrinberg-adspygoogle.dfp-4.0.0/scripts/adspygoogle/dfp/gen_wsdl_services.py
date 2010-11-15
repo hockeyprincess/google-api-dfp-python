@@ -52,8 +52,18 @@ API_TARGETS = [
         'server': 'https://sandbox.google.com',
         'services': ('CompanyService', 'CreativeService', 'ForecastService',
                      'InventoryService', 'LineItemCreativeAssociationService',
-                     'LineItemService', 'OrderService', 'PlacementService',
-                     'ReportService', 'UserService')
+                     'LineItemService', 'NetworkService', 'OrderService',
+                     'PlacementService', 'ReportService', 'UserService')
+    },
+    {
+        'version': 'v201010',
+        'location': os.path.join('..', '..', '..', 'adspygoogle', 'dfp', 'zsi',
+                                 'v201010'),
+        'server': 'https://sandbox.google.com',
+        'services': ('CompanyService', 'CreativeService', 'ForecastService',
+                     'InventoryService', 'LineItemCreativeAssociationService',
+                     'LineItemService', 'NetworkService', 'OrderService',
+                     'PlacementService', 'ReportService', 'UserService')
     }
 ]
 
@@ -178,7 +188,8 @@ for target in API_TARGETS:
 # Fetch error types.
 print 'Generating error types from client interface ...'
 old_error_types = []
-for item in Utils.GetDataFromCsvFile(LIB_HOME, 'error_types.csv'):
+for item in Utils.GetDataFromCsvFile(os.path.join(LIB_HOME, 'data',
+                                                  'error_types.csv')):
   old_error_types.append(item[0])
 error_types = []
 for target in API_TARGETS:

@@ -34,7 +34,8 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # sandbox environment.
-placement_service = client.GetPlacementService()
+placement_service = client.GetPlacementService(
+    'https://sandbox.google.com', 'v201004')
 
 # Create a statement to only select active placements.
 params = [{

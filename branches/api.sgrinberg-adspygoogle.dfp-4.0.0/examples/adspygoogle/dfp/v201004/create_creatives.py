@@ -36,10 +36,11 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # sandbox environment.
-creative_service = client.GetCreativeService()
+creative_service = client.GetCreativeService(
+    'https://sandbox.google.com', 'v201004')
 
-# Set id of the advertiser that all creatives will be assigned to.
-advertiser_id = 'INSERT_ADVERTISER_ID_HERE'
+# Set id of the advertiser (company) that all creatives will be assigned to.
+advertiser_id = 'INSERT_ADVERTISER_COMPANY_ID_HERE'
 
 # Create creative objects.
 creatives = []

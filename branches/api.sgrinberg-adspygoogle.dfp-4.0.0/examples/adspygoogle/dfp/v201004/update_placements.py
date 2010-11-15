@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This code example updates all placements to include the root ad unit up to
+"""This code example updates all placements to allow for AdSense targeting up to
 the first 500. To determine which placements exist,
 run get_all_placements.py."""
 
@@ -35,8 +35,10 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # sandbox environment.
-placement_service = client.GetPlacementService()
-inventory_service = client.GetInventoryService()
+placement_service = client.GetPlacementService(
+    'https://sandbox.google.com', 'v201004')
+inventory_service = client.GetInventoryService(
+    'https://sandbox.google.com', 'v201004')
 
 # Get the root ad unit by statement.
 root_ad_unit_id = inventory_service.GetAdUnitsByStatement(
@@ -49,11 +51,13 @@ filter_statement = {'query': 'LIMIT 500'}
 placements = placement_service.GetPlacementsByStatement(
     filter_statement)[0]['results']
 if placements:
-  # Update each local placement object by adding the root ad unit.
+  # Update each local placement object by enabling AdSense targeting.
   for placement in placements:
-    if ('targetedAdUnitIds' in placement and
-        root_ad_unit_id not in placement['targetedAdUnitIds']):
-      placement['targetedAdUnitIds'].append(root_ad_unit_id)
+    if not placement['targetingDescription']:
+      placement['targetingDescription'] = 'Generic description'
+    placement['targetingAdLocation'] = 'All images on sports pages.'
+    placement['targetingSiteName'] = 'http://code.google.com'
+    placement['isAdSenseTargetingEnabled'] = 'true'
 
   # Update placements remotely.
   placements = placement_service.UpdatePlacements(placements)
@@ -64,9 +68,10 @@ if placements:
       ad_unit_ids = ''
       if 'targetedAdUnitIds' in placement:
         ad_unit_ids = ', '.join(placement['targetedAdUnitIds'])
-      print ('Placement with id \'%s\', name \'%s\', and containing ad units '
-             '{%s} was updated.' % (placement['id'], placement['name'],
-                                    ad_unit_ids))
+      print ('Placement with id \'%s\', name \'%s\', and AdSense targeting '
+             'enabled \'%s\' was updated.'
+             % (placement['id'], placement['name'],
+                placement['isAdSenseTargetingEnabled']))
   else:
     print 'No placements were updated.'
 else:

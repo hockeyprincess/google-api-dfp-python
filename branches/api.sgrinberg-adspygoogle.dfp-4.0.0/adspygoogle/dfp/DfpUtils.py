@@ -18,6 +18,8 @@
 
 __author__ = 'api.sgrinberg@gmail.com (Stan Grinberg)'
 
+import os
+
 from adspygoogle.common import Utils
 from adspygoogle.common.Errors import ValidationError
 from adspygoogle.dfp import LIB_HOME
@@ -30,7 +32,8 @@ def GetCurrencies():
   Returns:
     list available currencies.
   """
-  return Utils.GetDataFromCsvFile(LIB_HOME, 'currencies.csv')
+  return Utils.GetDataFromCsvFile(os.path.join(LIB_HOME, 'data',
+                                               'currencies.csv'))
 
 
 def GetTimezones():
@@ -39,7 +42,8 @@ def GetTimezones():
   Returns:
     list Available timezones.
   """
-  return Utils.GetDataFromCsvFile(LIB_HOME, 'timezones.csv')
+  return Utils.GetDataFromCsvFile(os.path.join(LIB_HOME, 'data',
+                                               'timezones.csv'))
 
 
 def GetAllEntitiesByStatement(client, service_name, query='', page_size=500,

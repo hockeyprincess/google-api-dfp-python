@@ -26,6 +26,7 @@ import sys
 sys.path.append(os.path.join('..', '..', '..', '..'))
 
 # Import appropriate classes from the client library.
+from adspygoogle.common import Utils
 from adspygoogle.dfp.DfpClient import DfpClient
 
 
@@ -34,7 +35,8 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # the sandbox environment.
-line_item_service = client.GetLineItemService()
+line_item_service = client.GetLineItemService(
+    'https://sandbox.google.com', 'v201004')
 
 # Set id of the order to get line items from.
 order_id = 'INSERT_ORDER_ID_HERE'
@@ -49,11 +51,14 @@ line_items = line_item_service.GetLineItemsByStatement(
 
 if line_items:
   # Update each local line item by changing its delivery rate type.
+  updated_line_items = []
   for line_item in line_items:
-    line_item['deliveryRateType'] = 'AS_FAST_AS_POSSIBLE'
+    if not Utils.BoolTypeConvert(line_item['isArchived']):
+      line_item['deliveryRateType'] = 'AS_FAST_AS_POSSIBLE'
+      updated_line_items.append(line_item)
 
   # Update line items remotely.
-  line_items = line_item_service.UpdateLineItems(line_items)
+  line_items = line_item_service.UpdateLineItems(updated_line_items)
 
   # Display results.
   if line_items:

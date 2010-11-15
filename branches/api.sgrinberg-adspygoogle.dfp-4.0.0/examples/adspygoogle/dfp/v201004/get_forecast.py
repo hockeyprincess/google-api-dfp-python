@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This code example gets a forecast for a hypothetical line item. To determine
-which orders exist, run get_all_orders.py. To determine which ad units exist,
-run get_all_ad_units.py."""
+"""This code example gets a forecast for a prospective line item. To determine
+which orders exist, run get_all_orders.py. To determine which placements exist,
+run get_all_placements.py."""
 
 __author__ = 'api.sgrinberg@gmail.com (Stan Grinberg)'
 
@@ -36,19 +36,17 @@ client.strict = False
 
 # Initialize appropriate service. By default, the request is always made against
 # the sandbox environment.
-forecast_service = client.GetForecastService()
+forecast_service = client.GetForecastService(
+    'https://sandbox.google.com', 'v201004')
 
-# Set the order to which the hypothetical line item would belong to and
-# the ad unit ID to target.
-order_id = 'INSERT_ORDER_ID_HERE'
-target_ad_unit_ids = ['INSERT_AD_UNIT_ID_HERE']
+# Set the placement that the prospective line item will target.
+target_placement_ids = ['INSERT_PLACEMENT_ID_HERE']
 
 # Create hypothetical line item.
 line_item = {
-    'orderId': order_id,
     'targeting': {
         'inventoryTargeting': {
-            'targetedAdUnitIds': target_ad_unit_ids
+            'targetedPlacementIds': target_placement_ids
         }
     },
     'creativeSizes': [
@@ -80,11 +78,13 @@ line_item = {
 # Get forecast.
 forecast = forecast_service.GetForecast(line_item)[0]
 matched = long(forecast['forecastUnits'])
-possible_percent = (long(forecast['possibleUnits'])/(matched * 1.0)) * 100
 available_percent = (long(forecast['availableUnits'])/(matched * 1.0)) * 100
 
 # Display results.
-print ('%s %s matched.\n%s%% %s possible.\n%s%% %s available.'
+print ('%s %s matched.\n%s%% %s available.'
        % (matched, forecast['unitType'].lower(),
-          possible_percent, forecast['unitType'].lower(),
           available_percent, forecast['unitType'].lower()))
+
+if 'possibleUnits' in forecast:
+  possible_percent = (long(forecast['possibleUnits'])/(matched * 1.0)) * 100
+  print '%s%% %s possible' % (possible_percent, forecast['unitType'])

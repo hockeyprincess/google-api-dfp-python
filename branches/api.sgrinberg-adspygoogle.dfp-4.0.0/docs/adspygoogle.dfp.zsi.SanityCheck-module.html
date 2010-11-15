@@ -367,7 +367,8 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateTargeting" class="summary-sig-name">ValidateTargeting</a>(<span class="summary-sig-arg">targeting</span>)</span><br />
+          <td><span class="summary-sig"><a href="adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateTargeting" class="summary-sig-name">ValidateTargeting</a>(<span class="summary-sig-arg">targeting</span>,
+        <span class="summary-sig-arg">web_services</span>)</span><br />
       Validate Targeting object.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="adspygoogle.dfp.zsi.SanityCheck-pysrc.html#ValidateTargeting">source&nbsp;code</a></span>
@@ -384,7 +385,8 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateLineItem" class="summary-sig-name">ValidateLineItem</a>(<span class="summary-sig-arg">line_item</span>)</span><br />
+          <td><span class="summary-sig"><a href="adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateLineItem" class="summary-sig-name">ValidateLineItem</a>(<span class="summary-sig-arg">line_item</span>,
+        <span class="summary-sig-arg">web_services</span>)</span><br />
       Validate LineItem object.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="adspygoogle.dfp.zsi.SanityCheck-pysrc.html#ValidateLineItem">source&nbsp;code</a></span>
@@ -474,6 +476,23 @@
       Validate ReportJob object.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="adspygoogle.dfp.zsi.SanityCheck-pysrc.html#ValidateReportJob">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.dfp.zsi.SanityCheck-module.html#ValidateNetwork" class="summary-sig-name">ValidateNetwork</a>(<span class="summary-sig-arg">network</span>)</span><br />
+      Validate Network object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.dfp.zsi.SanityCheck-pysrc.html#ValidateNetwork">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -922,7 +941,8 @@ Args:
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">ValidateTargeting</span>(<span class="sig-arg">targeting</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ValidateTargeting</span>(<span class="sig-arg">targeting</span>,
+        <span class="sig-arg">web_services</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="adspygoogle.dfp.zsi.SanityCheck-pysrc.html#ValidateTargeting">source&nbsp;code</a></span>&nbsp;
@@ -934,6 +954,7 @@ Validate Targeting object.
 
 Args:
   targeting: dict Targeting object.
+  web_services: module Web services.
 
 Returns:
   Targeting instance.
@@ -950,7 +971,8 @@ Returns:
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">ValidateLineItem</span>(<span class="sig-arg">line_item</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ValidateLineItem</span>(<span class="sig-arg">line_item</span>,
+        <span class="sig-arg">web_services</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="adspygoogle.dfp.zsi.SanityCheck-pysrc.html#ValidateLineItem">source&nbsp;code</a></span>&nbsp;
@@ -962,6 +984,7 @@ Validate LineItem object.
 
 Args:
   line_item: dict LineItem object.
+  web_services: module Web services.
 
 </pre>
   <dl class="fields">
@@ -1092,6 +1115,31 @@ Validate ReportJob object.
 
 Args:
   report_job: dict ReportJob object.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="ValidateNetwork"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ValidateNetwork</span>(<span class="sig-arg">network</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.dfp.zsi.SanityCheck-pysrc.html#ValidateNetwork">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Validate Network object.
+
+Args:
+  network: dict Network object.
 
 </pre>
   <dl class="fields">

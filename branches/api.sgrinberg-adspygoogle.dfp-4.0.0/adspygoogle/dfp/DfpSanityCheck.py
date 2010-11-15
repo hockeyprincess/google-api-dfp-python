@@ -30,8 +30,10 @@ def ValidateServer(server, version):
     version: str API version being used to access the server.
   """
   # Map of supported API servers and versions.
-  prod = {'v201004': 'https://www.google.com'}
-  sandbox = {'v201004': 'https://sandbox.google.com'}
+  prod = {'v201004': 'https://www.google.com',
+          'v201010': 'https://www.google.com'}
+  sandbox = {'v201004': 'https://sandbox.google.com',
+             'v201010': 'https://sandbox.google.com'}
 
   if server not in prod.values() and server not in sandbox.values():
     msg = ('Given API server, \'%s\', is not valid. Expecting one of %s.'

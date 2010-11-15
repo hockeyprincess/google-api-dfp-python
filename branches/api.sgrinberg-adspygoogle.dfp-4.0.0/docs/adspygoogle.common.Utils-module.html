@@ -108,9 +108,8 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Utils-module.html#GetDataFromCsvFile" class="summary-sig-name">GetDataFromCsvFile</a>(<span class="summary-sig-arg">lib_home</span>,
-        <span class="summary-sig-arg">file_name</span>)</span><br />
-      Get data from CSV file, given name of the file from &quot;data/&quot;.</td>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Utils-module.html#GetDataFromCsvFile" class="summary-sig-name">GetDataFromCsvFile</a>(<span class="summary-sig-arg">loc</span>)</span><br />
+      Get data from CSV file, given its location.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="adspygoogle.common.Utils-pysrc.html#GetDataFromCsvFile">source&nbsp;code</a></span>
             
@@ -537,8 +536,7 @@ Returns:
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetDataFromCsvFile</span>(<span class="sig-arg">lib_home</span>,
-        <span class="sig-arg">file_name</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetDataFromCsvFile</span>(<span class="sig-arg">loc</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="adspygoogle.common.Utils-pysrc.html#GetDataFromCsvFile">source&nbsp;code</a></span>&nbsp;
@@ -546,11 +544,10 @@ Returns:
   </tr></table>
   
   <pre class="literalblock">
-Get data from CSV file, given name of the file from &quot;data/&quot;.
+Get data from CSV file, given its location.
 
 Args:
-  lib_home: str Path to the directory where client library's home is.
-  file_name: str File name.
+  loc: str Location of the CSV data file.
 
 Returns:
   list Data from CSV file.

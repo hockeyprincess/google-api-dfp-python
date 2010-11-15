@@ -14,8 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This code example creates new line items. To determine which line items exist,
-run get_all_line_items.py."""
+"""This code example creates new line items. To determine which line items
+exist, run get_all_line_items.py. To determine which orders exist, run
+get_all_orders.py. To determine which placements exist, run
+get_all_placements.py."""
 
 __author__ = 'api.sgrinberg@gmail.com (Stan Grinberg)'
 
@@ -35,12 +37,13 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # sandbox environment.
-line_item_service = client.GetLineItemService()
+line_item_service = client.GetLineItemService(
+    'https://sandbox.google.com', 'v201004')
 
-# Set order that all created line items will belong to and the ad unit id to
+# Set order that all created line items will belong to and the placement id to
 # target.
 order_id = 'INSERT_LINE_ITEM_ID_HERE'
-target_ad_unit_ids = ['INSERT_AD_UNIT_ID_HERE']
+target_placement_ids = ['INSERT_PLACEMENT_ID_HERE']
 
 # Create line item objects.
 line_items = []
@@ -50,27 +53,18 @@ for i in xrange(5):
       'orderId': order_id,
       'targeting': {
           'inventoryTargeting': {
-              'targetedAdUnitIds': target_ad_unit_ids
+              'targetedPlacementIds': target_placement_ids
           }
       },
       'creativeSizes': [
           {'width': '300', 'height': '250'},
           {'width': '120', 'height': '600'}
       ],
+      'setStartType': 'IMMEDIATELY',
       'lineItemType': 'STANDARD',
-      'startDateTime': {
-          'date': {
-              'year': '2010',
-              'month': '9',
-              'day': '1'
-          },
-          'hour': '0',
-          'minute': '0',
-          'second': '0'
-      },
       'endDateTime': {
           'date': {
-              'year': '2010',
+              'year': '2011',
               'month': '9',
               'day': '30'
           },
