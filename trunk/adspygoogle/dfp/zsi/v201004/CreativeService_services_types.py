@@ -585,23 +585,6 @@ class ns0:
             Holder.__name__ = "ApplicationException_Holder"
             self.pyclass = Holder
 
-    class HasDestinationUrlCreative_Def(TypeDefinition):
-        #complexType/complexContent extension
-        schema = "https://www.google.com/apis/ads/publisher/v201004"
-        type = (schema, "HasDestinationUrlCreative")
-        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
-            ns = ns0.HasDestinationUrlCreative_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"destinationUrl"), aname="_destinationUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            attributes = self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            if ns0.Creative_Def not in ns0.HasDestinationUrlCreative_Def.__bases__:
-                bases = list(ns0.HasDestinationUrlCreative_Def.__bases__)
-                bases.insert(0, ns0.Creative_Def)
-                ns0.HasDestinationUrlCreative_Def.__bases__ = tuple(bases)
-
-            ns0.Creative_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
-
     class Statement_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "Statement")
@@ -621,6 +604,23 @@ class ns0:
                     return
             Holder.__name__ = "Statement_Holder"
             self.pyclass = Holder
+
+    class HasDestinationUrlCreative_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "HasDestinationUrlCreative")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.HasDestinationUrlCreative_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"destinationUrl"), aname="_destinationUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.Creative_Def not in ns0.HasDestinationUrlCreative_Def.__bases__:
+                bases = list(ns0.HasDestinationUrlCreative_Def.__bases__)
+                bases.insert(0, ns0.Creative_Def)
+                ns0.HasDestinationUrlCreative_Def.__bases__ = tuple(bases)
+
+            ns0.Creative_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
     class Creative_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"

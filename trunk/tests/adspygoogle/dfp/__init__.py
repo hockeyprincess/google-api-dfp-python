@@ -30,6 +30,8 @@ from adspygoogle.dfp.DfpClient import DfpClient
 
 HTTP_PROXY = None
 SERVER_V201004 = 'https://sandbox.google.com'
+SERVER_V201010 = 'https://sandbox.google.com'
 VERSION_V201004 = 'v201004'
+VERSION_V201010 = 'v201010'
 client = DfpClient(path=os.path.join('..', '..', '..'))
 client.soap_lib = ZSI

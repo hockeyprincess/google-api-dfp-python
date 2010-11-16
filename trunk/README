@@ -136,6 +136,7 @@ External Dependencies:
     - SOAPpy v0.12.0       -- http://pywebsvcs.sourceforge.net/
                            or
       ZSI v2.0             -- http://pywebsvcs.sourceforge.net/
+                           (requires PyXML v0.8.3+)
     - Epydoc               -- http://epydoc.sourceforge.net/
                            (only if you will be generating docs)
     - Google Account       -- https://www.google.com/accounts/NewAccount

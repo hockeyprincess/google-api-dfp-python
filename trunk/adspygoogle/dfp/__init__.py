@@ -31,8 +31,8 @@ LIB_SHORT_NAME = 'DfpApi-Python'
 LIB_URL = 'http://code.google.com/p/google-api-dfp-python'
 LIB_AUTHOR = 'Stan Grinberg'
 LIB_AUTHOR_EMAIL = 'api.sgrinberg@gmail.com'
-LIB_VERSION = '3.2.0'
-LIB_MIN_COMMON_VERSION = '1.1.0'
+LIB_VERSION = '4.0.0'
+LIB_MIN_COMMON_VERSION = '1.1.3'
 LIB_SIG = '%s-%s' % (LIB_SHORT_NAME, LIB_VERSION)
 
 if VERSION > LIB_MIN_COMMON_VERSION:
@@ -42,9 +42,9 @@ if VERSION > LIB_MIN_COMMON_VERSION:
 
 # Tuple of tuples representing API versions, where each inner tuple is a
 # combination of the API vesrion and whether API used JAXB.
-API_VERSIONS_MAP = (('v201004', True),)
+API_VERSIONS_MAP = (('v201004', True), ('v201010', True))
 API_VERSIONS = [version for version, is_jaxb_api in API_VERSIONS_MAP]
-MIN_API_VERSION = API_VERSIONS[0]
+MIN_API_VERSION = API_VERSIONS[1]
 
 # Accepted combinations of headers which user has to provide. Either one of
 # these is required in order to make a succesful API request.
@@ -56,5 +56,6 @@ AUTH_TOKEN_SERVICE = 'gam'
 AUTH_TOKEN_EXPIRE = 60 * 60 * 23
 
 ERROR_TYPES = []
-for item in Utils.GetDataFromCsvFile(LIB_HOME, 'error_types.csv'):
+for item in Utils.GetDataFromCsvFile(os.path.join(LIB_HOME, 'data',
+                                                  'error_types.csv')):
   ERROR_TYPES.append(item[0])

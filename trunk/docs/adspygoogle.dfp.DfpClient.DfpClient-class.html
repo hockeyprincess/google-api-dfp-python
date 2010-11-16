@@ -330,6 +330,26 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.dfp.DfpClient.DfpClient-class.html#GetNetworkService" class="summary-sig-name">GetNetworkService</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">server</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">version</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">http_proxy</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Call API method in NetworkService.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.dfp.DfpClient-pysrc.html#DfpClient.GetNetworkService">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="adspygoogle.dfp.DfpClient.DfpClient-class.html#GetOrderService" class="summary-sig-name">GetOrderService</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">server</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">version</span>=<span class="summary-sig-default">None</span>,
@@ -947,6 +967,43 @@ Args:
 
 Returns:
   LineItemService New instance of LineItemService object.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetNetworkService"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetNetworkService</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">server</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">version</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">http_proxy</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.dfp.DfpClient-pysrc.html#DfpClient.GetNetworkService">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Call API method in NetworkService.
+
+Args:
+  [optional]
+  server: str API server to access for this API call. Possible values
+          are: 'https://www.google.com' for live site and
+          'https://sandbox.google.com' for sandbox. The default behavior is
+          to access sandbox site.
+  version: str API version to use.
+  http_proxy: str HTTP proxy to use.
+
+Returns:
+  NetworkService New instance of NetworkService object.
 
 </pre>
   <dl class="fields">

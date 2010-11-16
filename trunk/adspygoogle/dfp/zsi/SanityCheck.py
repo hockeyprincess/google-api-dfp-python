@@ -53,10 +53,12 @@ def ValidateString_ParamMapEntry(param, web_services):
   for key in param:
     SanityCheck.ValidateTypes(((param[key], (str, unicode)),))
     if key in ('value',):
-      if 'type' in param:
+      if 'xsi_type' in param:
+        value = ZsiSanityCheck.GetPyClass(param['xsi_type'], web_services)
+      elif 'type' in param:
         value = ZsiSanityCheck.GetPyClass(param['type'], web_services)
       else:
-        msg = ('The \'type\' of the param is missing.')
+        msg = ('The type of the param is missing.')
         raise ValidationError(msg)
       value.__dict__.__setitem__('_%s' % key, param[key])
       data = value
@@ -126,11 +128,12 @@ def ValidateCreative(creative, web_services):
   elif 'Creative_Type' in creative:
     new_creative = ZsiSanityCheck.GetPyClass(creative['Creative_Type'],
                                              web_services)
+  elif 'xsi_type' in creative:
+    new_creative = ZsiSanityCheck.GetPyClass(creative['xsi_type'], web_services)
   elif 'type' in creative:
     new_creative = ZsiSanityCheck.GetPyClass(creative['type'], web_services)
   else:
-    msg = ('The \'creativeType\' or \'Creative_Type\' or \'type\' of the '
-           'creative is missing.')
+    msg = ('The type of the creative is missing.')
     raise ValidationError(msg)
   for key in creative:
     if creative[key] == 'None': continue
@@ -300,11 +303,12 @@ def ValidateFrequencyCap(cap):
     SanityCheck.ValidateTypes(((cap[key], (str, unicode)),))
 
 
-def ValidateTargeting(targeting):
+def ValidateTargeting(targeting, web_services):
   """Validate Targeting object.
 
   Args:
     targeting: dict Targeting object.
+    web_services: module Web services.
 
   Returns:
     Targeting instance.
@@ -313,26 +317,46 @@ def ValidateTargeting(targeting):
 
   SanityCheck.ValidateTypes(((targeting, dict),))
   for key in targeting:
-    if targeting[key] == 'None': continue
-    if key in ('inventoryTargeting',):
+    if targeting[key] == 'None' or not targeting[key]: continue
+    if key in ('inventoryTargeting', 'geoTargeting'):
       SanityCheck.ValidateTypes(((targeting[key], dict),))
       target = targeting[key]
       for sub_key in target:
         SanityCheck.ValidateTypes(((target[sub_key], list),))
+        targets = []
         for item in target[sub_key]:
-          SanityCheck.ValidateTypes(((item, (str, unicode)),))
+          if key in ('inventoryTargeting',):
+            SanityCheck.ValidateTypes(((item, (str, unicode)),))
+            targets.append(item)
+          elif key in ('geoTargeting',):
+            SanityCheck.ValidateTypes(((item, dict),))
+            if 'xsi_type' in item:
+              location = ZsiSanityCheck.GetPyClass(item['xsi_type'],
+                                                   web_services)
+            else:
+              msg = ('The type of the geo targeting location is missing.')
+              raise ValidationError(msg)
+            for sub_sub_key in item:
+              SanityCheck.ValidateTypes(((item[sub_sub_key], (str, unicode)),))
+              location.__dict__.__setitem__('_%s' % sub_sub_key,
+                                            item[sub_sub_key])
+            targets.append(location)
         # If value is an empty list, remove key from the dictionary.
         if not target[sub_key]:
           target = Utils.UnLoadDictKeys(target, [sub_key])
+        target[sub_key] = targets
       data = target
+    elif key in('geoTargeting',):
+      SanityCheck.ValidateTypes(((targeting[key], dict),))
   return data
 
 
-def ValidateLineItem(line_item):
+def ValidateLineItem(line_item, web_services):
   """Validate LineItem object.
 
   Args:
     line_item: dict LineItem object.
+    web_services: module Web services.
   """
   SanityCheck.ValidateTypes(((line_item, dict),))
   for key in line_item:
@@ -350,7 +374,7 @@ def ValidateLineItem(line_item):
       for item in line_item[key]:
         ValidateFrequencyCap(item)
     elif key in ('targeting',):
-      ValidateTargeting(line_item[key])
+      ValidateTargeting(line_item[key], web_services)
     else:
       SanityCheck.ValidateTypes(((line_item[key], (str, unicode)),))
 
@@ -404,10 +428,12 @@ def ValidateAction(action, web_services):
   if ZsiSanityCheck.IsPyClass(action): return action
 
   SanityCheck.ValidateTypes(((action, dict),))
-  if 'type' in action:
+  if 'xsi_type' in action:
+    new_action = ZsiSanityCheck.GetPyClass(action['xsi_type'], web_services)
+  elif 'type' in action:
     new_action = ZsiSanityCheck.GetPyClass(action['type'], web_services)
   else:
-    msg = 'The \'type\' of the action is missing.'
+    msg = 'The type of the action is missing.'
     raise ValidationError(msg)
   for key in action:
     SanityCheck.ValidateTypes(((action[key], (str, unicode)),))
@@ -445,3 +471,14 @@ def ValidateReportJob(report_job):
       ValidateReportQuery(report_job[key])
     else:
       SanityCheck.ValidateTypes(((report_job[key], (str, unicode)),))
+
+
+def ValidateNetwork(network):
+  """Validate Network object.
+
+  Args:
+    network: dict Network object.
+  """
+  SanityCheck.ValidateTypes(((network, dict),))
+  for key in network:
+    SanityCheck.ValidateTypes(((network[key], (str, unicode)),))

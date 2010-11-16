@@ -329,43 +329,48 @@ adspygoogle.common.zsi.HttpsConnectionHandler.HttpsConnectionHandler.debug" clas
 <a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line"><tt class="py-docstring">    Args:</tt> </tt>
 <a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line"><tt class="py-docstring">      new_state: bool New state of the xml parser to use.</tt> </tt>
 <a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
-<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_config</tt><tt class="py-op">[</tt><tt class="py-string">'xml_parser'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-56" class="py-name"><a title="adspygoogle.common.Utils" class="py-name" href="#" onclick="return doclink('link-56', 'Utils', 'link-11');">Utils</a></tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="adspygoogle.common.Utils.BoolTypeConvert" class="py-name" href="#" onclick="return doclink('link-57', 'BoolTypeConvert', 'link-40');">BoolTypeConvert</a></tt><tt class="py-op">(</tt><tt class="py-name">new_state</tt><tt class="py-op">)</tt> </tt>
-</div><a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line"> </tt>
-<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">  <tt id="link-58" class="py-name" targets="Variable adspygoogle.common.Client.Client.xml_parser=adspygoogle.common.Client.Client-class.html#xml_parser"><a title="adspygoogle.common.Client.Client.xml_parser" class="py-name" href="#" onclick="return doclink('link-58', 'xml_parser', 'link-58');">xml_parser</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-59" class="py-name" targets="Method adspygoogle.common.Client.Client.__GetXmlParser()=adspygoogle.common.Client.Client-class.html#__GetXmlParser"><a title="adspygoogle.common.Client.Client.__GetXmlParser" class="py-name" href="#" onclick="return doclink('link-59', '__GetXmlParser', 'link-59');">__GetXmlParser</a></tt><tt class="py-op">,</tt> <tt id="link-60" class="py-name" targets="Method adspygoogle.common.Client.Client.__SetXmlParser()=adspygoogle.common.Client.Client-class.html#__SetXmlParser"><a title="adspygoogle.common.Client.Client.__SetXmlParser" class="py-name" href="#" onclick="return doclink('link-60', '__SetXmlParser', 'link-60');">__SetXmlParser</a></tt><tt class="py-op">)</tt> </tt>
-<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line"> </tt>
-<a name="Client.CallRawMethod"></a><div id="Client.CallRawMethod-def"><a name="L254"></a><tt class="py-lineno">254</tt> <a class="py-toggle" href="#" id="Client.CallRawMethod-toggle" onclick="return toggle('Client.CallRawMethod');">-</a><tt class="py-line">  <tt class="py-keyword">def</tt> <a class="py-def-name" href="adspygoogle.common.Client.Client-class.html#CallRawMethod">CallRawMethod</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">soap_message</tt><tt class="py-op">,</tt> <tt class="py-param">url</tt><tt class="py-op">,</tt> <tt class="py-param">http_proxy</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="Client.CallRawMethod-collapsed" style="display:none;" pad="+++" indent="++++++"></div><div id="Client.CallRawMethod-expanded"><a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line">    <tt class="py-docstring">"""Call API method directly, using raw SOAP message.</tt> </tt>
-<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
-<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line"><tt class="py-docstring">    For API calls performed with this method, outgoing data is not run through</tt> </tt>
-<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line"><tt class="py-docstring">    library's validation logic.</tt> </tt>
-<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
-<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line"><tt class="py-docstring">    Args:</tt> </tt>
-<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line"><tt class="py-docstring">      soap_message: str SOAP XML message.</tt> </tt>
-<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line"><tt class="py-docstring">      url: str URL of the API service for the method to call.</tt> </tt>
-<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line"><tt class="py-docstring">      http_proxy: str HTTP proxy to use for this API call.</tt> </tt>
-<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
-<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line"><tt class="py-docstring">    Returns:</tt> </tt>
-<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line"><tt class="py-docstring">      tuple Response from the API method (SOAP XML response message).</tt> </tt>
-<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
-<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
-</div><a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line"> </tt>
-<a name="Client.CallMethod"></a><div id="Client.CallMethod-def"><a name="L270"></a><tt class="py-lineno">270</tt> <a class="py-toggle" href="#" id="Client.CallMethod-toggle" onclick="return toggle('Client.CallMethod');">-</a><tt class="py-line">  <tt class="py-keyword">def</tt> <a class="py-def-name" href="adspygoogle.common.Client.Client-class.html#CallMethod">CallMethod</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">url</tt><tt class="py-op">,</tt> <tt class="py-param">method</tt><tt class="py-op">,</tt> <tt class="py-param">params</tt><tt class="py-op">,</tt> <tt class="py-param">http_proxy</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="Client.CallMethod-collapsed" style="display:none;" pad="+++" indent="++++++"></div><div id="Client.CallMethod-expanded"><a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line">    <tt class="py-docstring">"""Call API method directly, using its service's URL.</tt> </tt>
-<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
-<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line"><tt class="py-docstring">    For API calls performed with this method, outgoing data is not run through</tt> </tt>
-<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line"><tt class="py-docstring">    library's validation logic.</tt> </tt>
-<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
-<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line"><tt class="py-docstring">    Args:</tt> </tt>
-<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line"><tt class="py-docstring">      url: str URL of the API service for the method to call.</tt> </tt>
-<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line"><tt class="py-docstring">      method: str Name of the API method to call.</tt> </tt>
-<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line"><tt class="py-docstring">      params: list List of parameters to send to the API method.</tt> </tt>
-<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line"><tt class="py-docstring">      http_proxy: str HTTP proxy to use for this API call.</tt> </tt>
-<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
-<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line"><tt class="py-docstring">    Returns:</tt> </tt>
-<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line"><tt class="py-docstring">      tuple Response from the API method.</tt> </tt>
-<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
-<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
-</div></div><a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">    <tt id="link-56" class="py-name"><a title="adspygoogle.common.SanityCheck
+adspygoogle.common.soappy.SanityCheck
+adspygoogle.common.zsi.SanityCheck
+adspygoogle.dfp.soappy.SanityCheck
+adspygoogle.dfp.zsi.SanityCheck" class="py-name" href="#" onclick="return doclink('link-56', 'SanityCheck', 'link-8');">SanityCheck</a></tt><tt class="py-op">.</tt><tt id="link-57" class="py-name" targets="Function adspygoogle.common.SanityCheck.ValidateConfigXmlParser()=adspygoogle.common.SanityCheck-module.html#ValidateConfigXmlParser"><a title="adspygoogle.common.SanityCheck.ValidateConfigXmlParser" class="py-name" href="#" onclick="return doclink('link-57', 'ValidateConfigXmlParser', 'link-57');">ValidateConfigXmlParser</a></tt><tt class="py-op">(</tt><tt class="py-name">new_state</tt><tt class="py-op">)</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_config</tt><tt class="py-op">[</tt><tt class="py-string">'xml_parser'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">new_state</tt> </tt>
+</div><a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line"> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">  <tt id="link-58" class="py-name" targets="Variable adspygoogle.common.Client.Client.xml_parser=adspygoogle.common.Client.Client-class.html#xml_parser"><a title="adspygoogle.common.Client.Client.xml_parser" class="py-name" href="#" onclick="return doclink('link-58', 'xml_parser', 'link-58');">xml_parser</a></tt> <tt class="py-op">=</tt> <tt class="py-name">property</tt><tt class="py-op">(</tt><tt id="link-59" class="py-name" targets="Method adspygoogle.common.Client.Client.__GetXmlParser()=adspygoogle.common.Client.Client-class.html#__GetXmlParser"><a title="adspygoogle.common.Client.Client.__GetXmlParser" class="py-name" href="#" onclick="return doclink('link-59', '__GetXmlParser', 'link-59');">__GetXmlParser</a></tt><tt class="py-op">,</tt> <tt id="link-60" class="py-name" targets="Method adspygoogle.common.Client.Client.__SetXmlParser()=adspygoogle.common.Client.Client-class.html#__SetXmlParser"><a title="adspygoogle.common.Client.Client.__SetXmlParser" class="py-name" href="#" onclick="return doclink('link-60', '__SetXmlParser', 'link-60');">__SetXmlParser</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line"> </tt>
+<a name="Client.CallRawMethod"></a><div id="Client.CallRawMethod-def"><a name="L255"></a><tt class="py-lineno">255</tt> <a class="py-toggle" href="#" id="Client.CallRawMethod-toggle" onclick="return toggle('Client.CallRawMethod');">-</a><tt class="py-line">  <tt class="py-keyword">def</tt> <a class="py-def-name" href="adspygoogle.common.Client.Client-class.html#CallRawMethod">CallRawMethod</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">soap_message</tt><tt class="py-op">,</tt> <tt class="py-param">url</tt><tt class="py-op">,</tt> <tt class="py-param">http_proxy</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Client.CallRawMethod-collapsed" style="display:none;" pad="+++" indent="++++++"></div><div id="Client.CallRawMethod-expanded"><a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">    <tt class="py-docstring">"""Call API method directly, using raw SOAP message.</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line"><tt class="py-docstring">    For API calls performed with this method, outgoing data is not run through</tt> </tt>
+<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line"><tt class="py-docstring">    library's validation logic.</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line"><tt class="py-docstring">    Args:</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line"><tt class="py-docstring">      soap_message: str SOAP XML message.</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line"><tt class="py-docstring">      url: str URL of the API service for the method to call.</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line"><tt class="py-docstring">      http_proxy: str HTTP proxy to use for this API call.</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line"><tt class="py-docstring">    Returns:</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line"><tt class="py-docstring">      tuple Response from the API method (SOAP XML response message).</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line"> </tt>
+<a name="Client.CallMethod"></a><div id="Client.CallMethod-def"><a name="L271"></a><tt class="py-lineno">271</tt> <a class="py-toggle" href="#" id="Client.CallMethod-toggle" onclick="return toggle('Client.CallMethod');">-</a><tt class="py-line">  <tt class="py-keyword">def</tt> <a class="py-def-name" href="adspygoogle.common.Client.Client-class.html#CallMethod">CallMethod</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">url</tt><tt class="py-op">,</tt> <tt class="py-param">method</tt><tt class="py-op">,</tt> <tt class="py-param">params</tt><tt class="py-op">,</tt> <tt class="py-param">http_proxy</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Client.CallMethod-collapsed" style="display:none;" pad="+++" indent="++++++"></div><div id="Client.CallMethod-expanded"><a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">    <tt class="py-docstring">"""Call API method directly, using its service's URL.</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line"><tt class="py-docstring">    For API calls performed with this method, outgoing data is not run through</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line"><tt class="py-docstring">    library's validation logic.</tt> </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line"><tt class="py-docstring">    Args:</tt> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line"><tt class="py-docstring">      url: str URL of the API service for the method to call.</tt> </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line"><tt class="py-docstring">      method: str Name of the API method to call.</tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line"><tt class="py-docstring">      params: list List of parameters to send to the API method.</tt> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line"><tt class="py-docstring">      http_proxy: str HTTP proxy to use for this API call.</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line"><tt class="py-docstring">    Returns:</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line"><tt class="py-docstring">      tuple Response from the API method.</tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div></div><a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
 // -->

@@ -26,6 +26,7 @@ import sys
 sys.path.append(os.path.join('..', '..', '..', '..'))
 
 # Import appropriate classes from the client library.
+from adspygoogle.common import Utils
 from adspygoogle.dfp.DfpClient import DfpClient
 
 
@@ -34,7 +35,8 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # the sandbox environment.
-order_service = client.GetOrderService()
+order_service = client.GetOrderService(
+    'https://sandbox.google.com', 'v201004')
 
 # Create statement object to get all orders.
 filter_statement = {'query': 'LIMIT 500'}
@@ -44,11 +46,15 @@ orders = order_service.GetOrdersByStatement(filter_statement)[0]['results']
 
 if orders:
   # Update each local order object by changing its notes.
+  updated_orders = []
   for order in orders:
-    order['notes'] = 'Spoke to advertiser. All is well.'
+    # Archived orders cannot be updated.
+    if not Utils.BoolTypeConvert(order['isArchived']):
+      order['notes'] = 'Spoke to advertiser. All is well.'
+      updated_orders.append(order)
 
   # Update orders remotely.
-  orders = order_service.UpdateOrders(orders)
+  orders = order_service.UpdateOrders(updated_orders)
 
   # Display results.
   if orders:

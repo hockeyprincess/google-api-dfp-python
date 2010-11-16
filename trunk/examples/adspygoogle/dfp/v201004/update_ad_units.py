@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This code example updates an ad unit by adding a new size to the first 500.
+"""This code example updates an ad unit by enabling AdSense to the first 500.
 To determine which ad units exist, run get_all_ad_units.py or
 get_inventory_tree.py."""
 
@@ -35,7 +35,8 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # the sandbox environment.
-inventory_service = client.GetInventoryService()
+inventory_service = client.GetInventoryService(
+    'https://sandbox.google.com', 'v201004')
 
 # Create statement object to get all ad units.
 filter_statement = {'query': 'LIMIT 500'}
@@ -45,9 +46,9 @@ ad_units = inventory_service.GetAdUnitsByStatement(
     filter_statement)[0]['results']
 
 if ad_units:
-  # Update each local ad unit object by adding new size.
+  # Update each local ad unit object by enabling AdSense.
   for ad_unit in ad_units:
-    ad_unit['sizes'].extend([{'width': '728', 'height': '90'}])
+    ad_unit['inheritedAdSenseSettings']['value']['adSenseEnabled'] = 'true'
 
   # Update ad units remotely.
   ad_units = inventory_service.UpdateAdUnits(ad_units)
@@ -55,8 +56,10 @@ if ad_units:
   # Display results.
   if ad_units:
     for ad_units in ad_units:
-      print ('Ad unit with id \'%s\' and name \'%s\' was updated.'
-             % (ad_unit['id'], ad_unit['name']))
+      print ('Ad unit with id \'%s\', name \'%s\', and is AdSense enabled '
+             '\'%s\' was updated.'
+             % (ad_unit['id'], ad_unit['name'],
+                ad_unit['inheritedAdSenseSettings']['value']['adSenseEnabled']))
   else:
     print 'No ad units were updated.'
 else:

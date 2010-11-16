@@ -247,7 +247,8 @@ class Client(object):
     Args:
       new_state: bool New state of the xml parser to use.
     """
-    self._config['xml_parser'] = Utils.BoolTypeConvert(new_state)
+    SanityCheck.ValidateConfigXmlParser(new_state)
+    self._config['xml_parser'] = new_state
 
   xml_parser = property(__GetXmlParser, __SetXmlParser)
 
