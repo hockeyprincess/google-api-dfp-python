@@ -16,6 +16,40 @@ from ZSI.schema import LocalElementDeclaration, ElementDeclaration, TypeDefiniti
 class ns0:
     targetNamespace = "https://www.google.com/apis/ads/publisher/v201004"
 
+    class AdUnitAfcSizeError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "AdUnitAfcSizeError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.AdUnitAfcSizeError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201004","AdUnitAfcSizeError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.AdUnitAfcSizeError_Def.__bases__:
+                bases = list(ns0.AdUnitAfcSizeError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.AdUnitAfcSizeError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class AdUnitCodeError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "AdUnitCodeError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.AdUnitCodeError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201004","AdUnitCodeError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.AdUnitCodeError_Def.__bases__:
+                bases = list(ns0.AdUnitCodeError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.AdUnitCodeError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
     class ApiError_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "ApiError")
@@ -532,6 +566,23 @@ class ns0:
 
             ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
+    class RegExError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "RegExError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.RegExError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201004","RegExError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.RegExError_Def.__bases__:
+                bases = list(ns0.RegExError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.RegExError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
     class RequiredCollectionError_Def(TypeDefinition):
         #complexType/complexContent extension
         schema = "https://www.google.com/apis/ads/publisher/v201004"
@@ -770,6 +821,24 @@ class ns0:
 
             ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
+    class AdUnitAfcSizeError_Reason_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "AdUnitAfcSizeError.Reason")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
+    class AdUnitCodeError_Reason_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "AdUnitCodeError.Reason")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
     class AuthenticationError_Reason_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "AuthenticationError.Reason")
@@ -962,6 +1031,15 @@ class ns0:
     class RangeError_Reason_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "RangeError.Reason")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
+    class RegExError_Reason_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "RegExError.Reason")
         def __init__(self, pname, **kw):
             ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
             class Holder(str):

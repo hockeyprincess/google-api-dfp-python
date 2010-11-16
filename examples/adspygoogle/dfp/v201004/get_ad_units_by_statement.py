@@ -34,10 +34,23 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # sandbox environment.
-inventory_service = client.GetInventoryService()
+inventory_service = client.GetInventoryService(
+    'https://sandbox.google.com', 'v201004')
+network_service = client.GetNetworkService(
+    'https://sandbox.google.com', 'v201004')
 
-# Create statement object to only select root ad unit.
-filter_statement = {'query': 'WHERE parentId IS NULL LIMIT 500'}
+# Get the effective root ad unit ID of the network.
+effective_root_ad_unit_id = \
+    network_service.GetCurrentNetwork()[0]['effectiveRootAdUnitId']
+
+# Create a statement to select the children of the effective root ad unit.
+params = [{
+    'type': 'StringParam',
+    'key': 'id',
+    'value': effective_root_ad_unit_id
+}]
+filter_statement = {'query': 'WHERE parentId = :id LIMIT 1',
+                    'params': params}
 
 # Get ad units by statement.
 ad_units = inventory_service.GetAdUnitsByStatement(

@@ -108,7 +108,8 @@ def PackDictAsXml(obj, key='', key_map=[], order=[], wrap_list=False):
   if isinstance(obj, dict):
     # Determine if the object is typed.
     for item in obj:
-      if item == 'type' or item.find('.Type') > -1 or item.find('_Type') > -1:
+      if (item == 'xsi_type' or item == 'type' or item.find('.Type') > -1 or
+          item.find('_Type') > -1):
         xsi_type = obj[item]
         if key not in key_map: continue
         for key_map_item in key_map[key]:
@@ -119,12 +120,13 @@ def PackDictAsXml(obj, key='', key_map=[], order=[], wrap_list=False):
     # Step through each key/value pair in the dictionary and pack it.
     for sub_key in obj:
       if (not has_native_type and
-          (sub_key == 'type' or sub_key.find('.Type') > -1 or
-           sub_key.find('_Type') > -1)):
+          (sub_key == 'xsi_type' or sub_key == 'type' or
+           sub_key.find('.Type') > -1 or sub_key.find('_Type') > -1) and
+          not (sub_key == 'type' and 'xsi_type' in obj)):
         continue
       tmp_xsi_type, local_order, tmp_key_type_obj = ('', [], {})
       if key in key_map:
-        if 'type' not in obj:
+        if 'xsi_type' not in obj and 'type' not in obj:
           if not has_native_type:
             for key_type_obj in key_map[key]:
               if not key_type_obj['type']:
@@ -211,6 +213,7 @@ def PackDictAsXml(obj, key='', key_map=[], order=[], wrap_list=False):
     else:
       data = buf
   else:
+    obj = Utils.HtmlEscape(obj)
     if key:
       data = '<%s>%s</%s>' % (key, obj, key)
     else:

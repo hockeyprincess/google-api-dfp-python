@@ -61,15 +61,15 @@ class LineItemService(ApiService):
     Returns:
       tuple Response from the API method.
     """
-    self._sanity_check.ValidateLineItem(line_item)
-
     method_name = 'createLineItem'
     if self._config['soap_lib'] == SOAPPY:
       from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
+      self._sanity_check.ValidateLineItem(line_item)
       line_item = self._message_handler.PackDictAsXml(
           line_item, 'lineItem', OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (line_item))
     elif self._config['soap_lib'] == ZSI:
+      self._sanity_check.ValidateLineItem(line_item, self._web_services)
       request = eval('self._web_services.%sRequest()' % method_name)
       return self.__service.CallMethod(method_name,
                                        (({'lineItem': line_item},)),
@@ -85,18 +85,19 @@ class LineItemService(ApiService):
       tuple Response from the API method.
     """
     SanityCheck.ValidateTypes(((line_items, list),))
-    for item in line_items:
-      self._sanity_check.ValidateLineItem(item)
 
     method_name = 'createLineItems'
     if self._config['soap_lib'] == SOAPPY:
       from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
       new_line_items = []
       for line_item in line_items:
+        self._sanity_check.ValidateLineItem(line_item)
         new_line_items.append(self._message_handler.PackDictAsXml(
             line_item, 'lineItems', OBJ_KEY_ORDER_MAP))
       return self.__service.CallMethod(method_name, (''.join(new_line_items)))
     elif self._config['soap_lib'] == ZSI:
+      for item in line_items:
+        self._sanity_check.ValidateLineItem(item, self._web_services)
       request = eval('self._web_services.%sRequest()' % method_name)
       return self.__service.CallMethod(method_name,
                                        (({'lineItems': line_items},)),
@@ -189,15 +190,15 @@ class LineItemService(ApiService):
     Returns:
       tuple Response from the API method.
     """
-    self._sanity_check.ValidateLineItem(line_item)
-
     method_name = 'updateLineItem'
     if self._config['soap_lib'] == SOAPPY:
       from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
+      self._sanity_check.ValidateLineItem(line_item)
       line_item = self._message_handler.PackDictAsXml(line_item, 'lineItem',
           OBJ_KEY_ORDER_MAP)
       return self.__service.CallMethod(method_name, (line_item))
     elif self._config['soap_lib'] == ZSI:
+      self._sanity_check.ValidateLineItem(line_item, self._web_services)
       request = eval('self._web_services.%sRequest()' % method_name)
       return self.__service.CallMethod(method_name,
                                        (({'lineItem': line_item},)),
@@ -213,18 +214,20 @@ class LineItemService(ApiService):
       tuple Response from the API method.
     """
     SanityCheck.ValidateTypes(((line_items, list),))
-    for item in line_items:
-      self._sanity_check.ValidateLineItem(item)
 
     method_name = 'updateLineItems'
     if self._config['soap_lib'] == SOAPPY:
       from adspygoogle.dfp.soappy import OBJ_KEY_ORDER_MAP
+      for item in line_items:
+        self._sanity_check.ValidateLineItem(item)
       new_line_items = []
       for line_item in line_items:
         new_line_items.append(self._message_handler.PackDictAsXml(
             line_item, 'lineItems', OBJ_KEY_ORDER_MAP))
       return self.__service.CallMethod(method_name, (''.join(new_line_items)))
     elif self._config['soap_lib'] == ZSI:
+      for item in line_items:
+        self._sanity_check.ValidateLineItem(item, self._web_services)
       request = eval('self._web_services.%sRequest()' % method_name)
       return self.__service.CallMethod(method_name,
                                        (({'lineItems': line_items},)),

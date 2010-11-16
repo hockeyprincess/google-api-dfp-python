@@ -14,11 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This code example creates new line item creative associations (LICAs) from
-a given creative and existing line items belonging to an order. To determine
-which creatives exist, run get_all_creatives.py. To determine which orders
-exist, run get_all_orders.py. To determine which LICAs exist, run
-get_all_licas.py."""
+"""This code example creates new line item creative associations (LICAs) for an
+existing line item and a set of creative ids. For small business networks,
+the creative ids must represent new or copied creatives as creatives cannot be
+used for more than one line item. For premium solution networks, the reative ids
+can represent any creatvie. To copy creatives, run copy_image_creatives.py. To
+determine which LICAs exist, run get_all_licas.py."""
 
 __author__ = 'api.sgrinberg@gmail.com (Stan Grinberg)'
 
@@ -37,42 +38,29 @@ client = DfpClient(path=os.path.join('..', '..', '..', '..'))
 
 # Initialize appropriate service. By default, the request is always made against
 # sandbox environment.
-line_item_service = client.GetLineItemService()
-lica_service = client.GetLineItemCreativeAssociationService()
+lica_service = client.GetLineItemCreativeAssociationService(
+    'https://sandbox.google.com', 'v201004')
+creative_service = client.GetCreativeService(
+    'https://sandbox.google.com', 'v201004')
 
-# Set order to get line items from and the creative to associate them with.
+# Set the line item ID and creative IDs to associate.
+line_item_id = 'INSERT_LINE_ITEM_ID_HERE'
 order_id = 'INSERT_ORDER_ID_HERE'
-creative_id = 'INSERT_CREATIVE_ID_HERE'
+creative_ids = ['INSERT_CREATIVE_ID_HERE']
 
-# Create statement object to get first 500 items for the given order. To get
-# more than 500 line items, see get_all_line_items.py.
-filter_statement = {'query': 'WHERE orderId = \'%s\' LIMIT 500' % order_id}
+licas = []
+for creative_id in creative_ids:
+  licas.append({'creativeId': creative_id,
+                'lineItemId': line_item_id})
 
-# Get line items by statement.
-line_items = line_item_service.GetLineItemsByStatement(
-    filter_statement)[0]['results']
+# Create the LICAs remotely.
+licas = lica_service.CreateLineItemCreativeAssociations(licas)
 
-if line_items:
-  # Create LICA objects.
-  licas = []
-  for line_item in line_items:
-    lica = {
-        'creativeId': creative_id,
-        'lineItemId': line_item['id'],
-        'status': 'ACTIVE'
-    }
-    licas.append(lica)
-
-    # Create the LICAs remotely.
-    licas = lica_service.CreateLineItemCreativeAssociations(licas)
-
-    # Display results.
-    if licas:
-      for lica in licas:
-        print ('LICA with line item id \'%s\', creative id \'%s\', and '
-               'status \'%s\' was created.' % (lica['id'], lica['creativeId'],
-                                               lica['status']))
-    else:
-      print 'No LICAs created.'
+# Display results.
+if licas:
+  for lica in licas:
+    print ('LICA with line item id \'%s\', creative id \'%s\', and '
+           'status \'%s\' was created.' % (lica['id'], lica['creativeId'],
+                                           lica['status']))
 else:
-  print 'No line items to associate the creative with.'
+  print 'No LICAs created.'

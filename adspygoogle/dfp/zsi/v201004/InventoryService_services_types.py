@@ -576,6 +576,45 @@ class ns0:
             Holder.__name__ = "AdUnitAction_Holder"
             self.pyclass = Holder
 
+    class Param_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "Param")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.Param_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"Param.Type"), aname="_Param_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._Param_Type = None
+                    return
+            Holder.__name__ = "Param_Holder"
+            self.pyclass = Holder
+
+    class String_ParamMapEntry_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "String_ParamMapEntry")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.String_ParamMapEntry_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"key"), aname="_key", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","Param",lazy=False)(pname=(ns,"value"), aname="_value", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._key = None
+                    self._value = None
+                    return
+            Holder.__name__ = "String_ParamMapEntry_Holder"
+            self.pyclass = Holder
+
     class AdUnit_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "AdUnit")
@@ -622,45 +661,6 @@ class ns0:
                     self._results = []
                     return
             Holder.__name__ = "AdUnitPage_Holder"
-            self.pyclass = Holder
-
-    class Param_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201004"
-        type = (schema, "Param")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.Param_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"Param.Type"), aname="_Param_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
-                typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._Param_Type = None
-                    return
-            Holder.__name__ = "Param_Holder"
-            self.pyclass = Holder
-
-    class String_ParamMapEntry_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201004"
-        type = (schema, "String_ParamMapEntry")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.String_ParamMapEntry_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"key"), aname="_key", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201004","Param",lazy=False)(pname=(ns,"value"), aname="_value", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
-                typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._key = None
-                    self._value = None
-                    return
-            Holder.__name__ = "String_ParamMapEntry_Holder"
             self.pyclass = Holder
 
     class ApiError_Def(ZSI.TCcompound.ComplexType, TypeDefinition):

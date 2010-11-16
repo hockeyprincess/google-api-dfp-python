@@ -160,10 +160,11 @@ class DfpBillingError(DfpApiError):
 # Map error codes and types to their corresponding classes.
 ERRORS = {}
 for index in ERROR_TYPES:
-  if index in ('AdUnitAfcSizeError', 'AdUnitCodeError', 'ApiError',
-               'CommonError', 'CreativeError', 'FileError',
-               'FlashCreativeError', 'ForecastError', 'InvalidUrlError',
-               'InventoryTargetingError', 'LineItemCreativeAssociationError',
+  if index in ('AdUnitAfcSizeError', 'AdUnitCodeError', 'AdUnitHierarchyError',
+               'ApiError', 'CommonError', 'CreativeError', 'FileError',
+               'FlashCreativeError', 'ForecastError', 'GeoTargetingError',
+               'InvalidUrlError', 'InventoryTargetingError',
+               'InventoryUnitError', 'LineItemCreativeAssociationError',
                'LineItemCreativeAssociationOperationError',
                'LineItemFlightDateError', 'LineItemOperationError',
                'NotNullError', 'NullError', 'OrderActionError', 'OrderError',
