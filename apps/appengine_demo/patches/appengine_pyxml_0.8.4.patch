@@ -1,0 +1,3523 @@
+diff -rupN _xmlplus/__init__.py _xmlplus_patched/__init__.py
+--- _xmlplus/__init__.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/__init__.py	2009-05-13 18:38:26.000000000 -0400
+@@ -26,7 +26,7 @@ xpath -- XPath parsing and evaluation.  
+ """
+ 
+ 
+-# xml.unicode is not listed because it is for internal use and backwards
++# _xmlplus.unicode is not listed because it is for internal use and backwards
+ # compatibility only.
+ __all__ = ['dom', 'marshal', 'parsers', 'sax', 'schema', 'utils', 'xpath', 'xslt']
+ 
+diff -rupN _xmlplus/dom/Attr.py _xmlplus_patched/dom/Attr.py
+--- _xmlplus/dom/Attr.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/Attr.py	2009-05-13 18:38:24.000000000 -0400
+@@ -11,7 +11,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ from DOMImplementation import implementation
+ from FtNode import FtNode
+ from Event import MutationEvent
+diff -rupN _xmlplus/dom/CDATASection.py _xmlplus_patched/dom/CDATASection.py
+--- _xmlplus/dom/CDATASection.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/CDATASection.py	2009-05-13 18:38:26.000000000 -0400
+@@ -11,7 +11,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ from Text import Text
+ 
+ class CDATASection(Text):
+diff -rupN _xmlplus/dom/CharacterData.py _xmlplus_patched/dom/CharacterData.py
+--- _xmlplus/dom/CharacterData.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/CharacterData.py	2009-05-13 18:38:25.000000000 -0400
+@@ -10,14 +10,14 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ from DOMImplementation import implementation
+ from FtNode import FtNode
+ 
+ from ext import IsDOMString
+ 
+-from xml.dom import IndexSizeErr
+-from xml.dom import SyntaxErr
++from _xmlplus.dom import IndexSizeErr
++from _xmlplus.dom import SyntaxErr
+ 
+ class CharacterData(FtNode):
+     def __init__(self, ownerDocument, data):
+diff -rupN _xmlplus/dom/Comment.py _xmlplus_patched/dom/Comment.py
+--- _xmlplus/dom/Comment.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/Comment.py	2009-05-13 18:38:25.000000000 -0400
+@@ -10,7 +10,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ from CharacterData import CharacterData
+ 
+ class Comment(CharacterData):
+diff -rupN _xmlplus/dom/Document.py _xmlplus_patched/dom/Document.py
+--- _xmlplus/dom/Document.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/Document.py	2009-05-13 18:38:25.000000000 -0400
+@@ -18,14 +18,14 @@ from DOMImplementation import implementa
+ from FtNode import FtNode, get_name_pattern
+ from ext import SplitQName
+ 
+-from xml.dom import Node
+-from xml.dom import XML_NAMESPACE
+-from xml.dom import XMLNS_NAMESPACE
+-from xml.dom import EMPTY_NAMESPACE
+-from xml.dom import HierarchyRequestErr
+-from xml.dom import InvalidCharacterErr
+-from xml.dom import NotSupportedErr
+-from xml.dom import NamespaceErr
++from _xmlplus.dom import Node
++from _xmlplus.dom import XML_NAMESPACE
++from _xmlplus.dom import XMLNS_NAMESPACE
++from _xmlplus.dom import EMPTY_NAMESPACE
++from _xmlplus.dom import HierarchyRequestErr
++from _xmlplus.dom import InvalidCharacterErr
++from _xmlplus.dom import NotSupportedErr
++from _xmlplus.dom import NamespaceErr
+ 
+ class Document(FtNode):
+     #Base node type for this class
+diff -rupN _xmlplus/dom/DocumentFragment.py _xmlplus_patched/dom/DocumentFragment.py
+--- _xmlplus/dom/DocumentFragment.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/DocumentFragment.py	2009-05-13 18:38:25.000000000 -0400
+@@ -10,7 +10,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ from FtNode import FtNode
+ 
+ class DocumentFragment(FtNode):
+diff -rupN _xmlplus/dom/DocumentType.py _xmlplus_patched/dom/DocumentType.py
+--- _xmlplus/dom/DocumentType.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/DocumentType.py	2009-05-13 18:38:28.000000000 -0400
+@@ -10,7 +10,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ from DOMImplementation import implementation
+ from FtNode import FtNode
+ 
+diff -rupN _xmlplus/dom/Element.py _xmlplus_patched/dom/Element.py
+--- _xmlplus/dom/Element.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/Element.py	2009-05-13 18:38:27.000000000 -0400
+@@ -14,15 +14,15 @@ from DOMImplementation import implementa
+ from FtNode import FtNode, get_name_pattern
+ 
+ import Event
+-from xml.dom import Node
+-from xml.dom import XML_NAMESPACE
+-from xml.dom import EMPTY_NAMESPACE
+-from xml.dom import InvalidCharacterErr
+-from xml.dom import WrongDocumentErr
+-from xml.dom import InuseAttributeErr
+-from xml.dom import NotFoundErr
+-from xml.dom import SyntaxErr
+-from xml.dom import NamespaceErr
++from _xmlplus.dom import Node
++from _xmlplus.dom import XML_NAMESPACE
++from _xmlplus.dom import EMPTY_NAMESPACE
++from _xmlplus.dom import InvalidCharacterErr
++from _xmlplus.dom import WrongDocumentErr
++from _xmlplus.dom import InuseAttributeErr
++from _xmlplus.dom import NotFoundErr
++from _xmlplus.dom import SyntaxErr
++from _xmlplus.dom import NamespaceErr
+ 
+ from ext import SplitQName, IsDOMString
+ 
+diff -rupN _xmlplus/dom/Entity.py _xmlplus_patched/dom/Entity.py
+--- _xmlplus/dom/Entity.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/Entity.py	2009-05-13 18:38:26.000000000 -0400
+@@ -11,7 +11,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ from DOMImplementation import implementation
+ from FtNode import FtNode
+ 
+diff -rupN _xmlplus/dom/EntityReference.py _xmlplus_patched/dom/EntityReference.py
+--- _xmlplus/dom/EntityReference.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/EntityReference.py	2009-05-13 18:38:23.000000000 -0400
+@@ -10,7 +10,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ from DOMImplementation import implementation
+ from FtNode import FtNode
+ 
+diff -rupN _xmlplus/dom/FtNode.py _xmlplus_patched/dom/FtNode.py
+--- _xmlplus/dom/FtNode.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/FtNode.py	2009-05-13 18:42:02.000000000 -0400
+@@ -14,16 +14,16 @@ See  http://4suite.com/COPYRIGHT  for li
+ from DOMImplementation import implementation
+ import Event
+ 
+-from xml.dom import Node, EMPTY_NAMESPACE
+-from xml.dom import NoModificationAllowedErr
+-from xml.dom import NamespaceErr
+-from xml.dom import NotFoundErr
+-from xml.dom import NotSupportedErr
+-from xml.dom import HierarchyRequestErr
+-from xml.dom import WrongDocumentErr
+-from xml.dom import InvalidCharacterErr
+-from xml.dom import UnspecifiedEventTypeErr
+-from xml.dom import XML_NAMESPACE
++from _xmlplus.dom import Node, EMPTY_NAMESPACE
++from _xmlplus.dom import NoModificationAllowedErr
++from _xmlplus.dom import NamespaceErr
++from _xmlplus.dom import NotFoundErr
++from _xmlplus.dom import NotSupportedErr
++from _xmlplus.dom import HierarchyRequestErr
++from _xmlplus.dom import WrongDocumentErr
++from _xmlplus.dom import InvalidCharacterErr
++from _xmlplus.dom import UnspecifiedEventTypeErr
++from _xmlplus.dom import XML_NAMESPACE
+ 
+ import re, copy
+ #FIXME: should allow combining characters: fix when Python gets Unicode
+@@ -38,8 +38,8 @@ def get_name_pattern():
+     except NameError:
+         _namePattern = re.compile('[a-zA-Z_:][\w\.\-_:]*\Z')
+     else:
+-        import xml.utils.characters
+-        _namePattern = re.compile(xml.utils.characters.Name+'\Z')
++        import _xmlplus.utils.characters
++        _namePattern = re.compile(_xmlplus.utils.characters.Name+'\Z')
+     return _namePattern
+ 
+ class FtNode(Event.EventTarget, Node):
+diff -rupN _xmlplus/dom/MessageSource.py _xmlplus_patched/dom/MessageSource.py
+--- _xmlplus/dom/MessageSource.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/MessageSource.py	2009-05-13 18:38:23.000000000 -0400
+@@ -1,22 +1,22 @@
+ # DOMException
+-from xml.dom import INDEX_SIZE_ERR, DOMSTRING_SIZE_ERR , HIERARCHY_REQUEST_ERR
+-from xml.dom import WRONG_DOCUMENT_ERR, INVALID_CHARACTER_ERR, NO_DATA_ALLOWED_ERR
+-from xml.dom import NO_MODIFICATION_ALLOWED_ERR, NOT_FOUND_ERR, NOT_SUPPORTED_ERR
+-from xml.dom import INUSE_ATTRIBUTE_ERR, INVALID_STATE_ERR, SYNTAX_ERR
+-from xml.dom import INVALID_MODIFICATION_ERR, NAMESPACE_ERR, INVALID_ACCESS_ERR
+-from xml.dom import VALIDATION_ERR
++from _xmlplus.dom import INDEX_SIZE_ERR, DOMSTRING_SIZE_ERR , HIERARCHY_REQUEST_ERR
++from _xmlplus.dom import WRONG_DOCUMENT_ERR, INVALID_CHARACTER_ERR, NO_DATA_ALLOWED_ERR
++from _xmlplus.dom import NO_MODIFICATION_ALLOWED_ERR, NOT_FOUND_ERR, NOT_SUPPORTED_ERR
++from _xmlplus.dom import INUSE_ATTRIBUTE_ERR, INVALID_STATE_ERR, SYNTAX_ERR
++from _xmlplus.dom import INVALID_MODIFICATION_ERR, NAMESPACE_ERR, INVALID_ACCESS_ERR
++from _xmlplus.dom import VALIDATION_ERR
+ 
+ # EventException
+-from xml.dom import UNSPECIFIED_EVENT_TYPE_ERR
++from _xmlplus.dom import UNSPECIFIED_EVENT_TYPE_ERR
+ 
+ #Range Exceptions
+-from xml.dom import BAD_BOUNDARYPOINTS_ERR
+-from xml.dom import INVALID_NODE_TYPE_ERR
++from _xmlplus.dom import BAD_BOUNDARYPOINTS_ERR
++from _xmlplus.dom import INVALID_NODE_TYPE_ERR
+ 
+ # Fourthought Exceptions
+-from xml.dom import XML_PARSE_ERR
++from _xmlplus.dom import XML_PARSE_ERR
+ 
+-from xml.FtCore import get_translator
++from _xmlplus.FtCore import get_translator
+ 
+ _ = get_translator("dom")
+ 
+diff -rupN _xmlplus/dom/NamedNodeMap.py _xmlplus_patched/dom/NamedNodeMap.py
+--- _xmlplus/dom/NamedNodeMap.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/NamedNodeMap.py	2009-05-13 18:38:26.000000000 -0400
+@@ -27,14 +27,14 @@ class _NamedNodeMapIter:
+         except IndexError:
+             return self
+ 
+-from xml.dom import Node
+-from xml.dom import EMPTY_NAMESPACE
+-from xml.dom import NoModificationAllowedErr
+-from xml.dom import NotFoundErr
+-from xml.dom import NotSupportedErr
+-from xml.dom import WrongDocumentErr
+-from xml.dom import InuseAttributeErr
+-from xml.dom import NamespaceErr
++from _xmlplus.dom import Node
++from _xmlplus.dom import EMPTY_NAMESPACE
++from _xmlplus.dom import NoModificationAllowedErr
++from _xmlplus.dom import NotFoundErr
++from _xmlplus.dom import NotSupportedErr
++from _xmlplus.dom import WrongDocumentErr
++from _xmlplus.dom import InuseAttributeErr
++from _xmlplus.dom import NamespaceErr
+ 
+ class NamedNodeMap(UserDict.UserDict):
+     def __init__(self, ownerDoc=None):
+diff -rupN _xmlplus/dom/NodeIterator.py _xmlplus_patched/dom/NodeIterator.py
+--- _xmlplus/dom/NodeIterator.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/NodeIterator.py	2009-05-13 18:38:23.000000000 -0400
+@@ -13,8 +13,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ 
+ from NodeFilter import NodeFilter
+ 
+-from xml.dom import NoModificationAllowedErr
+-from xml.dom import InvalidStateErr
++from _xmlplus.dom import NoModificationAllowedErr
++from _xmlplus.dom import InvalidStateErr
+ 
+ class NodeIterator:
+ 
+diff -rupN _xmlplus/dom/NodeList.py _xmlplus_patched/dom/NodeList.py
+--- _xmlplus/dom/NodeList.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/NodeList.py	2009-05-13 18:38:25.000000000 -0400
+@@ -12,7 +12,7 @@ See  http://4suite.com/COPYRIGHT  for li
+ 
+ import UserList
+ 
+-from xml.dom import NoModificationAllowedErr
++from _xmlplus.dom import NoModificationAllowedErr
+ 
+ class NodeList(UserList.UserList):
+     def __init__(self, list=None):
+diff -rupN _xmlplus/dom/Notation.py _xmlplus_patched/dom/Notation.py
+--- _xmlplus/dom/Notation.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/Notation.py	2009-05-13 18:38:28.000000000 -0400
+@@ -11,7 +11,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ from FtNode import FtNode
+ 
+ class Notation(FtNode):
+diff -rupN _xmlplus/dom/ProcessingInstruction.py _xmlplus_patched/dom/ProcessingInstruction.py
+--- _xmlplus/dom/ProcessingInstruction.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/ProcessingInstruction.py	2009-05-13 18:38:26.000000000 -0400
+@@ -10,7 +10,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node, EMPTY_NAMESPACE
++from _xmlplus.dom import Node, EMPTY_NAMESPACE
+ from FtNode import FtNode
+ 
+ class ProcessingInstruction(FtNode):
+diff -rupN _xmlplus/dom/Range.py _xmlplus_patched/dom/Range.py
+--- _xmlplus/dom/Range.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/Range.py	2009-05-13 18:38:26.000000000 -0400
+@@ -11,13 +11,13 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ 
+-from xml.dom import InvalidStateErr
+-from xml.dom import InvalidNodeTypeErr
+-from xml.dom import BadBoundaryPointsErr
+-from xml.dom import IndexSizeErr
+-from xml.dom import WrongDocumentErr
++from _xmlplus.dom import InvalidStateErr
++from _xmlplus.dom import InvalidNodeTypeErr
++from _xmlplus.dom import BadBoundaryPointsErr
++from _xmlplus.dom import IndexSizeErr
++from _xmlplus.dom import WrongDocumentErr
+ 
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ 
+ 
+ class Range:
+@@ -356,7 +356,7 @@ class Range:
+ 
+ 
+         #NOTE Use 4DOM ReleaseNode cause it is interface safe
+-        from xml.dom.ext import ReleaseNode
++        from _xmlplus.dom.ext import ReleaseNode
+ 
+         if self.detached:
+             raise InvalidStateErr()
+@@ -936,7 +936,7 @@ class Range:
+         res = self.__recurseToString(df)
+ 
+ 
+-        from xml.dom.ext import ReleaseNode
++        from _xmlplus.dom.ext import ReleaseNode
+         ReleaseNode(df)
+ 
+         return res
+diff -rupN _xmlplus/dom/Text.py _xmlplus_patched/dom/Text.py
+--- _xmlplus/dom/Text.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/Text.py	2009-05-13 18:38:24.000000000 -0400
+@@ -12,8 +12,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ 
+ from CharacterData import CharacterData
+ 
+-from xml.dom import Node
+-from xml.dom import IndexSizeErr
++from _xmlplus.dom import Node
++from _xmlplus.dom import IndexSizeErr
+ 
+ class Text(CharacterData):
+     nodeType = Node.TEXT_NODE
+diff -rupN _xmlplus/dom/TreeWalker.py _xmlplus_patched/dom/TreeWalker.py
+--- _xmlplus/dom/TreeWalker.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/TreeWalker.py	2009-05-13 18:38:28.000000000 -0400
+@@ -13,8 +13,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ 
+ from NodeFilter import NodeFilter
+ 
+-from xml.dom import NoModificationAllowedErr
+-from xml.dom import NotSupportedErr
++from _xmlplus.dom import NoModificationAllowedErr
++from _xmlplus.dom import NotSupportedErr
+ 
+ class TreeWalker:
+     def __init__(self, root, whatToShow, filter, expandEntityReferences):
+diff -rupN _xmlplus/dom/__init__.py _xmlplus_patched/dom/__init__.py
+--- _xmlplus/dom/__init__.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/__init__.py	2009-05-13 18:38:24.000000000 -0400
+@@ -217,10 +217,10 @@ class InvalidNodeTypeErr(RangeException)
+     def __init__(self, msg=''):
+         RangeException.__init__(self, INVALID_NODE_TYPE_ERR, msg)
+ 
+-from xml.dom import DOMImplementation
++from _xmlplus.dom import DOMImplementation
+ 
+ try:
+-    from xml.dom.html import HTMLDOMImplementation
++    from _xmlplus.dom.html import HTMLDOMImplementation
+     implementation =  HTMLDOMImplementation.HTMLDOMImplementation()
+     HTMLDOMImplementation.implementation = implementation
+ except ImportError:
+diff -rupN _xmlplus/dom/domreg.py _xmlplus_patched/dom/domreg.py
+--- _xmlplus/dom/domreg.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/domreg.py	2009-05-13 18:41:42.000000000 -0400
+@@ -1,16 +1,16 @@
+ """Registration facilities for DOM. This module should not be used
+ directly. Instead, the functions getDOMImplementation and
+-registerDOMImplementation should be imported from xml.dom."""
++registerDOMImplementation should be imported from _xmlplus.dom."""
+ 
+-from xml.dom.minicompat import *  # isinstance, StringTypes
++from _xmlplus.dom.minicompat import *  # isinstance, StringTypes
+ 
+ # This is a list of well-known implementations.  Well-known names
+ # should be published by posting to xml-sig@python.org, and are
+ # subsequently recorded in this file.
+ 
+ well_known_implementations = {
+-    'minidom':'xml.dom.minidom',
+-    '4DOM': 'xml.dom.DOMImplementation',
++    'minidom':'_xmlplus.dom.minidom',
++    '4DOM': '_xmlplus.dom.DOMImplementation',
+     }
+ 
+ # DOM implementations not officially registered should register
+diff -rupN _xmlplus/dom/expatbuilder.py _xmlplus_patched/dom/expatbuilder.py
+--- _xmlplus/dom/expatbuilder.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/expatbuilder.py	2009-05-13 18:41:42.000000000 -0400
+@@ -27,13 +27,13 @@ This avoids all the overhead of SAX and 
+ #      calling any methods on the node object if it exists.  (A rather
+ #      nice speedup is achieved this way as well!)
+ 
+-from xml.dom import xmlbuilder, minidom, Node
+-from xml.dom import EMPTY_NAMESPACE, EMPTY_PREFIX, XMLNS_NAMESPACE
+-from xml.parsers import expat
+-from xml.dom.minidom import _append_child, _set_attribute_node
+-from xml.dom.NodeFilter import NodeFilter
++from _xmlplus.dom import xmlbuilder, minidom, Node
++from _xmlplus.dom import EMPTY_NAMESPACE, EMPTY_PREFIX, XMLNS_NAMESPACE
++from _xmlplus.parsers import expat
++from _xmlplus.dom.minidom import _append_child, _set_attribute_node
++from _xmlplus.dom.NodeFilter import NodeFilter
+ 
+-from xml.dom.minicompat import *
++from _xmlplus.dom.minicompat import *
+ 
+ TEXT_NODE = Node.TEXT_NODE
+ CDATA_SECTION_NODE = Node.CDATA_SECTION_NODE
+@@ -131,7 +131,7 @@ def _parse_ns_name(builder, name):
+ 
+ 
+ class ExpatBuilder:
+-    """Document builder that uses Expat to build a ParsedXML.DOM document
++    """Document builder that uses Expat to build a Parsed_xmlplus.dom document
+     instance."""
+ 
+     def __init__(self, options=None):
+diff -rupN _xmlplus/dom/ext/Dom2Sax.py _xmlplus_patched/dom/ext/Dom2Sax.py
+--- _xmlplus/dom/ext/Dom2Sax.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/Dom2Sax.py	2009-05-13 18:40:41.000000000 -0400
+@@ -3,11 +3,11 @@
+ $Date: 2002/05/02 10:15:04 $ by $Author: loewis $
+ """
+ 
+-from xml.sax._exceptions import SAXNotSupportedException, SAXNotRecognizedException
+-from xml.sax.xmlreader import XMLReader, AttributesNSImpl, AttributesImpl
+-from xml.sax.saxlib import LexicalHandler, DeclHandler
+-from xml.sax import handler
+-from xml.dom import Node, XMLNS_NAMESPACE
++from _xmlplus.sax._exceptions import SAXNotSupportedException, SAXNotRecognizedException
++from _xmlplus.sax.xmlreader import XMLReader, AttributesNSImpl, AttributesImpl
++from _xmlplus.sax.saxlib import LexicalHandler, DeclHandler
++from _xmlplus.sax import handler
++from _xmlplus.dom import Node, XMLNS_NAMESPACE
+ XMLNS_NS = XMLNS_NAMESPACE
+ 
+ class Dom2SaxParser(XMLReader):
+@@ -267,10 +267,10 @@ def _parse(parser, doc, features, proper
+     
+ if __name__ == '__main__':
+     import sys
+-    from xml.sax import make_parser
+-    from xml.dom.ext.reader import Sax2
+-    from xml.dom.ext import PrettyPrint
+-    from xml.sax.handler import feature_namespaces,\
++    from _xmlplus.sax import make_parser
++    from _xmlplus.dom.ext.reader import Sax2
++    from _xmlplus.dom.ext import PrettyPrint
++    from _xmlplus.sax.handler import feature_namespaces,\
+          feature_namespace_prefixes, property_lexical_handler,\
+          property_declaration_handler
+     f1 = feature_namespaces
+@@ -286,8 +286,8 @@ if __name__ == '__main__':
+     PrettyPrint(doc)
+     for (val1,val2,val3,val4)  in ((0,0,0,0),(0,1,1,1),(1,0,0,0),(1,1,1,1)):
+         for p,d in ((Dom2SaxParser(), doc),
+-                    (make_parser(['xml.sax.drivers2.drv_pyexpat']), f),
+-                    (make_parser(['xml.sax.drivers2.drv_xmlproc']), f)):
++                    (make_parser(['_xmlplus.sax.drivers2.drv_pyexpat']), f),
++                    (make_parser(['_xmlplus.sax.drivers2.drv_xmlproc']), f)):
+             if not d is doc:
+                 d = open(file)
+             _parse(p, d, ((f1, val1), (f2,val2)), ((p1,val3),(p2,val4)))
+diff -rupN _xmlplus/dom/ext/Printer.py _xmlplus_patched/dom/ext/Printer.py
+--- _xmlplus/dom/ext/Printer.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/Printer.py	2009-05-13 18:38:26.000000000 -0400
+@@ -12,13 +12,13 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string, re
+-from xml.dom import Node
+-from xml.dom.ext.Visitor import Visitor, WalkerInterface
+-from xml.dom import ext, XMLNS_NAMESPACE, XML_NAMESPACE, XHTML_NAMESPACE
+-from xml.dom.html import TranslateHtmlCdata
+-from xml.dom.html import HTML_4_TRANSITIONAL_INLINE
+-from xml.dom.html import HTML_FORBIDDEN_END
+-from xml.dom.html import HTML_BOOLEAN_ATTRS
++from _xmlplus.dom import Node
++from _xmlplus.dom.ext.Visitor import Visitor, WalkerInterface
++from _xmlplus.dom import ext, XMLNS_NAMESPACE, XML_NAMESPACE, XHTML_NAMESPACE
++from _xmlplus.dom.html import TranslateHtmlCdata
++from _xmlplus.dom.html import HTML_4_TRANSITIONAL_INLINE
++from _xmlplus.dom.html import HTML_FORBIDDEN_END
++from _xmlplus.dom.html import HTML_BOOLEAN_ATTRS
+ 
+ ILLEGAL_LOW_CHARS = '[\x01-\x08\x0B-\x0C\x0E-\x1F]'
+ SURROGATE_BLOCK = '[\xF0-\xF7][\x80-\xBF][\x80-\xBF][\x80-\xBF]'
+@@ -56,7 +56,7 @@ except ImportError:
+         encoding = string.upper(encoding)
+         if encoding == 'UTF-8':
+             return text
+-        from xml.unicode.iso8859 import wstring
++        from _xmlplus.unicode.iso8859 import wstring
+         wstring.install_alias('ISO-8859-1', 'ISO_8859-1:1987')
+         #Note: Pass through to wstrop.  This means we don't play nice and
+         #Escape characters that are not in the target encoding.
+diff -rupN _xmlplus/dom/ext/XHtml2HtmlPrinter.py _xmlplus_patched/dom/ext/XHtml2HtmlPrinter.py
+--- _xmlplus/dom/ext/XHtml2HtmlPrinter.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/XHtml2HtmlPrinter.py	2009-05-13 18:38:25.000000000 -0400
+@@ -1,7 +1,7 @@
+ import string
+ import Printer
+-from xml.dom import XHTML_NAMESPACE
+-from xml.dom.html import HTML_FORBIDDEN_END
++from _xmlplus.dom import XHTML_NAMESPACE
++from _xmlplus.dom.html import HTML_FORBIDDEN_END
+ 
+ class HtmlDocType:
+     name = 'HTML'
+diff -rupN _xmlplus/dom/ext/XHtmlPrinter.py _xmlplus_patched/dom/ext/XHtmlPrinter.py
+--- _xmlplus/dom/ext/XHtmlPrinter.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/XHtmlPrinter.py	2009-05-13 18:38:24.000000000 -0400
+@@ -1,6 +1,6 @@
+ import string
+ import Printer
+-from xml.dom import XHTML_NAMESPACE
++from _xmlplus.dom import XHTML_NAMESPACE
+ 
+ # Wrapper classes to convert nodes from HTML to XHTML
+ 
+diff -rupN _xmlplus/dom/ext/__init__.py _xmlplus_patched/dom/ext/__init__.py
+--- _xmlplus/dom/ext/__init__.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/__init__.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,10 +15,10 @@ and DOM-related utilities."""
+ 
+ import sys,string
+ 
+-from xml.dom import Node
+-from xml.dom.NodeFilter import NodeFilter
+-from xml.dom import XML_NAMESPACE, XMLNS_NAMESPACE, DOMException
+-from xml.dom.html import HTML_4_TRANSITIONAL_INLINE
++from _xmlplus.dom import Node
++from _xmlplus.dom.NodeFilter import NodeFilter
++from _xmlplus.dom import XML_NAMESPACE, XMLNS_NAMESPACE, DOMException
++from _xmlplus.dom.html import HTML_4_TRANSITIONAL_INLINE
+ from c14n import Canonicalize
+ import re
+ 
+@@ -58,7 +58,7 @@ def NodeTypeToClassName(nodeType):
+ def Print(root, stream=sys.stdout, encoding='UTF-8'):
+     if not hasattr(root, "nodeType"):
+         return
+-    from xml.dom.ext import Printer
++    from _xmlplus.dom.ext import Printer
+     nss = SeekNss(root)
+     visitor = Printer.PrintVisitor(stream, encoding, nsHints=nss)
+     Printer.PrintWalker(visitor, root).run()
+@@ -69,7 +69,7 @@ def PrettyPrint(root, stream=sys.stdout,
+                 preserveElements=None):
+     if not hasattr(root, "nodeType"):
+         return
+-    from xml.dom.ext import Printer
++    from _xmlplus.dom.ext import Printer
+     nss_hints = SeekNss(root)
+     preserveElements = preserveElements or []
+     owner_doc = root.ownerDocument or root
+@@ -87,7 +87,7 @@ def XHtmlPrettyPrint(root, stream=sys.st
+     if not hasattr(root, "nodeType"):
+         return
+ 
+-    from xml.dom.ext import XHtmlPrinter
++    from _xmlplus.dom.ext import XHtmlPrinter
+     visitor = XHtmlPrinter.XHtmlPrintVisitor(stream, encoding, indent)
+     Printer.PrintWalker(visitor, root).run()
+     stream.write('\n')
+diff -rupN _xmlplus/dom/ext/c14n.py _xmlplus_patched/dom/ext/c14n.py
+--- _xmlplus/dom/ext/c14n.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/c14n.py	2009-05-13 18:38:28.000000000 -0400
+@@ -38,9 +38,9 @@ or
+ '''
+ 
+ import string
+-from xml.dom import Node
++from _xmlplus.dom import Node
+ try:
+-    from xml.ns import XMLNS
++    from _xmlplus.ns import XMLNS
+ except:
+     class XMLNS:
+         BASE = "http://www.w3.org/2000/xmlns/"
+diff -rupN _xmlplus/dom/ext/reader/HtmlLib.py _xmlplus_patched/dom/ext/reader/HtmlLib.py
+--- _xmlplus/dom/ext/reader/HtmlLib.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/reader/HtmlLib.py	2009-05-13 18:38:26.000000000 -0400
+@@ -12,8 +12,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import os, urllib
+-from xml.dom.ext import reader
+-from xml.dom import Node
++from _xmlplus.dom.ext import reader
++from _xmlplus.dom import Node
+ 
+ import Sgmlop
+ 
+diff -rupN _xmlplus/dom/ext/reader/HtmlSax.py _xmlplus_patched/dom/ext/reader/HtmlSax.py
+--- _xmlplus/dom/ext/reader/HtmlSax.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/reader/HtmlSax.py	2009-05-13 18:38:23.000000000 -0400
+@@ -13,9 +13,9 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import sys, string, cStringIO
+-import xml.dom.ext
+-from xml.dom import Node
+-from xml.dom import implementation
++import _xmlplus.dom.ext
++from _xmlplus.dom import Node
++from _xmlplus.dom import implementation
+ 
+ 
+ class HtmlDomGenerator:
+@@ -31,7 +31,7 @@ class HtmlDomGenerator:
+             self._ownerDoc = implementation.createHTMLDocument('')
+             de = self._ownerDoc.documentElement
+             self._ownerDoc.removeChild(de)
+-            xml.dom.ext.ReleaseNode(de)
++            _xmlplus.dom.ext.ReleaseNode(de)
+             self._rootNode = self._ownerDoc
+         else:
+             self._ownerDoc = ownerDoc
+diff -rupN _xmlplus/dom/ext/reader/PyExpat.py _xmlplus_patched/dom/ext/reader/PyExpat.py
+--- _xmlplus/dom/ext/reader/PyExpat.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/reader/PyExpat.py	2009-05-13 18:38:23.000000000 -0400
+@@ -12,16 +12,16 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import os, sys, string, cStringIO
+-from xml.dom import Entity, DocumentType, Document
+-from xml.dom import Node
+-from xml.dom import implementation
+-from xml.dom.ext import SplitQName, ReleaseNode
+-from xml.dom import XML_NAMESPACE, XMLNS_NAMESPACE
+-from xml.dom import Element
+-from xml.dom import Attr
+-from xml.dom.ext import reader
++from _xmlplus.dom import Entity, DocumentType, Document
++from _xmlplus.dom import Node
++from _xmlplus.dom import implementation
++from _xmlplus.dom.ext import SplitQName, ReleaseNode
++from _xmlplus.dom import XML_NAMESPACE, XMLNS_NAMESPACE
++from _xmlplus.dom import Element
++from _xmlplus.dom import Attr
++from _xmlplus.dom.ext import reader
+ 
+-from xml.parsers import expat
++from _xmlplus.parsers import expat
+ 
+ class Reader(reader.Reader):
+     def __init__(self):
+@@ -64,8 +64,8 @@ class Reader(reader.Reader):
+         self.initState(ownerDoc)
+         success = self.parser.ParseFile(stream)
+         if not success:
+-            from xml.dom.ext import FtDomException
+-            from xml.dom import XML_PARSE_ERR
++            from _xmlplus.dom.ext import FtDomException
++            from _xmlplus.dom import XML_PARSE_ERR
+             if self._rootNode: ReleaseNode(self._rootNode)
+             if self._ownerDoc: ReleaseNode(self._ownerDoc)
+             raise FtDomException(XML_PARSE_ERR, (self.parser.ErrorLineNumber, self.parser.ErrorColumnNumber, expat.ErrorString(self.parser.ErrorCode)))
+diff -rupN _xmlplus/dom/ext/reader/Sax.py _xmlplus_patched/dom/ext/reader/Sax.py
+--- _xmlplus/dom/ext/reader/Sax.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/reader/Sax.py	2009-05-13 18:38:24.000000000 -0400
+@@ -12,12 +12,12 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import sys, string, cStringIO, urllib2
+-from xml.sax import saxlib, saxexts, drivers
+-from xml.dom import Entity, DocumentType, Document
+-from xml.dom import DocumentType, Document
+-from xml.dom import implementation
+-from xml.dom.ext import SplitQName, ReleaseNode
+-from xml.dom.ext import reader
++from _xmlplus.sax import saxlib, saxexts, drivers
++from _xmlplus.dom import Entity, DocumentType, Document
++from _xmlplus.dom import DocumentType, Document
++from _xmlplus.dom import implementation
++from _xmlplus.dom.ext import SplitQName, ReleaseNode
++from _xmlplus.dom.ext import reader
+ 
+ class XmlDomGenerator(saxlib.HandlerBase):
+     def __init__(self, keepAllWs=0):
+@@ -117,7 +117,7 @@ class Reader(reader.Reader):
+         self.parser = parser or (validate and saxexts.XMLValParserFactory.make_parser()) or saxexts.XMLParserFactory.make_parser()
+         if catName:
+             #set up the catalog, if there is one
+-            from xml.parsers.xmlproc import catalog
++            from _xmlplus.parsers.xmlproc import catalog
+             cat_handler = catalog.SAX_catalog(catName, catalog.CatParserFactory())
+             self.parser.setEntityResolver(cat_handler)
+         self.handler = saxHandlerClass(keepAllWs)
+diff -rupN _xmlplus/dom/ext/reader/Sax2.py _xmlplus_patched/dom/ext/reader/Sax2.py
+--- _xmlplus/dom/ext/reader/Sax2.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/reader/Sax2.py	2009-05-13 18:38:25.000000000 -0400
+@@ -12,15 +12,15 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import sys, string, cStringIO, os, urllib2
+-from xml.sax import saxlib, saxutils, sax2exts, handler
+-from xml.dom import Entity, DocumentType, Document
+-from xml.dom import Node
+-from xml.dom import implementation
+-from xml.dom.ext import SplitQName, ReleaseNode
+-from xml.dom import XML_NAMESPACE, XMLNS_NAMESPACE, EMPTY_NAMESPACE
+-from xml.dom import Element
+-from xml.dom import Attr
+-from xml.dom.ext import reader
++from _xmlplus.sax import saxlib, saxutils, sax2exts, handler
++from _xmlplus.dom import Entity, DocumentType, Document
++from _xmlplus.dom import Node
++from _xmlplus.dom import implementation
++from _xmlplus.dom.ext import SplitQName, ReleaseNode
++from _xmlplus.dom import XML_NAMESPACE, XMLNS_NAMESPACE, EMPTY_NAMESPACE
++from _xmlplus.dom import Element
++from _xmlplus.dom import Attr
++from _xmlplus.dom.ext import reader
+ 
+ 
+ class NsHandler:
+@@ -346,7 +346,7 @@ class Reader(reader.Reader):
+         self.parser = parser or (validate and sax2exts.XMLValParserFactory.make_parser()) or sax2exts.XMLParserFactory.make_parser()
+         if catName:
+             #set up the catalog, if there is one
+-            from xml.parsers.xmlproc import catalog
++            from _xmlplus.parsers.xmlproc import catalog
+             cat_handler = catalog.SAX_catalog(
+                 catName, catalog.CatParserFactory()
+                 )
+diff -rupN _xmlplus/dom/ext/reader/Sax2Lib.py _xmlplus_patched/dom/ext/reader/Sax2Lib.py
+--- _xmlplus/dom/ext/reader/Sax2Lib.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/reader/Sax2Lib.py	2009-05-13 18:38:24.000000000 -0400
+@@ -6,7 +6,7 @@ Many of these classes are empty and are 
+ of the interfaces.
+ """
+ 
+-from xml.sax import saxlib
++from _xmlplus.sax import saxlib
+ 
+ class LexicalHandler:
+     """
+diff -rupN _xmlplus/dom/ext/reader/Sgmlop.py _xmlplus_patched/dom/ext/reader/Sgmlop.py
+--- _xmlplus/dom/ext/reader/Sgmlop.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/reader/Sgmlop.py	2009-05-13 18:38:26.000000000 -0400
+@@ -1,10 +1,10 @@
+ import string, re, types, sys
+-from xml.parsers import sgmlop
+-from xml.dom import implementation
+-from xml.dom import Node
+-from xml.dom import NotSupportedErr
+-from xml.dom import EMPTY_NAMESPACE
+-from xml.dom.html import HTML_DTD, HTML_CHARACTER_ENTITIES
++from _xmlplus.parsers import sgmlop
++from _xmlplus.dom import implementation
++from _xmlplus.dom import Node
++from _xmlplus.dom import NotSupportedErr
++from _xmlplus.dom import EMPTY_NAMESPACE
++from _xmlplus.dom.html import HTML_DTD, HTML_CHARACTER_ENTITIES
+ 
+ DEFAULT_CHARSET = 'ISO-8859-1'
+ 
+@@ -18,7 +18,7 @@ _doctype = re.compile('DOCTYPE ' + _root
+ try:
+     unicode()
+ except:
+-    from xml.unicode.iso8859 import wstring
++    from _xmlplus.unicode.iso8859 import wstring
+     wstring.install_alias('ISO-8859-1', 'ISO_8859-1:1987')
+ 
+     def unicode(str, encoding='US-ASCII'):
+diff -rupN _xmlplus/dom/ext/reader/__init__.py _xmlplus_patched/dom/ext/reader/__init__.py
+--- _xmlplus/dom/ext/reader/__init__.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/ext/reader/__init__.py	2009-05-13 18:38:24.000000000 -0400
+@@ -12,7 +12,7 @@ See  http://4suite.org/COPYRIGHT  for li
+ """
+ 
+ import string, urllib2, urlparse, cStringIO, os
+-from xml.dom.ext import ReleaseNode
++from _xmlplus.dom.ext import ReleaseNode
+ 
+ try:
+     import codecs
+diff -rupN _xmlplus/dom/html/GenerateHtml.py _xmlplus_patched/dom/html/GenerateHtml.py
+--- _xmlplus/dom/html/GenerateHtml.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/GenerateHtml.py	2009-05-13 18:38:25.000000000 -0400
+@@ -1,8 +1,8 @@
+ #!/usr/bin/env python
+ import string, os, sys
+ try:
+-    from xml.dom import Node
+-    from xml.dom.ext.reader import Sax
++    from _xmlplus.dom import Node
++    from _xmlplus.dom.ext.reader import Sax
+     Reader = Sax.FromXmlFile
+ except ImportError:
+     print 'You need to have PyXML installed to run this program'
+@@ -149,7 +149,7 @@ def GenClassFile(klass, header, output_d
+ 
+     # Import statements
+     file.write('import string\n')
+-    file.write('from xml.dom import Node\n')
++    file.write('from _xmlplus.dom import Node\n')
+     baseclass = klass.getElementsByTagName('baseclass')[0].getAttribute('name')
+     base_name = string.split(baseclass, '.')[-1]
+     file.write('from %s import %s\n' % (baseclass, base_name))
+diff -rupN _xmlplus/dom/html/HTMLAnchorElement.py _xmlplus_patched/dom/html/HTMLAnchorElement.py
+--- _xmlplus/dom/html/HTMLAnchorElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLAnchorElement.py	2009-05-13 18:38:23.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLAnchorElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLAppletElement.py _xmlplus_patched/dom/html/HTMLAppletElement.py
+--- _xmlplus/dom/html/HTMLAppletElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLAppletElement.py	2009-05-13 18:38:28.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLAppletElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLAreaElement.py _xmlplus_patched/dom/html/HTMLAreaElement.py
+--- _xmlplus/dom/html/HTMLAreaElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLAreaElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLAreaElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLBRElement.py _xmlplus_patched/dom/html/HTMLBRElement.py
+--- _xmlplus/dom/html/HTMLBRElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLBRElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLBRElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLBaseElement.py _xmlplus_patched/dom/html/HTMLBaseElement.py
+--- _xmlplus/dom/html/HTMLBaseElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLBaseElement.py	2009-05-13 18:38:28.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLBaseElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLBaseFontElement.py _xmlplus_patched/dom/html/HTMLBaseFontElement.py
+--- _xmlplus/dom/html/HTMLBaseFontElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLBaseFontElement.py	2009-05-13 18:38:27.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLBaseFontElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLBodyElement.py _xmlplus_patched/dom/html/HTMLBodyElement.py
+--- _xmlplus/dom/html/HTMLBodyElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLBodyElement.py	2009-05-13 18:38:25.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLBodyElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLButtonElement.py _xmlplus_patched/dom/html/HTMLButtonElement.py
+--- _xmlplus/dom/html/HTMLButtonElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLButtonElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLButtonElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLCollection.py _xmlplus_patched/dom/html/HTMLCollection.py
+--- _xmlplus/dom/html/HTMLCollection.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLCollection.py	2009-05-13 18:38:26.000000000 -0400
+@@ -10,9 +10,9 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
+-from xml.dom import NoModificationAllowedErr
+-from xml.dom.html import HTML_NAME_ALLOWED
++from _xmlplus.dom import Node
++from _xmlplus.dom import NoModificationAllowedErr
++from _xmlplus.dom.html import HTML_NAME_ALLOWED
+ import UserList
+ 
+ class HTMLCollection(UserList.UserList):
+diff -rupN _xmlplus/dom/html/HTMLDListElement.py _xmlplus_patched/dom/html/HTMLDListElement.py
+--- _xmlplus/dom/html/HTMLDListElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLDListElement.py	2009-05-13 18:38:23.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLDListElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLDOMImplementation.py _xmlplus_patched/dom/html/HTMLDOMImplementation.py
+--- _xmlplus/dom/html/HTMLDOMImplementation.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLDOMImplementation.py	2009-05-13 18:38:23.000000000 -0400
+@@ -10,7 +10,7 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import DOMImplementation
++from _xmlplus.dom import DOMImplementation
+ 
+ # Add the HTML feature
+ DOMImplementation.FEATURES_MAP['HTML'] = 2.0
+@@ -21,7 +21,7 @@ class HTMLDOMImplementation(DOMImplement
+         DOMImplementation.DOMImplementation.__init__(self)
+ 
+     def createHTMLDocument(self, title):
+-        from xml.dom.html import HTMLDocument
++        from _xmlplus.dom.html import HTMLDocument
+         doc = HTMLDocument.HTMLDocument()
+         h = doc.createElement('HTML')
+         doc.appendChild(h)
+@@ -31,6 +31,6 @@ class HTMLDOMImplementation(DOMImplement
+     def _4dom_createHTMLCollection(self,list=None):
+         if list is None:
+             list = []
+-        from xml.dom.html import HTMLCollection
++        from _xmlplus.dom.html import HTMLCollection
+         hc = HTMLCollection.HTMLCollection(list)
+         return hc
+diff -rupN _xmlplus/dom/html/HTMLDirectoryElement.py _xmlplus_patched/dom/html/HTMLDirectoryElement.py
+--- _xmlplus/dom/html/HTMLDirectoryElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLDirectoryElement.py	2009-05-13 18:38:25.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLDirectoryElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLDivElement.py _xmlplus_patched/dom/html/HTMLDivElement.py
+--- _xmlplus/dom/html/HTMLDivElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLDivElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLDivElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLDocument.py _xmlplus_patched/dom/html/HTMLDocument.py
+--- _xmlplus/dom/html/HTMLDocument.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLDocument.py	2009-05-13 18:41:42.000000000 -0400
+@@ -10,16 +10,16 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
+-from xml.dom import NotSupportedErr
++from _xmlplus.dom import Node
++from _xmlplus.dom import NotSupportedErr
+ 
+-from xml.dom.Document import Document
+-from xml.dom import implementation
+-from xml.dom import ext
++from _xmlplus.dom.Document import Document
++from _xmlplus.dom import implementation
++from _xmlplus.dom import ext
+ 
+ import string, sys
+ 
+-from xml.dom.html import HTML_DTD
++from _xmlplus.dom.html import HTML_DTD
+ 
+ class HTMLDocument(Document):
+ 
+@@ -33,7 +33,7 @@ class HTMLDocument(Document):
+ 
+         self.__dict__['__cookie'] = ''
+         self.__dict__['__writable'] = 0
+-        self.__dict__['_html'] = vars(sys.modules['xml.dom.html'])
++        self.__dict__['_html'] = vars(sys.modules['_xmlplus.dom.html'])
+ 
+     ### Attribute Methods ###
+ 
+@@ -147,7 +147,7 @@ class HTMLDocument(Document):
+         if not self.__dict__['__writable']:
+             return
+         #We need to parse the string here
+-        from xml.dom.ext.reader.HtmlLib import FromHTML
++        from _xmlplus.dom.ext.reader.HtmlLib import FromHTML
+         d = FromHtml(st, self)
+         if d != self:
+             self.appendChild(d)
+@@ -229,7 +229,7 @@ class HTMLDocument(Document):
+         module = 'HTML%sElement' % element
+         if not self._html.has_key(module):
+             #Try to import it (should never fail)
+-            __import__('xml.dom.html.%s' % module)
++            __import__('_xmlplus.dom.html.%s' % module)
+         # Class and module have the same name
+         klass = getattr(self._html[module], module)
+         return klass(self, tagName)
+diff -rupN _xmlplus/dom/html/HTMLElement.py _xmlplus_patched/dom/html/HTMLElement.py
+--- _xmlplus/dom/html/HTMLElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLElement.py	2009-05-13 18:38:25.000000000 -0400
+@@ -10,8 +10,8 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom.Element import Element
+-from xml.dom import EMPTY_NAMESPACE, EMPTY_PREFIX
++from _xmlplus.dom.Element import Element
++from _xmlplus.dom import EMPTY_NAMESPACE, EMPTY_PREFIX
+ import string
+ 
+ class HTMLElement(Element):
+diff -rupN _xmlplus/dom/html/HTMLFieldSetElement.py _xmlplus_patched/dom/html/HTMLFieldSetElement.py
+--- _xmlplus/dom/html/HTMLFieldSetElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLFieldSetElement.py	2009-05-13 18:38:27.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLFieldSetElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLFontElement.py _xmlplus_patched/dom/html/HTMLFontElement.py
+--- _xmlplus/dom/html/HTMLFontElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLFontElement.py	2009-05-13 18:38:28.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLFontElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLFormElement.py _xmlplus_patched/dom/html/HTMLFormElement.py
+--- _xmlplus/dom/html/HTMLFormElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLFormElement.py	2009-05-13 18:38:25.000000000 -0400
+@@ -10,10 +10,10 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import ext
+-from xml.dom import implementation
+-from xml.dom.html.HTMLElement import HTMLElement
+-from xml.dom.html.HTMLCollection import HTMLCollection
++from _xmlplus.dom import ext
++from _xmlplus.dom import implementation
++from _xmlplus.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom.html.HTMLCollection import HTMLCollection
+ 
+ FORM_CHILDREN = ['INPUT',
+                  'SELECT',
+diff -rupN _xmlplus/dom/html/HTMLFrameElement.py _xmlplus_patched/dom/html/HTMLFrameElement.py
+--- _xmlplus/dom/html/HTMLFrameElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLFrameElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -11,7 +11,7 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLFrameElement(HTMLElement):
+ 
+@@ -27,10 +27,10 @@ class HTMLFrameElement(HTMLElement):
+             import os.path
+             ext = os.path.splitext(source)
+             if string.find(ext, 'htm') > 0:
+-                from xml.dom.ext.reader import HtmlLib
++                from _xmlplus.dom.ext.reader import HtmlLib
+                 self.__content = HtmlLib.FromHtmlUrl(source)
+             elif string.lower(ext) == '.xml':
+-                from xml.dom.ext.reader import Sax2
++                from _xmlplus.dom.ext.reader import Sax2
+                 self.__content = Sax2.FromXmlUrl(source)
+         return self.__content
+ 
+diff -rupN _xmlplus/dom/html/HTMLFrameSetElement.py _xmlplus_patched/dom/html/HTMLFrameSetElement.py
+--- _xmlplus/dom/html/HTMLFrameSetElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLFrameSetElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLFrameSetElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLHRElement.py _xmlplus_patched/dom/html/HTMLHRElement.py
+--- _xmlplus/dom/html/HTMLHRElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLHRElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLHRElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLHeadElement.py _xmlplus_patched/dom/html/HTMLHeadElement.py
+--- _xmlplus/dom/html/HTMLHeadElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLHeadElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLHeadElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLHeadingElement.py _xmlplus_patched/dom/html/HTMLHeadingElement.py
+--- _xmlplus/dom/html/HTMLHeadingElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLHeadingElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLHeadingElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLHtmlElement.py _xmlplus_patched/dom/html/HTMLHtmlElement.py
+--- _xmlplus/dom/html/HTMLHtmlElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLHtmlElement.py	2009-05-13 18:38:25.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLHtmlElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLIFrameElement.py _xmlplus_patched/dom/html/HTMLIFrameElement.py
+--- _xmlplus/dom/html/HTMLIFrameElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLIFrameElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -11,7 +11,7 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLIFrameElement(HTMLElement):
+ 
+@@ -33,10 +33,10 @@ class HTMLIFrameElement(HTMLElement):
+             import os.path
+             ext = os.path.splitext(source)
+             if string.find(ext, 'htm') > 0:
+-                from xml.dom.ext.reader import HtmlLib
++                from _xmlplus.dom.ext.reader import HtmlLib
+                 self.__content = HtmlLib.FromHtmlUrl(source)
+             elif string.lower(ext) == '.xml':
+-                from xml.dom.ext.reader import Sax2
++                from _xmlplus.dom.ext.reader import Sax2
+                 self.__content = Sax2.FromXmlUrl(source)
+         return self.__content
+ 
+diff -rupN _xmlplus/dom/html/HTMLImageElement.py _xmlplus_patched/dom/html/HTMLImageElement.py
+--- _xmlplus/dom/html/HTMLImageElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLImageElement.py	2009-05-13 18:38:28.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLImageElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLInputElement.py _xmlplus_patched/dom/html/HTMLInputElement.py
+--- _xmlplus/dom/html/HTMLInputElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLInputElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -10,8 +10,8 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom.html.HTMLElement import HTMLElement
+-from xml.dom import InvalidAccessErr
++from _xmlplus.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import InvalidAccessErr
+ import string
+ 
+ class HTMLInputElement(HTMLElement):
+diff -rupN _xmlplus/dom/html/HTMLIsIndexElement.py _xmlplus_patched/dom/html/HTMLIsIndexElement.py
+--- _xmlplus/dom/html/HTMLIsIndexElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLIsIndexElement.py	2009-05-13 18:38:23.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLIsIndexElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLLIElement.py _xmlplus_patched/dom/html/HTMLLIElement.py
+--- _xmlplus/dom/html/HTMLLIElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLLIElement.py	2009-05-13 18:38:23.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLLIElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLLabelElement.py _xmlplus_patched/dom/html/HTMLLabelElement.py
+--- _xmlplus/dom/html/HTMLLabelElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLLabelElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLLabelElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLLegendElement.py _xmlplus_patched/dom/html/HTMLLegendElement.py
+--- _xmlplus/dom/html/HTMLLegendElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLLegendElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLLegendElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLLinkElement.py _xmlplus_patched/dom/html/HTMLLinkElement.py
+--- _xmlplus/dom/html/HTMLLinkElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLLinkElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLLinkElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLMapElement.py _xmlplus_patched/dom/html/HTMLMapElement.py
+--- _xmlplus/dom/html/HTMLMapElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLMapElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -10,8 +10,8 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom.html.HTMLElement import HTMLElement
+-from xml.dom import implementation
++from _xmlplus.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import implementation
+ 
+ class HTMLMapElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLMenuElement.py _xmlplus_patched/dom/html/HTMLMenuElement.py
+--- _xmlplus/dom/html/HTMLMenuElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLMenuElement.py	2009-05-13 18:38:27.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLMenuElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLMetaElement.py _xmlplus_patched/dom/html/HTMLMetaElement.py
+--- _xmlplus/dom/html/HTMLMetaElement.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLMetaElement.py	2009-05-13 18:38:23.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLMetaElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLModElement.py _xmlplus_patched/dom/html/HTMLModElement.py
+--- _xmlplus/dom/html/HTMLModElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLModElement.py	2009-05-13 18:38:23.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLModElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLOListElement.py _xmlplus_patched/dom/html/HTMLOListElement.py
+--- _xmlplus/dom/html/HTMLOListElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLOListElement.py	2009-05-13 18:38:28.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLOListElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLObjectElement.py _xmlplus_patched/dom/html/HTMLObjectElement.py
+--- _xmlplus/dom/html/HTMLObjectElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLObjectElement.py	2009-05-13 18:38:28.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLObjectElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLOptGroupElement.py _xmlplus_patched/dom/html/HTMLOptGroupElement.py
+--- _xmlplus/dom/html/HTMLOptGroupElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLOptGroupElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLOptGroupElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLOptionElement.py _xmlplus_patched/dom/html/HTMLOptionElement.py
+--- _xmlplus/dom/html/HTMLOptionElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLOptionElement.py	2009-05-13 18:38:23.000000000 -0400
+@@ -10,8 +10,8 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom.html.HTMLElement import HTMLElement
+-from xml.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
+ 
+ class HTMLOptionElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLParagraphElement.py _xmlplus_patched/dom/html/HTMLParagraphElement.py
+--- _xmlplus/dom/html/HTMLParagraphElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLParagraphElement.py	2009-05-13 18:38:28.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLParagraphElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLParamElement.py _xmlplus_patched/dom/html/HTMLParamElement.py
+--- _xmlplus/dom/html/HTMLParamElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLParamElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLParamElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLPreElement.py _xmlplus_patched/dom/html/HTMLPreElement.py
+--- _xmlplus/dom/html/HTMLPreElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLPreElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLPreElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLQuoteElement.py _xmlplus_patched/dom/html/HTMLQuoteElement.py
+--- _xmlplus/dom/html/HTMLQuoteElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLQuoteElement.py	2009-05-13 18:38:25.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLQuoteElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLScriptElement.py _xmlplus_patched/dom/html/HTMLScriptElement.py
+--- _xmlplus/dom/html/HTMLScriptElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLScriptElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLScriptElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLSelectElement.py _xmlplus_patched/dom/html/HTMLSelectElement.py
+--- _xmlplus/dom/html/HTMLSelectElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLSelectElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -10,9 +10,9 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import implementation
+-from xml.dom import IndexSizeErr
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import implementation
++from _xmlplus.dom import IndexSizeErr
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ import string
+ 
+ class HTMLSelectElement(HTMLElement):
+diff -rupN _xmlplus/dom/html/HTMLStyleElement.py _xmlplus_patched/dom/html/HTMLStyleElement.py
+--- _xmlplus/dom/html/HTMLStyleElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLStyleElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLStyleElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLTableCaptionElement.py _xmlplus_patched/dom/html/HTMLTableCaptionElement.py
+--- _xmlplus/dom/html/HTMLTableCaptionElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLTableCaptionElement.py	2009-05-13 18:38:25.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLTableCaptionElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLTableCellElement.py _xmlplus_patched/dom/html/HTMLTableCellElement.py
+--- _xmlplus/dom/html/HTMLTableCellElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLTableCellElement.py	2009-05-13 18:38:23.000000000 -0400
+@@ -11,7 +11,7 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLTableCellElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLTableColElement.py _xmlplus_patched/dom/html/HTMLTableColElement.py
+--- _xmlplus/dom/html/HTMLTableColElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLTableColElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLTableColElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLTableElement.py _xmlplus_patched/dom/html/HTMLTableElement.py
+--- _xmlplus/dom/html/HTMLTableElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLTableElement.py	2009-05-13 18:38:27.000000000 -0400
+@@ -10,10 +10,10 @@ Copyright (c) 2000 Fourthought Inc, USA.
+ See  http://4suite.com/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom.html.HTMLElement import HTMLElement
+-from xml.dom import IndexSizeErr
+-from xml.dom import implementation
+-from xml.dom.NodeFilter import NodeFilter
++from _xmlplus.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import IndexSizeErr
++from _xmlplus.dom import implementation
++from _xmlplus.dom.NodeFilter import NodeFilter
+ import string
+ 
+ class HTMLTableElement(HTMLElement):
+diff -rupN _xmlplus/dom/html/HTMLTableRowElement.py _xmlplus_patched/dom/html/HTMLTableRowElement.py
+--- _xmlplus/dom/html/HTMLTableRowElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLTableRowElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -11,9 +11,9 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import implementation
+-from xml.dom import IndexSizeErr
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import implementation
++from _xmlplus.dom import IndexSizeErr
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLTableRowElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLTableSectionElement.py _xmlplus_patched/dom/html/HTMLTableSectionElement.py
+--- _xmlplus/dom/html/HTMLTableSectionElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLTableSectionElement.py	2009-05-13 18:38:25.000000000 -0400
+@@ -11,9 +11,9 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import implementation
+-from xml.dom.html.HTMLElement import HTMLElement
+-from xml.dom import IndexSizeErr
++from _xmlplus.dom import implementation
++from _xmlplus.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import IndexSizeErr
+ 
+ class HTMLTableSectionElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLTextAreaElement.py _xmlplus_patched/dom/html/HTMLTextAreaElement.py
+--- _xmlplus/dom/html/HTMLTextAreaElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLTextAreaElement.py	2009-05-13 18:38:26.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLTextAreaElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLTitleElement.py _xmlplus_patched/dom/html/HTMLTitleElement.py
+--- _xmlplus/dom/html/HTMLTitleElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLTitleElement.py	2009-05-13 18:38:27.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLTitleElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/HTMLUListElement.py _xmlplus_patched/dom/html/HTMLUListElement.py
+--- _xmlplus/dom/html/HTMLUListElement.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/html/HTMLUListElement.py	2009-05-13 18:38:24.000000000 -0400
+@@ -15,8 +15,8 @@ See  http://4suite.com/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node
+-from xml.dom.html.HTMLElement import HTMLElement
++from _xmlplus.dom import Node
++from _xmlplus.dom.html.HTMLElement import HTMLElement
+ 
+ class HTMLUListElement(HTMLElement):
+ 
+diff -rupN _xmlplus/dom/html/__init__.py _xmlplus_patched/dom/html/__init__.py
+--- _xmlplus/dom/html/__init__.py	2009-05-13 18:31:10.000000000 -0400
++++ _xmlplus_patched/dom/html/__init__.py	2009-05-13 18:38:26.000000000 -0400
+@@ -386,7 +386,7 @@ HTML_DTD = {
+     'code': ['#PCDATA', 'a', 'abbr', 'acronym', 'applet', 'b', 'basefont', 'bdo', 'big', 'br', 'button', 'cite', 'code', 'del', 'dfn', 'em', 'font', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'map', 'noscript', 'object', 'q', 's', 'samp', 'script', 'select', 'small', 'span', 'strike', 'strong', 'sub', 'sup', 'textarea', 'tt', 'u', 'var']
+     }
+ 
+-from xml.dom.html import HTMLDOMImplementation
++from _xmlplus.dom.html import HTMLDOMImplementation
+ 
+ htmlImplementation = HTMLDOMImplementation.HTMLDOMImplementation()
+ 
+@@ -413,7 +413,7 @@ try:
+         return new_text
+ 
+ except ImportError:
+-    from xml.unicode.iso8859 import wstring
++    from _xmlplus.unicode.iso8859 import wstring
+     wstring.install_alias('ISO-8859-1', 'ISO_8859-1:1987')
+ 
+     def utf8_to_code(text, encoding):
+diff -rupN _xmlplus/dom/javadom.py _xmlplus_patched/dom/javadom.py
+--- _xmlplus/dom/javadom.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/javadom.py	2009-05-13 18:41:42.000000000 -0400
+@@ -28,7 +28,7 @@ class BaseDomImplementation:
+ 
+     def buildDocumentString(self, string):
+         from java.io import StringReader
+-        from org.xml.sax import InputSource
++        from org._xmlplus.sax import InputSource
+         return self._parse_from_source(InputSource(StringReader(string)))
+ 
+     def buildDocumentUrl(self, url):
+@@ -69,7 +69,7 @@ class XercesDomImplementation(BaseDomImp
+ class BrownellDomImplementation(BaseDomImplementation):
+ 
+     def createDocument(self):
+-        from org.brownell.xml.dom import DomDocument
++        from org.brownell._xmlplus.dom import DomDocument
+         return Document(DomDocument())
+ 
+     def _parse_from_source(self, source):
+@@ -84,7 +84,7 @@ class IndelvDomImplementation(BaseDomImp
+ 
+     def _parse_from_source(self, source):
+         from com.indelv.dom.util import XMLReader
+-        from org.xml.sax import InputSource
++        from org._xmlplus.sax import InputSource
+         return Document(XMLReader.parseDocument(InputSource(source)))
+ 
+ class SxpDomImplementation(BaseDomImplementation):
+@@ -111,11 +111,11 @@ class SxpDomImplementation(BaseDomImplem
+ class OpenXmlDomImplementation(BaseDomImplementation):
+ 
+     def createDocument(self):
+-        from org.openxml.dom import DocumentImpl
++        from org.open_xmlplus.dom import DocumentImpl
+         return Document(DocumentImpl())
+ 
+     def _parse_from_source(self, source):
+-        from org.openxml.dom import SAXBuilder
++        from org.open_xmlplus.dom import SAXBuilder
+         from org.openxml.parser import XMLSAXParser
+ 
+         builder = SAXBuilder()
+diff -rupN _xmlplus/dom/minicompat.py _xmlplus_patched/dom/minicompat.py
+--- _xmlplus/dom/minicompat.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/minicompat.py	2009-05-13 18:38:24.000000000 -0400
+@@ -50,7 +50,7 @@
+ __all__ = ["NodeList", "EmptyNodeList", "NewStyle",
+            "StringTypes", "defproperty", "GetattrMagic"]
+ 
+-import xml.dom
++import _xmlplus.dom
+ 
+ try:
+     unicode
+@@ -100,7 +100,7 @@ if list is type([]):
+             return len(self)
+ 
+         def _set_length(self, value):
+-            raise xml.dom.NoModificationAllowedErr(
++            raise _xmlplus.dom.NoModificationAllowedErr(
+                 "attempt to modify read-only attribute 'length'")
+ 
+         length = property(_get_length, _set_length,
+@@ -132,7 +132,7 @@ if list is type([]):
+             return 0
+ 
+         def _set_length(self, value):
+-            raise xml.dom.NoModificationAllowedErr(
++            raise _xmlplus.dom.NoModificationAllowedErr(
+                 "attempt to modify read-only attribute 'length'")
+ 
+         length = property(_get_length, _set_length,
+@@ -171,7 +171,7 @@ else:
+     def defproperty(klass, name, doc):
+         get = getattr(klass, ("_get_" + name)).im_func
+         def set(self, value, name=name):
+-            raise xml.dom.NoModificationAllowedErr(
++            raise _xmlplus.dom.NoModificationAllowedErr(
+                 "attempt to modify read-only attribute " + repr(name))
+         assert not hasattr(klass, "_set_" + name), \
+                "expected not to find _set_" + name
+diff -rupN _xmlplus/dom/minidom.py _xmlplus_patched/dom/minidom.py
+--- _xmlplus/dom/minidom.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/minidom.py	2009-05-13 18:41:42.000000000 -0400
+@@ -14,11 +14,11 @@ Todo:
+  * SAX 2 namespaces
+ """
+ 
+-import xml.dom
++import _xmlplus.dom
+ 
+-from xml.dom import EMPTY_NAMESPACE, EMPTY_PREFIX, XMLNS_NAMESPACE, domreg
+-from xml.dom.minicompat import *
+-from xml.dom.xmlbuilder import DOMImplementationLS, DocumentLS
++from _xmlplus.dom import EMPTY_NAMESPACE, EMPTY_PREFIX, XMLNS_NAMESPACE, domreg
++from _xmlplus.dom.minicompat import *
++from _xmlplus.dom.xmlbuilder import DOMImplementationLS, DocumentLS
+ 
+ _TupleType = type(())
+ 
+@@ -27,11 +27,11 @@ _TupleType = type(())
+ # DOCUMENT_NODE or DOCUMENT_FRAGMENT_NODE.  (The node being checked is
+ # the node being added or removed, not the node being modified.)
+ #
+-_nodeTypes_with_children = (xml.dom.Node.ELEMENT_NODE,
+-                            xml.dom.Node.ENTITY_REFERENCE_NODE)
++_nodeTypes_with_children = (_xmlplus.dom.Node.ELEMENT_NODE,
++                            _xmlplus.dom.Node.ENTITY_REFERENCE_NODE)
+ 
+ 
+-class Node(xml.dom.Node, GetattrMagic):
++class Node(_xmlplus.dom.Node, GetattrMagic):
+     namespaceURI = None # this is non-null only for elements and attributes
+     parentNode = None
+     ownerDocument = None
+@@ -88,7 +88,7 @@ class Node(xml.dom.Node, GetattrMagic):
+             ### The DOM does not clearly specify what to return in this case
+             return newChild
+         if newChild.nodeType not in self._child_node_types:
+-            raise xml.dom.HierarchyRequestErr(
++            raise _xmlplus.dom.HierarchyRequestErr(
+                 "%s cannot be child of %s" % (repr(newChild), repr(self)))
+         if newChild.parentNode is not None:
+             newChild.parentNode.removeChild(newChild)
+@@ -98,7 +98,7 @@ class Node(xml.dom.Node, GetattrMagic):
+             try:
+                 index = self.childNodes.index(refChild)
+             except ValueError:
+-                raise xml.dom.NotFoundErr()
++                raise _xmlplus.dom.NotFoundErr()
+             if newChild.nodeType in _nodeTypes_with_children:
+                 _clear_id_cache(self)
+             self.childNodes.insert(index, newChild)
+@@ -120,7 +120,7 @@ class Node(xml.dom.Node, GetattrMagic):
+             ### The DOM does not clearly specify what to return in this case
+             return node
+         if node.nodeType not in self._child_node_types:
+-            raise xml.dom.HierarchyRequestErr(
++            raise _xmlplus.dom.HierarchyRequestErr(
+                 "%s cannot be child of %s" % (repr(node), repr(self)))
+         elif node.nodeType in _nodeTypes_with_children:
+             _clear_id_cache(self)
+@@ -136,7 +136,7 @@ class Node(xml.dom.Node, GetattrMagic):
+             self.removeChild(oldChild)
+             return self.insertBefore(newChild, refChild)
+         if newChild.nodeType not in self._child_node_types:
+-            raise xml.dom.HierarchyRequestErr(
++            raise _xmlplus.dom.HierarchyRequestErr(
+                 "%s cannot be child of %s" % (repr(newChild), repr(self)))
+         if newChild.parentNode is not None:
+             newChild.parentNode.removeChild(newChild)
+@@ -145,7 +145,7 @@ class Node(xml.dom.Node, GetattrMagic):
+         try:
+             index = self.childNodes.index(oldChild)
+         except ValueError:
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+         if (newChild.nodeType in _nodeTypes_with_children
+             or oldChild.nodeType in _nodeTypes_with_children):
+             _clear_id_cache(self)
+@@ -166,7 +166,7 @@ class Node(xml.dom.Node, GetattrMagic):
+         try:
+             self.childNodes.remove(oldChild)
+         except ValueError:
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+         if oldChild.nextSibling is not None:
+             oldChild.nextSibling.previousSibling = oldChild.previousSibling
+         if oldChild.previousSibling is not None:
+@@ -391,7 +391,7 @@ class Attr(Node):
+         nsuri = self.namespaceURI
+         if prefix == "xmlns":
+             if nsuri and nsuri != XMLNS_NAMESPACE:
+-                raise xml.dom.NamespaceErr(
++                raise _xmlplus.dom.NamespaceErr(
+                     "illegal use of 'xmlns' prefix for the wrong namespace")
+         d = self.__dict__
+         d['prefix'] = prefix
+@@ -569,7 +569,7 @@ class NamedNodeMap(NewStyle, GetattrMagi
+                 n.__dict__['ownerElement'] = None
+             return n
+         else:
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+ 
+     def removeNamedItemNS(self, namespaceURI, localName):
+         n = self.getNamedItemNS(namespaceURI, localName)
+@@ -581,11 +581,11 @@ class NamedNodeMap(NewStyle, GetattrMagi
+                 n.__dict__['ownerElement'] = None
+             return n
+         else:
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+ 
+     def setNamedItem(self, node):
+         if not isinstance(node, Attr):
+-            raise xml.dom.HierarchyRequestErr(
++            raise _xmlplus.dom.HierarchyRequestErr(
+                 "%s cannot be child of %s" % (repr(node), repr(self)))
+         old = self._attrs.get(node.name)
+         if old:
+@@ -737,7 +737,7 @@ class Element(Node):
+ 
+     def setAttributeNode(self, attr):
+         if attr.ownerElement not in (None, self):
+-            raise xml.dom.InuseAttributeErr("attribute node already owned")
++            raise _xmlplus.dom.InuseAttributeErr("attribute node already owned")
+         old1 = self._attrs.get(attr.name, None)
+         if old1 is not None:
+             self.removeAttributeNode(old1)
+@@ -759,23 +759,23 @@ class Element(Node):
+         try:
+             attr = self._attrs[name]
+         except KeyError:
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+         self.removeAttributeNode(attr)
+ 
+     def removeAttributeNS(self, namespaceURI, localName):
+         try:
+             attr = self._attrsNS[(namespaceURI, localName)]
+         except KeyError:
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+         self.removeAttributeNode(attr)
+ 
+     def removeAttributeNode(self, node):
+         if node is None:
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+         try:
+             self._attrs[node.name]
+         except KeyError:
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+         _clear_id_cache(self)
+         node.unlink()
+         # Restore this since the node is still useful and otherwise
+@@ -844,9 +844,9 @@ class Element(Node):
+ 
+     def setIdAttributeNode(self, idAttr):
+         if idAttr is None or not self.isSameNode(idAttr.ownerElement):
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+         if _get_containing_entref(self) is not None:
+-            raise xml.dom.NoModificationAllowedErr()
++            raise _xmlplus.dom.NoModificationAllowedErr()
+         if not idAttr._is_id:
+             idAttr.__dict__['_is_id'] = True
+             self._magic_id_nodes += 1
+@@ -887,22 +887,22 @@ class Childless:
+         return None
+ 
+     def appendChild(self, node):
+-        raise xml.dom.HierarchyRequestErr(
++        raise _xmlplus.dom.HierarchyRequestErr(
+             self.nodeName + " nodes cannot have children")
+ 
+     def hasChildNodes(self):
+         return False
+ 
+     def insertBefore(self, newChild, refChild):
+-        raise xml.dom.HierarchyRequestErr(
++        raise _xmlplus.dom.HierarchyRequestErr(
+             self.nodeName + " nodes do not have children")
+ 
+     def removeChild(self, oldChild):
+-        raise xml.dom.NotFoundErr(
++        raise _xmlplus.dom.NotFoundErr(
+             self.nodeName + " nodes do not have children")
+ 
+     def replaceChild(self, newChild, oldChild):
+-        raise xml.dom.HierarchyRequestErr(
++        raise _xmlplus.dom.HierarchyRequestErr(
+             self.nodeName + " nodes do not have children")
+ 
+ 
+@@ -968,11 +968,11 @@ class CharacterData(Childless, Node):
+ 
+     def substringData(self, offset, count):
+         if offset < 0:
+-            raise xml.dom.IndexSizeErr("offset cannot be negative")
++            raise _xmlplus.dom.IndexSizeErr("offset cannot be negative")
+         if offset > len(self.data):
+-            raise xml.dom.IndexSizeErr("offset cannot be beyond end of data")
++            raise _xmlplus.dom.IndexSizeErr("offset cannot be beyond end of data")
+         if count < 0:
+-            raise xml.dom.IndexSizeErr("count cannot be negative")
++            raise _xmlplus.dom.IndexSizeErr("count cannot be negative")
+         return self.data[offset:offset+count]
+ 
+     def appendData(self, arg):
+@@ -980,30 +980,30 @@ class CharacterData(Childless, Node):
+ 
+     def insertData(self, offset, arg):
+         if offset < 0:
+-            raise xml.dom.IndexSizeErr("offset cannot be negative")
++            raise _xmlplus.dom.IndexSizeErr("offset cannot be negative")
+         if offset > len(self.data):
+-            raise xml.dom.IndexSizeErr("offset cannot be beyond end of data")
++            raise _xmlplus.dom.IndexSizeErr("offset cannot be beyond end of data")
+         if arg:
+             self.data = "%s%s%s" % (
+                 self.data[:offset], arg, self.data[offset:])
+ 
+     def deleteData(self, offset, count):
+         if offset < 0:
+-            raise xml.dom.IndexSizeErr("offset cannot be negative")
++            raise _xmlplus.dom.IndexSizeErr("offset cannot be negative")
+         if offset > len(self.data):
+-            raise xml.dom.IndexSizeErr("offset cannot be beyond end of data")
++            raise _xmlplus.dom.IndexSizeErr("offset cannot be beyond end of data")
+         if count < 0:
+-            raise xml.dom.IndexSizeErr("count cannot be negative")
++            raise _xmlplus.dom.IndexSizeErr("count cannot be negative")
+         if count:
+             self.data = self.data[:offset] + self.data[offset+count:]
+ 
+     def replaceData(self, offset, count, arg):
+         if offset < 0:
+-            raise xml.dom.IndexSizeErr("offset cannot be negative")
++            raise _xmlplus.dom.IndexSizeErr("offset cannot be negative")
+         if offset > len(self.data):
+-            raise xml.dom.IndexSizeErr("offset cannot be beyond end of data")
++            raise _xmlplus.dom.IndexSizeErr("offset cannot be beyond end of data")
+         if count < 0:
+-            raise xml.dom.IndexSizeErr("count cannot be negative")
++            raise _xmlplus.dom.IndexSizeErr("count cannot be negative")
+         if count:
+             self.data = "%s%s%s" % (
+                 self.data[:offset], arg, self.data[offset+count:])
+@@ -1025,7 +1025,7 @@ class Text(CharacterData):
+ 
+     def splitText(self, offset):
+         if offset < 0 or offset > len(self.data):
+-            raise xml.dom.IndexSizeErr("illegal offset value")
++            raise _xmlplus.dom.IndexSizeErr("illegal offset value")
+         newText = self.__class__()
+         newText.data = self.data[offset:]
+         newText.ownerDocument = self.ownerDocument
+@@ -1189,19 +1189,19 @@ class ReadOnlySequentialNamedNodeMap(New
+             return None
+ 
+     def removeNamedItem(self, name):
+-        raise xml.dom.NoModificationAllowedErr(
++        raise _xmlplus.dom.NoModificationAllowedErr(
+             "NamedNodeMap instance is read-only")
+ 
+     def removeNamedItemNS(self, namespaceURI, localName):
+-        raise xml.dom.NoModificationAllowedErr(
++        raise _xmlplus.dom.NoModificationAllowedErr(
+             "NamedNodeMap instance is read-only")
+ 
+     def setNamedItem(self, node):
+-        raise xml.dom.NoModificationAllowedErr(
++        raise _xmlplus.dom.NoModificationAllowedErr(
+             "NamedNodeMap instance is read-only")
+ 
+     def setNamedItemNS(self, node):
+-        raise xml.dom.NoModificationAllowedErr(
++        raise _xmlplus.dom.NoModificationAllowedErr(
+             "NamedNodeMap instance is read-only")
+ 
+     def __getstate__(self):
+@@ -1253,7 +1253,7 @@ class DocumentType(Identified, Childless
+             clone = DocumentType(None)
+             clone.name = self.name
+             clone.nodeName = self.name
+-            operation = xml.dom.UserDataHandler.NODE_CLONED
++            operation = _xmlplus.dom.UserDataHandler.NODE_CLONED
+             if deep:
+                 clone.entities._seq = []
+                 clone.notations._seq = []
+@@ -1313,19 +1313,19 @@ class Entity(Identified, Node):
+         return self.version
+ 
+     def appendChild(self, newChild):
+-        raise xml.dom.HierarchyRequestErr(
++        raise _xmlplus.dom.HierarchyRequestErr(
+             "cannot append children to an entity node")
+ 
+     def insertBefore(self, newChild, refChild):
+-        raise xml.dom.HierarchyRequestErr(
++        raise _xmlplus.dom.HierarchyRequestErr(
+             "cannot insert children below an entity node")
+ 
+     def removeChild(self, oldChild):
+-        raise xml.dom.HierarchyRequestErr(
++        raise _xmlplus.dom.HierarchyRequestErr(
+             "cannot remove children from an entity node")
+ 
+     def replaceChild(self, newChild, oldChild):
+-        raise xml.dom.HierarchyRequestErr(
++        raise _xmlplus.dom.HierarchyRequestErr(
+             "cannot replace children of an entity node")
+ 
+ class Notation(Identified, Childless, Node):
+@@ -1357,7 +1357,7 @@ class DOMImplementation(DOMImplementatio
+ 
+     def createDocument(self, namespaceURI, qualifiedName, doctype):
+         if doctype and doctype.parentNode is not None:
+-            raise xml.dom.WrongDocumentErr(
++            raise _xmlplus.dom.WrongDocumentErr(
+                 "doctype object owned by another DOM tree")
+         doc = self._create_document()
+ 
+@@ -1378,15 +1378,15 @@ class DOMImplementation(DOMImplementatio
+             # Null the document is returned without a document element
+             # Otherwise if doctype or namespaceURI are not None
+             # Then we go back to the above problem
+-            raise xml.dom.InvalidCharacterErr("Element with no name")
++            raise _xmlplus.dom.InvalidCharacterErr("Element with no name")
+ 
+         if add_root_element:
+             prefix, localname = _nssplit(qualifiedName)
+             if prefix == "xml" \
+                and namespaceURI != "http://www.w3.org/XML/1998/namespace":
+-                raise xml.dom.NamespaceErr("illegal use of 'xml' prefix")
++                raise _xmlplus.dom.NamespaceErr("illegal use of 'xml' prefix")
+             if prefix and not namespaceURI:
+-                raise xml.dom.NamespaceErr(
++                raise _xmlplus.dom.NamespaceErr(
+                     "illegal use of prefix without namespaces")
+             element = doc.createElementNS(namespaceURI, qualifiedName)
+             if doctype:
+@@ -1535,7 +1535,7 @@ class Document(Node, DocumentLS):
+ 
+     def appendChild(self, node):
+         if node.nodeType not in self._child_node_types:
+-            raise xml.dom.HierarchyRequestErr(
++            raise _xmlplus.dom.HierarchyRequestErr(
+                 "%s cannot be child of %s" % (repr(node), repr(self)))
+         if node.parentNode is not None:
+             # This needs to be done before the next test since this
+@@ -1545,7 +1545,7 @@ class Document(Node, DocumentLS):
+ 
+         if node.nodeType == Node.ELEMENT_NODE \
+            and self._get_documentElement():
+-            raise xml.dom.HierarchyRequestErr(
++            raise _xmlplus.dom.HierarchyRequestErr(
+                 "two document elements disallowed")
+         return Node.appendChild(self, node)
+ 
+@@ -1553,7 +1553,7 @@ class Document(Node, DocumentLS):
+         try:
+             self.childNodes.remove(oldChild)
+         except ValueError:
+-            raise xml.dom.NotFoundErr()
++            raise _xmlplus.dom.NotFoundErr()
+         oldChild.nextSibling = oldChild.previousSibling = None
+         oldChild.parentNode = None
+         if self.documentElement is oldChild:
+@@ -1589,7 +1589,7 @@ class Document(Node, DocumentLS):
+                 assert clone.doctype is None
+                 clone.doctype = childclone
+             childclone.parentNode = clone
+-        self._call_user_data_handler(xml.dom.UserDataHandler.NODE_CLONED,
++        self._call_user_data_handler(_xmlplus.dom.UserDataHandler.NODE_CLONED,
+                                      self, clone)
+         return clone
+ 
+@@ -1731,9 +1731,9 @@ class Document(Node, DocumentLS):
+ 
+     def importNode(self, node, deep):
+         if node.nodeType == Node.DOCUMENT_NODE:
+-            raise xml.dom.NotSupportedErr("cannot import document nodes")
++            raise _xmlplus.dom.NotSupportedErr("cannot import document nodes")
+         elif node.nodeType == Node.DOCUMENT_TYPE_NODE:
+-            raise xml.dom.NotSupportedErr("cannot import document type nodes")
++            raise _xmlplus.dom.NotSupportedErr("cannot import document type nodes")
+         return _clone_node(node, deep, self)
+ 
+     def writexml(self, writer, indent="", addindent="", newl="",
+@@ -1749,24 +1749,24 @@ class Document(Node, DocumentLS):
+ 
+     def renameNode(self, n, namespaceURI, name):
+         if n.ownerDocument is not self:
+-            raise xml.dom.WrongDocumentErr(
++            raise _xmlplus.dom.WrongDocumentErr(
+                 "cannot rename nodes from other documents;\n"
+                 "expected %s,\nfound %s" % (self, n.ownerDocument))
+         if n.nodeType not in (Node.ELEMENT_NODE, Node.ATTRIBUTE_NODE):
+-            raise xml.dom.NotSupportedErr(
++            raise _xmlplus.dom.NotSupportedErr(
+                 "renameNode() only applies to element and attribute nodes")
+         if namespaceURI != EMPTY_NAMESPACE:
+             if ':' in name:
+                 prefix, localName = name.split(':', 1)
+                 if (  prefix == "xmlns"
+-                      and namespaceURI != xml.dom.XMLNS_NAMESPACE):
+-                    raise xml.dom.NamespaceErr(
++                      and namespaceURI != _xmlplus.dom.XMLNS_NAMESPACE):
++                    raise _xmlplus.dom.NamespaceErr(
+                         "illegal use of 'xmlns' prefix")
+             else:
+                 if (  name == "xmlns"
+-                      and namespaceURI != xml.dom.XMLNS_NAMESPACE
++                      and namespaceURI != _xmlplus.dom.XMLNS_NAMESPACE
+                       and n.nodeType == Node.ATTRIBUTE_NODE):
+-                    raise xml.dom.NamespaceErr(
++                    raise _xmlplus.dom.NamespaceErr(
+                         "illegal use of the 'xmlns' attribute")
+                 prefix = None
+                 localName = name
+@@ -1812,9 +1812,9 @@ def _clone_node(node, deep, newOwnerDocu
+     Called by Node.cloneNode and Document.importNode
+     """
+     if node.ownerDocument.isSameNode(newOwnerDocument):
+-        operation = xml.dom.UserDataHandler.NODE_CLONED
++        operation = _xmlplus.dom.UserDataHandler.NODE_CLONED
+     else:
+-        operation = xml.dom.UserDataHandler.NODE_IMPORTED
++        operation = _xmlplus.dom.UserDataHandler.NODE_IMPORTED
+     if node.nodeType == Node.ELEMENT_NODE:
+         clone = newOwnerDocument.createElementNS(node.namespaceURI,
+                                                  node.nodeName)
+@@ -1851,7 +1851,7 @@ def _clone_node(node, deep, newOwnerDocu
+         clone.value = node.value
+     elif node.nodeType == Node.DOCUMENT_TYPE_NODE:
+         assert node.ownerDocument is not newOwnerDocument
+-        operation = xml.dom.UserDataHandler.NODE_IMPORTED
++        operation = _xmlplus.dom.UserDataHandler.NODE_IMPORTED
+         clone = newOwnerDocument.implementation.createDocumentType(
+             node.name, node.publicId, node.systemId)
+         clone.ownerDocument = newOwnerDocument
+@@ -1878,7 +1878,7 @@ def _clone_node(node, deep, newOwnerDocu
+         # Note the cloning of Document and DocumentType nodes is
+         # implemenetation specific.  minidom handles those cases
+         # directly in the cloneNode() methods.
+-        raise xml.dom.NotSupportedErr("Cannot clone node %s" % repr(node))
++        raise _xmlplus.dom.NotSupportedErr("Cannot clone node %s" % repr(node))
+ 
+     # Check for _call_user_data_handler() since this could conceivably
+     # used with other DOM implementations (one of the FourThought
+@@ -1911,20 +1911,20 @@ def _do_pulldom_parse(func, args, kwargs
+ def parse(file, parser=None, bufsize=None):
+     """Parse a file into a DOM by filename or file object."""
+     if parser is None and not bufsize:
+-        from xml.dom import expatbuilder
++        from _xmlplus.dom import expatbuilder
+         return expatbuilder.parse(file)
+     else:
+-        from xml.dom import pulldom
++        from _xmlplus.dom import pulldom
+         return _do_pulldom_parse(pulldom.parse, (file,), 
+             {'parser': parser, 'bufsize': bufsize})
+ 
+ def parseString(string, parser=None):
+     """Parse a file into a DOM from a string."""
+     if parser is None:
+-        from xml.dom import expatbuilder
++        from _xmlplus.dom import expatbuilder
+         return expatbuilder.parseString(string)
+     else:
+-        from xml.dom import pulldom
++        from _xmlplus.dom import pulldom
+         return _do_pulldom_parse(pulldom.parseString, (string,),
+                                  {'parser': parser})
+ 
+diff -rupN _xmlplus/dom/minitraversal.py _xmlplus_patched/dom/minitraversal.py
+--- _xmlplus/dom/minitraversal.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/minitraversal.py	2009-05-13 18:38:26.000000000 -0400
+@@ -23,7 +23,7 @@ class Document(minidom.Document):
+ 
+     def createNodeIterator(self, root, whatToShow, filter,
+                            entityReferenceExpansion):
+-        from xml.dom.NodeIterator import NodeIterator
++        from _xmlplus.dom.NodeIterator import NodeIterator
+         return NodeIterator(root, whatToShow, filter, entityReferenceExpansion)
+ 
+     def createTreeWalker(self, root, whatToShow, filter,
+diff -rupN _xmlplus/dom/pulldom.py _xmlplus_patched/dom/pulldom.py
+--- _xmlplus/dom/pulldom.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/pulldom.py	2009-05-13 18:40:41.000000000 -0400
+@@ -1,5 +1,5 @@
+-import xml.sax
+-import xml.sax.handler
++import _xmlplus.sax
++import _xmlplus.sax.handler
+ import types
+ 
+ try:
+@@ -16,12 +16,12 @@ PROCESSING_INSTRUCTION = "PROCESSING_INS
+ IGNORABLE_WHITESPACE = "IGNORABLE_WHITESPACE"
+ CHARACTERS = "CHARACTERS"
+ 
+-class PullDOM(xml.sax.ContentHandler):
++class PullDOM(_xmlplus.sax.ContentHandler):
+     _locator = None
+     document = None
+ 
+     def __init__(self, documentFactory=None):
+-        from xml.dom import XML_NAMESPACE
++        from _xmlplus.dom import XML_NAMESPACE
+         self.documentFactory = documentFactory
+         self.firstEvent = [None, None]
+         self.lastEvent = self.firstEvent
+@@ -164,8 +164,8 @@ class PullDOM(xml.sax.ContentHandler):
+ 
+     def startDocument(self):
+         if self.documentFactory is None:
+-            import xml.dom.minidom
+-            self.documentFactory = xml.dom.minidom.Document.implementation
++            import _xmlplus.dom.minidom
++            self.documentFactory = _xmlplus.dom.minidom.Document.implementation
+ 
+     def buildDocument(self, uri, tagname):
+         # Can't do that in startDocument, since we need the tagname
+@@ -219,7 +219,7 @@ class DOMEventStream:
+     def reset(self):
+         self.pulldom = PullDOM()
+         # This content handler relies on namespace support
+-        self.parser.setFeature(xml.sax.handler.feature_namespaces, 1)
++        self.parser.setFeature(_xmlplus.sax.handler.feature_namespaces, 1)
+         self.parser.setContentHandler(self.pulldom)
+ 
+     def __getitem__(self, pos):
+@@ -335,7 +335,7 @@ def parse(stream_or_string, parser=None,
+     else:
+         stream = stream_or_string
+     if not parser:
+-        parser = xml.sax.make_parser()
++        parser = _xmlplus.sax.make_parser()
+     return DOMEventStream(stream, parser, bufsize)
+ 
+ def parseString(string, parser=None):
+@@ -347,5 +347,5 @@ def parseString(string, parser=None):
+     bufsize = len(string)
+     buf = StringIO(string)
+     if not parser:
+-        parser = xml.sax.make_parser()
++        parser = _xmlplus.sax.make_parser()
+     return DOMEventStream(buf, parser, bufsize)
+diff -rupN _xmlplus/dom/xmlbuilder.py _xmlplus_patched/dom/xmlbuilder.py
+--- _xmlplus/dom/xmlbuilder.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/dom/xmlbuilder.py	2009-05-13 18:38:23.000000000 -0400
+@@ -1,11 +1,11 @@
+ """Implementation of the DOM Level 3 'LS-Load' feature."""
+ 
+ import copy
+-import xml.dom
++import _xmlplus.dom
+ 
+-from xml.dom.minicompat import *
++from _xmlplus.dom.minicompat import *
+ 
+-from xml.dom.NodeFilter import NodeFilter
++from _xmlplus.dom.NodeFilter import NodeFilter
+ 
+ 
+ __all__ = ["DOMBuilder", "DOMEntityResolver", "DOMInputSource"]
+@@ -80,13 +80,13 @@ class DOMBuilder:
+             try:
+                 settings = self._settings[(_name_xform(name), state)]
+             except KeyError:
+-                raise xml.dom.NotSupportedErr(
++                raise _xmlplus.dom.NotSupportedErr(
+                     "unsupported feature: " + `name`)
+             else:
+                 for name, value in settings:
+                     setattr(self._options, name, value)
+         else:
+-            raise xml.dom.NotFoundErr("unknown feature: " + repr(name))
++            raise _xmlplus.dom.NotFoundErr("unknown feature: " + repr(name))
+ 
+     def supportsFeature(self, name):
+         return hasattr(self._options, _name_xform(name))
+@@ -177,7 +177,7 @@ class DOMBuilder:
+                                  or options.create_entity_ref_nodes
+                                  or options.entities
+                                  or options.cdata_sections))
+-            raise xml.dom.NotFoundErr("feature %s not known" % repr(name))
++            raise _xmlplus.dom.NotFoundErr("feature %s not known" % repr(name))
+ 
+     def parseURI(self, uri):
+         if self.entityResolver:
+@@ -202,8 +202,8 @@ class DOMBuilder:
+         raise NotImplementedError("Haven't written this yet...")
+ 
+     def _parse_bytestream(self, stream, options):
+-        import xml.dom.expatbuilder
+-        builder = xml.dom.expatbuilder.makeBuilder(options)
++        import _xmlplus.dom.expatbuilder
++        builder = _xmlplus.dom.expatbuilder.makeBuilder(options)
+         return builder.parseFile(stream)
+ 
+ 
+@@ -342,7 +342,7 @@ class DocumentLS:
+         return False
+     def _set_async(self, async):
+         if async:
+-            raise xml.dom.NotSupportedErr(
++            raise _xmlplus.dom.NotSupportedErr(
+                 "asynchronous document loading is not supported")
+ 
+     def abort(self):
+@@ -361,7 +361,7 @@ class DocumentLS:
+         if snode is None:
+             snode = self
+         elif snode.ownerDocument is not self:
+-            raise xml.dom.WrongDocumentErr()
++            raise _xmlplus.dom.WrongDocumentErr()
+         return snode.toxml()
+ 
+ 
+@@ -371,12 +371,12 @@ class DOMImplementationLS:
+ 
+     def createDOMBuilder(self, mode, schemaType):
+         if schemaType is not None:
+-            raise xml.dom.NotSupportedErr(
++            raise _xmlplus.dom.NotSupportedErr(
+                 "schemaType not yet supported")
+         if mode == self.MODE_SYNCHRONOUS:
+             return DOMBuilder()
+         if mode == self.MODE_ASYNCHRONOUS:
+-            raise xml.dom.NotSupportedErr(
++            raise _xmlplus.dom.NotSupportedErr(
+                 "asynchronous builders are not supported")
+         raise ValueError("unknown value for mode")
+ 
+diff -rupN _xmlplus/marshal/generic.py _xmlplus_patched/marshal/generic.py
+--- _xmlplus/marshal/generic.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/marshal/generic.py	2009-05-13 18:38:25.000000000 -0400
+@@ -6,7 +6,7 @@
+ 
+ from types import *
+ import string
+-from xml.sax import saxlib, saxexts
++from _xmlplus.sax import saxlib, saxexts
+ 
+ # Basic marshaller class, customizable by overriding it and
+ # changing various attributes and methods.
+diff -rupN _xmlplus/ns.py _xmlplus_patched/ns.py
+--- _xmlplus/ns.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/ns.py	2009-05-13 18:38:26.000000000 -0400
+@@ -244,7 +244,7 @@ class _Namespace:
+     URI are any known local names for that namespace to the
+     constructor:
+ 
+-        xbel = xml.ns.ClosedNamespace(
++        xbel = _xmlplus.ns.ClosedNamespace(
+             'http://www.python.org/topics/xml/xbel/',
+             ['xbel', 'title', 'info', 'metadata', 'folder', 'bookmark',
+              'desc', 'separator', 'alias'])
+diff -rupN _xmlplus/parsers/xmlproc/_outputters.py _xmlplus_patched/parsers/xmlproc/_outputters.py
+--- _xmlplus/parsers/xmlproc/_outputters.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/parsers/xmlproc/_outputters.py	2009-05-13 18:38:24.000000000 -0400
+@@ -1,6 +1,6 @@
+ # This module contains common functionality used by xvcmd.py and xpcmd.py
+ 
+-from xml.parsers.xmlproc import xmlapp, utils
++from _xmlplus.parsers.xmlproc import xmlapp, utils
+ 
+ # Backwards compatibility declarations
+ 
+diff -rupN _xmlplus/parsers/xmlproc/xmlutils.py _xmlplus_patched/parsers/xmlproc/xmlutils.py
+--- _xmlplus/parsers/xmlproc/xmlutils.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/parsers/xmlproc/xmlutils.py	2009-05-13 18:38:23.000000000 -0400
+@@ -865,8 +865,8 @@ if using_unicode:
+ else:
+     _re_flags = 0
+     namestart = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_:" + \
+-               "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ"
+-    namechars = namestart + "0123456789.·-"
++               "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
++    namechars = namestart + "0123456789.ï¿½-"
+ whitespace = "\n\t \r"
+ 
+ reg_ws=re.compile("[\n\t \r]+",_re_flags)
+@@ -874,7 +874,7 @@ reg_ver=re.compile("[-a-zA-Z0-9_.:]+",_r
+ reg_enc_name=re.compile("[A-Za-z][-A-Za-z0-9._]*")
+ reg_std_alone=re.compile("yes|no")
+ if using_unicode:
+-    from xml.utils import characters
++    from _xmlplus.utils import characters
+     reg_name = characters.re_Name()
+     reg_names = characters.re_Names()
+     reg_nmtoken = characters.re_Nmtoken()
+diff -rupN _xmlplus/sax/drivers/drv_htmllib.py _xmlplus_patched/sax/drivers/drv_htmllib.py
+--- _xmlplus/sax/drivers/drv_htmllib.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_htmllib.py	2009-05-13 18:38:26.000000000 -0400
+@@ -6,8 +6,8 @@ $Id: drv_htmllib.py,v 1.5 2001/12/30 12:
+ 
+ version="0.10"
+ 
+-from xml.sax import saxutils,saxlib
+-from xml.sax.drivers import pylibs
++from _xmlplus.sax import saxutils,saxlib
++from _xmlplus.sax.drivers import pylibs
+ 
+ import htmllib,sys,string
+ 
+diff -rupN _xmlplus/sax/drivers/drv_ltdriver.py _xmlplus_patched/sax/drivers/drv_ltdriver.py
+--- _xmlplus/sax/drivers/drv_ltdriver.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_ltdriver.py	2009-05-13 18:38:27.000000000 -0400
+@@ -5,7 +5,7 @@ A SAX driver for the LT XML Python inter
+ version="0.10"
+ 
+ from types import *
+-from xml.sax import saxlib,saxutils
++from _xmlplus.sax import saxlib,saxutils
+ from XMLinter import *
+ 
+ # --- The parser
+diff -rupN _xmlplus/sax/drivers/drv_ltdriver_val.py _xmlplus_patched/sax/drivers/drv_ltdriver_val.py
+--- _xmlplus/sax/drivers/drv_ltdriver_val.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_ltdriver_val.py	2009-05-13 18:38:25.000000000 -0400
+@@ -35,7 +35,7 @@ def create_parser():
+ # --- Testing
+ 
+ if __name__=="__main__":
+-    from xml.sax import saxutils
++    from _xmlplus.sax import saxutils
+     p=create_parser()
+     p.setDocumentHandler(saxutils.Canonizer())
+     p.setErrorHandler(saxutils.ErrorPrinter())
+diff -rupN _xmlplus/sax/drivers/drv_pyexpat.py _xmlplus_patched/sax/drivers/drv_pyexpat.py
+--- _xmlplus/sax/drivers/drv_pyexpat.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_pyexpat.py	2009-05-13 18:38:28.000000000 -0400
+@@ -8,14 +8,14 @@ $Id: drv_pyexpat.py,v 1.19 2004/11/29 13
+ # Event handling can be speeded up by bypassing the driver for some events.
+ # This will be implemented later when I can test this driver.
+ #
+-# This driver has been much improved by Geir Ove Grønmo.
++# This driver has been much improved by Geir Ove Grï¿½nmo.
+ 
+ version="0.13"
+ 
+-from xml.sax import saxlib, saxutils, SAXReaderNotAvailable
++from _xmlplus.sax import saxlib, saxutils, SAXReaderNotAvailable
+ 
+ try:
+-    from xml.parsers import expat
++    from _xmlplus.parsers import expat
+ except ImportError:
+     raise SAXReaderNotAvailable("expat not supported",None)
+ 
+diff -rupN _xmlplus/sax/drivers/drv_sgmllib.py _xmlplus_patched/sax/drivers/drv_sgmllib.py
+--- _xmlplus/sax/drivers/drv_sgmllib.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_sgmllib.py	2009-05-13 18:38:23.000000000 -0400
+@@ -4,8 +4,8 @@ SAX driver for sgmllib.py
+ 
+ version="0.10"
+ 
+-from xml.sax import saxutils,saxlib
+-from xml.sax.drivers import pylibs
++from _xmlplus.sax import saxutils,saxlib
++from _xmlplus.sax.drivers import pylibs
+ 
+ import sgmllib,string,sys
+ 
+diff -rupN _xmlplus/sax/drivers/drv_sgmlop.py _xmlplus_patched/sax/drivers/drv_sgmlop.py
+--- _xmlplus/sax/drivers/drv_sgmlop.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_sgmlop.py	2009-05-13 18:38:25.000000000 -0400
+@@ -6,9 +6,9 @@ $Id: drv_sgmlop.py,v 1.10 2002/08/13 09:
+ 
+ version="0.12"
+ 
+-from xml.parsers import sgmlop
+-from xml.sax import saxlib,saxutils
+-from xml.sax import SAXException
++from _xmlplus.parsers import sgmlop
++from _xmlplus.sax import saxlib,saxutils
++from _xmlplus.sax import SAXException
+ import urllib2,string
+ 
+ # --- Driver
+diff -rupN _xmlplus/sax/drivers/drv_xmldc.py _xmlplus_patched/sax/drivers/drv_xmldc.py
+--- _xmlplus/sax/drivers/drv_xmldc.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_xmldc.py	2009-05-13 18:38:28.000000000 -0400
+@@ -9,7 +9,7 @@ import sys,urllib2,re,string
+ if sys.version[:3]<"1.5":
+     import saxlib
+ else:
+-    from xml.sax import saxlib
++    from _xmlplus.sax import saxlib
+ 
+ import xml_dc
+ 
+diff -rupN _xmlplus/sax/drivers/drv_xmllib.py _xmlplus_patched/sax/drivers/drv_xmllib.py
+--- _xmlplus/sax/drivers/drv_xmllib.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_xmllib.py	2009-05-13 18:38:25.000000000 -0400
+@@ -4,8 +4,8 @@ SAX driver for xmllib.py
+ 
+ version="0.91"
+ 
+-from xml.sax import saxutils
+-from xml.sax.drivers import pylibs
++from _xmlplus.sax import saxutils
++from _xmlplus.sax.drivers import pylibs
+ 
+ import xmllib
+ 
+@@ -13,7 +13,7 @@ import xmllib
+ try:
+     unicode("")
+ except NameError:
+-    from xml.unicode.iso8859 import wstring
++    from _xmlplus.unicode.iso8859 import wstring
+     def unicode(str, encoding):
+         return wstring.decode(encoding, str).utf8()
+ 
+diff -rupN _xmlplus/sax/drivers/drv_xmlproc.py _xmlplus_patched/sax/drivers/drv_xmlproc.py
+--- _xmlplus/sax/drivers/drv_xmlproc.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_xmlproc.py	2009-05-13 18:38:25.000000000 -0400
+@@ -6,8 +6,8 @@ $Id: drv_xmlproc.py,v 1.13 2001/12/30 12
+ 
+ version="0.95"
+ 
+-from xml.sax import saxlib, saxutils
+-from xml.parsers.xmlproc import xmlproc
++from _xmlplus.sax import saxlib, saxutils
++from _xmlplus.parsers.xmlproc import xmlproc
+ 
+ import os
+ 
+diff -rupN _xmlplus/sax/drivers/drv_xmlproc_val.py _xmlplus_patched/sax/drivers/drv_xmlproc_val.py
+--- _xmlplus/sax/drivers/drv_xmlproc_val.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_xmlproc_val.py	2009-05-13 18:38:25.000000000 -0400
+@@ -6,9 +6,9 @@ $Id: drv_xmlproc_val.py,v 1.9 2001/12/30
+ 
+ version="0.92"
+ 
+-from xml.sax import saxlib,saxutils
+-from xml.parsers.xmlproc import xmlval
+-from xml.sax.drivers.drv_xmlproc import *
++from _xmlplus.sax import saxlib,saxutils
++from _xmlplus.parsers.xmlproc import xmlval
++from _xmlplus.sax.drivers.drv_xmlproc import *
+ 
+ import types
+ 
+diff -rupN _xmlplus/sax/drivers/drv_xmltoolkit.py _xmlplus_patched/sax/drivers/drv_xmltoolkit.py
+--- _xmlplus/sax/drivers/drv_xmltoolkit.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/drv_xmltoolkit.py	2009-05-13 18:38:25.000000000 -0400
+@@ -6,7 +6,7 @@ version="0.20"
+ 
+ import sys
+ 
+-from xml.sax import saxlib,saxutils
++from _xmlplus.sax import saxlib,saxutils
+ import XMLFactory,XMLClient,urllib2
+ 
+ class SAX_XTClient(saxlib.Parser,XMLClient.ClientBase):
+diff -rupN _xmlplus/sax/drivers/pylibs.py _xmlplus_patched/sax/drivers/pylibs.py
+--- _xmlplus/sax/drivers/pylibs.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers/pylibs.py	2009-05-13 18:38:28.000000000 -0400
+@@ -4,7 +4,7 @@ Common code for the sgmllib, htmllib and
+ $Id: pylibs.py,v 1.6 2002/08/13 09:28:52 afayolle Exp $
+ """
+ 
+-from xml.sax import saxlib,saxutils
++from _xmlplus.sax import saxlib,saxutils
+ 
+ import urllib2
+ 
+diff -rupN _xmlplus/sax/drivers2/drv_htmllib.py _xmlplus_patched/sax/drivers2/drv_htmllib.py
+--- _xmlplus/sax/drivers2/drv_htmllib.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers2/drv_htmllib.py	2009-05-13 18:38:25.000000000 -0400
+@@ -6,8 +6,8 @@ $Id: drv_htmllib.py,v 1.2 2001/12/30 12:
+ 
+ import types, string
+ 
+-from xml.sax import SAXNotSupportedException, SAXNotRecognizedException
+-from xml.sax.xmlreader import IncrementalParser
++from _xmlplus.sax import SAXNotSupportedException, SAXNotRecognizedException
++from _xmlplus.sax.xmlreader import IncrementalParser
+ from drv_sgmllib import SgmllibDriver
+ 
+ class HtmllibDriver(SgmllibDriver):
+diff -rupN _xmlplus/sax/drivers2/drv_javasax.py _xmlplus_patched/sax/drivers2/drv_javasax.py
+--- _xmlplus/sax/drivers2/drv_javasax.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers2/drv_javasax.py	2009-05-13 18:40:41.000000000 -0400
+@@ -10,9 +10,9 @@ version = "0.10"
+ revision = "$Revision: 1.5 $"
+ 
+ import string
+-from xml.sax import xmlreader, saxutils
+-from xml.sax.handler import feature_namespaces
+-from xml.sax import _exceptions
++from _xmlplus.sax import xmlreader, saxutils
++from _xmlplus.sax.handler import feature_namespaces
++from _xmlplus.sax import _exceptions
+ 
+ # we only work in jython
+ import sys
+@@ -23,8 +23,8 @@ del sys
+ # get the necessary Java SAX classes
+ try:
+     from java.lang import String
+-    from org.xml.sax import ContentHandler, SAXException
+-    from org.xml.sax.helpers import XMLReaderFactory
++    from org._xmlplus.sax import ContentHandler, SAXException
++    from org._xmlplus.sax.helpers import XMLReaderFactory
+ except ImportError:
+     raise SAXReaderNotAvailable("SAX is not on the classpath", None)
+ 
+diff -rupN _xmlplus/sax/drivers2/drv_pyexpat.py _xmlplus_patched/sax/drivers2/drv_pyexpat.py
+--- _xmlplus/sax/drivers2/drv_pyexpat.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers2/drv_pyexpat.py	2009-05-13 18:38:26.000000000 -0400
+@@ -1,5 +1,5 @@
+ """
+-SAX driver for the Pyexpat C module, based on xml.sax.expatdriver.
++SAX driver for the Pyexpat C module, based on _xmlplus.sax.expatdriver.
+ 
+ $Id: drv_pyexpat.py,v 1.6 2000/09/26 19:53:43 loewis Exp $
+ """
+@@ -17,4 +17,4 @@ $Id: drv_pyexpat.py,v 1.6 2000/09/26 19:
+ #  - support XML_ExternalEntityParserCreate
+ #  - exceptions in callouts from pyexpat to python code lose position info
+ 
+-from xml.sax.expatreader import create_parser
++from _xmlplus.sax.expatreader import create_parser
+diff -rupN _xmlplus/sax/drivers2/drv_sgmllib.py _xmlplus_patched/sax/drivers2/drv_sgmllib.py
+--- _xmlplus/sax/drivers2/drv_sgmllib.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers2/drv_sgmllib.py	2009-05-13 18:38:28.000000000 -0400
+@@ -7,8 +7,8 @@ $Id: drv_sgmllib.py,v 1.3 2001/12/30 12:
+ import types, string
+ 
+ import sgmllib
+-from xml.sax import SAXNotSupportedException, SAXNotRecognizedException
+-from xml.sax.xmlreader import IncrementalParser
++from _xmlplus.sax import SAXNotSupportedException, SAXNotRecognizedException
++from _xmlplus.sax.xmlreader import IncrementalParser
+ 
+ # ===== DRIVER
+ 
+diff -rupN _xmlplus/sax/drivers2/drv_sgmlop.py _xmlplus_patched/sax/drivers2/drv_sgmlop.py
+--- _xmlplus/sax/drivers2/drv_sgmlop.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers2/drv_sgmlop.py	2009-05-13 18:38:25.000000000 -0400
+@@ -6,10 +6,10 @@ $Id: drv_sgmlop.py,v 1.7 2003/01/21 12:4
+ 
+ version = "0.1"
+ 
+-from xml.parsers.sgmllib import SGMLParser
+-from xml.sax import saxlib, handler
+-from xml.sax.xmlreader import AttributesImpl, XMLReader
+-from xml.sax.saxutils import ContentGenerator, prepare_input_source
++from _xmlplus.parsers.sgmllib import SGMLParser
++from _xmlplus.sax import saxlib, handler
++from _xmlplus.sax.xmlreader import AttributesImpl, XMLReader
++from _xmlplus.sax.saxutils import ContentGenerator, prepare_input_source
+ 
+ try:
+     import codecs
+@@ -20,7 +20,7 @@ try:
+         except LookupError:
+             return str
+ except ImportError:
+-    from xml.unicode.iso8859 import wstring
++    from _xmlplus.unicode.iso8859 import wstring
+     def to_xml_string(str,encoding):
+         if string.lower(self._encoding) == 'utf-8':
+             return str
+diff -rupN _xmlplus/sax/drivers2/drv_sgmlop_html.py _xmlplus_patched/sax/drivers2/drv_sgmlop_html.py
+--- _xmlplus/sax/drivers2/drv_sgmlop_html.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers2/drv_sgmlop_html.py	2009-05-13 18:38:27.000000000 -0400
+@@ -7,7 +7,7 @@ $Id: drv_sgmlop_html.py,v 1.3 2002/05/10
+ version = "0.1"
+ 
+ from drv_sgmlop import *
+-from xml.dom.html import HTML_CHARACTER_ENTITIES, HTML_FORBIDDEN_END, HTML_OPT_END, HTML_DTD
++from _xmlplus.dom.html import HTML_CHARACTER_ENTITIES, HTML_FORBIDDEN_END, HTML_OPT_END, HTML_DTD
+ from string import strip, upper
+ 
+ class SaxHtmlParser(SaxParser):
+diff -rupN _xmlplus/sax/drivers2/drv_xmlproc.py _xmlplus_patched/sax/drivers2/drv_xmlproc.py
+--- _xmlplus/sax/drivers2/drv_xmlproc.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/drivers2/drv_xmlproc.py	2009-05-13 18:38:24.000000000 -0400
+@@ -6,11 +6,11 @@ $Id: drv_xmlproc.py,v 1.16 2003/07/27 17
+ 
+ import types, string
+ 
+-from xml.parsers.xmlproc import xmlproc, xmlval, xmlapp
+-from xml.sax import saxlib
+-from xml.sax.xmlreader import AttributesImpl, AttributesNSImpl
+-from xml.sax.xmlreader import IncrementalParser
+-from xml.sax.saxutils import ContentGenerator, prepare_input_source
++from _xmlplus.parsers.xmlproc import xmlproc, xmlval, xmlapp
++from _xmlplus.sax import saxlib
++from _xmlplus.sax.xmlreader import AttributesImpl, AttributesNSImpl
++from _xmlplus.sax.xmlreader import IncrementalParser
++from _xmlplus.sax.saxutils import ContentGenerator, prepare_input_source
+ 
+ # Todo
+ # - EntityResolver InputSource handling
+diff -rupN _xmlplus/sax/expatreader.py _xmlplus_patched/sax/expatreader.py
+--- _xmlplus/sax/expatreader.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/expatreader.py	2009-05-13 18:40:41.000000000 -0400
+@@ -5,27 +5,27 @@ pyexpat.__version__ == '2.22'.
+ 
+ version = "0.20"
+ 
+-from xml.sax._exceptions import *
+-from xml.sax.handler import feature_validation, feature_namespaces
+-from xml.sax.handler import feature_namespace_prefixes
+-from xml.sax.handler import feature_external_ges, feature_external_pes
+-from xml.sax.handler import feature_string_interning
+-from xml.sax.handler import property_xml_string, property_interning_dict
++from _xmlplus.sax._exceptions import *
++from _xmlplus.sax.handler import feature_validation, feature_namespaces
++from _xmlplus.sax.handler import feature_namespace_prefixes
++from _xmlplus.sax.handler import feature_external_ges, feature_external_pes
++from _xmlplus.sax.handler import feature_string_interning
++from _xmlplus.sax.handler import property_xml_string, property_interning_dict
+ 
+-# xml.parsers.expat does not raise ImportError in Jython
++# _xmlplus.parsers.expat does not raise ImportError in Jython
+ import sys
+ if sys.platform[:4] == "java":
+     raise SAXReaderNotAvailable("expat not available in Java", None)
+ del sys
+ 
+ try:
+-    from xml.parsers import expat
++    from _xmlplus.parsers import expat
+ except ImportError:
+     raise SAXReaderNotAvailable("expat not supported", None)
+ else:
+     if not hasattr(expat, "ParserCreate"):
+         raise SAXReaderNotAvailable("expat not supported", None)
+-from xml.sax import xmlreader, saxutils, handler
++from _xmlplus.sax import xmlreader, saxutils, handler
+ 
+ AttributesImpl = xmlreader.AttributesImpl
+ AttributesNSImpl = xmlreader.AttributesNSImpl
+@@ -422,8 +422,8 @@ def create_parser(*args, **kwargs):
+ # ---
+ 
+ if __name__ == "__main__":
+-    import xml.sax
++    import _xmlplus.sax
+     p = create_parser()
+-    p.setContentHandler(xml.sax.XMLGenerator())
+-    p.setErrorHandler(xml.sax.ErrorHandler())
++    p.setContentHandler(_xmlplus.sax.XMLGenerator())
++    p.setErrorHandler(_xmlplus.sax.ErrorHandler())
+     p.parse("../../../hamlet.xml")
+diff -rupN _xmlplus/sax/handler.py _xmlplus_patched/sax/handler.py
+--- _xmlplus/sax/handler.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/handler.py	2009-05-13 18:38:25.000000000 -0400
+@@ -295,12 +295,12 @@ all_features = [feature_namespaces,
+ #============================================================================
+ 
+ property_lexical_handler = "http://xml.org/sax/properties/lexical-handler"
+-# data type: xml.sax.sax2lib.LexicalHandler
++# data type: _xmlplus.sax.sax2lib.LexicalHandler
+ # description: An optional extension handler for lexical events like comments.
+ # access: read/write
+ 
+ property_declaration_handler = "http://xml.org/sax/properties/declaration-handler"
+-# data type: xml.sax.sax2lib.DeclHandler
++# data type: _xmlplus.sax.sax2lib.DeclHandler
+ # description: An optional extension handler for DTD-related events other
+ #              than notations and unparsed entities.
+ # access: read/write
+diff -rupN _xmlplus/sax/sax2exts.py _xmlplus_patched/sax/sax2exts.py
+--- _xmlplus/sax/sax2exts.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/sax2exts.py	2009-05-13 18:40:41.000000000 -0400
+@@ -21,17 +21,17 @@ XMLReaderFactory = saxexts.ParserFactory
+ 
+ # --- Creating parser factories
+ 
+-XMLParserFactory = XMLReaderFactory(["xml.sax.drivers2.drv_pyexpat",
+-                                     "xml.sax.drivers2.drv_xmlproc"])
++XMLParserFactory = XMLReaderFactory(["_xmlplus.sax.drivers2.drv_pyexpat",
++                                     "_xmlplus.sax.drivers2.drv_xmlproc"])
+ 
+-XMLValParserFactory = ValidatingReaderFactory(["xml.sax.drivers2.drv_xmlproc"])
++XMLValParserFactory = ValidatingReaderFactory(["_xmlplus.sax.drivers2.drv_xmlproc"])
+ 
+-HTMLParserFactory=XMLReaderFactory(["xml.sax.drivers2.drv_htmllib",
+-                                    "xml.sax.drivers2.drv_sgmlop",
+-                                    "xml.sax.drivers2.drv_sgmllib"])
++HTMLParserFactory=XMLReaderFactory(["_xmlplus.sax.drivers2.drv_htmllib",
++                                    "_xmlplus.sax.drivers2.drv_sgmlop",
++                                    "_xmlplus.sax.drivers2.drv_sgmllib"])
+ 
+-SGMLParserFactory=XMLReaderFactory(["xml.sax.drivers2.drv_sgmlop",
+-                                    "xml.sax.drivers2.drv_sgmllib"])
++SGMLParserFactory=XMLReaderFactory(["_xmlplus.sax.drivers2.drv_sgmlop",
++                                    "_xmlplus.sax.drivers2.drv_sgmllib"])
+ 
+ def make_parser(parser_list = []):
+     return XMLParserFactory.make_parser(parser_list)
+diff -rupN _xmlplus/sax/saxexts.py _xmlplus_patched/sax/saxexts.py
+--- _xmlplus/sax/saxexts.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/saxexts.py	2009-05-13 18:40:41.000000000 -0400
+@@ -17,7 +17,7 @@ class ParserFactory:
+         # and properties override list argument
+         if os.environ.has_key("PY_SAX_PARSER"):
+             list = string.split(os.environ["PY_SAX_PARSER"], ",")
+-        _key = "python.xml.sax.parser"
++        _key = "python._xmlplus.sax.parser"
+         if sys.platform[:4] == "java" \
+            and sys.registry.containsKey(_key):
+             list = string.split(sys.registry.getProperty(_key), ",")
+@@ -147,22 +147,22 @@ class NosliceDocumentHandler(saxlib.Docu
+ 
+ # --- Creating parser factories
+ 
+-XMLParserFactory=ParserFactory(["xml.sax.drivers.drv_pyexpat",
+-                                "xml.sax.drivers.drv_xmltok",
+-                                "xml.sax.drivers.drv_xmlproc",
+-                                "xml.sax.drivers.drv_xmltoolkit",
+-                                "xml.sax.drivers.drv_xmllib",
+-                                "xml.sax.drivers.drv_xmldc",
+-                                "xml.sax.drivers.drv_sgmlop"])
+-
+-XMLValParserFactory=ParserFactory(["xml.sax.drivers.drv_xmlproc_val"])
+-
+-HTMLParserFactory=ParserFactory(["xml.sax.drivers.drv_htmllib",
+-                                 "xml.sax.drivers.drv_sgmlop",
+-                                 "xml.sax.drivers.drv_sgmllib"])
++XMLParserFactory=ParserFactory(["_xmlplus.sax.drivers.drv_pyexpat",
++                                "_xmlplus.sax.drivers.drv_xmltok",
++                                "_xmlplus.sax.drivers.drv_xmlproc",
++                                "_xmlplus.sax.drivers.drv_xmltoolkit",
++                                "_xmlplus.sax.drivers.drv_xmllib",
++                                "_xmlplus.sax.drivers.drv_xmldc",
++                                "_xmlplus.sax.drivers.drv_sgmlop"])
++
++XMLValParserFactory=ParserFactory(["_xmlplus.sax.drivers.drv_xmlproc_val"])
++
++HTMLParserFactory=ParserFactory(["_xmlplus.sax.drivers.drv_htmllib",
++                                 "_xmlplus.sax.drivers.drv_sgmlop",
++                                 "_xmlplus.sax.drivers.drv_sgmllib"])
+ 
+-SGMLParserFactory=ParserFactory(["xml.sax.drivers.drv_sgmlop",
+-                                 "xml.sax.drivers.drv_sgmllib"])
++SGMLParserFactory=ParserFactory(["_xmlplus.sax.drivers.drv_sgmlop",
++                                 "_xmlplus.sax.drivers.drv_sgmllib"])
+ 
+ def make_parser(parser_list = []):
+     return XMLParserFactory.make_parser(parser_list)
+diff -rupN _xmlplus/sax/saxutils.py _xmlplus_patched/sax/saxutils.py
+--- _xmlplus/sax/saxutils.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/saxutils.py	2009-05-13 18:40:41.000000000 -0400
+@@ -218,7 +218,7 @@ def writeattr(stream, text):
+ 
+ 
+ class XMLGenerator(handler.ContentHandler):
+-    GENERATED_PREFIX = "xml.sax.saxutils.prefix%s"
++    GENERATED_PREFIX = "_xmlplus.sax.saxutils.prefix%s"
+ 
+     def __init__(self, out=None, encoding="iso-8859-1"):
+         if out is None:
+diff -rupN _xmlplus/sax/writer.py _xmlplus_patched/sax/writer.py
+--- _xmlplus/sax/writer.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/sax/writer.py	2009-05-13 18:38:27.000000000 -0400
+@@ -44,9 +44,9 @@ __version__ = '$Revision: 1.9 $'
+ 
+ import string
+ 
+-import xml.parsers.xmlproc.dtdparser
+-import xml.parsers.xmlproc.xmlapp
+-from xml.sax.saxutils import escape
++import _xmlplus.parsers.xmlproc.dtdparser
++import _xmlplus.parsers.xmlproc.xmlapp
++from _xmlplus.sax.saxutils import escape
+ 
+ 
+ DEFAULT_LINELENGTH = 74
+@@ -146,7 +146,7 @@ class DoctypeInfo:
+ class _XMLDTDLoader(xml.parsers.xmlproc.xmlapp.DTDConsumer):
+     def __init__(self, info, parser):
+         self.info = info
+-        xml.parsers.xmlproc.xmlapp.DTDConsumer.__init__(self, parser)
++        _xmlplus.parsers.xmlproc.xmlapp.DTDConsumer.__init__(self, parser)
+         self.new_attribute = info.add_attribute_defn
+ 
+     def new_element_type(self, gi, model):
+@@ -161,7 +161,7 @@ class _XMLDTDLoader(xml.parsers.xmlproc.
+ 
+ class XMLDoctypeInfo(DoctypeInfo):
+     def load_pubtext(self, sysid):
+-        parser = xml.parsers.xmlproc.dtdparser.DTDParser()
++        parser = _xmlplus.parsers.xmlproc.dtdparser.DTDParser()
+         loader = _XMLDTDLoader(self, parser)
+         parser.set_dtd_consumer(loader)
+         parser.parse_resource(sysid)
+diff -rupN _xmlplus/schema/trex.py _xmlplus_patched/schema/trex.py
+--- _xmlplus/schema/trex.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/schema/trex.py	2009-05-13 18:38:23.000000000 -0400
+@@ -130,8 +130,8 @@ def parse_TREX(location, baseURI=None):
+     if baseURI==None:
+         baseURI = location
+ 
+-    import xml.parsers.expat
+-    parser = xml.parsers.expat.ParserCreate(namespace_separator="^")
++    import _xmlplus.parsers.expat
++    parser = _xmlplus.parsers.expat.ParserCreate(namespace_separator="^")
+     parser.SetBase(baseURI)
+     parser.returns_unicode = 1
+ 
+@@ -145,7 +145,7 @@ def parse_TREX(location, baseURI=None):
+     except IOError, e:
+         print "IOError reading TREX file", e
+         import sys; sys.exit()
+-    except xml.parsers.expat.error:
++    except _xmlplus.parsers.expat.error:
+         print "Error parsing file at line '%s' and column '%s'\n" % (parser.ErrorLineNumber, parser.ErrorColumnNumber)
+         f.close()
+         import sys; sys.exit()
+@@ -1851,8 +1851,8 @@ def parse_Instance(location, baseURI=Non
+     if baseURI==None:
+         baseURI = location
+ 
+-    import xml.parsers.expat
+-    parser = xml.parsers.expat.ParserCreate(namespace_separator="^")
++    import _xmlplus.parsers.expat
++    parser = _xmlplus.parsers.expat.ParserCreate(namespace_separator="^")
+     parser.SetBase(baseURI)
+     parser.returns_unicode = 1
+ 
+@@ -1862,7 +1862,7 @@ def parse_Instance(location, baseURI=Non
+     f = urlopen(location)
+     try:
+         parser.ParseFile(f)
+-    except xml.parsers.expat.error:
++    except _xmlplus.parsers.expat.error:
+         import sys
+         sys.stderr.write("Error parsing file at line '%s' and column '%s'\n" % (parser.ErrorLineNumber, parser.ErrorColumnNumber) )
+         sys.stderr.flush()
+diff -rupN _xmlplus/utils/qp_xml.py _xmlplus_patched/utils/qp_xml.py
+--- _xmlplus/utils/qp_xml.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/utils/qp_xml.py	2009-05-13 18:38:27.000000000 -0400
+@@ -20,7 +20,7 @@ import string
+ try:
+   import pyexpat
+ except ImportError:
+-  from xml.parsers import pyexpat
++  from _xmlplus.parsers import pyexpat
+ 
+ error = __name__ + '.error'
+ 
+@@ -56,7 +56,7 @@ class Parser:
+       return '', name	# no namespace
+ 
+     if string.lower(name[:3]) == 'xml':
+-      return '', name	# name is reserved by XML. don't break out a NS.
++      return '', name	# name is reserved by _xmlplus. don't break out a NS.
+ 
+     ns = self.find_prefix(name[:idx])
+     if ns is None:
+diff -rupN _xmlplus/xpath/BuiltInExtFunctions.py _xmlplus_patched/xpath/BuiltInExtFunctions.py
+--- _xmlplus/xpath/BuiltInExtFunctions.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/BuiltInExtFunctions.py	2009-05-13 18:38:23.000000000 -0400
+@@ -12,10 +12,10 @@ See  http://4suite.org/COPYRIGHT  for li
+ """
+ 
+ import sys, re, string, urllib
+-from xml.dom import Node, EMPTY_NAMESPACE
+-from xml.dom.Text import Text
+-from xml.utils import boolean
+-from xml.xpath import CoreFunctions, Conversions, FT_EXT_NAMESPACE, FT_OLD_EXT_NAMESPACE
++from _xmlplus.dom import Node, EMPTY_NAMESPACE
++from _xmlplus.dom.Text import Text
++from _xmlplus.utils import boolean
++from _xmlplus.xpath import CoreFunctions, Conversions, FT_EXT_NAMESPACE, FT_OLD_EXT_NAMESPACE
+ 
+ def Version(context):
+     try:
+@@ -172,8 +172,8 @@ def IsoTime(context):
+ 
+ 
+ def Evaluate(context, expr):
+-    import xml.xpath
+-    return xml.xpath.Evaluate(Conversions.StringValue(st), context=context)
++    import _xmlplus.xpath
++    return _xmlplus.xpath.Evaluate(Conversions.StringValue(st), context=context)
+ 
+ 
+ try:
+diff -rupN _xmlplus/xpath/Context.py _xmlplus_patched/xpath/Context.py
+--- _xmlplus/xpath/Context.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/Context.py	2009-05-13 18:38:23.000000000 -0400
+@@ -11,7 +11,7 @@ Copyright (c) 2000-2001 Fourthought Inc,
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-import xml.dom.ext
++import _xmlplus.dom.ext
+ import CoreFunctions
+ 
+ class Context:
+@@ -43,7 +43,7 @@ class Context:
+ 
+     def nss(self):
+         if self._cachedNss is None or self.node != self._cachedNssNode:
+-            nss = xml.dom.ext.GetAllNs(self.node)
++            nss = _xmlplus.dom.ext.GetAllNs(self.node)
+             self._cachedNss = nss
+             self._cachedNssNode = self.node
+         return self._cachedNss
+diff -rupN _xmlplus/xpath/Conversions.py _xmlplus_patched/xpath/Conversions.py
+--- _xmlplus/xpath/Conversions.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/Conversions.py	2009-05-13 18:38:28.000000000 -0400
+@@ -13,13 +13,13 @@ See  http://4suite.org/COPYRIGHT  for li
+ 
+ import string, cStringIO
+ 
+-from xml.dom import Node
+-from xml.xpath import ExpandedNameWrapper
+-from xml.xpath import NamespaceNode
+-from xml.xpath import NaN, Inf
+-from xml.xpath import Util
+-from xml.xpath import NAMESPACE_NODE
+-from xml.utils import boolean
++from _xmlplus.dom import Node
++from _xmlplus.xpath import ExpandedNameWrapper
++from _xmlplus.xpath import NamespaceNode
++from _xmlplus.xpath import NaN, Inf
++from _xmlplus.xpath import Util
++from _xmlplus.xpath import NAMESPACE_NODE
++from _xmlplus.utils import boolean
+ 
+ import types
+ try:
+diff -rupN _xmlplus/xpath/CoreFunctions.py _xmlplus_patched/xpath/CoreFunctions.py
+--- _xmlplus/xpath/CoreFunctions.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/CoreFunctions.py	2009-05-13 18:38:23.000000000 -0400
+@@ -13,16 +13,16 @@ See  http://4suite.org/COPYRIGHT  for li
+ 
+ import string, cStringIO
+ 
+-from xml.dom import Node,EMPTY_NAMESPACE
+-from xml.xpath import ExpandedNameWrapper
+-from xml.xpath import NamespaceNode
+-from xml.xpath import NaN, Inf
+-from xml.xpath import Util, Conversions
+-from xml.xpath import NAMESPACE_NODE
+-from xml.xpath import CompiletimeException, RuntimeException
+-from xml.utils import boolean
++from _xmlplus.dom import Node,EMPTY_NAMESPACE
++from _xmlplus.xpath import ExpandedNameWrapper
++from _xmlplus.xpath import NamespaceNode
++from _xmlplus.xpath import NaN, Inf
++from _xmlplus.xpath import Util, Conversions
++from _xmlplus.xpath import NAMESPACE_NODE
++from _xmlplus.xpath import CompiletimeException, RuntimeException
++from _xmlplus.utils import boolean
+ 
+-from xml.FtCore import get_translator
++from _xmlplus.FtCore import get_translator
+ 
+ _ = get_translator("xpath")
+ 
+diff -rupN _xmlplus/xpath/ExpandedNameWrapper.py _xmlplus_patched/xpath/ExpandedNameWrapper.py
+--- _xmlplus/xpath/ExpandedNameWrapper.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/ExpandedNameWrapper.py	2009-05-13 18:38:25.000000000 -0400
+@@ -11,9 +11,9 @@ Copyright (c) 2000-2001 Fourthought Inc,
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node,EMPTY_NAMESPACE
+-from xml.xpath import NAMESPACE_NODE
+-from xml.xpath import NamespaceNode
++from _xmlplus.dom import Node,EMPTY_NAMESPACE
++from _xmlplus.xpath import NAMESPACE_NODE
++from _xmlplus.xpath import NamespaceNode
+ 
+ class ExpandedNameWrapper:
+     def __init__(self, node):
+diff -rupN _xmlplus/xpath/MessageSource.py _xmlplus_patched/xpath/MessageSource.py
+--- _xmlplus/xpath/MessageSource.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/MessageSource.py	2009-05-13 18:38:25.000000000 -0400
+@@ -1,6 +1,6 @@
+-from xml.xpath import RuntimeException, CompiletimeException
++from _xmlplus.xpath import RuntimeException, CompiletimeException
+ 
+-from xml.FtCore import get_translator
++from _xmlplus.FtCore import get_translator
+ 
+ _ = get_translator("xpath")
+ 
+diff -rupN _xmlplus/xpath/NamespaceNode.py _xmlplus_patched/xpath/NamespaceNode.py
+--- _xmlplus/xpath/NamespaceNode.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/NamespaceNode.py	2009-05-13 18:38:25.000000000 -0400
+@@ -11,8 +11,8 @@ Copyright (c) 2000-2001 Fourthought Inc,
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import EMPTY_NAMESPACE
+-from xml.xpath import NAMESPACE_NODE
++from _xmlplus.dom import EMPTY_NAMESPACE
++from _xmlplus.xpath import NAMESPACE_NODE
+ 
+ class NamespaceNode:
+     def __init__(self, prefix, uri, ownerDoc=None):
+diff -rupN _xmlplus/xpath/ParsedAbbreviatedAbsoluteLocationPath.py _xmlplus_patched/xpath/ParsedAbbreviatedAbsoluteLocationPath.py
+--- _xmlplus/xpath/ParsedAbbreviatedAbsoluteLocationPath.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/ParsedAbbreviatedAbsoluteLocationPath.py	2009-05-13 18:38:27.000000000 -0400
+@@ -11,10 +11,10 @@ Copyright (c) 2000-2001 Fourthought Inc,
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.xpath import ParsedNodeTest
+-from xml.xpath import ParsedPredicateList
+-from xml.xpath import ParsedStep
+-from xml.xpath import ParsedAxisSpecifier
++from _xmlplus.xpath import ParsedNodeTest
++from _xmlplus.xpath import ParsedPredicateList
++from _xmlplus.xpath import ParsedStep
++from _xmlplus.xpath import ParsedAxisSpecifier
+ 
+ LOOKAHEAD_OPTIMIZERS = {
+     }
+diff -rupN _xmlplus/xpath/ParsedAbbreviatedRelativeLocationPath.py _xmlplus_patched/xpath/ParsedAbbreviatedRelativeLocationPath.py
+--- _xmlplus/xpath/ParsedAbbreviatedRelativeLocationPath.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/ParsedAbbreviatedRelativeLocationPath.py	2009-05-13 18:38:27.000000000 -0400
+@@ -11,10 +11,10 @@ Copyright (c) 2000-2001 Fourthought Inc,
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.xpath import ParsedNodeTest
+-from xml.xpath import ParsedPredicateList
+-from xml.xpath import ParsedAxisSpecifier
+-from xml.xpath import ParsedStep
++from _xmlplus.xpath import ParsedNodeTest
++from _xmlplus.xpath import ParsedPredicateList
++from _xmlplus.xpath import ParsedAxisSpecifier
++from _xmlplus.xpath import ParsedStep
+ 
+ import Set
+ 
+diff -rupN _xmlplus/xpath/ParsedAxisSpecifier.py _xmlplus_patched/xpath/ParsedAxisSpecifier.py
+--- _xmlplus/xpath/ParsedAxisSpecifier.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/ParsedAxisSpecifier.py	2009-05-13 18:38:25.000000000 -0400
+@@ -11,14 +11,14 @@ Copyright (c) 2000-2001 Fourthought Inc,
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
+-from xml.xpath import g_xpathRecognizedNodes
+-from xml.xpath import NAMESPACE_NODE
++from _xmlplus.dom import Node
++from _xmlplus.xpath import g_xpathRecognizedNodes
++from _xmlplus.xpath import NAMESPACE_NODE
+ 
+-from xml.xpath import Util
+-from xml.xpath import NamespaceNode
++from _xmlplus.xpath import Util
++from _xmlplus.xpath import NamespaceNode
+ 
+-from xml.dom.ext import GetAllNs
++from _xmlplus.dom.ext import GetAllNs
+ 
+ import string
+ 
+diff -rupN _xmlplus/xpath/ParsedExpr.py _xmlplus_patched/xpath/ParsedExpr.py
+--- _xmlplus/xpath/ParsedExpr.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/ParsedExpr.py	2009-05-13 18:38:24.000000000 -0400
+@@ -13,16 +13,16 @@ See  http://4suite.org/COPYRIGHT  for li
+ 
+ import string, UserList, types
+ 
+-from xml.dom import EMPTY_NAMESPACE
+-from xml.dom.ext import SplitQName
+-from xml.xpath import CompiletimeException, RuntimeException
+-from xml.xpath import g_extFunctions
+-from xml.xpath import ParsedNodeTest
+-from xml.xpath import CoreFunctions, Conversions
+-from xml.xpath import Util
+-from xml.xpath import ParsedStep
+-from xml.xpath import ParsedAxisSpecifier
+-from xml.utils import boolean
++from _xmlplus.dom import EMPTY_NAMESPACE
++from _xmlplus.dom.ext import SplitQName
++from _xmlplus.xpath import CompiletimeException, RuntimeException
++from _xmlplus.xpath import g_extFunctions
++from _xmlplus.xpath import ParsedNodeTest
++from _xmlplus.xpath import CoreFunctions, Conversions
++from _xmlplus.xpath import Util
++from _xmlplus.xpath import ParsedStep
++from _xmlplus.xpath import ParsedAxisSpecifier
++from _xmlplus.utils import boolean
+ import Set
+ 
+ class NodeSet(UserList.UserList):
+@@ -303,7 +303,7 @@ class ParsedPathExpr:
+         if descendant:
+             nt = ParsedNodeTest.ParsedNodeTest('node', '')
+             axis = ParsedAxisSpecifier.ParsedAxisSpecifier('descendant-or-self')
+-            from xml.xpath import ParsedPredicateList
++            from _xmlplus.xpath import ParsedPredicateList
+             pList = ParsedPredicateList.ParsedPredicateList([])
+             self._step = ParsedStep.ParsedStep(axis, nt, pList)
+         else:
+@@ -615,7 +615,7 @@ class ParsedAdditiveExpr:
+         return repr(self._left) + op + repr(self._right)
+ 
+ 
+-from xml.xpath import Inf, NaN
++from _xmlplus.xpath import Inf, NaN
+ 
+ class ParsedMultiplicativeExpr:
+     def __init__(self, opcode, left, right):
+diff -rupN _xmlplus/xpath/ParsedNodeTest.py _xmlplus_patched/xpath/ParsedNodeTest.py
+--- _xmlplus/xpath/ParsedNodeTest.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/ParsedNodeTest.py	2009-05-13 18:38:25.000000000 -0400
+@@ -12,10 +12,10 @@ See  http://4suite.org/COPYRIGHT  for li
+ """
+ 
+ import string
+-from xml.dom import Node,EMPTY_NAMESPACE
+-from xml.xpath import NamespaceNode
+-from xml.xpath import NAMESPACE_NODE, RuntimeException
+-from xml.xpath import g_xpathRecognizedNodes 
++from _xmlplus.dom import Node,EMPTY_NAMESPACE
++from _xmlplus.xpath import NamespaceNode
++from _xmlplus.xpath import NAMESPACE_NODE, RuntimeException
++from _xmlplus.xpath import g_xpathRecognizedNodes 
+ 
+ def ParsedNameTest(name):
+     if name == '*':
+diff -rupN _xmlplus/xpath/ParsedPredicateList.py _xmlplus_patched/xpath/ParsedPredicateList.py
+--- _xmlplus/xpath/ParsedPredicateList.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/ParsedPredicateList.py	2009-05-13 18:38:26.000000000 -0400
+@@ -11,7 +11,7 @@ Copyright (c) 2000-2001 Fourthought Inc,
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.xpath import Conversions
++from _xmlplus.xpath import Conversions
+ import types
+ NumberTypes = [types.IntType, types.LongType, types.FloatType]
+ 
+diff -rupN _xmlplus/xpath/ParsedStep.py _xmlplus_patched/xpath/ParsedStep.py
+--- _xmlplus/xpath/ParsedStep.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/ParsedStep.py	2009-05-13 18:38:23.000000000 -0400
+@@ -11,9 +11,9 @@ Copyright (c) 2000-2001 Fourthought Inc,
+ See  http://4suite.org/COPYRIGHT  for license and copyright information
+ """
+ 
+-from xml.dom import Node
+-from xml.xpath import Util
+-from xml.xpath import NamespaceNode
++from _xmlplus.dom import Node
++from _xmlplus.xpath import Util
++from _xmlplus.xpath import NamespaceNode
+ 
+ import sys
+ 
+diff -rupN _xmlplus/xpath/Util.py _xmlplus_patched/xpath/Util.py
+--- _xmlplus/xpath/Util.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/Util.py	2009-05-13 18:38:24.000000000 -0400
+@@ -12,11 +12,11 @@ See  http://4suite.org/COPYRIGHT  for li
+ """
+ 
+ import os, glob, string
+-import xml.dom.ext
+-from xml.dom import XML_NAMESPACE,EMPTY_NAMESPACE
+-from xml.dom import Node
+-from xml.dom.NodeFilter import NodeFilter
+-from xml.xpath import g_xpathRecognizedNodes, Compile
++import _xmlplus.dom.ext
++from _xmlplus.dom import XML_NAMESPACE,EMPTY_NAMESPACE
++from _xmlplus.dom import Node
++from _xmlplus.dom.NodeFilter import NodeFilter
++from _xmlplus.xpath import g_xpathRecognizedNodes, Compile
+ 
+ g_documentOrderIndex = {}
+ 
+@@ -73,10 +73,10 @@ def ExpandQName(qname, refNode=None, nam
+     '''
+     nss = {}
+     if refNode:
+-        nss = xml.dom.ext.GetAllNs(refNode)
++        nss = _xmlplus.dom.ext.GetAllNs(refNode)
+     elif namespaces:
+         nss = namespaces
+-    (prefix, local) = xml.dom.ext.SplitQName(qname)
++    (prefix, local) = _xmlplus.dom.ext.SplitQName(qname)
+     #We're not to use the default namespace
+     if prefix != '':
+         split_name = (nss[prefix], local)
+diff -rupN _xmlplus/xpath/XPathParser.py _xmlplus_patched/xpath/XPathParser.py
+--- _xmlplus/xpath/XPathParser.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/XPathParser.py	2009-05-13 18:38:27.000000000 -0400
+@@ -630,15 +630,15 @@ class Parser:
+ new = Parser
+ 
+ # modules required for action routines
+-from xml.xpath import ParsedAbsoluteLocationPath
+-from xml.xpath import ParsedRelativeLocationPath
+-from xml.xpath import ParsedPredicateList
+-from xml.xpath import ParsedStep
+-from xml.xpath import ParsedAxisSpecifier
+-from xml.xpath import ParsedNodeTest
+-from xml.xpath import ParsedAbbreviatedAbsoluteLocationPath
+-from xml.xpath import ParsedAbbreviatedRelativeLocationPath
+-from xml.xpath import ParsedExpr
++from _xmlplus.xpath import ParsedAbsoluteLocationPath
++from _xmlplus.xpath import ParsedRelativeLocationPath
++from _xmlplus.xpath import ParsedPredicateList
++from _xmlplus.xpath import ParsedStep
++from _xmlplus.xpath import ParsedAxisSpecifier
++from _xmlplus.xpath import ParsedNodeTest
++from _xmlplus.xpath import ParsedAbbreviatedAbsoluteLocationPath
++from _xmlplus.xpath import ParsedAbbreviatedRelativeLocationPath
++from _xmlplus.xpath import ParsedExpr
+ 
+ # the action code for each rule
+ def absoluteLocationPath1(self, __stack, __ptr):
+diff -rupN _xmlplus/xpath/__init__.py _xmlplus_patched/xpath/__init__.py
+--- _xmlplus/xpath/__init__.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/__init__.py	2009-05-13 18:38:26.000000000 -0400
+@@ -19,8 +19,8 @@ FT_EXT_NAMESPACE = 'http://xmlns.4suite.
+ Inf = Inf = 1e300 * 1e300
+ NaN = Inf - Inf
+ 
+-from xml.dom import Node
+-from xml.FtCore import FtException
++from _xmlplus.dom import Node
++from _xmlplus.FtCore import FtException
+ 
+ g_xpathRecognizedNodes = [
+         Node.ELEMENT_NODE,
+@@ -116,7 +116,7 @@ else:
+ 
+ 
+ def Init():
+-    from xml.xpath import BuiltInExtFunctions
++    from _xmlplus.xpath import BuiltInExtFunctions
+     g_extFunctions.update(BuiltInExtFunctions.ExtFunctions)
+ 
+ 
+diff -rupN _xmlplus/xpath/pyxpath.py _xmlplus_patched/xpath/pyxpath.py
+--- _xmlplus/xpath/pyxpath.py	2009-05-13 18:31:11.000000000 -0400
++++ _xmlplus_patched/xpath/pyxpath.py	2009-05-13 18:38:26.000000000 -0400
+@@ -53,28 +53,28 @@ DIV_OPERATOR = 12
+ MOD_OPERATOR = 13
+ UNION_OPERATOR = 14
+ 
+-from xml.xpath import ParsedExpr, ParsedNodeTest
+-from xml.xpath.ParsedAbsoluteLocationPath import ParsedAbsoluteLocationPath
+-from xml.xpath.ParsedRelativeLocationPath import ParsedRelativeLocationPath
+-from xml.xpath.ParsedAbbreviatedRelativeLocationPath import ParsedAbbreviatedRelativeLocationPath
+-from xml.xpath.ParsedAbbreviatedAbsoluteLocationPath import ParsedAbbreviatedAbsoluteLocationPath
++from _xmlplus.xpath import ParsedExpr, ParsedNodeTest
++from _xmlplus.xpath.ParsedAbsoluteLocationPath import ParsedAbsoluteLocationPath
++from _xmlplus.xpath.ParsedRelativeLocationPath import ParsedRelativeLocationPath
++from _xmlplus.xpath.ParsedAbbreviatedRelativeLocationPath import ParsedAbbreviatedRelativeLocationPath
++from _xmlplus.xpath.ParsedAbbreviatedAbsoluteLocationPath import ParsedAbbreviatedAbsoluteLocationPath
+ PALP = ParsedAbsoluteLocationPath
+ PRLP = ParsedRelativeLocationPath
+ PAALP = ParsedAbbreviatedAbsoluteLocationPath
+ PARLP = ParsedAbbreviatedRelativeLocationPath
+-from xml.xpath.ParsedStep import ParsedStep
+-from xml.xpath.ParsedAxisSpecifier import ParsedAxisSpecifier
+-from xml.xpath.ParsedPredicateList import ParsedPredicateList
++from _xmlplus.xpath.ParsedStep import ParsedStep
++from _xmlplus.xpath.ParsedAxisSpecifier import ParsedAxisSpecifier
++from _xmlplus.xpath.ParsedPredicateList import ParsedPredicateList
+ 
+-from xml.xpath.ParsedAbsoluteLocationPath import ParsedAbsoluteLocationPath
+-from xml.xpath.ParsedRelativeLocationPath import ParsedRelativeLocationPath
++from _xmlplus.xpath.ParsedAbsoluteLocationPath import ParsedAbsoluteLocationPath
++from _xmlplus.xpath.ParsedRelativeLocationPath import ParsedRelativeLocationPath
+ 
+ # XSLT
+ try:
+-    from xml.xslt.ParsedPattern import ParsedPattern
+-    from xml.xslt import ParsedStepPattern
+-    from xml.xslt import ParsedRelativePathPattern
+-    from xml.xslt import ParsedLocationPathPattern
++    from _xmlplus.xslt.ParsedPattern import ParsedPattern
++    from _xmlplus.xslt import ParsedStepPattern
++    from _xmlplus.xslt import ParsedRelativePathPattern
++    from _xmlplus.xslt import ParsedLocationPathPattern
+     _xslt_patterns = 1
+ except:
+     _xslt_patterns = 0

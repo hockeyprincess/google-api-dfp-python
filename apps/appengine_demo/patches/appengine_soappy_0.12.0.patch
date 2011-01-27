@@ -1,0 +1,77 @@
+diff -rupN SOAPpy/Client.py SOAPpy_patched/Client.py
+--- SOAPpy/Client.py	2009-05-13 18:20:55.000000000 -0400
++++ SOAPpy_patched/Client.py	2009-05-13 18:13:32.000000000 -0400
+@@ -40,11 +40,11 @@
+ ################################################################################
+ """
+ 
++from __future__ import nested_scopes
++
+ ident = '$Id: Client.py,v 1.27 2005/02/21 20:27:09 warnes Exp $'
+ from version import __version__
+ 
+-from __future__ import nested_scopes
+-
+ #import xml.sax
+ import urllib
+ from types import *
+@@ -96,7 +96,7 @@ class SOAPAddress:
+         if proto == 'httpg' and not config.GSIclient:
+             raise AttributeError, \
+                   "GSI client not supported by this Python installation"
+-        if proto == 'https' and not config.SSLclient:
++        if proto == 'https' and not (config.SSLclient or config.Urlfetch):
+             raise AttributeError, \
+                 "SSL client not supported by this Python installation"
+ 
+diff -rupN SOAPpy/Config.py SOAPpy_patched/Config.py
+--- SOAPpy/Config.py	2009-05-13 18:20:55.000000000 -0400
++++ SOAPpy_patched/Config.py	2009-05-13 18:13:32.000000000 -0400
+@@ -134,6 +134,13 @@ class SOAPConfig:
+             except:
+                 d['SSLclient'] = 0
+ 
++            # Is this running on Google's App Engine?
++            try:
++                from google.appengine.api import urlfetch
++                d['Urlfetch'] = 1
++            except:
++                d['Urlfetch'] = 0
++
+         for k, v in kw.items():
+             if k[0] != '_':
+                 setattr(self, k, v)
+diff -rupN SOAPpy/Server.py SOAPpy_patched/Server.py
+--- SOAPpy/Server.py	2009-05-13 18:20:55.000000000 -0400
++++ SOAPpy_patched/Server.py	2009-05-13 18:13:32.000000000 -0400
+@@ -40,11 +40,11 @@
+ ################################################################################
+ """
+ 
++from __future__ import nested_scopes
++
+ ident = '$Id: Server.py,v 1.21 2005/02/15 16:32:22 warnes Exp $'
+ from version import __version__
+ 
+-from __future__ import nested_scopes
+-
+ #import xml.sax
+ import re
+ import socket
+diff -rupN SOAPpy/Types.py SOAPpy_patched/Types.py
+--- SOAPpy/Types.py	2009-05-13 18:20:55.000000000 -0400
++++ SOAPpy_patched/Types.py	2009-05-13 18:13:32.000000000 -0400
+@@ -33,11 +33,11 @@
+ ################################################################################
+ """
+ 
++from __future__ import nested_scopes
++
+ ident = '$Id: Types.py,v 1.19 2005/02/22 04:29:43 warnes Exp $'
+ from version import __version__
+ 
+-from __future__ import nested_scopes
+-
+ import UserList
+ import base64
+ import cgi

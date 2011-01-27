@@ -1,0 +1,106 @@
+/**
+ * Copyright 2010, Google Inc. All Rights Reserved.
+ *
+ * Main stylesheet file for the application.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author: api.ekoleda@gmail.com (Eric Koleda)
+ */
+
+/* A panel */
+.dfp-panel {
+  width: 400px;
+  border: 1px solid grey;
+  margin: 5px;
+  padding: 0px;
+  background-color: white;
+}
+
+/* Reload link of a panel */
+.dfp-reload {
+  float: right;
+  margin: 5px 5px 0px 0px;
+  font-weight: bold;
+  font-size: 10pt;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Headline of a panel */
+.dfp-panel h2 {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-color: #def;
+  height: 25px;
+  text-align: left;
+}
+
+/* Content area for a panel */
+.dfp-panel-content {
+  padding: 10px;
+  height: 360px;
+  overflow: auto;
+}
+
+/* Lists with panels */
+.dfp-panel-content ul,
+.dfp-panel-content ol {
+  padding: 0 0 0 20px;
+  margin: 0;
+}
+
+/* Tables within panels */
+.dfp-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  border-style: none;
+}
+
+/* Table cells within panels */
+.dfp-panel th,
+.dfp-panel td {
+  text-align: left;
+}
+.dfp-panel tr {
+  height: 10px;
+}
+
+/* Class applied to a panel while loading */
+.dfp-loading {
+  background-image: url('../images/ajax-loader.gif');
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Class applied to error messages */
+.dfp-error {
+  color: red;
+}
+
+/* Class applied to info messages */
+.dfp-info {
+  color: grey;
+  font-style: italic;
+}
+
+/* Class applied to panel position */
+.dfp-position {
+  margin: 5px 0px 0px 5px;
+}
+
+/* Application footer */
+.dfp-footer {
+  clear: left;
+}

@@ -1,0 +1,24 @@
+<br/><br/><br/><br/><br/><br/>
+<form action="/lookUpOrder" method="post">
+  <div align="center">
+    <div class="dfp-panel">
+      <h2>Look-Up Order By Name</h2>
+      <div class="dfp-position">
+        <table width="100%%" height="100%%">
+          <tr align="center">
+            <td width="80">&nbsp;</td>
+            <td>
+              <select name="orderId" style="width: 258px;">
+                {% for order in orders %}
+                  <option value="{{ order.id }}">{{ order.name }}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td><input type="submit" value="Go"/></td>
+            <td width="80">&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</form>

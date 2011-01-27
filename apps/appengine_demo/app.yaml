@@ -1,0 +1,13 @@
+application: dfpapi-demo
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /data/stylesheets
+  static_dir: data/stylesheets
+
+- url: /.*
+  script: api_client.py
+  login: required
+  secure: always
