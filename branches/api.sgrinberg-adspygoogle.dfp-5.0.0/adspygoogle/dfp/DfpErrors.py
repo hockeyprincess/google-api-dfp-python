@@ -161,18 +161,21 @@ class DfpBillingError(DfpApiError):
 ERRORS = {}
 for index in ERROR_TYPES:
   if index in ('AdUnitAfcSizeError', 'AdUnitCodeError', 'AdUnitHierarchyError',
-               'ApiError', 'CommonError', 'CreativeError', 'FileError',
+               'ApiError', 'ApiVersionError', 'CommonError', 'CreativeError',
+               'CustomTargetingError', 'DayPartTargetingError', 'FileError',
                'FlashCreativeError', 'ForecastError', 'GeoTargetingError',
-               'InvalidUrlError', 'InventoryTargetingError',
+               'ImageError', 'InvalidUrlError', 'InventoryTargetingError',
                'InventoryUnitError', 'LineItemCreativeAssociationError',
                'LineItemCreativeAssociationOperationError',
                'LineItemFlightDateError', 'LineItemOperationError',
                'NotNullError', 'NullError', 'OrderActionError', 'OrderError',
-               'ParseError', 'PermissionError', 'RangeError', 'RegExError',
+               'ParseError', 'PermissionError',
+               'PublisherQueryLanguageContextError',
+               'PublisherQueryLanguageSyntaxError', 'RangeError', 'RegExError',
                'RequiredCollectionError', 'RequiredError',
                'RequiredNumberError', 'RequiredSizeError', 'ReportError',
                'ReservationDetailsError', 'StatementError', 'StringLengthError',
-               'TypeError', 'UniqueError'):
+               'TypeError', 'UniqueError', 'UserDomainTargetingError'):
     ERRORS[index] = DfpRequestError
   elif index in ('InternalApiError', 'QuotaError', 'ServerError'):
     ERRORS[index] = DfpGoogleInternalError

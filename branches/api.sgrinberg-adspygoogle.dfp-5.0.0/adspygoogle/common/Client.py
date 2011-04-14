@@ -125,9 +125,11 @@ class Client(object):
         'raw_response': 'n',
         'strict': 'y',
         'auth_token_epoch': 0,
+        'auth_type': '',
         'pretty_xml': 'y',
         'compress': 'y',
         'data_injects': (),
+        'force_data_inject': 'n',
         'access': '',
         'wsse': 'n'
     }

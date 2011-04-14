@@ -56,6 +56,7 @@ class DfpWebService(WebService):
       logger: Logger Instance of Logger
     """
     self.__config = config
+    self.__op_config = op_config
     super(DfpWebService, self).__init__(LIB_SIG, headers, config, op_config,
                                         url, lock, logger)
 
@@ -139,11 +140,8 @@ class DfpWebService(WebService):
     try:
       headers = self._headers
       config = self._config
+      config['data_injects'] = ()
       error = {}
-
-      buf = DfpSoapBuffer(
-          xml_parser=config['xml_parser'],
-          pretty_xml=Utils.BoolTypeConvert(config['pretty_xml']))
 
       # Load/set authentication token. If authentication token has expired,
       # regenerate it.
@@ -163,6 +161,27 @@ class DfpWebService(WebService):
       name_space = '/'.join(['https://www.google.com/apis/ads/publisher',
                              self._op_config['version']])
       config['ns_target'] = (name_space, 'RequestHeader')
+
+      # Load new authentication headers, starting with version v201103.
+      data_injects = []
+      if self.__op_config['version'] > 'v201101':
+        new_headers = {}
+        for key in headers:
+          if key == 'authToken' and headers[key]:
+            if config['soap_lib'] == SOAPPY:
+              data_injects.append(
+                  ('<authentication>',
+                   '<authentication xsi3:type="ClientLogin">'))
+              config['data_injects'] = tuple(data_injects)
+            else:
+              config['auth_type'] = 'ClientLogin'
+            new_headers['authentication'] = {'token': headers['authToken']}
+          elif key == 'oAuthToken' and headers[key]:
+            # TODO(api.sgrinberg): Add support for OAuth.
+            pass
+          else:
+            new_headers[key] = headers[key]
+        headers = new_headers
 
       buf = DfpSoapBuffer(
           xml_parser=self._config['xml_parser'],

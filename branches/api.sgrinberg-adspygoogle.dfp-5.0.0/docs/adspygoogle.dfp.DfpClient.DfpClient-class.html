@@ -250,6 +250,26 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.dfp.DfpClient.DfpClient-class.html#GetCustomTargetingService" class="summary-sig-name">GetCustomTargetingService</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">server</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">version</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">http_proxy</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Call API method in CustomTargetingService.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.dfp.DfpClient-pysrc.html#DfpClient.GetCustomTargetingService">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="adspygoogle.dfp.DfpClient.DfpClient-class.html#GetForecastService" class="summary-sig-name">GetForecastService</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">server</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">version</span>=<span class="summary-sig-default">None</span>,
@@ -377,6 +397,26 @@
       Call API method in PlacementService.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="adspygoogle.dfp.DfpClient-pysrc.html#DfpClient.GetPlacementService">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.dfp.DfpClient.DfpClient-class.html#GetPublisherQueryLanguageService" class="summary-sig-name">GetPublisherQueryLanguageService</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">server</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">version</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">http_proxy</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Call API method in PublisherQueryLanguageService.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.dfp.DfpClient-pysrc.html#DfpClient.GetPublisherQueryLanguageService">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -824,6 +864,43 @@ Returns:
   </dl>
 </td></tr></table>
 </div>
+<a name="GetCustomTargetingService"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetCustomTargetingService</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">server</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">version</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">http_proxy</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.dfp.DfpClient-pysrc.html#DfpClient.GetCustomTargetingService">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Call API method in CustomTargetingService.
+
+Args:
+  [optional]
+  server: str API server to access for this API call. Possible values
+          are: 'https://www.google.com' for live site and
+          'https://sandbox.google.com' for sandbox. The default behavior is
+          to access sandbox site.
+  version: str API version to use.
+  http_proxy: str HTTP proxy to use.
+
+Returns:
+  CustomTargetingService New instance of CustomTargetingService object.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="GetForecastService"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1078,6 +1155,44 @@ Args:
 
 Returns:
   PlacementService New instance of PlacementService object.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetPublisherQueryLanguageService"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetPublisherQueryLanguageService</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">server</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">https://sandbox.google.com</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">version</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">http_proxy</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.dfp.DfpClient-pysrc.html#DfpClient.GetPublisherQueryLanguageService">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Call API method in PublisherQueryLanguageService.
+
+Args:
+  [optional]
+  server: str API server to access for this API call. Possible values
+          are: 'https://www.google.com' for live site and
+          'https://sandbox.google.com' for sandbox. The default behavior is
+          to access sandbox site.
+  version: str API version to use.
+  http_proxy: str HTTP proxy to use.
+
+Returns:
+  PublisherQueryLanguageService New instance of
+                                PublisherQueryLanguageService object.
 
 </pre>
   <dl class="fields">

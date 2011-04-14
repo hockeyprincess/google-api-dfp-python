@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2010 Google Inc.
+# Copyright 2011 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,7 +31,8 @@ from adspygoogle.dfp import LIB_VERSION
 PACKAGES = ['adspygoogle', 'adspygoogle.common', 'adspygoogle.common.soappy',
             'adspygoogle.common.zsi', 'adspygoogle.dfp',
             'adspygoogle.dfp.soappy', 'adspygoogle.dfp.zsi',
-            'adspygoogle.dfp.zsi.v201004', 'adspygoogle.dfp.zsi.v201010']
+            'adspygoogle.dfp.zsi.v201004', 'adspygoogle.dfp.zsi.v201010',
+            'adspygoogle.dfp.zsi.v201101', 'adspygoogle.dfp.zsi.v201103']
 PACKAGE_DATA = {'adspygoogle.dfp': [os.path.join('data', '*')]}
 
 

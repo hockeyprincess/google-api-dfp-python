@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class UserServiceLocator:
-    UserServiceInterface_address = "https://sandbox.google.com:443/apis/ads/publisher/v201004/UserService"
+    UserServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201004/UserService"
     def getUserServiceInterfaceAddress(self):
         return UserServiceLocator.UserServiceInterface_address
     def getUserServiceInterface(self, url=None, **kw):

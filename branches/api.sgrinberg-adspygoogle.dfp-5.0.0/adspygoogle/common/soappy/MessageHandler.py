@@ -61,7 +61,11 @@ def GetServiceConnection(headers, config, url, http_proxy, is_jaxb_api):
     headers._setAttr('xmlns', config['ns_target'][0])
     HTTPTransportHandler.data_injects = config['data_injects']
     service = SOAPpy.SOAPProxy(url, http_proxy=http_proxy, header=headers,
-                             transport=HTTPTransportHandler)
+                               transport=HTTPTransportHandler)
+  elif Utils.BoolTypeConvert(config['force_data_inject']):
+    HTTPTransportHandler.data_injects = config['data_injects']
+    service = SOAPpy.SOAPProxy(url, http_proxy=http_proxy, header=headers,
+                               transport=HTTPTransportHandler)
   else:
     headers = SOAPpy.Types.headerType(full_headers)
     service = SOAPpy.SOAPProxy(url, http_proxy=http_proxy, header=headers)
@@ -213,11 +217,14 @@ def PackDictAsXml(obj, key='', key_map=[], order=[], wrap_list=False):
     else:
       data = buf
   else:
-    obj = Utils.HtmlEscape(obj)
-    if key:
-      data = '<%s>%s</%s>' % (key, obj, key)
+    if obj is None:
+      data = '<%s xsi3:nil="true" />' % (key)
     else:
-      data = obj
+      obj = Utils.HtmlEscape(obj)
+      if key:
+        data = '<%s>%s</%s>' % (key, obj, key)
+      else:
+        data = obj
   return data
 
 
@@ -268,7 +275,8 @@ def UnpackResponseAsDict(response):
     return dct
   elif (isinstance(response, list) or
         (isinstance(response, types.InstanceType) and
-         isinstance(response.__dict__['_type'], tuple))):
+         isinstance(response.__dict__['_type'], tuple)) or
+        isinstance(response, SOAPpy.Types.typedArrayType)):
     lst = []
     for item in response:
       lst.append(UnpackResponseAsDict(item))

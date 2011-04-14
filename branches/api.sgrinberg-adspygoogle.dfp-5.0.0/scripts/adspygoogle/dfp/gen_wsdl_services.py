@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2010 Google Inc. All Rights Reserved.
+# Copyright 2011 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ from adspygoogle.dfp import LIB_HOME
 LICENSE = """
 #!/usr/bin/python
 #
-# Copyright 2010 Google Inc. All Rights Reserved.
+# Copyright 2011 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ API_TARGETS = [
         'version': 'v201004',
         'location': os.path.join('..', '..', '..', 'adspygoogle', 'dfp', 'zsi',
                                  'v201004'),
-        'server': 'https://sandbox.google.com',
+        'server': 'https://www.google.com',
         'services': ('CompanyService', 'CreativeService', 'ForecastService',
                      'InventoryService', 'LineItemCreativeAssociationService',
                      'LineItemService', 'NetworkService', 'OrderService',
@@ -59,11 +59,35 @@ API_TARGETS = [
         'version': 'v201010',
         'location': os.path.join('..', '..', '..', 'adspygoogle', 'dfp', 'zsi',
                                  'v201010'),
-        'server': 'https://sandbox.google.com',
+        'server': 'https://www.google.com',
         'services': ('CompanyService', 'CreativeService', 'ForecastService',
                      'InventoryService', 'LineItemCreativeAssociationService',
                      'LineItemService', 'NetworkService', 'OrderService',
                      'PlacementService', 'ReportService', 'UserService')
+    },
+    {
+        'version': 'v201101',
+        'location': os.path.join('..', '..', '..', 'adspygoogle', 'dfp', 'zsi',
+                                 'v201101'),
+        'server': 'https://www.google.com',
+        'services': ('CompanyService', 'CreativeService',
+                     'CustomTargetingService', 'ForecastService',
+                     'InventoryService', 'LineItemCreativeAssociationService',
+                     'LineItemService', 'NetworkService', 'OrderService',
+                     'PlacementService', 'PublisherQueryLanguageService',
+                     'ReportService', 'UserService')
+    },
+    {
+        'version': 'v201103',
+        'location': os.path.join('..', '..', '..', 'adspygoogle', 'dfp', 'zsi',
+                                 'v201103'),
+        'server': 'https://www.google.com',
+        'services': ('CompanyService', 'CreativeService',
+                     'CustomTargetingService', 'ForecastService',
+                     'InventoryService', 'LineItemCreativeAssociationService',
+                     'LineItemService', 'NetworkService', 'OrderService',
+                     'PlacementService', 'PublisherQueryLanguageService',
+                     'ReportService', 'UserService')
     }
 ]
 

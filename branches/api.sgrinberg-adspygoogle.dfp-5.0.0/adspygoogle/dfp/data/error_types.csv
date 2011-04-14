@@ -3,13 +3,16 @@ AdUnitAfcSizeError
 AdUnitCodeError
 AdUnitHierarchyError
 ApiError
+ApiVersionError
 AuthenticationError
 CommonError
 CreativeError
+CustomTargetingError
+DayPartTargetingError
 FileError
-FlashCreativeError
 ForecastError
 GeoTargetingError
+ImageError
 InternalApiError
 InvalidEmailError
 InvalidUrlError
@@ -25,6 +28,8 @@ OrderActionError
 OrderError
 ParseError
 PermissionError
+PublisherQueryLanguageContextError
+PublisherQueryLanguageSyntaxError
 QuotaError
 RangeError
 RegExError
@@ -39,3 +44,4 @@ StatementError
 StringLengthError
 TypeError
 UniqueError
+UserDomainTargetingError

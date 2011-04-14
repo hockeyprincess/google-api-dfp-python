@@ -29,8 +29,8 @@ from adspygoogle.common.Logger import Logger
 
 
 HOME = os.getcwd()
-AUTH_PKL = os.path.join(HOME, 'dfp_api_auth.pkl')
-CONFIG_PKL = os.path.join(HOME, 'dfp_api_config.pkl')
+AUTH_PKL = os.path.join(os.path.expanduser('~'), 'dfp_api_auth.pkl')
+CONFIG_PKL = os.path.join(os.path.expanduser('~'), 'dfp_api_config.pkl')
 LOG_HOME = os.path.join(HOME, 'logs')
 LOG_NAME = 'dfp_api_lib'
 

@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class OrderServiceLocator:
-    OrderServiceInterface_address = "https://sandbox.google.com:443/apis/ads/publisher/v201004/OrderService"
+    OrderServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201004/OrderService"
     def getOrderServiceInterfaceAddress(self):
         return OrderServiceLocator.OrderServiceInterface_address
     def getOrderServiceInterface(self, url=None, **kw):

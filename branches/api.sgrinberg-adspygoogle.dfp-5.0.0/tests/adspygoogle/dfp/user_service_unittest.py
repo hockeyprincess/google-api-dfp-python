@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Copyright 2010 Google Inc. All Rights Reserved.
+# Copyright 2011 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,8 +27,12 @@ import unittest
 from tests.adspygoogle.dfp import HTTP_PROXY
 from tests.adspygoogle.dfp import SERVER_V201004
 from tests.adspygoogle.dfp import SERVER_V201010
+from tests.adspygoogle.dfp import SERVER_V201101
+from tests.adspygoogle.dfp import SERVER_V201103
 from tests.adspygoogle.dfp import VERSION_V201004
 from tests.adspygoogle.dfp import VERSION_V201010
+from tests.adspygoogle.dfp import VERSION_V201101
+from tests.adspygoogle.dfp import VERSION_V201103
 from tests.adspygoogle.dfp import client
 
 
@@ -198,6 +202,171 @@ class UserServiceTestV201010(unittest.TestCase):
       self.assertEqual(user['preferredLocale'], locale)
 
 
+class UserServiceTestV201101(unittest.TestCase):
+
+  """Unittest suite for UserService using v201101."""
+
+  SERVER = SERVER_V201101
+  VERSION = VERSION_V201101
+  client.debug = False
+  service = None
+  user1 = None
+  user2 = None
+
+  def setUp(self):
+    """Prepare unittest."""
+    print self.id()
+    if not self.__class__.service:
+      self.__class__.service = client.GetUserService(
+          self.__class__.SERVER, self.__class__.VERSION, HTTP_PROXY)
+
+  def testGetAllRoles(self):
+    """Test whether we can fetch all roles."""
+    self.assert_(isinstance(self.__class__.service.GetAllRoles(), tuple))
+
+  def testGetUser(self):
+    """Test whether we can fetch an existing user."""
+    if not self.__class__.user1:
+      self.testGetUsersByStatement()
+    self.assert_(isinstance(self.__class__.service.GetUser(
+        self.__class__.user1['id']), tuple))
+
+  def testGetUsersByStatement(self):
+    """Test whether we can fetch a list of existing users that match given
+    statement."""
+    filter_statement = {'query': 'ORDER BY name LIMIT 500'}
+    users = self.__class__.service.GetUsersByStatement(filter_statement)
+    sales = []
+    traffickers = []
+    admins = []
+    for user in users[0]['results']:
+      if user['roleName'] in ('Salesperson',):
+        sales.append(user)
+      elif user['roleName'] in ('Trafficker',):
+        traffickers.append(user)
+      elif user['roleName'] in ('Administrator',):
+        admins.append(user)
+    self.__class__.user1 = sales[0]
+    self.__class__.user2 = traffickers[0]
+    self.assert_(isinstance(users, tuple))
+
+  def testPerformUserAction(self):
+    """Test whether we can deactivate a user."""
+    if not self.__class__.user1:
+      self.testGetUsersByFilter()
+    action = {'type': 'DeactivateUsers'}
+    filter_statement = {'query': 'WHERE id = \'%s\''
+                        % self.__class__.user1['id']}
+    self.assert_(isinstance(
+        self.__class__.service.PerformUserAction(action, filter_statement),
+        tuple))
+
+  def testUpdateUser(self):
+    """Test whether we can update a user."""
+    if not self.__class__.user1:
+      self.testGetUsersByFilter()
+    locale = 'fr_FR'
+    self.__class__.user1['preferredLocale'] = locale
+    user = self.__class__.service.UpdateUser(self.__class__.user1)
+    self.assert_(isinstance(user, tuple))
+    self.assertEqual(user[0]['preferredLocale'], locale)
+
+  def testUpdateUsers(self):
+    """Test whether we can update a list of users."""
+    if not self.__class__.user1 or not self.__class__.user2:
+      self.testGetUsersByFilter()
+    locale = 'fr_FR'
+    self.__class__.user1['preferredLocale'] = locale
+    self.__class__.user2['preferredLocale'] = locale
+    users = self.__class__.service.UpdateUsers([self.__class__.user1,
+                                                self.__class__.user2])
+    self.assert_(isinstance(users, tuple))
+    for user in users:
+      self.assertEqual(user['preferredLocale'], locale)
+
+
+class UserServiceTestV201103(unittest.TestCase):
+
+  """Unittest suite for UserService using v201103."""
+
+  SERVER = SERVER_V201103
+  VERSION = VERSION_V201103
+  service = None
+  user1 = None
+  user2 = None
+
+  def setUp(self):
+    """Prepare unittest."""
+    print self.id()
+    if not self.__class__.service:
+      self.__class__.service = client.GetUserService(
+          self.__class__.SERVER, self.__class__.VERSION, HTTP_PROXY)
+
+  def testGetAllRoles(self):
+    """Test whether we can fetch all roles."""
+    self.assert_(isinstance(self.__class__.service.GetAllRoles(), tuple))
+
+  def testGetUser(self):
+    """Test whether we can fetch an existing user."""
+    if not self.__class__.user1:
+      self.testGetUsersByStatement()
+    self.assert_(isinstance(self.__class__.service.GetUser(
+        self.__class__.user1['id']), tuple))
+
+  def testGetUsersByStatement(self):
+    """Test whether we can fetch a list of existing users that match given
+    statement."""
+    filter_statement = {'query': 'ORDER BY name LIMIT 500'}
+    users = self.__class__.service.GetUsersByStatement(filter_statement)
+    sales = []
+    traffickers = []
+    admins = []
+    for user in users[0]['results']:
+      if user['roleName'] in ('Salesperson',):
+        sales.append(user)
+      elif user['roleName'] in ('Trafficker',):
+        traffickers.append(user)
+      elif user['roleName'] in ('Administrator',):
+        admins.append(user)
+    self.__class__.user1 = sales[0]
+    self.__class__.user2 = traffickers[0]
+    self.assert_(isinstance(users, tuple))
+
+  def testPerformUserAction(self):
+    """Test whether we can deactivate a user."""
+    if not self.__class__.user1:
+      self.testGetUsersByFilter()
+    action = {'type': 'DeactivateUsers'}
+    filter_statement = {'query': 'WHERE id = \'%s\''
+                        % self.__class__.user1['id']}
+    self.assert_(isinstance(
+        self.__class__.service.PerformUserAction(action, filter_statement),
+        tuple))
+
+  def testUpdateUser(self):
+    """Test whether we can update a user."""
+    if not self.__class__.user1:
+      self.testGetUsersByFilter()
+    locale = 'fr_FR'
+    self.__class__.user1['preferredLocale'] = locale
+    user = self.__class__.service.UpdateUser(self.__class__.user1)
+    self.assert_(isinstance(user, tuple))
+    self.assertEqual(user[0]['preferredLocale'], locale)
+
+  def testUpdateUsers(self):
+    """Test whether we can update a list of users."""
+    if not self.__class__.user1 or not self.__class__.user2:
+      self.testGetUsersByFilter()
+    locale = 'fr_FR'
+    self.__class__.user1['preferredLocale'] = locale
+    self.__class__.user2['preferredLocale'] = locale
+    users = self.__class__.service.UpdateUsers([self.__class__.user1,
+                                                self.__class__.user2])
+    self.assert_(isinstance(users, tuple))
+    for user in users:
+      self.assertEqual(user['preferredLocale'], locale)
+
+
 def makeTestSuiteV201004():
   """Set up test suite using v201004.
 
@@ -220,8 +389,33 @@ def makeTestSuiteV201010():
   return suite
 
 
+def makeTestSuiteV201101():
+  """Set up test suite using v201101.
+
+  Returns:
+    TestSuite test suite using v201101.
+  """
+  suite = unittest.TestSuite()
+  suite.addTests(unittest.makeSuite(UserServiceTestV201101))
+  return suite
+
+
+def makeTestSuiteV201103():
+  """Set up test suite using v201103.
+
+  Returns:
+    TestSuite test suite using v201103.
+  """
+  suite = unittest.TestSuite()
+  suite.addTests(unittest.makeSuite(UserServiceTestV201103))
+  return suite
+
+
 if __name__ == '__main__':
   suite_v201004 = makeTestSuiteV201004()
   suite_v201010 = makeTestSuiteV201010()
-  alltests = unittest.TestSuite([suite_v201004, suite_v201010])
+  suite_v201101 = makeTestSuiteV201101()
+  suite_v201103 = makeTestSuiteV201103()
+  alltests = unittest.TestSuite([suite_v201004, suite_v201010, suite_v201101,
+                                 suite_v201103])
   unittest.main(defaultTest='alltests')
