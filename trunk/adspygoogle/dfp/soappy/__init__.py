@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2010 Google Inc. All Rights Reserved.
+# Copyright 2011 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -61,6 +61,24 @@ OBJ_KEY_ORDER_MAP = {
             'type': None,
             'order': ('key', 'value')
 
+        }
+    ],
+    'keys': [
+        {
+            'type': 'CustomTargetingKey',
+            'order': ('name', 'displayName', 'type'),
+            'native_type': True
+        }
+    ],
+    'values': [
+        {
+            'type': 'CustomTargetingValue',
+            'order': ('customTargetingKeyId', 'name', 'displayName',
+                      'matchType')
+        },
+        {
+            'type': None,
+            'order': ('key', 'value')
         }
     ],
     'creative': [
@@ -159,6 +177,10 @@ OBJ_KEY_ORDER_MAP = {
             'order': ('adSenseEnabled', 'borderColor', 'titleColor',
                       'backgroundColor', 'textColor', 'urlColor', 'adType',
                       'borderStyle', 'afcFormats')
+        },
+        {
+            'type': '',
+            'order': ('value',)
         }
     ],
     'afcFormats': [
@@ -201,10 +223,22 @@ OBJ_KEY_ORDER_MAP = {
             'order': ('date', 'hour', 'minute', 'second', 'timeZoneID')
         }
     ],
+    'startTime': [
+        {
+            'type': 'TimeOfDay',
+            'order': ('hour', 'minute')
+        }
+    ],
     'endDateTime': [
         {
             'type': 'DateTime',
             'order': ('date', 'hour', 'minute', 'second', 'timeZoneID')
+        }
+    ],
+    'endTime': [
+        {
+            'type': 'TimeOfDay',
+            'order': ('hour', 'minute')
         }
     ],
     'date': [
@@ -272,7 +306,25 @@ OBJ_KEY_ORDER_MAP = {
     'targeting': [
         {
             'type': 'Targeting',
-            'order': ('inventoryTargeting',)
+            'order': ('geoTargeting', 'inventoryTargeting', 'customTargeting')
+        }
+    ],
+    'geoTargeting': [
+        {
+            'type': 'Targeting',
+            'order': ('targetedLocations', 'excludedLocations')
+        }
+    ],
+    'targetedLocations': [
+        {
+            'type': 'Location',
+            'order': ('cityName', 'regionCode', 'metroCode', 'countryCode')
+        }
+    ],
+    'excludedLocations': [
+        {
+            'type': 'Location',
+            'order': ('cityName', 'regionCode', 'metroCode', 'countryCode')
         }
     ],
     'inventoryTargeting': [
@@ -280,6 +332,26 @@ OBJ_KEY_ORDER_MAP = {
             'type': 'InventoryTargeting',
             'order': ('targetedAdUnitIds', 'excludedAdUnitIds',
                       'targetedPlacementIds')
+        }
+    ],
+    'customTargeting': [
+        {
+            'type': 'CustomCriteriaSet',
+            'order': ('logicalOperator', 'children')
+        }
+    ],
+    'children': [
+        {
+            'type': None,
+            'order': ('keyId', 'operator', 'values', 'valueIds',
+                      'logicalOperator', 'children')
+        }
+    ],
+    'values': [
+        {
+            'type': 'CustomTargetingValue',
+            'order': ('customTargetingKeyId', 'name', 'displayName',
+                      'matchType')
         }
     ],
     'lineItemAction': [

@@ -16,6 +16,82 @@ from ZSI.schema import LocalElementDeclaration, ElementDeclaration, TypeDefiniti
 class ns0:
     targetNamespace = "https://www.google.com/apis/ads/publisher/v201010"
 
+    class ApiError_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "ApiError")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.ApiError_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"fieldPath"), aname="_fieldPath", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"trigger"), aname="_trigger", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"errorString"), aname="_errorString", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"ApiError.Type"), aname="_ApiError_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._fieldPath = None
+                    self._trigger = None
+                    self._errorString = None
+                    self._ApiError_Type = None
+                    return
+            Holder.__name__ = "ApiError_Holder"
+            self.pyclass = Holder
+
+    class ApiException_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "ApiException")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.ApiException_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201010","ApiError",lazy=False)(pname=(ns,"errors"), aname="_errors", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApplicationException_Def not in ns0.ApiException_Def.__bases__:
+                bases = list(ns0.ApiException_Def.__bases__)
+                bases.insert(0, ns0.ApplicationException_Def)
+                ns0.ApiException_Def.__bases__ = tuple(bases)
+
+            ns0.ApplicationException_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class ApiVersionError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "ApiVersionError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.ApiVersionError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201010","ApiVersionError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.ApiVersionError_Def.__bases__:
+                bases = list(ns0.ApiVersionError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.ApiVersionError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class ApplicationException_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "ApplicationException")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.ApplicationException_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"message"), aname="_message", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"ApplicationException.Type"), aname="_ApplicationException_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._message = None
+                    self._ApplicationException_Type = None
+                    return
+            Holder.__name__ = "ApplicationException_Holder"
+            self.pyclass = Holder
+
     class AuthenticationError_Def(TypeDefinition):
         #complexType/complexContent extension
         schema = "https://www.google.com/apis/ads/publisher/v201010"
@@ -50,6 +126,30 @@ class ns0:
 
             ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
+    class Creative_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "Creative")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.Creative_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"advertiserId"), aname="_advertiserId", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"id"), aname="_id", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"name"), aname="_name", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Size",lazy=False)(pname=(ns,"size"), aname="_size", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"previewUrl"), aname="_previewUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"Creative.Type"), aname="_Creative_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._advertiserId = None
+                    self._id = None
+                    self._name = None
+                    self._size = None
+                    self._previewUrl = None
+                    self._Creative_Type = None
+                    return
+            Holder.__name__ = "Creative_Holder"
+            self.pyclass = Holder
+
     class CreativeError_Def(TypeDefinition):
         #complexType/complexContent extension
         schema = "https://www.google.com/apis/ads/publisher/v201010"
@@ -66,6 +166,27 @@ class ns0:
                 ns0.CreativeError_Def.__bases__ = tuple(bases)
 
             ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class CreativePage_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "CreativePage")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.CreativePage_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"totalResultSetSize"), aname="_totalResultSetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"startIndex"), aname="_startIndex", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Creative",lazy=False)(pname=(ns,"results"), aname="_results", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._totalResultSetSize = None
+                    self._startIndex = None
+                    self._results = []
+                    return
+            Holder.__name__ = "CreativePage_Holder"
+            self.pyclass = Holder
 
     class DoubleParam_Def(TypeDefinition):
         #complexType/complexContent extension
@@ -101,22 +222,22 @@ class ns0:
 
             ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
-    class FlashCreativeError_Def(TypeDefinition):
+    class FlashCreative_Def(TypeDefinition):
         #complexType/complexContent extension
         schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "FlashCreativeError")
+        type = (schema, "FlashCreative")
         def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
-            ns = ns0.FlashCreativeError_Def.schema
-            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201010","FlashCreativeError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            ns = ns0.FlashCreative_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"flashName"), aname="_flashName", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.Base64String(pname=(ns,"flashByteArray"), aname="_flashByteArray", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"fallbackImageName"), aname="_fallbackImageName", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.Base64String(pname=(ns,"fallbackImageByteArray"), aname="_fallbackImageByteArray", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"overrideSize"), aname="_overrideSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"clickTagRequired"), aname="_clickTagRequired", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"fallbackPreviewUrl"), aname="_fallbackPreviewUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Size",lazy=False)(pname=(ns,"flashAssetSize"), aname="_flashAssetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Size",lazy=False)(pname=(ns,"fallbackAssetSize"), aname="_fallbackAssetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
             attributes = self.attribute_typecode_dict = attributes or {}
             if extend: TClist += ofwhat
             if restrict: TClist = ofwhat
-            if ns0.ApiError_Def not in ns0.FlashCreativeError_Def.__bases__:
-                bases = list(ns0.FlashCreativeError_Def.__bases__)
-                bases.insert(0, ns0.ApiError_Def)
-                ns0.FlashCreativeError_Def.__bases__ = tuple(bases)
+            if ns0.HasDestinationUrlCreative_Def not in ns0.FlashCreative_Def.__bases__:
+                bases = list(ns0.FlashCreative_Def.__bases__)
+                bases.insert(0, ns0.HasDestinationUrlCreative_Def)
+                ns0.FlashCreative_Def.__bases__ = tuple(bases)
 
-            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+            ns0.HasDestinationUrlCreative_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
     class FlashRedirectCreative_Def(TypeDefinition):
         #complexType/complexContent extension
@@ -134,6 +255,57 @@ class ns0:
                 ns0.FlashRedirectCreative_Def.__bases__ = tuple(bases)
 
             ns0.HasDestinationUrlCreative_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class HasDestinationUrlCreative_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "HasDestinationUrlCreative")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.HasDestinationUrlCreative_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"destinationUrl"), aname="_destinationUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.Creative_Def not in ns0.HasDestinationUrlCreative_Def.__bases__:
+                bases = list(ns0.HasDestinationUrlCreative_Def.__bases__)
+                bases.insert(0, ns0.Creative_Def)
+                ns0.HasDestinationUrlCreative_Def.__bases__ = tuple(bases)
+
+            ns0.Creative_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class ImageCreative_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "ImageCreative")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.ImageCreative_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"imageName"), aname="_imageName", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.Base64String(pname=(ns,"imageByteArray"), aname="_imageByteArray", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"overrideSize"), aname="_overrideSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Size",lazy=False)(pname=(ns,"assetSize"), aname="_assetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"imageUrl"), aname="_imageUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.HasDestinationUrlCreative_Def not in ns0.ImageCreative_Def.__bases__:
+                bases = list(ns0.ImageCreative_Def.__bases__)
+                bases.insert(0, ns0.HasDestinationUrlCreative_Def)
+                ns0.ImageCreative_Def.__bases__ = tuple(bases)
+
+            ns0.HasDestinationUrlCreative_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class ImageError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "ImageError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.ImageError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201010","ImageError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.ImageError_Def.__bases__:
+                bases = list(ns0.ImageError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.ImageError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
     class ImageRedirectCreative_Def(TypeDefinition):
         #complexType/complexContent extension
@@ -236,6 +408,25 @@ class ns0:
                 ns0.NullError_Def.__bases__ = tuple(bases)
 
             ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class Param_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "Param")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.Param_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"Param.Type"), aname="_Param_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._Param_Type = None
+                    return
+            Holder.__name__ = "Param_Holder"
+            self.pyclass = Holder
 
     class ParseError_Def(TypeDefinition):
         #complexType/complexContent extension
@@ -385,6 +576,26 @@ class ns0:
             Holder.__name__ = "SoapResponseHeader_Holder"
             self.pyclass = Holder
 
+    class Statement_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "Statement")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.Statement_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"query"), aname="_query", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","String_ParamMapEntry",lazy=False)(pname=(ns,"params"), aname="_params", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._query = None
+                    self._params = []
+                    return
+            Holder.__name__ = "Statement_Holder"
+            self.pyclass = Holder
+
     class StatementError_Def(TypeDefinition):
         #complexType/complexContent extension
         schema = "https://www.google.com/apis/ads/publisher/v201010"
@@ -418,6 +629,26 @@ class ns0:
                 ns0.StringParam_Def.__bases__ = tuple(bases)
 
             ns0.Param_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class String_ParamMapEntry_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201010"
+        type = (schema, "String_ParamMapEntry")
+        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
+            ns = ns0.String_ParamMapEntry_Def.schema
+            TClist = [ZSI.TC.String(pname=(ns,"key"), aname="_key", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Param",lazy=False)(pname=(ns,"value"), aname="_value", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
+            class Holder:
+                typecode = self
+                def __init__(self):
+                    # pyclass
+                    self._key = None
+                    self._value = None
+                    return
+            Holder.__name__ = "String_ParamMapEntry_Holder"
+            self.pyclass = Holder
 
     class ThirdPartyCreative_Def(TypeDefinition):
         #complexType/complexContent extension
@@ -453,218 +684,13 @@ class ns0:
 
             ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
-    class FlashCreative_Def(TypeDefinition):
-        #complexType/complexContent extension
+    class ApiVersionError_Reason_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "FlashCreative")
-        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
-            ns = ns0.FlashCreative_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"flashName"), aname="_flashName", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.Base64String(pname=(ns,"flashByteArray"), aname="_flashByteArray", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"fallbackImageName"), aname="_fallbackImageName", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.Base64String(pname=(ns,"fallbackImageByteArray"), aname="_fallbackImageByteArray", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"overrideSize"), aname="_overrideSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"clickTagRequired"), aname="_clickTagRequired", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"fallbackPreviewUrl"), aname="_fallbackPreviewUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Size",lazy=False)(pname=(ns,"flashAssetSize"), aname="_flashAssetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Size",lazy=False)(pname=(ns,"fallbackAssetSize"), aname="_fallbackAssetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            attributes = self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            if ns0.HasDestinationUrlCreative_Def not in ns0.FlashCreative_Def.__bases__:
-                bases = list(ns0.FlashCreative_Def.__bases__)
-                bases.insert(0, ns0.HasDestinationUrlCreative_Def)
-                ns0.FlashCreative_Def.__bases__ = tuple(bases)
-
-            ns0.HasDestinationUrlCreative_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
-
-    class ImageCreative_Def(TypeDefinition):
-        #complexType/complexContent extension
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "ImageCreative")
-        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
-            ns = ns0.ImageCreative_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"imageName"), aname="_imageName", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.Base64String(pname=(ns,"imageByteArray"), aname="_imageByteArray", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"overrideSize"), aname="_overrideSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Size",lazy=False)(pname=(ns,"assetSize"), aname="_assetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"imageUrl"), aname="_imageUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            attributes = self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            if ns0.HasDestinationUrlCreative_Def not in ns0.ImageCreative_Def.__bases__:
-                bases = list(ns0.ImageCreative_Def.__bases__)
-                bases.insert(0, ns0.HasDestinationUrlCreative_Def)
-                ns0.ImageCreative_Def.__bases__ = tuple(bases)
-
-            ns0.HasDestinationUrlCreative_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
-
-    class Param_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "Param")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.Param_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"Param.Type"), aname="_Param_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
+        type = (schema, "ApiVersionError.Reason")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
                 typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._Param_Type = None
-                    return
-            Holder.__name__ = "Param_Holder"
-            self.pyclass = Holder
-
-    class String_ParamMapEntry_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "String_ParamMapEntry")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.String_ParamMapEntry_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"key"), aname="_key", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Param",lazy=False)(pname=(ns,"value"), aname="_value", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
-                typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._key = None
-                    self._value = None
-                    return
-            Holder.__name__ = "String_ParamMapEntry_Holder"
-            self.pyclass = Holder
-
-    class ApiError_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "ApiError")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.ApiError_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"fieldPath"), aname="_fieldPath", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"trigger"), aname="_trigger", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"errorString"), aname="_errorString", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"ApiError.Type"), aname="_ApiError_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
-                typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._fieldPath = None
-                    self._trigger = None
-                    self._errorString = None
-                    self._ApiError_Type = None
-                    return
-            Holder.__name__ = "ApiError_Holder"
-            self.pyclass = Holder
-
-    class ApiException_Def(TypeDefinition):
-        #complexType/complexContent extension
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "ApiException")
-        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
-            ns = ns0.ApiException_Def.schema
-            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201010","ApiError",lazy=False)(pname=(ns,"errors"), aname="_errors", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
-            attributes = self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            if ns0.ApplicationException_Def not in ns0.ApiException_Def.__bases__:
-                bases = list(ns0.ApiException_Def.__bases__)
-                bases.insert(0, ns0.ApplicationException_Def)
-                ns0.ApiException_Def.__bases__ = tuple(bases)
-
-            ns0.ApplicationException_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
-
-    class ApplicationException_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "ApplicationException")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.ApplicationException_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"message"), aname="_message", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"ApplicationException.Type"), aname="_ApplicationException_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
-                typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._message = None
-                    self._ApplicationException_Type = None
-                    return
-            Holder.__name__ = "ApplicationException_Holder"
-            self.pyclass = Holder
-
-    class Statement_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "Statement")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.Statement_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"query"), aname="_query", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","String_ParamMapEntry",lazy=False)(pname=(ns,"params"), aname="_params", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
-                typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._query = None
-                    self._params = []
-                    return
-            Holder.__name__ = "Statement_Holder"
-            self.pyclass = Holder
-
-    class HasDestinationUrlCreative_Def(TypeDefinition):
-        #complexType/complexContent extension
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "HasDestinationUrlCreative")
-        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
-            ns = ns0.HasDestinationUrlCreative_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"destinationUrl"), aname="_destinationUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            attributes = self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            if ns0.Creative_Def not in ns0.HasDestinationUrlCreative_Def.__bases__:
-                bases = list(ns0.HasDestinationUrlCreative_Def.__bases__)
-                bases.insert(0, ns0.Creative_Def)
-                ns0.HasDestinationUrlCreative_Def.__bases__ = tuple(bases)
-
-            ns0.Creative_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
-
-    class Creative_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "Creative")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.Creative_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"advertiserId"), aname="_advertiserId", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"id"), aname="_id", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"name"), aname="_name", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Size",lazy=False)(pname=(ns,"size"), aname="_size", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"previewUrl"), aname="_previewUrl", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"Creative.Type"), aname="_Creative_Type", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
-                typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._advertiserId = None
-                    self._id = None
-                    self._name = None
-                    self._size = None
-                    self._previewUrl = None
-                    self._Creative_Type = None
-                    return
-            Holder.__name__ = "Creative_Holder"
-            self.pyclass = Holder
-
-    class CreativePage_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
-        schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "CreativePage")
-        def __init__(self, pname, ofwhat=(), attributes=None, extend=False, restrict=False, **kw):
-            ns = ns0.CreativePage_Def.schema
-            TClist = [ZSI.TC.String(pname=(ns,"totalResultSetSize"), aname="_totalResultSetSize", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), ZSI.TC.String(pname=(ns,"startIndex"), aname="_startIndex", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded")), GTD("https://www.google.com/apis/ads/publisher/v201010","Creative",lazy=False)(pname=(ns,"results"), aname="_results", minOccurs=0, maxOccurs="unbounded", nillable=True, typed=False, encoded=kw.get("encoded"))]
-            self.attribute_typecode_dict = attributes or {}
-            if extend: TClist += ofwhat
-            if restrict: TClist = ofwhat
-            ZSI.TCcompound.ComplexType.__init__(self, None, TClist, pname=pname, inorder=0, **kw)
-            class Holder:
-                typecode = self
-                def __init__(self):
-                    # pyclass
-                    self._totalResultSetSize = None
-                    self._startIndex = None
-                    self._results = []
-                    return
-            Holder.__name__ = "CreativePage_Holder"
             self.pyclass = Holder
 
     class AuthenticationError_Reason_Def(ZSI.TC.String, TypeDefinition):
@@ -703,9 +729,9 @@ class ns0:
                 typecode = self
             self.pyclass = Holder
 
-    class FlashCreativeError_Reason_Def(ZSI.TC.String, TypeDefinition):
+    class ImageError_Reason_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201010"
-        type = (schema, "FlashCreativeError.Reason")
+        type = (schema, "ImageError.Reason")
         def __init__(self, pname, **kw):
             ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
             class Holder(str):

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Copyright 2010 Google Inc. All Rights Reserved.
+# Copyright 2011 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,7 +31,11 @@ from adspygoogle.dfp.DfpClient import DfpClient
 HTTP_PROXY = None
 SERVER_V201004 = 'https://sandbox.google.com'
 SERVER_V201010 = 'https://sandbox.google.com'
+SERVER_V201101 = 'https://sandbox.google.com'
+SERVER_V201103 = 'https://sandbox.google.com'
 VERSION_V201004 = 'v201004'
 VERSION_V201010 = 'v201010'
+VERSION_V201101 = 'v201101'
+VERSION_V201103 = 'v201103'
 client = DfpClient(path=os.path.join('..', '..', '..'))
 client.soap_lib = ZSI

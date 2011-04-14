@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class CreativeServiceLocator:
-    CreativeServiceInterface_address = "https://sandbox.google.com:443/apis/ads/publisher/v201004/CreativeService"
+    CreativeServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201004/CreativeService"
     def getCreativeServiceInterfaceAddress(self):
         return CreativeServiceLocator.CreativeServiceInterface_address
     def getCreativeServiceInterface(self, url=None, **kw):

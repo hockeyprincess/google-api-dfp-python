@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class NetworkServiceLocator:
-    NetworkServiceInterface_address = "https://sandbox.google.com:443/apis/ads/publisher/v201004/NetworkService"
+    NetworkServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201004/NetworkService"
     def getNetworkServiceInterfaceAddress(self):
         return NetworkServiceLocator.NetworkServiceInterface_address
     def getNetworkServiceInterface(self, url=None, **kw):

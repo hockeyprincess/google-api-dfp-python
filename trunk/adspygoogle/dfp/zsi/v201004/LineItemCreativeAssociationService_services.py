@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class LineItemCreativeAssociationServiceLocator:
-    LineItemCreativeAssociationServiceInterface_address = "https://sandbox.google.com:443/apis/ads/publisher/v201004/LineItemCreativeAssociationService"
+    LineItemCreativeAssociationServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201004/LineItemCreativeAssociationService"
     def getLineItemCreativeAssociationServiceInterfaceAddress(self):
         return LineItemCreativeAssociationServiceLocator.LineItemCreativeAssociationServiceInterface_address
     def getLineItemCreativeAssociationServiceInterface(self, url=None, **kw):

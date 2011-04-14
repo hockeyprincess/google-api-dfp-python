@@ -48,7 +48,10 @@ try:
     import google.appengine
     import _xmlplus
   except:
-    import xml as _xmlplus
+    try:
+      import _xmlplus
+    except:
+      import xml as _xmlplus
   from xml.dom import minidom
   # Test whether xml.version_info exists.
   version = _xmlplus.__dict__.get('version_info')

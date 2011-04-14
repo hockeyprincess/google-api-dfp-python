@@ -1,3 +1,21 @@
+1.1.7:
+- Added support for complex SOAP headers.
+
+1.1.6:
+- Update Utils.GetUniqueName() to support name length. Reverted how construction
+  of the unique name is done to make it more random for names with shorter
+  length.
+
+1.1.5:
+- Added Utils.GetDictFromCsvFile() method.
+- Patch to pack NoneTypes as 'xsi3:nil="true"' in SOAPpy
+- Patch for allowing use of data injecting with SOAPpy regardless of whether a
+  service uses WSSE or JAXB.
+
+1.1.4:
+- Patch for BaseException.message deprecation warning in Python 2.6.
+- Patch for recognizing _xmlplus in SoapBuffer.
+
 1.1.3:
 - Patch to escape special HTML characters for all values in SOAPpy.
 

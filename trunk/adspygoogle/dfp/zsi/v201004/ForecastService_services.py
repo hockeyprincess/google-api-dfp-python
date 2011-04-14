@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class ForecastServiceLocator:
-    ForecastServiceInterface_address = "https://sandbox.google.com:443/apis/ads/publisher/v201004/ForecastService"
+    ForecastServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201004/ForecastService"
     def getForecastServiceInterfaceAddress(self):
         return ForecastServiceLocator.ForecastServiceInterface_address
     def getForecastServiceInterface(self, url=None, **kw):

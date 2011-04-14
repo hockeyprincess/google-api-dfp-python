@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class InventoryServiceLocator:
-    InventoryServiceInterface_address = "http://ads-publisher-api-sandbox-qa.sandbox.google.com/apis/ads/publisher/v201010/InventoryService"
+    InventoryServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201010/InventoryService"
     def getInventoryServiceInterfaceAddress(self):
         return InventoryServiceLocator.InventoryServiceInterface_address
     def getInventoryServiceInterface(self, url=None, **kw):
