@@ -38,7 +38,9 @@ the library also supports ElementTree module, which may be activated simply by
 setting the appropriate config value (i.e. config['xml_parser']). Note that if
 you already have an lxml module installed and wish to use ElementTree, you do
 not need to install ElementTree. The lxml module is mostly compatible with
-ElementTree. The cElementTree module is now also supported.
+ElementTree. The cElementTree module is now also supported. Note that when
+ElementTree module is used and PrettyPrintXml is enabled, the logged XML is
+slightly different from what gets sent over the wire.
 
 Although there are projects out there that still support PyXML, it is no longer
 maintained. The last update for the ElementTree library is dated 2007-09-12.

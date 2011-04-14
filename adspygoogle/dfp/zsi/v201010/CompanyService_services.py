@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class CompanyServiceLocator:
-    CompanyServiceInterface_address = "http://ads-publisher-api-sandbox-qa.sandbox.google.com/apis/ads/publisher/v201010/CompanyService"
+    CompanyServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201010/CompanyService"
     def getCompanyServiceInterfaceAddress(self):
         return CompanyServiceLocator.CompanyServiceInterface_address
     def getCompanyServiceInterface(self, url=None, **kw):

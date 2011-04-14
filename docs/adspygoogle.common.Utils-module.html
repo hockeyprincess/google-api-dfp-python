@@ -125,6 +125,23 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="adspygoogle.common.Utils-module.html#GetDictFromCsvFile" class="summary-sig-name">GetDictFromCsvFile</a>(<span class="summary-sig-arg">loc</span>)</span><br />
+      Get data from CSV file as a dictionary, given its location.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="adspygoogle.common.Utils-pysrc.html#GetDictFromCsvFile">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="adspygoogle.common.Utils-module.html#PurgeLog" class="summary-sig-name">PurgeLog</a>(<span class="summary-sig-arg">log</span>)</span><br />
       Clear content of a given log file.</td>
           <td align="right" valign="top">
@@ -454,7 +471,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="adspygoogle.common.Utils-module.html#GetUniqueName" class="summary-sig-name">GetUniqueName</a>()</span><br />
+          <td><span class="summary-sig"><a href="adspygoogle.common.Utils-module.html#GetUniqueName" class="summary-sig-name">GetUniqueName</a>(<span class="summary-sig-arg">max_len</span>=<span class="summary-sig-default">None</span>)</span><br />
       Returns a unique value consisting of parts from datetime.datetime.now().</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="adspygoogle.common.Utils-pysrc.html#GetUniqueName">source&nbsp;code</a></span>
@@ -551,6 +568,35 @@ Args:
 
 Returns:
   list Data from CSV file.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="GetDictFromCsvFile"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetDictFromCsvFile</span>(<span class="sig-arg">loc</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="adspygoogle.common.Utils-pysrc.html#GetDictFromCsvFile">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Get data from CSV file as a dictionary, given its location. For each row,
+the first value will be used as a key mapped to the second value in the row.
+
+Args:
+  loc: str Location of the CSV data file.
+
+Returns:
+  dict Data from CSV file.
 
 </pre>
   <dl class="fields">
@@ -1117,7 +1163,7 @@ Returns:
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetUniqueName</span>()</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GetUniqueName</span>(<span class="sig-arg">max_len</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="adspygoogle.common.Utils-pysrc.html#GetUniqueName">source&nbsp;code</a></span>&nbsp;
@@ -1126,6 +1172,9 @@ Returns:
   
   <pre class="literalblock">
 Returns a unique value consisting of parts from datetime.datetime.now().
+
+Args:
+  max_len: int Maximum length for the unique name.
 
 Returns:
   str Unique name.

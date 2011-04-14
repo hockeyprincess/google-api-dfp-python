@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class PlacementServiceLocator:
-    PlacementServiceInterface_address = "http://ads-publisher-api-sandbox-qa.sandbox.google.com/apis/ads/publisher/v201010/PlacementService"
+    PlacementServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201010/PlacementService"
     def getPlacementServiceInterfaceAddress(self):
         return PlacementServiceLocator.PlacementServiceInterface_address
     def getPlacementServiceInterface(self, url=None, **kw):

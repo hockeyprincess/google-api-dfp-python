@@ -79,6 +79,30 @@ def GetDataFromCsvFile(loc):
   return rows[1:]
 
 
+def GetDictFromCsvFile(loc):
+  """Get data from CSV file as a dictionary, given its location. For each row,
+  the first value will be used as a key mapped to the second value in the row.
+
+  Args:
+    loc: str Location of the CSV data file.
+
+  Returns:
+    dict Data from CSV file.
+  """
+  rows = {}
+  try:
+    data = urllib.urlopen(loc).read()
+  except IOError, e:
+    if str(e).find('[Errno url error] unknown url type: \'c\'') > -1:
+      loc = 'file:///%s' % loc.replace('\\', '/').replace(':', '|')
+      data = urllib.urlopen(loc).read()
+    else:
+      raise e
+  for row in csv.reader(data.split('\n')):
+    if row: rows[row[0]] = row[1]
+  return rows
+
+
 def PurgeLog(log):
   """Clear content of a given log file.
 
@@ -466,15 +490,20 @@ def CsvEscape(text):
   return text
 
 
-def GetUniqueName():
+def GetUniqueName(max_len=None):
   """Returns a unique value consisting of parts from datetime.datetime.now().
+
+  Args:
+    max_len: int Maximum length for the unique name.
 
   Returns:
     str Unique name.
   """
   dt = datetime.datetime.now()
-  return '%s%s%s%s%s%s%s' % (dt.year, dt.month, dt.day, dt.hour, dt.minute,
-                             dt.second, dt.microsecond)
+  name = '%s%s%s%s%s%s%s' % (dt.microsecond, dt.second, dt.minute, dt.hour,
+                             dt.day, dt.month, dt.year)
+  if max_len > len(name): max_len = len(name)
+  return name[:max_len]
 
 
 def GetDictFromMap(entries):

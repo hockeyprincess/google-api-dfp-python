@@ -79,7 +79,16 @@ class SigHandler(object):
       name_space = ''
     for key, value in keys:
       if value:
-        header.createAppendElement(name_space, key).createAppendTextNode(value)
+        if isinstance(value, dict):
+          if 'auth_type' not in self.__config: self.__config['auth_type'] = ''
+          obj = header.createAppendElement(name_space, key)
+          obj.node.setAttribute('xsi:type', self.__config['auth_type'])
+          for sub_key in value:
+            obj.createAppendElement(
+                name_space, sub_key).createAppendTextNode(value[sub_key])
+        else:
+          header.createAppendElement(name_space,
+                                     key).createAppendTextNode(value)
 
   def verify(self, soap_writer):
     """Veirfy if signature handler is signed.
