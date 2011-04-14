@@ -27,13 +27,13 @@ class Error(Exception):
   """
 
   def __init__(self, msg):
-    self.message = msg
+    self.msg = msg
 
   def __str__(self):
-    return str(self.message)
+    return str(self.msg)
 
   def __call__(self):
-    return (self.message,)
+    return (self.msg,)
 
 
 class DetailError(object):

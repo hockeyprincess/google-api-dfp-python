@@ -37,6 +37,7 @@ from adspygoogle.dfp import REQUIRED_SOAP_HEADERS
 from adspygoogle.dfp import DfpSanityCheck
 from adspygoogle.dfp.CompanyService import CompanyService
 from adspygoogle.dfp.CreativeService import CreativeService
+from adspygoogle.dfp.CustomTargetingService import CustomTargetingService
 from adspygoogle.dfp.DfpWebService import DfpWebService
 from adspygoogle.dfp.ForecastService import ForecastService
 from adspygoogle.dfp.InventoryService import InventoryService
@@ -45,6 +46,7 @@ from adspygoogle.dfp.LineItemService import LineItemService
 from adspygoogle.dfp.NetworkService import NetworkService
 from adspygoogle.dfp.OrderService import OrderService
 from adspygoogle.dfp.PlacementService import PlacementService
+from adspygoogle.dfp.PublisherQueryLanguageService import PublisherQueryLanguageService
 from adspygoogle.dfp.ReportService import ReportService
 from adspygoogle.dfp.UserService import UserService
 
@@ -248,7 +250,6 @@ class DfpClient(Client):
                             self.__logger)
     return service.CallRawMethod(soap_message)
 
-  # TODO(api.sgrinberg): When API launches in production, change default server.
   def GetCompanyService(self, server='https://sandbox.google.com', version=None,
                         http_proxy=None):
     """Call API method in CompanyService.
@@ -310,6 +311,38 @@ class DfpClient(Client):
     }
     return CreativeService(headers, self._config, op_config, self.__lock,
                            self.__logger)
+
+  def GetCustomTargetingService(self, server='https://sandbox.google.com',
+                                version=None, http_proxy=None):
+    """Call API method in CustomTargetingService.
+
+    Args:
+      [optional]
+      server: str API server to access for this API call. Possible values
+              are: 'https://www.google.com' for live site and
+              'https://sandbox.google.com' for sandbox. The default behavior is
+              to access sandbox site.
+      version: str API version to use.
+      http_proxy: str HTTP proxy to use.
+
+    Returns:
+      CustomTargetingService New instance of CustomTargetingService object.
+    """
+    headers = self._headers
+
+    if version is None:
+      version = MIN_API_VERSION
+    if Utils.BoolTypeConvert(self._config['strict']):
+      DfpSanityCheck.ValidateServer(server, version)
+
+    # Load additional configuration data.
+    op_config = {
+      'server': server,
+      'version': version,
+      'http_proxy': http_proxy
+    }
+    return CustomTargetingService(headers, self._config, op_config, self.__lock,
+                                  self.__logger)
 
   def GetForecastService(self, server='https://sandbox.google.com',
                          version=None, http_proxy=None):
@@ -536,6 +569,40 @@ class DfpClient(Client):
     }
     return PlacementService(headers, self._config, op_config, self.__lock,
                             self.__logger)
+
+  def GetPublisherQueryLanguageService(self,
+                                       server='https://sandbox.google.com',
+                                       version=None, http_proxy=None):
+    """Call API method in PublisherQueryLanguageService.
+
+    Args:
+      [optional]
+      server: str API server to access for this API call. Possible values
+              are: 'https://www.google.com' for live site and
+              'https://sandbox.google.com' for sandbox. The default behavior is
+              to access sandbox site.
+      version: str API version to use.
+      http_proxy: str HTTP proxy to use.
+
+    Returns:
+      PublisherQueryLanguageService New instance of
+                                    PublisherQueryLanguageService object.
+    """
+    headers = self._headers
+
+    if version is None:
+      version = MIN_API_VERSION
+    if Utils.BoolTypeConvert(self._config['strict']):
+      DfpSanityCheck.ValidateServer(server, version)
+
+    # Load additional configuration data.
+    op_config = {
+      'server': server,
+      'version': version,
+      'http_proxy': http_proxy
+    }
+    return PublisherQueryLanguageService(headers, self._config, op_config,
+                                         self.__lock, self.__logger)
 
   def GetReportService(self, server='https://sandbox.google.com',
                        version=None, http_proxy=None):

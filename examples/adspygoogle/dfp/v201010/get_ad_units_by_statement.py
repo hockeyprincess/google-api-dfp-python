@@ -45,7 +45,7 @@ effective_root_ad_unit_id = \
 
 # Create a statement to select the children of the effective root ad unit.
 params = [{
-    'type': 'StringParam',
+    'type': 'LongParam',
     'key': 'id',
     'value': effective_root_ad_unit_id
 }]

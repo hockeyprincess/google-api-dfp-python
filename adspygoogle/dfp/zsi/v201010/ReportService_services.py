@@ -12,7 +12,7 @@ import ZSI
 
 # Locator
 class ReportServiceLocator:
-    ReportServiceInterface_address = "http://ads-publisher-api-sandbox-qa.sandbox.google.com/apis/ads/publisher/v201010/ReportService"
+    ReportServiceInterface_address = "https://www.google.com:443/apis/ads/publisher/v201010/ReportService"
     def getReportServiceInterfaceAddress(self):
         return ReportServiceLocator.ReportServiceInterface_address
     def getReportServiceInterface(self, url=None, **kw):

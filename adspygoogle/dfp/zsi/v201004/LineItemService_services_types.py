@@ -72,6 +72,23 @@ class ns0:
 
             ns0.ApplicationException_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
+    class ApiVersionError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "ApiVersionError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.ApiVersionError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201004","ApiVersionError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.ApiVersionError_Def.__bases__:
+                bases = list(ns0.ApiVersionError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.ApiVersionError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
     class ApplicationException_Def(ZSI.TCcompound.ComplexType, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "ApplicationException")
@@ -140,6 +157,23 @@ class ns0:
                 bases = list(ns0.CommonError_Def.__bases__)
                 bases.insert(0, ns0.ApiError_Def)
                 ns0.CommonError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
+    class CustomTargetingError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "CustomTargetingError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.CustomTargetingError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201004","CustomTargetingError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.CustomTargetingError_Def.__bases__:
+                bases = list(ns0.CustomTargetingError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.CustomTargetingError_Def.__bases__ = tuple(bases)
 
             ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
 
@@ -940,6 +974,23 @@ class ns0:
             Holder.__name__ = "Stats_Holder"
             self.pyclass = Holder
 
+    class StringLengthError_Def(TypeDefinition):
+        #complexType/complexContent extension
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "StringLengthError")
+        def __init__(self, pname, ofwhat=(), extend=False, restrict=False, attributes=None, **kw):
+            ns = ns0.StringLengthError_Def.schema
+            TClist = [GTD("https://www.google.com/apis/ads/publisher/v201004","StringLengthError.Reason",lazy=False)(pname=(ns,"reason"), aname="_reason", minOccurs=0, maxOccurs=1, nillable=True, typed=False, encoded=kw.get("encoded"))]
+            attributes = self.attribute_typecode_dict = attributes or {}
+            if extend: TClist += ofwhat
+            if restrict: TClist = ofwhat
+            if ns0.ApiError_Def not in ns0.StringLengthError_Def.__bases__:
+                bases = list(ns0.StringLengthError_Def.__bases__)
+                bases.insert(0, ns0.ApiError_Def)
+                ns0.StringLengthError_Def.__bases__ = tuple(bases)
+
+            ns0.ApiError_Def.__init__(self, pname, ofwhat=TClist, extend=True, attributes=attributes, **kw)
+
     class StringParam_Def(TypeDefinition):
         #complexType/complexContent extension
         schema = "https://www.google.com/apis/ads/publisher/v201004"
@@ -1066,6 +1117,15 @@ class ns0:
             Holder.__name__ = "UpdateResult_Holder"
             self.pyclass = Holder
 
+    class ApiVersionError_Reason_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "ApiVersionError.Reason")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
     class AuthenticationError_Reason_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "AuthenticationError.Reason")
@@ -1105,6 +1165,15 @@ class ns0:
     class CreativeRotationType_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "CreativeRotationType")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
+    class CustomTargetingError_Reason_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "CustomTargetingError.Reason")
         def __init__(self, pname, **kw):
             ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
             class Holder(str):
@@ -1321,6 +1390,15 @@ class ns0:
     class StatementError_Reason_Def(ZSI.TC.String, TypeDefinition):
         schema = "https://www.google.com/apis/ads/publisher/v201004"
         type = (schema, "StatementError.Reason")
+        def __init__(self, pname, **kw):
+            ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
+            class Holder(str):
+                typecode = self
+            self.pyclass = Holder
+
+    class StringLengthError_Reason_Def(ZSI.TC.String, TypeDefinition):
+        schema = "https://www.google.com/apis/ads/publisher/v201004"
+        type = (schema, "StringLengthError.Reason")
         def __init__(self, pname, **kw):
             ZSI.TC.String.__init__(self, pname, pyclass=None, **kw)
             class Holder(str):

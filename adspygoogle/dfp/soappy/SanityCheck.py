@@ -48,6 +48,26 @@ def ValidateString_ParamMapEntry(param):
         raise ValidationError(msg)
 
 
+def ValidateString_ValueMapEntry(value):
+  """Validate String_ValueMapEntry object.
+
+  Args:
+    value: dict Value object.
+  """
+  SanityCheck.ValidateTypes(((value, dict),))
+  for key in value:
+    if value[key] == 'None': continue
+    if key in ('value',):
+      if 'xsi_type' not in value[key]:
+        msg = ('The \'xsi_type\' of the value is missing.')
+        raise ValidationError(msg)
+      SanityCheck.ValidateTypes(((value[key], dict),))
+      for sub_key in value[key]:
+        SanityCheck.ValidateTypes(((value[key][sub_key], (str, unicode)),))
+    else:
+      SanityCheck.ValidateTypes(((value[key], (str, unicode)),))
+
+
 def ValidateStatement(statement):
   """Validate Statement object.
 
@@ -59,8 +79,18 @@ def ValidateStatement(statement):
     if statement[key] == 'None': continue
     if key in ('params',):
       SanityCheck.ValidateTypes(((statement[key], list),))
+      if len(statement[key]) > 1:
+        msg = ('Map \'params\' must contain a single element in the list.')
+        raise ValidationError(msg)
       for param in statement[key]:
         ValidateString_ParamMapEntry(param)
+    elif key in ('values',):
+      SanityCheck.ValidateTypes(((statement[key], list),))
+      if len(statement[key]) > 1:
+        msg = ('Map \'values\' must contain a single element in the list.')
+        raise ValidationError(msg)
+      for value in statement[key]:
+        ValidateString_ValueMapEntry(value)
     else:
       SanityCheck.ValidateTypes(((statement[key], (str, unicode)),))
   return statement
@@ -139,9 +169,7 @@ def ValidateInheritedPropertySource(property_source):
   Args:
     property_source: dict InheritedPropertySource object.
   """
-  SanityCheck.ValidateTypes(((property_source, dict),))
-  for key in property_source:
-    SanityCheck.ValidateTypes(((property_source[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(property_source)
 
 
 def ValidateAdSenseSettingsInheritedProperty(property):
@@ -246,6 +274,72 @@ def ValidateFrequencyCap(cap):
   SanityCheck.ValidateOneLevelObject(cap)
 
 
+def ValidateCustomCriteria(criteria):
+  """Validate CustomCriteria object.
+
+  Args:
+    criteria: dict CustomCriteria object.
+
+  Returns:
+    CustomCriteria instance.
+  """
+  SanityCheck.ValidateTypes(((criteria, dict),))
+  for key in criteria:
+    if key in ('values',):
+      for item in criteria[key]:
+        SanityCheck.ValidateTypes(((item, dict),))
+        for sub_key in item:
+          SanityCheck.ValidateTypes(((item[sub_key], (str, unicode)),))
+    elif key in ('valueIds',):
+      SanityCheck.ValidateTypes(((criteria[key], list),))
+      for item in criteria[key]:
+        SanityCheck.ValidateTypes(((item, (str, unicode)),))
+    else:
+      SanityCheck.ValidateTypes(((criteria[key], (str, unicode)),))
+
+
+def ValidateCustomCriteriaSet(criteria_set):
+  """Validate CustomCriteriaSet object.
+
+  Args:
+    criteria_set: dict CustomCriteriaSet object.
+
+  Returns:
+    CustomCriteriaSet instance.
+  """
+  SanityCheck.ValidateTypes(((criteria_set, dict),))
+  for key in criteria_set:
+    if key in ('children',):
+      SanityCheck.ValidateTypes(((criteria_set[key], list),))
+      children = []
+      for item in criteria_set[key]:
+        if 'xsi_type' in item:
+          if item['xsi_type'] in ('FreeFormCustomCriteria',
+                                  'PredefinedCustomCriteria'):
+            children.append(ValidateCustomCriteria(item))
+          else:
+            children.append(ValidateCustomCriteriaSet(item))
+        else:
+          msg = 'The \'xsi_type\' of node is missing.'
+          raise ValidationError(msg)
+    else:
+      SanityCheck.ValidateTypes(((criteria_set[key], (str, unicode)),))
+
+
+def ValidateDayPart(part):
+  """Validate DayPart object.
+
+  Args:
+    part: dict DayPart object.
+  """
+  SanityCheck.ValidateTypes(((part, dict),))
+  for key in part:
+    if key in ('startTime', 'endTime'):
+      ValidateDate(part[key])
+    else:
+      SanityCheck.ValidateTypes(((part[key], (str, unicode)),))
+
+
 def ValidateTargeting(targeting):
   """Validate Targeting object.
 
@@ -255,7 +349,7 @@ def ValidateTargeting(targeting):
   SanityCheck.ValidateTypes(((targeting, dict),))
   for key in targeting:
     if targeting[key] == 'None': continue
-    if key in ('inventoryTargeting',):
+    if key in ('inventoryTargeting', 'geoTargeting'):
       SanityCheck.ValidateTypes(((targeting[key], dict),))
       target = targeting[key]
       for sub_key in target:
@@ -270,6 +364,22 @@ def ValidateTargeting(targeting):
         # If value is an empty list, remove key from the dictionary.
         if not target[sub_key]:
           target = Utils.UnLoadDictKeys(target, [sub_key])
+    elif key in ('customTargeting',):
+      ValidateCustomCriteriaSet(targeting[key])
+    elif key in ('dayPartTargeting', 'userDomainTargeting'):
+      SanityCheck.ValidateTypes(((targeting[key], dict),))
+      target = targeting[key]
+      for sub_key in target:
+        if sub_key in ('dayParts',):
+          SanityCheck.ValidateTypes(((target[sub_key], list),))
+          for item in target[sub_key]:
+            ValidateDayPart(item)
+        elif sub_key in ('domains',):
+          SanityCheck.ValidateTypes(((target[sub_key], list),))
+          for item in target[sub_key]:
+            SanityCheck.ValidateTypes(((item, (str, unicode)),))
+        else:
+          SanityCheck.ValidateTypes(((target[sub_key], (str, unicode)),))
 
 
 def ValidateLineItem(line_item):
@@ -362,7 +472,7 @@ def ValidateReportQuery(report_query):
       SanityCheck.ValidateTypes(((report_query[key], list),))
       for item in report_query[key]:
         SanityCheck.ValidateTypes(((item, (str, unicode)),))
-    elif key in ('startDateTime', 'endDateTime'):
+    elif key in ('startDateTime', 'startDate', 'endDateTime', 'endDate'):
       ValidateDateTime(report_query[key])
     else:
       SanityCheck.ValidateTypes(((report_query[key], (str, unicode)),))
@@ -389,7 +499,22 @@ def ValidateNetwork(network):
   Args:
     network: dict Network object.
   """
-  SanityCheck.ValidateTypes(((network, dict),))
-  for key in network:
-    if network[key] == 'None': continue
-    SanityCheck.ValidateTypes(((network[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(network)
+
+
+def ValidateCustomTargetingKey(key):
+  """Validate CustomTargetingKey object.
+
+  Args:
+    key: dict CustomTargetingKey object.
+  """
+  SanityCheck.ValidateOneLevelObject(key)
+
+
+def ValidateCustomTargetingValue(value):
+  """Validate CustomTargetingValue object.
+
+  Args:
+    value: dict CustomTargetingValue object.
+  """
+  SanityCheck.ValidateOneLevelObject(value)

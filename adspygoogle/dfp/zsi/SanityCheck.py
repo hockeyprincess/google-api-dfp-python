@@ -30,9 +30,7 @@ def ValidateCompany(company):
   Args:
     company: dict Company object.
   """
-  SanityCheck.ValidateTypes(((company, dict),))
-  for key in company:
-    SanityCheck.ValidateTypes(((company[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(company)
 
 
 def ValidateString_ParamMapEntry(param, web_services):
@@ -68,6 +66,40 @@ def ValidateString_ParamMapEntry(param, web_services):
   return new_param
 
 
+def ValidateString_ValueMapEntry(value, web_services):
+  """Validate String_ValueMapEntry object.
+
+  Args:
+    value: dict Value object.
+    web_services: module Web services.
+
+  Returns:
+   String_ValueMapEntry instance.
+  """
+  if ZsiSanityCheck.IsPyClass(value):
+    return value
+
+  SanityCheck.ValidateTypes(((value, dict),))
+  new_value = ZsiSanityCheck.GetPyClass('String_ValueMapEntry', web_services)
+  for key in value:
+    if key in ('value',):
+      SanityCheck.ValidateTypes(((value[key], dict),))
+      if 'xsi_type' in value[key]:
+        value_obj = ZsiSanityCheck.GetPyClass(value[key]['xsi_type'],
+                                              web_services)
+      else:
+        msg = ('The \'xsi_type\' of the value is missing.')
+        raise ValidationError(msg)
+      for sub_key in value[key]:
+        value_obj.__dict__.__setitem__('_%s' % sub_key, value[key][sub_key])
+      data = value_obj
+    else:
+      SanityCheck.ValidateTypes(((value[key], (str, unicode)),))
+      data = value[key]
+    new_value.__dict__.__setitem__('_%s' % key, data)
+  return new_value
+
+
 def ValidateStatement(statement, web_services):
   """Validate Statement object.
 
@@ -86,10 +118,22 @@ def ValidateStatement(statement, web_services):
   for key in statement:
     if key in ('params',):
       SanityCheck.ValidateTypes(((statement[key], list),))
+      if len(statement[key]) > 1:
+        msg = ('Map \'params\' must contain a single element in the list.')
+        raise ValidationError(msg)
       params = []
       for param in statement[key]:
         params.append(ValidateString_ParamMapEntry(param, web_services))
       data = params
+    elif key in ('values',):
+      SanityCheck.ValidateTypes(((statement[key], list),))
+      if len(statement[key]) > 1:
+        msg = ('Map \'values\' must contain a single element in the list.')
+        raise ValidationError(msg)
+      values = []
+      for value in statement[key]:
+        values.append(ValidateString_ValueMapEntry(value, web_services))
+      data = values
     else:
       SanityCheck.ValidateTypes(((statement[key], (str, unicode)),))
       data = statement[key]
@@ -103,9 +147,7 @@ def ValidateSize(size):
   Args:
     size: dict Size object.
   """
-  SanityCheck.ValidateTypes(((size, dict),))
-  for key in size:
-    SanityCheck.ValidateTypes(((size[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(size)
 
 
 def ValidateCreative(creative, web_services):
@@ -188,9 +230,7 @@ def ValidateInheritedPropertySource(property_source):
   Args:
     property_source: dict InheritedPropertySource object.
   """
-  SanityCheck.ValidateTypes(((property_source, dict),))
-  for key in property_source:
-    SanityCheck.ValidateTypes(((property_source[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(property_source)
 
 
 def ValidateAdSenseSettingsInheritedProperty(property):
@@ -233,9 +273,7 @@ def ValidateDate(date):
   Args:
     date: dict Date object.
   """
-  SanityCheck.ValidateTypes(((date, dict),))
-  for key in date:
-    SanityCheck.ValidateTypes(((date[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(date)
 
 
 def ValidateDateTime(date_time):
@@ -259,9 +297,7 @@ def ValidateMoney(money):
   Args:
     money: dict Money object.
   """
-  SanityCheck.ValidateTypes(((money, dict),))
-  for key in money:
-    SanityCheck.ValidateTypes(((money[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(money)
 
 
 def ValidateOrder(order):
@@ -287,9 +323,7 @@ def ValidateUser(user):
   Args:
     user: dict User object.
   """
-  SanityCheck.ValidateTypes(((user, dict),))
-  for key in user:
-    SanityCheck.ValidateTypes(((user[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(user)
 
 
 def ValidateFrequencyCap(cap):
@@ -298,9 +332,95 @@ def ValidateFrequencyCap(cap):
   Args:
     cap: dict FrequencyCap object.
   """
-  SanityCheck.ValidateTypes(((cap, dict),))
-  for key in cap:
-    SanityCheck.ValidateTypes(((cap[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(cap)
+
+
+def ValidateCustomCriteria(criteria, web_services):
+  """Validate CustomCriteria object.
+
+  Args:
+    criteria: dict CustomCriteria object.
+    web_services: module Web services.
+
+  Returns:
+    CustomCriteria instance.
+  """
+  if ZsiSanityCheck.IsPyClass(criteria): return criteria
+
+  SanityCheck.ValidateTypes(((criteria, dict),))
+  new_criteria = ZsiSanityCheck.GetPyClass(criteria['xsi_type'], web_services)
+  for key in criteria:
+    if key in ('values',):
+      values = []
+      for item in criteria[key]:
+        SanityCheck.ValidateTypes(((item, dict),))
+        value = ZsiSanityCheck.GetPyClass('CustomTargetingValue', web_services)
+        for sub_key in item:
+          SanityCheck.ValidateTypes(((item[sub_key], (str, unicode)),))
+          value.__dict__.__setitem__('_%s' % sub_key, item[sub_key])
+        values.append(value)
+      data = values
+    elif key in ('valueIds',):
+      SanityCheck.ValidateTypes(((criteria[key], list),))
+      for item in criteria[key]:
+        SanityCheck.ValidateTypes(((item, (str, unicode)),))
+      data = criteria[key]
+    else:
+      SanityCheck.ValidateTypes(((criteria[key], (str, unicode)),))
+      data = criteria[key]
+    new_criteria.__dict__.__setitem__('_%s' % key, data)
+  return new_criteria
+
+
+def ValidateCustomCriteriaSet(criteria_set, web_services):
+  """Validate CustomCriteriaSet object.
+
+  Args:
+    criteria_set: dict CustomCriteriaSet object.
+    web_services: module Web services.
+
+  Returns:
+    CustomCriteriaSet instance.
+  """
+  if ZsiSanityCheck.IsPyClass(criteria_set): return criteria_set
+
+  SanityCheck.ValidateTypes(((criteria_set, dict),))
+  new_set = ZsiSanityCheck.GetPyClass(criteria_set['xsi_type'], web_services)
+  for key in criteria_set:
+    if key in ('children',):
+      SanityCheck.ValidateTypes(((criteria_set[key], list),))
+      children = []
+      for item in criteria_set[key]:
+        if 'xsi_type' in item:
+          if item['xsi_type'] in ('FreeFormCustomCriteria',
+                                  'PredefinedCustomCriteria'):
+            children.append(ValidateCustomCriteria(item, web_services))
+          else:
+            children.append(ValidateCustomCriteriaSet(item, web_services))
+        else:
+          msg = 'The \'xsi_type\' of node is missing.'
+          raise ValidationError(msg)
+      data = children
+    else:
+      SanityCheck.ValidateTypes(((criteria_set[key], (str, unicode)),))
+      data = criteria_set[key]
+    new_set.__dict__.__setitem__('_%s' % key, data)
+  return new_set
+
+
+def ValidateDayPart(part):
+  """Validate DayPart object.
+
+  Args:
+    part: dict DayPart object.
+  """
+  SanityCheck.ValidateTypes(((part, dict),))
+  for key in part:
+    if part[key] == 'None': continue
+    if key in ('startTime', 'endTime'):
+      ValidateDate(part[key])
+    else:
+      SanityCheck.ValidateTypes(((part[key], (str, unicode)),))
 
 
 def ValidateTargeting(targeting, web_services):
@@ -334,7 +454,7 @@ def ValidateTargeting(targeting, web_services):
               location = ZsiSanityCheck.GetPyClass(item['xsi_type'],
                                                    web_services)
             else:
-              msg = ('The type of the geo targeting location is missing.')
+              msg = 'The \'xsi_type\' of the geo targeting location is missing.'
               raise ValidationError(msg)
             for sub_sub_key in item:
               SanityCheck.ValidateTypes(((item[sub_sub_key], (str, unicode)),))
@@ -346,8 +466,24 @@ def ValidateTargeting(targeting, web_services):
           target = Utils.UnLoadDictKeys(target, [sub_key])
         target[sub_key] = targets
       data = target
-    elif key in('geoTargeting',):
+    elif key in ('customTargeting',):
+      data = ValidateCustomCriteriaSet(targeting[key], web_services)
+    elif key in ('dayPartTargeting', 'userDomainTargeting'):
       SanityCheck.ValidateTypes(((targeting[key], dict),))
+      target = targeting[key]
+      for sub_key in target:
+        if sub_key in ('dayParts',):
+          SanityCheck.ValidateTypes(((target[sub_key], list),))
+          targets = []
+          for item in target[sub_key]:
+            ValidateDayPart(item)
+        elif sub_key in ('domains',):
+          SanityCheck.ValidateTypes(((target[sub_key], list),))
+          for item in target[sub_key]:
+            SanityCheck.ValidateTypes(((item, (str, unicode)),))
+        else:
+          SanityCheck.ValidateTypes(((target[sub_key], (str, unicode)),))
+      data = target
   return data
 
 
@@ -453,7 +589,7 @@ def ValidateReportQuery(report_query):
       SanityCheck.ValidateTypes(((report_query[key], list),))
       for item in report_query[key]:
         SanityCheck.ValidateTypes(((item, (str, unicode)),))
-    elif key in ('startDateTime', 'endDateTime'):
+    elif key in ('startDateTime', 'startDate', 'endDateTime', 'endDate'):
       ValidateDateTime(report_query[key])
     else:
       SanityCheck.ValidateTypes(((report_query[key], (str, unicode)),))
@@ -479,6 +615,22 @@ def ValidateNetwork(network):
   Args:
     network: dict Network object.
   """
-  SanityCheck.ValidateTypes(((network, dict),))
-  for key in network:
-    SanityCheck.ValidateTypes(((network[key], (str, unicode)),))
+  SanityCheck.ValidateOneLevelObject(network)
+
+
+def ValidateCustomTargetingKey(key):
+  """Validate CustomTargetingKey object.
+
+  Args:
+    key: dict CustomTargetingKey object.
+  """
+  SanityCheck.ValidateOneLevelObject(key)
+
+
+def ValidateCustomTargetingValue(value):
+  """Validate CustomTargetingValue object.
+
+  Args:
+    value: dict CustomTargetingValue object.
+  """
+  SanityCheck.ValidateOneLevelObject(value)
